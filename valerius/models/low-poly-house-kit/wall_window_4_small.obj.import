@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://crqicx212j2sy"
+path="res://.godot/imported/wall_window_4_small.obj-9d55245f99f2d0d5b9e7834a63978204.mesh"
+
+[deps]
+
+files=["res://.godot/imported/wall_window_4_small.obj-9d55245f99f2d0d5b9e7834a63978204.mesh"]
+
+source_file="res://models/low-poly-house-kit/wall_window_4_small.obj"
+dest_files=["res://.godot/imported/wall_window_4_small.obj-9d55245f99f2d0d5b9e7834a63978204.mesh", "res://.godot/imported/wall_window_4_small.obj-9d55245f99f2d0d5b9e7834a63978204.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyqdmatxg32mo"]
+
+[ext_resource type="PackedScene" uid="uid://ohfijpqynpye" path="res://models/KayKit_Forest_Nature_Pack_1.0_FREE/Assets/gltf/Rock_1_I_Color1.gltf" id="1_4pw0g"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gra74"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f12kd"]
+size = Vector3(0.8862915, 0.82421875, 2.0025635)
+
+[node name="Rock_1_I_Color12" instance=ExtResource("1_4pw0g")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Rock_1_I_Color1" index="0"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Rock_1_I_Color1/StaticBody3D" index="0"]
+transform = Transform3D(1.7848746, 0, 0, 0, 2.0281796, 0, 0, 0, 2.0991569, -0.050798178, 0.89489996, 0)
+transparency = 1.0
+mesh = SubResource("BoxMesh_gra74")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rock_1_I_Color1/StaticBody3D" index="1"]
+transform = Transform3D(1.860673, 0, 0, 0, 3.5380306, 0, 0, 0, 1, -0.06775959, 0.49408045, 0.06036377)
+shape = SubResource("BoxShape3D_f12kd")

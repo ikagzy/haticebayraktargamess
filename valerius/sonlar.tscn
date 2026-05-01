@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://rp1tvyvdi12k"]
+
+[ext_resource type="FontFile" uid="uid://b857wkgpxyh1s" path="res://Montserrat-VariableFont_wght.ttf" id="1_xce04"]
+[ext_resource type="Script" uid="uid://hcmmod6yf046" path="res://geridonson.gd" id="3_kj0l7"]
+
+[node name="ColorRect" type="ColorRect" unique_id=1992845837]
+offset_left = -14.0
+offset_top = 1.0
+offset_right = 1910.0
+offset_bottom = 1087.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="." unique_id=782977966]
+layout_mode = 0
+offset_right = 1929.0
+offset_bottom = 137.0
+theme_override_fonts/font = ExtResource("1_xce04")
+theme_override_font_sizes/font_size = 100
+text = "SONLAR"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1713897854]
+layout_mode = 0
+offset_left = -1035.0
+offset_top = 228.0
+offset_right = 614.0
+offset_bottom = 485.0
+
+[node name="Button" type="Button" parent="." unique_id=901143726]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 816.0
+offset_right = 553.0
+offset_bottom = 975.0
+theme_override_fonts/font = ExtResource("1_xce04")
+theme_override_font_sizes/font_size = 100
+text = "Geri dön"
+script = ExtResource("3_kj0l7")

@@ -1,0 +1,1393 @@
+[gd_scene format=3 uid="uid://3r8d1amq7d1h"]
+
+[ext_resource type="Script" uid="uid://b0rmprkpa1ay3" path="res://kale_baslangic.gd" id="1_nahwk"]
+[ext_resource type="PackedScene" uid="uid://bpxtpu67atgrf" path="res://character_body_3d.tscn" id="2_b1vsw"]
+[ext_resource type="Texture2D" uid="uid://dy02dq3rfkvwn" path="res://models/textures/Stone/Stone_14-128x128.png" id="2_guedo"]
+[ext_resource type="ArrayMesh" uid="uid://c7u5a4fbpbopo" path="res://KALEESYALAR/obj/floor_dirt_large.obj" id="3_vj1wg"]
+[ext_resource type="Texture2D" uid="uid://w0ne127eunss" path="res://models/textures/Stone/Stone_07-128x128.png" id="3_ywa41"]
+[ext_resource type="ArrayMesh" uid="uid://bd7v5vfbciswy" path="res://KALEESYALAR/obj/wall_corner.obj" id="4_qxoy0"]
+[ext_resource type="Script" uid="uid://bhyxqrabaakxb" path="res://gorunmezduvar.gd" id="5_cmava"]
+[ext_resource type="ArrayMesh" uid="uid://rwcccnmoettk" path="res://KALEESYALAR/obj/wall.obj" id="5_qxoy0"]
+[ext_resource type="ArrayMesh" uid="uid://048d83luoq0s" path="res://KALEESYALAR/obj/wall_arched.obj" id="6_3y1mp"]
+[ext_resource type="PackedScene" uid="uid://u50ovmpm3hc8" path="res://models/Low Poly Furniture/Shelves/Shelf D.fbx" id="7_etomf"]
+[ext_resource type="ArrayMesh" uid="uid://mgtwmtyrjoga" path="res://KALEESYALAR/obj/wall_shelves.obj" id="8_wvr4i"]
+[ext_resource type="ArrayMesh" uid="uid://us06vynfly4l" path="res://KALEESYALAR/obj/wall_doorway_scaffold_door.obj" id="9_0wltn"]
+[ext_resource type="ArrayMesh" uid="uid://bht53rl04lmxu" path="res://KALEESYALAR/obj/wall_doorway.obj" id="10_ywa41"]
+[ext_resource type="ArrayMesh" uid="uid://cofowbdruqgdc" path="res://KALEESYALAR/obj/wall_corner_small.obj" id="11_etomf"]
+[ext_resource type="Script" uid="uid://dvyi3mkg6aj5t" path="res://hareketisiksistemi.gd" id="12_wvr4i"]
+[ext_resource type="Script" uid="uid://dk6hsbk5x186n" path="res://mesale_isigi_titremesi.gd" id="13_0wltn"]
+[ext_resource type="PackedScene" uid="uid://bnnq0oi1yj0rn" path="res://models/CSGStairMaker3D.tscn" id="14_03itg"]
+[ext_resource type="Texture2D" uid="uid://djux85ydu0eqs" path="res://models/textures/Wood/Wood_07-128x128.png" id="15_nahwk"]
+[ext_resource type="PackedScene" uid="uid://euxv6thayago" path="res://old_book.glb" id="19_aa1gw"]
+[ext_resource type="Texture2D" uid="uid://c3k8f6f02vo5w" path="res://models/textures/zenci/Brick/Brick_24_L-256x128.png" id="20_s06ai"]
+[ext_resource type="ArrayMesh" uid="uid://c3rpowixnlos7" path="res://KALEESYALAR/obj/crates_stacked.obj" id="21_1pbkb"]
+[ext_resource type="ArrayMesh" uid="uid://cn826h4r632hw" path="res://KALEESYALAR/obj/torch_mounted.obj" id="22_djul0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3f6rb"]
+
+[sub_resource type="Sky" id="Sky_guedo"]
+sky_material = SubResource("ProceduralSkyMaterial_3f6rb")
+
+[sub_resource type="Environment" id="Environment_b1vsw"]
+background_mode = 2
+background_energy_multiplier = 0.0
+sky = SubResource("Sky_guedo")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b1vsw"]
+albedo_texture = ExtResource("2_guedo")
+uv1_triplanar = true
+uv1_triplanar_sharpness = 0.2679434
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cmava"]
+albedo_texture = ExtResource("3_ywa41")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_etomf"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7kqrd"]
+size = Vector3(3.3093262, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3y1mp"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aa1gw"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s06ai"]
+albedo_texture = ExtResource("15_nahwk")
+uv1_triplanar = true
+
+[sub_resource type="VoxelGIData" id="VoxelGIData_wvr4i"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0wltn"]
+radius = 1.9117104
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1pbkb"]
+albedo_texture = ExtResource("20_s06ai")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[node name="Kale" type="Node3D" unique_id=1005922911]
+script = ExtResource("1_nahwk")
+
+[node name="CharacterBody3D" parent="." unique_id=2053614635 instance=ExtResource("2_b1vsw")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -7.9107275, -1.6257933, 53.484035)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=116206750]
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1013215660]
+environment = SubResource("Environment_b1vsw")
+
+[node name="Zemin2" type="CSGBox3D" parent="." unique_id=1937920472]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.30624, -0.42266983, 28.736385)
+material_override = SubResource("StandardMaterial3D_b1vsw")
+use_collision = true
+size = Vector3(43.328583, 1, 58.413155)
+
+[node name="Tavan" type="CSGBox3D" parent="." unique_id=1465069251]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8336306, 4.5873437, 28.731106)
+material_override = SubResource("StandardMaterial3D_cmava")
+use_collision = true
+size = Vector3(10.80101, 1, 58.413155)
+
+[node name="Zemin" type="Node3D" parent="." unique_id=129080670]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22013664, 0, 0.29592133)
+metadata/_edit_group_ = true
+
+[node name="FloorDirtLarge" type="MeshInstance3D" parent="Zemin" unique_id=226958528]
+transform = Transform3D(2.9513252, 0, 0, 0, 1, 0, 0, 0, 2.8678372, -6.398035, 0.062434345, 52.144382)
+mesh = ExtResource("3_vj1wg")
+skeleton = NodePath("../..")
+
+[node name="FloorDirtLarge2" type="MeshInstance3D" parent="Zemin" unique_id=875207987]
+transform = Transform3D(2.9513252, 0, 0, 0, 1, 0, 0, 0, 2.8678372, -6.398035, 0.062434345, 40.874115)
+mesh = ExtResource("3_vj1wg")
+skeleton = NodePath("../..")
+
+[node name="FloorDirtLarge3" type="MeshInstance3D" parent="Zemin" unique_id=440568687]
+transform = Transform3D(2.9513252, 0, 0, 0, 1, 0, 0, 0, 2.8678372, 5.314781, 0.062434345, 52.144382)
+mesh = ExtResource("3_vj1wg")
+skeleton = NodePath("../..")
+
+[node name="FloorDirtLarge4" type="MeshInstance3D" parent="Zemin" unique_id=2090233789]
+transform = Transform3D(2.9513252, 0, 0, 0, 1, 0, 0, 0, 2.8678372, 16.968899, 0.062434345, 52.144382)
+mesh = ExtResource("3_vj1wg")
+skeleton = NodePath("../..")
+
+[node name="FloorDirtLarge5" type="MeshInstance3D" parent="Zemin" unique_id=574577647]
+transform = Transform3D(2.9513252, 0, 0, 0, 1, 0, 0, 0, 2.8678372, 28.717308, 0.062434345, 52.144382)
+mesh = ExtResource("3_vj1wg")
+skeleton = NodePath("../..")
+
+[node name="FloorDirtLarge7" type="MeshInstance3D" parent="Zemin" unique_id=707069496]
+transform = Transform3D(2.9513252, 0, 0, 0, 1, 0, 0, 0, 2.8678372, -6.398035, 0.062434345, 29.659348)
+mesh = ExtResource("3_vj1wg")
+skeleton = NodePath("../..")
+
+[node name="FloorDirtLarge8" type="MeshInstance3D" parent="Zemin" unique_id=1355829604]
+transform = Transform3D(2.9513252, 0, 0, 0, 1, 0, 0, 0, 2.8678372, 5.314781, 0.062434345, 40.929615)
+mesh = ExtResource("3_vj1wg")
+skeleton = NodePath("../..")
+
+[node name="FloorDirtLarge9" type="MeshInstance3D" parent="Zemin" unique_id=2117235497]
+transform = Transform3D(2.9513252, 0, 0, 0, 1, 0, 0, 0, 2.8678372, 16.968899, 0.062434345, 40.929615)
+mesh = ExtResource("3_vj1wg")
+skeleton = NodePath("../..")
+
+[node name="FloorDirtLarge10" type="MeshInstance3D" parent="Zemin" unique_id=585784753]
+transform = Transform3D(2.9513252, 0, 0, 0, 1, 0, 0, 0, 2.8678372, 28.717308, 0.062434345, 40.929615)
+mesh = ExtResource("3_vj1wg")
+skeleton = NodePath("../..")
+
+[node name="FloorDirtLarge11" type="MeshInstance3D" parent="Zemin" unique_id=309664793]
+transform = Transform3D(2.9513252, 0, 0, 0, 1, 0, 0, 0, 2.8678372, -6.398035, 0.062434345, 18.88966)
+mesh = ExtResource("3_vj1wg")
+skeleton = NodePath("../..")
+
+[node name="FloorDirtLarge12" type="MeshInstance3D" parent="Zemin" unique_id=1463743063]
+transform = Transform3D(2.9513252, 0, 0, 0, 1, 0, 0, 0, 2.8678372, 5.314781, 0.062434345, 30.159927)
+mesh = ExtResource("3_vj1wg")
+skeleton = NodePath("../..")
+
+[node name="FloorDirtLarge13" type="MeshInstance3D" parent="Zemin" unique_id=319785399]
+transform = Transform3D(2.9513252, 0, 0, 0, 1, 0, 0, 0, 2.8678372, 16.968899, 0.062434345, 30.159927)
+mesh = ExtResource("3_vj1wg")
+skeleton = NodePath("../..")
+
+[node name="FloorDirtLarge14" type="MeshInstance3D" parent="Zemin" unique_id=2129047359]
+transform = Transform3D(2.9513252, 0, 0, 0, 1, 0, 0, 0, 2.8678372, 28.717308, 0.062434345, 30.159927)
+mesh = ExtResource("3_vj1wg")
+skeleton = NodePath("../..")
+
+[node name="FloorDirtLarge15" type="MeshInstance3D" parent="Zemin" unique_id=603810071]
+transform = Transform3D(2.9513252, 0, 0, 0, 1, 0, 0, 0, 2.8678372, -6.398035, 0.062434345, 7.7765713)
+mesh = ExtResource("3_vj1wg")
+skeleton = NodePath("../..")
+
+[node name="FloorDirtLarge16" type="MeshInstance3D" parent="Zemin" unique_id=1650610155]
+transform = Transform3D(2.9513252, 0, 0, 0, 1, 0, 0, 0, 2.8678372, 5.314781, 0.062434345, 19.173222)
+mesh = ExtResource("3_vj1wg")
+skeleton = NodePath("../..")
+
+[node name="FloorDirtLarge17" type="MeshInstance3D" parent="Zemin" unique_id=170916987]
+transform = Transform3D(2.9513252, 0, 0, 0, 1, 0, 0, 0, 2.8678372, 16.968899, 0.062434345, 19.173222)
+mesh = ExtResource("3_vj1wg")
+skeleton = NodePath("../..")
+
+[node name="FloorDirtLarge18" type="MeshInstance3D" parent="Zemin" unique_id=1748669006]
+transform = Transform3D(2.9513252, 0, 0, 0, 1, 0, 0, 0, 2.8678372, 28.717308, 0.062434345, 19.173222)
+mesh = ExtResource("3_vj1wg")
+skeleton = NodePath("../..")
+
+[node name="FloorDirtLarge19" type="MeshInstance3D" parent="Zemin" unique_id=1607380404]
+transform = Transform3D(2.9513252, 0, 0, 0, 1, 0, 0, 0, 2.8678372, 5.314781, 0.062434345, 8.053045)
+mesh = ExtResource("3_vj1wg")
+skeleton = NodePath("../..")
+
+[node name="FloorDirtLarge20" type="MeshInstance3D" parent="Zemin" unique_id=375102310]
+transform = Transform3D(2.9513252, 0, 0, 0, 1, 0, 0, 0, 2.8678372, 16.968899, 0.062434345, 8.053045)
+mesh = ExtResource("3_vj1wg")
+skeleton = NodePath("../..")
+
+[node name="FloorDirtLarge21" type="MeshInstance3D" parent="Zemin" unique_id=119968591]
+transform = Transform3D(2.9513252, 0, 0, 0, 1, 0, 0, 0, 2.8678372, 28.717308, 0.062434345, 8.053045)
+mesh = ExtResource("3_vj1wg")
+skeleton = NodePath("../..")
+
+[node name="duvarlar" type="Node3D" parent="." unique_id=553500260]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -11.873587, 0.07733017, 57.400337)
+
+[node name="Area3D" type="Area3D" parent="duvarlar" unique_id=1958193978]
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, -3.5488605, 1.748352, 26.17395)
+script = ExtResource("5_cmava")
+sadece_bir_kere_goster = true
+
+[node name="Gorunmezduvar" type="CSGBox3D" parent="duvarlar/Area3D" unique_id=892461879]
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.4717598, 4.496704, 0.96533203)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="duvarlar/Area3D" unique_id=2054009570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11804199, 0, 0.6822052)
+shape = SubResource("BoxShape3D_7kqrd")
+
+[node name="WallCorner" type="MeshInstance3D" parent="duvarlar" unique_id=1688675632]
+mesh = ExtResource("4_qxoy0")
+skeleton = NodePath("../..")
+
+[node name="WallCorner2" type="MeshInstance3D" parent="duvarlar" unique_id=1347356576]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.8847337, 0, 0)
+mesh = ExtResource("4_qxoy0")
+skeleton = NodePath("../..")
+
+[node name="Wall2" type="MeshInstance3D" parent="duvarlar" unique_id=938576813]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -9.173237, 0, -6.866455e-05)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+
+[node name="WallArched" type="MeshInstance3D" parent="duvarlar" unique_id=1144331208]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.9099293, 4.7683716e-07, -0.00047683716)
+mesh = ExtResource("6_3y1mp")
+skeleton = NodePath("../..")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/WallArched" unique_id=1174452528]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09887695, 1.7752075, -0.010375977)
+material_override = SubResource("StandardMaterial3D_3y1mp")
+use_collision = true
+size = Vector3(7.3637695, 4.550415, 1.020752)
+
+[node name="Shelf D" parent="duvarlar" unique_id=392404128 instance=ExtResource("7_etomf")]
+transform = Transform3D(-1.7792846e-08, 0, 0.3740741, 0, 0.27658156, 0, -0.40705293, 0, -1.6351299e-08, -6.948215, 1.4929266, 6.9660606)
+
+[node name="WallShelves" type="MeshInstance3D" parent="duvarlar" unique_id=942012530]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.886021, 0, 3.4873848)
+mesh = ExtResource("8_wvr4i")
+skeleton = NodePath("../..")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/WallShelves" unique_id=2083656767]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.183075, 1.7752075, -0.010375977)
+material_override = SubResource("StandardMaterial3D_3y1mp")
+use_collision = true
+size = Vector3(8.990051, 4.550415, 1.020752)
+
+[node name="WallDoorwayScaffoldDoor" type="MeshInstance3D" parent="duvarlar" unique_id=1273338293]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 0.06166935, 0, 3.902134)
+mesh = ExtResource("9_0wltn")
+skeleton = NodePath("../..")
+
+[node name="WallDoorway" type="MeshInstance3D" parent="duvarlar" unique_id=1279086323]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.012468338, 0.0053542852, 3.9020271)
+mesh = ExtResource("10_ywa41")
+skeleton = NodePath("../..")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/WallDoorway" unique_id=955023735]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.183075, 1.7752075, -0.010375977)
+material_override = SubResource("StandardMaterial3D_3y1mp")
+use_collision = true
+size = Vector3(8.990051, 4.550415, 1.020752)
+
+[node name="WallShelves2" type="MeshInstance3D" parent="duvarlar" unique_id=422977922]
+transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, 0.01123333, 0, 7.5123367)
+mesh = ExtResource("8_wvr4i")
+skeleton = NodePath("../..")
+
+[node name="Wall3" type="MeshInstance3D" parent="duvarlar" unique_id=2098270162]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -7.906215, 0, 7.370167)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+
+[node name="WallDoorway2" type="MeshInstance3D" parent="duvarlar" unique_id=237136395]
+transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, -3.9554434, 0.0053542852, 11.185902)
+mesh = ExtResource("10_ywa41")
+skeleton = NodePath("../..")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/WallDoorway2" unique_id=1399544359]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5519638, 1.7752075, -0.010375977)
+material_override = SubResource("StandardMaterial3D_3y1mp")
+use_collision = true
+size = Vector3(1.0164948, 4.550415, 1.020752)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="duvarlar/WallDoorway2" unique_id=1020249326]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4986353, 1.7752075, -0.010375977)
+material_override = SubResource("StandardMaterial3D_3y1mp")
+use_collision = true
+size = Vector3(1.0164948, 4.550415, 1.020752)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="duvarlar/WallDoorway2" unique_id=1633157424]
+transform = Transform3D(-4.371138e-08, 1, 8.742277e-08, -1, -4.371139e-08, 8.742277e-08, 8.742277e-08, -8.742277e-08, 1, 0.16608143, 3.4053516, -0.010375977)
+material_override = SubResource("StandardMaterial3D_3y1mp")
+use_collision = true
+size = Vector3(1.1488724, 3.7452698, 1.020752)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="duvarlar/WallDoorway2" unique_id=1148358455]
+transform = Transform3D(7.313057e-08, 0.25881898, 0.9659258, -1, -4.371139e-08, 8.742277e-08, 6.4848635e-08, -0.9659258, 0.25881898, 0.85975933, 1.4150839, 0.9579849)
+material_override = SubResource("StandardMaterial3D_3y1mp")
+use_collision = true
+size = Vector3(2.794671, 1.9547215, 0.35021973)
+
+[node name="WallDoorwayScaffoldDoor2" type="MeshInstance3D" parent="duvarlar" unique_id=667184252]
+transform = Transform3D(-0.25881898, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.25881898, -3.1037626, 0, 12.148235)
+mesh = ExtResource("9_0wltn")
+skeleton = NodePath("../..")
+
+[node name="Wall4" type="MeshInstance3D" parent="duvarlar" unique_id=1909355986]
+transform = Transform3D(0.7071069, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, 0.7071069, -6.827473, 0, 10.321838)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall4" unique_id=243378370]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2672882, 1.748352, -0.013679504)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(2.7621155, 4.496704, 1.0371094)
+
+[node name="Wall5" type="MeshInstance3D" parent="duvarlar" unique_id=1879382431]
+transform = Transform3D(0.7071066, 0, 0.70710695, 0, 1, 0, -0.70710695, 0, 0.7071066, -0.6235199, 0, 10.123474)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall5" unique_id=158699667]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.38806915, 1.748352, -0.016113281)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(2.5205688, 4.496704, 1.0322266)
+
+[node name="Wall6" type="MeshInstance3D" parent="duvarlar" unique_id=1892545908]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -5.4280906, 0, 13.379044)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall6" unique_id=1661184331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall7" type="MeshInstance3D" parent="duvarlar" unique_id=713492513]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -1.8539991, 0, 13.379044)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall7" unique_id=74038284]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall8" type="MeshInstance3D" parent="duvarlar" unique_id=1175094557]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -8.392843, 0, 19.611351)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall8" unique_id=1881938284]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall9" type="MeshInstance3D" parent="duvarlar" unique_id=387417188]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -1.8539991, 0, 17.221218)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall9" unique_id=293673780]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall10" type="MeshInstance3D" parent="duvarlar" unique_id=1354057430]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -1.8539991, 0, 20.970592)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall10" unique_id=1768805148]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall14" type="MeshInstance3D" parent="duvarlar" unique_id=240535172]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -1.8539991, 0, 24.676643)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall14" unique_id=2132675277]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall15" type="MeshInstance3D" parent="duvarlar" unique_id=658186063]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -5.5142097, 0, 24.676643)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall15" unique_id=16837459]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="WallCornerSmall2" type="MeshInstance3D" parent="duvarlar" unique_id=2070427264]
+transform = Transform3D(1.172251e-07, 0, -1, 0, 1, 0, 1, 0, 1.172251e-07, -5.513913, 0, 27.43525)
+mesh = ExtResource("11_etomf")
+
+[node name="Wall16" type="MeshInstance3D" parent="duvarlar" unique_id=2086067947]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -8.371214, 0, 27.428923)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall16" unique_id=1387433665]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="WallCornerSmall3" type="MeshInstance3D" parent="duvarlar" unique_id=1379400365]
+transform = Transform3D(1.172251e-07, 0, -1, 0, 1, 0, 1, 0, 1.172251e-07, -5.4283004, 0, 19.610886)
+mesh = ExtResource("11_etomf")
+
+[node name="Wall11" type="MeshInstance3D" parent="duvarlar" unique_id=1319731394]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -5.42809, 0, 16.732517)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall11" unique_id=518975627]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall17" type="MeshInstance3D" parent="duvarlar" unique_id=1407847554]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -1.8539991, 0, 28.451162)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall17" unique_id=1161412659]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall18" type="MeshInstance3D" parent="duvarlar" unique_id=607653181]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -5.5260854, 0, 28.451162)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall18" unique_id=519821652]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall19" type="MeshInstance3D" parent="duvarlar" unique_id=301745061]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -1.8539991, 0, 31.698944)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall19" unique_id=1702981617]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall20" type="MeshInstance3D" parent="duvarlar" unique_id=397492931]
+transform = Transform3D(0.8748314, 0, -0.48442787, 0, 1, 0, 0.48442787, 0, 0.8748314, -3.7834692, 0, 31.365467)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall20" unique_id=1248468420]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar" unique_id=277539232]
+transform = Transform3D(-3.2426193, 2.1794147, -1.22653e-07, 1.6506292, 4.2814054, -4.8849813e-15, 2.8347878e-07, -1.905305e-07, -1.4029866, -16.774586, 0.26838762, 23.531021)
+material_override = SubResource("StandardMaterial3D_aa1gw")
+use_collision = true
+size = Vector3(3.419138, 1.1629028, 5.1397095)
+
+[node name="CSGStairMaker3D" parent="duvarlar" unique_id=1344390623 instance=ExtResource("14_03itg")]
+transform = Transform3D(-3.6385658, 0, -1.2265299e-07, 0, 4.804195, 0, 3.1809353e-07, 0, -1.4029866, -15.81913, 2.7049205, 23.452377)
+material_override = SubResource("StandardMaterial3D_s06ai")
+size = Vector3(3.3834229, 1.3027039, 5.931122)
+num_stairs = 16
+
+[node name="Wall12" type="MeshInstance3D" parent="duvarlar" unique_id=276067702]
+transform = Transform3D(-4.0410647, 0, -8.742278e-08, 0, 1, 0, 3.532811e-07, 0, -1, -18.03515, -0.02616334, 19.61451)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall12" unique_id=146936537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall13" type="MeshInstance3D" parent="duvarlar" unique_id=1045260429]
+transform = Transform3D(-3.3346326, 0, -8.742278e-08, 0, 1, 0, 2.9152284e-07, 0, -1, -15.634626, 3.3903525, 19.495293)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall13" unique_id=799191474]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall21" type="MeshInstance3D" parent="duvarlar" unique_id=1507390199]
+transform = Transform3D(-4.0410647, 0, -8.742278e-08, 0, 1, 0, 3.532811e-07, 0, -1, -18.03515, -0.02616334, 27.416563)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall21" unique_id=1959575017]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="duvarlar" unique_id=758267242]
+transform = Transform3D(1.4493983, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -4.1246176, -0.16546631, 1.3757629)
+use_collision = true
+size = Vector3(1, 0.6690674, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="duvarlar" unique_id=2126648861]
+transform = Transform3D(1.4493983, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -4.1581235, 0.43422508, 1.3466873)
+use_collision = true
+size = Vector3(0.802948, 1.2637329, 0.34840393)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="duvarlar" unique_id=1617325436]
+transform = Transform3D(1.4493983, 4.800092e-08, -1.43566865e-08, -6.957245e-08, 0.83577865, -0.5490665, -2.080855e-08, 0.54906654, 0.8357786, -4.1246176, 1.1697185, 1.2648392)
+use_collision = true
+size = Vector3(1, 0.18414307, 1.5098267)
+
+[node name="Wall22" type="MeshInstance3D" parent="duvarlar" unique_id=865623181]
+transform = Transform3D(-3.3346326, 0, -8.742278e-08, 0, 1, 0, 2.9152284e-07, 0, -1, -15.634627, 3.3903525, 27.330992)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall22" unique_id=942096048]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="WallCornerSmall4" type="MeshInstance3D" parent="duvarlar" unique_id=198419617]
+transform = Transform3D(-2.9802337e-08, 0, 1, 0, 1, 0, -1, 0, -2.9802337e-08, -22.87795, 5.621409, 27.050362)
+mesh = ExtResource("11_etomf")
+
+[node name="WallCornerSmall5" type="MeshInstance3D" parent="duvarlar" unique_id=383112401]
+transform = Transform3D(-1, 0, -7.3513725e-08, 0, 1, 0, 7.3513725e-08, 0, -1, -22.877953, 5.621409, 19.769001)
+mesh = ExtResource("11_etomf")
+
+[node name="Wall23" type="MeshInstance3D" parent="duvarlar" unique_id=479195968]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -22.873245, 5.620172, 16.840271)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall23" unique_id=1818385054]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall24" type="MeshInstance3D" parent="duvarlar" unique_id=604602016]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -22.873245, 5.620172, 29.747324)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall24" unique_id=572926395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall25" type="MeshInstance3D" parent="duvarlar" unique_id=868630423]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -22.873245, 5.620172, 33.40793)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall25" unique_id=2080773716]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall26" type="MeshInstance3D" parent="duvarlar" unique_id=2132446840]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -22.873245, 5.620172, 13.325027)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall26" unique_id=1501756701]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall27" type="MeshInstance3D" parent="duvarlar" unique_id=1499478135]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -22.873245, 5.620172, 36.831768)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall27" unique_id=1292194334]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall28" type="MeshInstance3D" parent="duvarlar" unique_id=645954414]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -22.87325, 5.620172, 9.708435)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall28" unique_id=1583262917]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall29" type="MeshInstance3D" parent="duvarlar" unique_id=1173488069]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -22.873245, 5.620172, 40.511604)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall29" unique_id=260913582]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall30" type="MeshInstance3D" parent="duvarlar" unique_id=28974723]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -22.873245, 5.620172, 44.172207)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall30" unique_id=2092394439]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall31" type="MeshInstance3D" parent="duvarlar" unique_id=2125063060]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -22.873245, 5.620172, 47.596046)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall31" unique_id=1654185186]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall33" type="MeshInstance3D" parent="duvarlar" unique_id=1842811546]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -22.873251, 5.620172, 2.7003708)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall33" unique_id=1330285787]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall34" type="MeshInstance3D" parent="duvarlar" unique_id=310921465]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -22.873251, 5.620172, 6.1242065)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall34" unique_id=1811121605]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="WallCorner3" type="MeshInstance3D" parent="duvarlar" unique_id=231935840]
+transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, -22.871693, 5.6123137, -0.775795)
+mesh = ExtResource("4_qxoy0")
+skeleton = NodePath("../..")
+
+[node name="Wall35" type="MeshInstance3D" parent="duvarlar" unique_id=1545770152]
+transform = Transform3D(1, 0, 1.3212626e-07, 0, 1, 0, -1.3212626e-07, 0, 1, -26.828705, 5.620172, -0.77612686)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall35" unique_id=1105032531]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall36" type="MeshInstance3D" parent="duvarlar" unique_id=36458002]
+transform = Transform3D(1, 0, 1.3212626e-07, 0, 1, 0, -1.3212626e-07, 0, 1, -30.428661, 5.620172, -0.7761307)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall36" unique_id=1732136875]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall37" type="MeshInstance3D" parent="duvarlar" unique_id=675984681]
+transform = Transform3D(1, 0, 1.3212626e-07, 0, 1, 0, -1.3212626e-07, 0, 1, -34.124493, 5.620172, -0.77612686)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall37" unique_id=1869123570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall38" type="MeshInstance3D" parent="duvarlar" unique_id=1944892082]
+transform = Transform3D(1, 0, 1.3212626e-07, 0, 1, 0, -1.3212626e-07, 0, 1, -37.72445, 5.620172, -0.7761307)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall38" unique_id=645666246]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall39" type="MeshInstance3D" parent="duvarlar" unique_id=2054821285]
+transform = Transform3D(1, 0, 1.3212626e-07, 0, 1, 0, -1.3212626e-07, 0, 1, -41.483364, 5.620172, -0.77612686)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall39" unique_id=1989343349]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="WallCorner4" type="MeshInstance3D" parent="duvarlar" unique_id=1021740729]
+transform = Transform3D(-4.3711395e-08, 0, 1, 0, 1, 0, -1, 0, -4.3711395e-08, -42.739185, 5.6123137, -0.775795)
+mesh = ExtResource("4_qxoy0")
+skeleton = NodePath("../..")
+
+[node name="Wall40" type="MeshInstance3D" parent="duvarlar" unique_id=981180607]
+transform = Transform3D(8.841488e-08, 0, -1, 0, 1, 0, 1, 0, 8.841488e-08, -42.74181, 5.620172, 3.1025047)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall40" unique_id=410136299]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall41" type="MeshInstance3D" parent="duvarlar" unique_id=1864797182]
+transform = Transform3D(8.841488e-08, 0, -1, 0, 1, 0, 1, 0, 8.841488e-08, -42.74181, 5.620172, 6.9081078)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall41" unique_id=2000980551]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall42" type="MeshInstance3D" parent="duvarlar" unique_id=1002198578]
+transform = Transform3D(8.841488e-08, 0, -1, 0, 1, 0, 1, 0, 8.841488e-08, -42.74181, 5.620172, 10.842838)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall42" unique_id=489479733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall43" type="MeshInstance3D" parent="duvarlar" unique_id=581132319]
+transform = Transform3D(8.841488e-08, 0, -1, 0, 1, 0, 1, 0, 8.841488e-08, -42.74181, 5.620172, 14.251553)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall43" unique_id=380230874]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall44" type="MeshInstance3D" parent="duvarlar" unique_id=418519980]
+transform = Transform3D(8.841488e-08, 0, -1, 0, 1, 0, 1, 0, 8.841488e-08, -42.74181, 5.620172, 18.057156)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall44" unique_id=2015635094]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall45" type="MeshInstance3D" parent="duvarlar" unique_id=1129151170]
+transform = Transform3D(8.841488e-08, 0, -1, 0, 1, 0, 1, 0, 8.841488e-08, -42.74181, 5.620172, 21.991886)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall45" unique_id=593182702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall46" type="MeshInstance3D" parent="duvarlar" unique_id=936252955]
+transform = Transform3D(8.841488e-08, 0, -1, 0, 1, 0, 1, 0, 8.841488e-08, -42.741806, 5.620172, 25.744188)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall46" unique_id=47889793]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall47" type="MeshInstance3D" parent="duvarlar" unique_id=1152752567]
+transform = Transform3D(8.841488e-08, 0, -1, 0, 1, 0, 1, 0, 8.841488e-08, -42.741806, 5.620172, 29.549791)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall47" unique_id=1033769582]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall48" type="MeshInstance3D" parent="duvarlar" unique_id=955376155]
+transform = Transform3D(8.841488e-08, 0, -1, 0, 1, 0, 1, 0, 8.841488e-08, -42.741806, 5.620172, 33.48452)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall48" unique_id=1804559587]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall49" type="MeshInstance3D" parent="duvarlar" unique_id=526771757]
+transform = Transform3D(8.841488e-08, 0, -1, 0, 1, 0, 1, 0, 8.841488e-08, -42.741806, 5.620172, 36.893234)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall49" unique_id=507925544]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall50" type="MeshInstance3D" parent="duvarlar" unique_id=1492258254]
+transform = Transform3D(8.841488e-08, 0, -1, 0, 1, 0, 1, 0, 8.841488e-08, -42.741806, 5.620172, 40.698837)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall50" unique_id=935453910]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall51" type="MeshInstance3D" parent="duvarlar" unique_id=678277135]
+transform = Transform3D(8.841488e-08, 0, -1, 0, 1, 0, 1, 0, 8.841488e-08, -42.74181, 5.620172, 44.63357)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall51" unique_id=1051672023]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall52" type="MeshInstance3D" parent="duvarlar" unique_id=1430988118]
+transform = Transform3D(8.841488e-08, 0, -1, 0, 1, 0, 1, 0, 8.841488e-08, -42.741806, 5.620172, 48.242767)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall52" unique_id=914916960]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall53" type="MeshInstance3D" parent="duvarlar" unique_id=449994403]
+transform = Transform3D(8.841488e-08, 0, -1, 0, 1, 0, 1, 0, 8.841488e-08, -42.741806, 5.620172, 52.04837)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall53" unique_id=596077218]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall54" type="MeshInstance3D" parent="duvarlar" unique_id=745646457]
+transform = Transform3D(8.841488e-08, 0, -1, 0, 1, 0, 1, 0, 8.841488e-08, -42.741806, 5.620172, 55.9831)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall54" unique_id=1072006829]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="WallCorner5" type="MeshInstance3D" parent="duvarlar" unique_id=1546485026]
+transform = Transform3D(-1, 0, -8.7422784e-08, 0, 1, 0, 8.7422784e-08, 0, -1, -42.73918, 5.6123137, 57.18005)
+mesh = ExtResource("4_qxoy0")
+skeleton = NodePath("../..")
+
+[node name="Wall55" type="MeshInstance3D" parent="duvarlar" unique_id=314098004]
+transform = Transform3D(1, 0, 1.3212627e-07, 0, 1, 0, -1.3212627e-07, 0, 1, -38.881035, 5.620172, 57.170887)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall55" unique_id=1037704145]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall56" type="MeshInstance3D" parent="duvarlar" unique_id=1935009940]
+transform = Transform3D(1, 0, 1.3212627e-07, 0, 1, 0, -1.3212627e-07, 0, 1, -35.09694, 5.620172, 57.170887)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall56" unique_id=336639638]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall57" type="MeshInstance3D" parent="duvarlar" unique_id=1033996403]
+transform = Transform3D(1, 0, 1.3212627e-07, 0, 1, 0, -1.3212627e-07, 0, 1, -31.38945, 5.620172, 57.170883)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall57" unique_id=2010575883]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall58" type="MeshInstance3D" parent="duvarlar" unique_id=195530460]
+transform = Transform3D(1, 0, 1.3212627e-07, 0, 1, 0, -1.3212627e-07, 0, 1, -27.705784, 5.620172, 57.170883)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall58" unique_id=2065744655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall32" type="MeshInstance3D" parent="duvarlar" unique_id=126057973]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -22.873245, 5.620172, 51.23815)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall32" unique_id=2119031986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall59" type="MeshInstance3D" parent="duvarlar" unique_id=1010142136]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -22.873245, 5.620172, 54.99227)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall59" unique_id=179624081]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall60" type="MeshInstance3D" parent="duvarlar" unique_id=134850694]
+transform = Transform3D(1, 0, 1.3212627e-07, 0, 1, 0, -1.3212627e-07, 0, 1, -23.90869, 5.620172, 57.17088)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall60" unique_id=1832859482]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="WallCorner6" type="MeshInstance3D" parent="duvarlar" unique_id=1318862011]
+transform = Transform3D(1.3113417e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113417e-07, -22.82, 5.6123137, 57.18004)
+mesh = ExtResource("4_qxoy0")
+skeleton = NodePath("../..")
+
+[node name="WallDoorway3" type="MeshInstance3D" parent="duvarlar" unique_id=418505667]
+transform = Transform3D(1, 0, 7.1054274e-15, 0, 1, 0, -7.1054274e-15, 0, 1, -29.027584, 5.623194, 19.513214)
+mesh = ExtResource("10_ywa41")
+skeleton = NodePath("../..")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/WallDoorway3" unique_id=1874791341]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5519638, 1.7752075, -0.010375977)
+material_override = SubResource("StandardMaterial3D_3y1mp")
+use_collision = true
+size = Vector3(1.0164948, 4.550415, 1.020752)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="duvarlar/WallDoorway3" unique_id=1605027683]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4986353, 1.7752075, -0.010375977)
+material_override = SubResource("StandardMaterial3D_3y1mp")
+use_collision = true
+size = Vector3(1.0164948, 4.550415, 1.020752)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="duvarlar/WallDoorway3" unique_id=885009282]
+transform = Transform3D(-4.371138e-08, 1, 8.742277e-08, -1, -4.371139e-08, 8.742277e-08, 8.742277e-08, -8.742277e-08, 1, 0.16608143, 3.4053516, -0.010375977)
+material_override = SubResource("StandardMaterial3D_3y1mp")
+use_collision = true
+size = Vector3(1.1488724, 3.7452698, 1.020752)
+
+[node name="Wall61" type="MeshInstance3D" parent="duvarlar" unique_id=1080092375]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -25.119972, 5.620172, 19.513405)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall61" unique_id=1275704417]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall62" type="MeshInstance3D" parent="duvarlar" unique_id=147033132]
+transform = Transform3D(-3.3346326, 0, -8.742278e-08, 0, 1, 0, 2.9152284e-07, 0, -1, -15.634626, 7.121246, 19.495293)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall62" unique_id=1352500465]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall63" type="MeshInstance3D" parent="duvarlar" unique_id=929554271]
+transform = Transform3D(-3.3346326, 0, -8.742278e-08, 0, 1, 0, 2.9152284e-07, 0, -1, -15.634627, 6.789432, 27.354647)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall63" unique_id=42022191]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="WallCornerSmall6" type="MeshInstance3D" parent="duvarlar" unique_id=2053650111]
+transform = Transform3D(-1, 0, -7.3513725e-08, 0, 1, 0, 7.3513725e-08, 0, -1, -31.819576, 5.621409, 19.768997)
+mesh = ExtResource("11_etomf")
+
+[node name="Wall64" type="MeshInstance3D" parent="duvarlar" unique_id=815149224]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -31.820877, 5.620172, 16.840271)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall64" unique_id=1323602739]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall65" type="MeshInstance3D" parent="duvarlar" unique_id=1552863874]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -31.820877, 5.620172, 13.113949)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall65" unique_id=2134742361]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall66" type="MeshInstance3D" parent="duvarlar" unique_id=1897842019]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -31.820877, 5.620172, 9.383408)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall66" unique_id=1910381736]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall67" type="MeshInstance3D" parent="duvarlar" unique_id=2135297132]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -31.820877, 5.620172, 6.093952)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall67" unique_id=982564847]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall68" type="MeshInstance3D" parent="duvarlar" unique_id=1102246479]
+transform = Transform3D(-0.70710665, 0, -0.7071069, 0, 1, 0, 0.7071069, 0, -0.70710665, -30.4066, 5.620172, 2.8474998)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall68" unique_id=812017206]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="Wall69" type="MeshInstance3D" parent="duvarlar" unique_id=1441554809]
+transform = Transform3D(-0.70710665, 0, -0.7071069, 0, 1, 0, 0.7071069, 0, -0.70710665, -27.955227, 5.620172, 0.369915)
+mesh = ExtResource("5_qxoy0")
+skeleton = NodePath("../..")
+metadata/_edit_group_ = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="duvarlar/Wall69" unique_id=1861722705]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010665894, 1.748352, 0.017822266)
+material_override = SubResource("StandardMaterial3D_etomf")
+use_collision = true
+size = Vector3(3.985672, 4.496704, 0.96533203)
+
+[node name="VoxelGI" type="VoxelGI" parent="." unique_id=534806137]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.243811, 0, 25.450287)
+size = Vector3(54.8468, 20, 67.35693)
+data = SubResource("VoxelGIData_wvr4i")
+
+[node name="Işıklar" type="Node3D" parent="." unique_id=1865015693]
+
+[node name="Duvar_isigi" type="Area3D" parent="Işıklar" unique_id=1284221148]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7133405, 3.126498, 41.585567)
+script = ExtResource("12_wvr4i")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Işıklar/Duvar_isigi" unique_id=48019628]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.439357, -0.78799486, 4.3775444)
+shape = SubResource("SphereShape3D_0wltn")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Işıklar/Duvar_isigi" unique_id=609879068]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.716346, -0.33159685, 1.0920258)
+light_color = Color(0.7411765, 0.53333336, 0, 1)
+light_energy = 2.542
+shadow_enabled = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Işıklar" unique_id=274542898]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6590624, 2.7398984, 55.815434)
+light_color = Color(0.7411765, 0.53333336, 0, 1)
+light_energy = 2.542
+shadow_enabled = true
+omni_range = 18.398
+script = ExtResource("13_0wltn")
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Işıklar" unique_id=1458758547]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.190961, 2.7398984, 55.815434)
+light_color = Color(0.7411765, 0.53333336, 0, 1)
+light_energy = 2.542
+shadow_enabled = true
+script = ExtResource("13_0wltn")
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Işıklar" unique_id=1146583838]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6590624, 2.7398984, 48.205757)
+light_color = Color(0.7411765, 0.53333336, 0, 1)
+light_energy = 2.542
+shadow_enabled = true
+omni_range = 50.117
+script = ExtResource("13_0wltn")
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Işıklar" unique_id=585486836]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.373929, 2.7398984, 48.238842)
+light_color = Color(0.7411765, 0.53333336, 0, 1)
+light_energy = 2.542
+shadow_enabled = true
+script = ExtResource("13_0wltn")
+
+[node name="Duvar_isigi3" type="Area3D" parent="Işıklar" unique_id=35725726]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3755596, 3.126498, 35.01106)
+script = ExtResource("12_wvr4i")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Işıklar/Duvar_isigi3" unique_id=1377973994]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.439357, -0.78799486, 4.3775444)
+shape = SubResource("SphereShape3D_0wltn")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Işıklar/Duvar_isigi3" unique_id=1441306894]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.716346, -0.33159685, 1.1521301)
+light_color = Color(0.7411765, 0.53333336, 0, 1)
+light_energy = 2.542
+shadow_enabled = true
+
+[node name="Duvar_isigi4" type="Area3D" parent="Işıklar" unique_id=1075884151]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5288112, 2.4961371, 32.22243)
+script = ExtResource("12_wvr4i")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Işıklar/Duvar_isigi4" unique_id=693325680]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.439357, -0.78799486, 4.3775444)
+shape = SubResource("SphereShape3D_0wltn")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Işıklar/Duvar_isigi4" unique_id=2002983761]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.63914, -0.33159685, 4.555462)
+light_color = Color(0.7411765, 0.53333336, 0, 1)
+light_energy = 2.542
+shadow_enabled = true
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Işıklar/Duvar_isigi4" unique_id=1819127000]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6645696, -0.14452672, -0.92523193)
+light_color = Color(0.7411765, 0.53333336, 0, 1)
+light_energy = 2.542
+shadow_enabled = true
+
+[node name="Duvar_isigi5" type="Area3D" parent="Işıklar" unique_id=18944469]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.287951, 5.3108845, 32.22243)
+script = ExtResource("12_wvr4i")
+metadata/_edit_group_ = true
+
+[node name="duvar" type="CollisionShape3D" parent="Işıklar/Duvar_isigi5" unique_id=737236145]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 3.787336, -8.539511, -3.748019, 3.5999222)
+shape = SubResource("SphereShape3D_0wltn")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Işıklar/Duvar_isigi5" unique_id=40537112]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8359804, -1.1868124, 4.555462)
+light_color = Color(0.7411765, 0.53333336, 0, 1)
+light_energy = 2.542
+shadow_enabled = true
+
+[node name="Duvar_isigi6" type="Area3D" parent="Işıklar" unique_id=1908641633]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.287951, 5.3108845, 26.428661)
+script = ExtResource("12_wvr4i")
+metadata/_edit_group_ = true
+
+[node name="duvar" type="CollisionShape3D" parent="Işıklar/Duvar_isigi6" unique_id=1696038898]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 5.289474, -8.539511, -3.748019, 3.5999222)
+shape = SubResource("SphereShape3D_0wltn")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Işıklar/Duvar_isigi6" unique_id=224718945]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8359804, -1.1868124, 4.555462)
+light_color = Color(0.7411765, 0.53333336, 0, 1)
+light_energy = 2.542
+shadow_enabled = true
+
+[node name="Duvar_isigi7" type="Area3D" parent="Işıklar" unique_id=2445965]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.347486, 7.1440544, 26.428661)
+script = ExtResource("12_wvr4i")
+metadata/_edit_group_ = true
+
+[node name="duvar" type="CollisionShape3D" parent="Işıklar/Duvar_isigi7" unique_id=893837840]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 4.8078475, -8.539511, -3.748019, 3.5999222)
+shape = SubResource("SphereShape3D_0wltn")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Işıklar/Duvar_isigi7" unique_id=1843110818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8359804, -1.1868124, 4.555462)
+light_color = Color(0.7411765, 0.53333336, 0, 1)
+light_energy = 2.542
+shadow_enabled = true
+
+[node name="Duvar_isigi8" type="Area3D" parent="Işıklar" unique_id=310568796]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.347486, 7.1440544, 32.43552)
+script = ExtResource("12_wvr4i")
+metadata/_edit_group_ = true
+
+[node name="duvar" type="CollisionShape3D" parent="Işıklar/Duvar_isigi8" unique_id=2031345291]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 4.0014343, -8.539511, -3.748019, 3.5999222)
+shape = SubResource("SphereShape3D_0wltn")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Işıklar/Duvar_isigi8" unique_id=1818339057]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8359804, -1.1868124, 4.555462)
+light_color = Color(0.7411765, 0.53333336, 0, 1)
+light_energy = 2.542
+shadow_enabled = true
+
+[node name="Duvar_isigi9" type="Area3D" parent="Işıklar" unique_id=796959510]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.9704244, 17.298668, 8.07448, 25.363277)
+script = ExtResource("12_wvr4i")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Işıklar/Duvar_isigi9" unique_id=1324384513]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.439357, -0.78799486, 4.3775444)
+shape = SubResource("SphereShape3D_0wltn")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Işıklar/Duvar_isigi9" unique_id=244207636]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.63914, -0.33159685, 4.555462)
+light_color = Color(0.7411765, 0.53333336, 0, 1)
+light_energy = 2.542
+shadow_enabled = true
+
+[node name="Sketchfab_Scene" parent="." unique_id=1262520888 instance=ExtResource("19_aa1gw")]
+transform = Transform3D(0.6866202, -6.3079646e-08, -5.182324e-08, -8.345138e-08, -0.59509486, -0.3352219, -1.5561731e-08, 0.40803468, -0.48890167, -7.7691455, 1.3978859, 55.993202)
+
+[node name="Zemin3" type="CSGBox3D" parent="." unique_id=1379038707]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.269978, 5.4125767, 28.736385)
+material_override = SubResource("StandardMaterial3D_1pbkb")
+use_collision = true
+size = Vector3(21.401108, 1, 58.413155)
+
+[node name="Tavan2" type="CSGBox3D" parent="." unique_id=1996735920]
+transform = Transform3D(0.8810229, -0.47307366, 0, 0.47307366, 0.8810229, 0, 0, 0, 1, 4.318637, 7.8707666, 34.82488)
+material_override = SubResource("StandardMaterial3D_cmava")
+use_collision = true
+size = Vector3(12.782912, 1, 10.884478)
+
+[node name="Tavan3" type="CSGBox3D" parent="." unique_id=1461857955]
+transform = Transform3D(0.9999501, -0.0099831205, 0, 0.0099831205, 0.9999501, 0, 0, 0, 1, 20.796146, 9.766133, 28.970465)
+material_override = SubResource("StandardMaterial3D_cmava")
+use_collision = true
+size = Vector3(22.324, 1, 60)
+
+[node name="CratesStacked" type="MeshInstance3D" parent="." unique_id=1462795562]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 12.802385, 5.9125805, 56.753784)
+mesh = ExtResource("21_1pbkb")
+
+[node name="TorchMounted" type="MeshInstance3D" parent="." unique_id=766853924]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.780553, 2.0712624, 36.16065)
+mesh = ExtResource("22_djul0")
+
+[node name="TorchMounted2" type="MeshInstance3D" parent="." unique_id=1498273321]
+transform = Transform3D(-5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, -5.9604645e-08, -6.7371645, 2.0712624, 42.50959)
+mesh = ExtResource("22_djul0")

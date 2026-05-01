@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cp1v8j7q6sokv"]
+
+[ext_resource type="PackedScene" uid="uid://dqlso5vp3ic7k" path="res://KALEESYALAR/Wall_27.fbx" id="1_iu5fk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qh2hy"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[node name="Wall_27" unique_id=77765323 instance=ExtResource("1_iu5fk")]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." index="1" unique_id=302988397]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05508423, 1.7616577, 0.05880505)
+material_override = SubResource("StandardMaterial3D_qh2hy")
+size = Vector3(4.3311157, 4.5233154, 0.14147949)

@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cnsmlkbqhk3ug"]
+
+[ext_resource type="PackedScene" uid="uid://b1fk1fauc181y" path="res://models/Doors and Props/BlendFIles/SingleDoor.blend" id="1_haogr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bo2rt"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1pxfy"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kbfsi"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[node name="SingleDoor" unique_id=387920440 instance=ExtResource("1_haogr")]
+
+[node name="DoorFaculty_1" parent="." index="0" unique_id=1305051654]
+material_override = SubResource("StandardMaterial3D_bo2rt")
+
+[node name="FacultyDoor_26_001" parent="DoorFaculty_1" index="0" unique_id=680334819]
+material_override = SubResource("StandardMaterial3D_1pxfy")
+
+[node name="FacultyDoor_14_001" parent="DoorFaculty_1/FacultyDoor_26_001" index="0" unique_id=1939606337]
+material_override = SubResource("StandardMaterial3D_kbfsi")

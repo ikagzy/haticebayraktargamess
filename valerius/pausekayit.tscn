@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=3 uid="uid://tfdx3di3v665"]
+
+[ext_resource type="FontFile" uid="uid://b857wkgpxyh1s" path="res://Montserrat-VariableFont_wght.ttf" id="1_jqj5u"]
+[ext_resource type="Script" uid="uid://cykx3thkielku" path="res://kayit1.gd" id="2_003g4"]
+[ext_resource type="Script" uid="uid://c2h6vakgnpf6b" path="res://geridon.gd" id="2_u5sjp"]
+[ext_resource type="Script" uid="uid://drucca51364vl" path="res://kayit2.gd" id="3_fg1s8"]
+[ext_resource type="Script" uid="uid://tff18vysvvnf" path="res://kayit3.gd" id="4_rty6k"]
+[ext_resource type="Script" uid="uid://c3qme8flf2rmc" path="res://kayit4.gd" id="5_rty6k"]
+[ext_resource type="Script" uid="uid://btmf80ni8fb5e" path="res://kayit5.gd" id="6_np0dr"]
+
+[node name="ColorRect" type="ColorRect"]
+process_mode = 3
+offset_right = 1924.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 187.0
+offset_top = 231.0
+offset_right = 1731.0
+offset_bottom = 777.0
+
+[node name="slot1" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_jqj5u")
+theme_override_font_sizes/font_size = 100
+text = "Kayıt bölmesi 1"
+script = ExtResource("2_003g4")
+
+[node name="slot2" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_jqj5u")
+theme_override_font_sizes/font_size = 100
+text = "Kayıt bölmesi 2"
+script = ExtResource("3_fg1s8")
+
+[node name="slot3" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_jqj5u")
+theme_override_font_sizes/font_size = 100
+text = "Kayıt bölmesi 3"
+script = ExtResource("4_rty6k")
+
+[node name="slot4" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_jqj5u")
+theme_override_font_sizes/font_size = 100
+text = "Kayıt bölmesi 4"
+script = ExtResource("5_rty6k")
+
+[node name="slot5" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_jqj5u")
+theme_override_font_sizes/font_size = 100
+text = "Kayıt bölmesi 5"
+script = ExtResource("6_np0dr")
+
+[node name="geridon" type="Button" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 894.0
+offset_right = 435.0
+offset_bottom = 997.0
+theme_override_fonts/font = ExtResource("1_jqj5u")
+theme_override_font_sizes/font_size = 100
+text = "Geri dön
+"
+script = ExtResource("2_u5sjp")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 458.0
+offset_top = 58.0
+offset_right = 1413.0
+offset_bottom = 180.0
+theme_override_fonts/font = ExtResource("1_jqj5u")
+theme_override_font_sizes/font_size = 100
+text = "Kayıtlar"
+horizontal_alignment = 1
+vertical_alignment = 1

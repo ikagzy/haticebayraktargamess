@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://cgedsb7fluskh"]
+
+[ext_resource type="FontFile" uid="uid://b857wkgpxyh1s" path="res://Montserrat-VariableFont_wght.ttf" id="1_7i0je"]
+[ext_resource type="Script" uid="uid://cx1jprc15rke4" path="res://pausescreen.gd" id="1_n5bpc"]
+[ext_resource type="Shader" uid="uid://dnd14kme7f56t" path="res://pausescreenbackground.gdshader" id="2_3477l"]
+[ext_resource type="FontFile" uid="uid://b857wkgpxyh1s" path="res://Montserrat-VariableFont_wght.ttf" id="4_7i0je"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7i0je"]
+shader = ExtResource("2_3477l")
+shader_parameter/blur_miktari = 2.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_n5bpc"]
+font = ExtResource("4_7i0je")
+font_size = 78
+
+[sub_resource type="Animation" id="Animation_bf0jw"]
+resource_name = "buton"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mgsoh"]
+_data = {
+&"buton": SubResource("Animation_bf0jw")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1140000348]
+process_mode = 3
+layer = 99
+script = ExtResource("1_n5bpc")
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="." unique_id=1764921305]
+copy_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=462525827]
+material = SubResource("ShaderMaterial_7i0je")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=1789771264]
+offset_left = 341.0
+offset_top = 17.0
+offset_right = 1594.0
+offset_bottom = 175.0
+theme_override_fonts/font = ExtResource("1_7i0je")
+theme_override_font_sizes/font_size = 100
+text = "Oyun durduruldu"
+label_settings = SubResource("LabelSettings_n5bpc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2035828189]
+libraries/ = SubResource("AnimationLibrary_mgsoh")
+
+[node name="ButonKutusu" type="Control" parent="." unique_id=1037757563]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 411.0
+offset_bottom = 210.0
+
+[node name="geridonus" type="Button" parent="ButonKutusu" unique_id=543380048]
+process_mode = 3
+layout_mode = 0
+offset_left = -57.0
+offset_top = 314.0
+offset_right = 650.0
+offset_bottom = 417.0
+theme_override_fonts/font = ExtResource("4_7i0je")
+theme_override_font_sizes/font_size = 70
+text = "Oyuna Geri Dön"
+
+[node name="cikis" type="Button" parent="ButonKutusu" unique_id=1655311177]
+process_mode = 3
+layout_mode = 0
+offset_left = -54.0
+offset_top = 438.0
+offset_right = 651.0
+offset_bottom = 541.0
+theme_override_fonts/font = ExtResource("4_7i0je")
+theme_override_font_sizes/font_size = 70
+text = "Menüye Dön"
+
+[connection signal="pressed" from="ButonKutusu/geridonus" to="." method="_on_geridonus_pressed"]
+[connection signal="pressed" from="ButonKutusu/cikis" to="." method="_on_cikis_pressed"]

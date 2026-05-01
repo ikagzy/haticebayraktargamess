@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://534vy6nhqu7u"
+path="res://.godot/imported/Creaking Door (12).mp3-8b7ed28a6c775e5251c877605b8a76dd.mp3str"
+
+[deps]
+
+source_file="res://seslerlagardas/Creaking Door/Creaking Door (12).mp3"
+dest_files=["res://.godot/imported/Creaking Door (12).mp3-8b7ed28a6c775e5251c877605b8a76dd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

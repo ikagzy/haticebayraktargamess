@@ -1,0 +1,325 @@
+[gd_scene format=3 uid="uid://crev2inf1u6xe"]
+
+[ext_resource type="FontFile" uid="uid://b857wkgpxyh1s" path="res://SpecialElite.ttf" id="1_06t4h"]
+[ext_resource type="FontFile" uid="uid://cncxy5prw3iw4" path="res://Horizon.otf" id="1_8u0te"]
+[ext_resource type="Script" uid="uid://dex8kyadb806p" path="res://oynabutonu.gd" id="2_7vrkn"]
+[ext_resource type="AudioStream" uid="uid://c7bfyj71kv2n3" path="res://models/model/fbx/emilianodleon-select-button-ui-395763.mp3" id="3_cm266"]
+[ext_resource type="Script" uid="uid://b5lfbl14jjmdb" path="res://çıkış.gd" id="3_fu7sn"]
+[ext_resource type="Texture2D" uid="uid://b18uukgbito0q" path="res://models/128x128/Checker Tiles/WO_Marble_Tile_01-128x128.png" id="4_0k4wn"]
+[ext_resource type="AudioStream" uid="uid://ni1uw10bfu55" path="res://models/model/fbx/freesound_community-select-menu-47560.mp3" id="4_g8g3n"]
+[ext_resource type="Script" uid="uid://lgesb5j50xox" path="res://spot_light_3d_2.gd" id="4_jix8l"]
+[ext_resource type="PackedScene" uid="uid://b1fk1fauc181y" path="res://models/Doors and Props/BlendFIles/SingleDoor.blend" id="5_glbon"]
+[ext_resource type="PackedScene" uid="uid://bhgfmkds5jibj" path="res://models/Low Poly Furniture/Shelves/Wall Shelf A.fbx" id="6_qe12f"]
+[ext_resource type="PackedScene" uid="uid://bpevjbqi7da4c" path="res://models/Low Poly Furniture/Miscellaneous/Books B.fbx" id="7_8qtwp"]
+[ext_resource type="PackedScene" uid="uid://dw8b4qsso1hhp" path="res://models/Doors and Props/BlendFIles/Window.blend" id="8_8qtwp"]
+[ext_resource type="Script" uid="uid://biatao4kt82u7" path="res://standing_idle.gd" id="8_mg3m2"]
+[ext_resource type="PackedScene" uid="uid://cdx067p4hl57e" path="res://standing_idle.tscn" id="9_dy7ct"]
+[ext_resource type="FontFile" uid="uid://cpkgcr012dkxk" path="res://Oakters.otf" id="9_oiatc"]
+[ext_resource type="AudioStream" uid="uid://cecc4rto6ndwf" path="res://models/model/fbx/universfield-horror-background-atmosphere-06-199279.mp3" id="12_j5v2v"]
+[ext_resource type="Script" uid="uid://clcet2v6j0s7b" path="res://audio_stream_player.gd" id="13_iotk1"]
+[ext_resource type="Shader" uid="uid://htsvba0rqasf" path="res://main_menu.gdshader" id="17_8u0te"]
+[ext_resource type="Script" uid="uid://f4tlvbtudrbc" path="res://fps_butonu.gd" id="19_mg3m2"]
+
+[sub_resource type="Environment" id="Environment_fu7sn"]
+background_mode = 2
+ssr_enabled = false
+ssao_enabled = true
+ssil_enabled = false
+sdfgi_enabled = false
+glow_enabled = true
+adjustment_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j5v2v"]
+albedo_texture = ExtResource("4_0k4wn")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fu7sn"]
+albedo_color = Color(0.8612221, 0.3590555, 5.7756904e-07, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dy7ct"]
+albedo_color = Color(0.12054757, 0.72725064, 0.99999934, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0k4wn"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_j5v2v"]
+text = "KÜTÜPHANE"
+font = ExtResource("9_oiatc")
+font_size = 31
+
+[sub_resource type="LabelSettings" id="LabelSettings_mg3m2"]
+line_spacing = -49.85
+font = ExtResource("9_oiatc")
+font_size = 111
+
+[sub_resource type="LabelSettings" id="LabelSettings_fu7sn"]
+font = ExtResource("9_oiatc")
+font_size = 300
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oiatc"]
+shader = ExtResource("17_8u0te")
+shader_parameter/titreme_miktari = 0.0010000000475
+shader_parameter/renk_kaymasi = 0.0010000000475
+shader_parameter/kumlanma_miktari = 0.0590000028025
+
+[sub_resource type="GDScript" id="GDScript_0o4t1"]
+script/source = "extends Button
+
+func _ready():
+	# Pivot noktasını merkeze alıyoruz ki merkezden küçülsün
+	pivot_offset = size / 2
+	
+	# Sinyalleri bağlıyoruz
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited) # Fare çıkınca düzelmesi için bu şart
+	pressed.connect(_on_pressed)
+
+func _on_mouse_entered():
+	# Ses çal
+	if has_node(\"SesHover\"):
+		$SesHover.play()
+	
+	# --- HOVER ANİMASYONU (Giriş) ---
+	var tween = create_tween().set_parallel(true)
+	# Boyutu %95'e düşür (0.1 saniyede)
+	tween.tween_property(self, \"scale\", Vector2(0.95, 0.95), 0.1).set_trans(Tween.TRANS_SINE)
+	# Rengi hafif karart (Gri tonuna çekiyoruz)
+	tween.tween_property(self, \"modulate\", Color(0.8, 0.8, 0.8), 0.1)
+	
+	# YAZININ İÇİNİ DOLDUR (Şeffaflığı 0'dan 1'e, yani tam beyaza çekiyoruz, 0.2 saniyede)
+	tween.tween_method(renk_doldur, 0.0, 1.0, 0.2)
+
+func _on_mouse_exited():
+	# --- HOVER ANİMASYONU (Çıkış) ---
+	var tween = create_tween().set_parallel(true)
+	# Boyutu eski haline getir
+	tween.tween_property(self, \"scale\", Vector2(1.0, 1.0), 0.1).set_trans(Tween.TRANS_SINE)
+	# Rengi normale döndür (Beyaz = Orijinal renk)
+	tween.tween_property(self, \"modulate\", Color(1, 1, 1), 0.1)
+	
+	# YAZININ İÇİNİ BOŞALT (Şeffaflığı 1'den 0'a, yani şeffafa geri çekiyoruz)
+	tween.tween_method(renk_doldur, 1.0, 0.0, 0.2)
+
+func _on_pressed():
+	if has_node(\"SesTikla\"):
+		$SesTikla.play()
+	
+	# Tıklandığında küçük bir \"basılma\" efekti verelim
+	scale = Vector2(0.9, 0.9)
+	
+	await get_tree().create_timer(0.1).timeout
+	get_tree().change_scene_to_file(\"res://sonlar.tscn\")
+
+# --- YENİ EKLENEN FONKSİYON: Yazının içinin dolması için ---
+# Tween motoru fare üstündeyken buraya saniyede 60 kere yeni sayı (0.1, 0.2 ... 1.0) gönderir
+func renk_doldur(alpha_degeri: float):
+	# Color(1, 1, 1, alpha) -> Beyaz renk ama görünürlüğü değişiyor
+	var guncel_renk = Color(1, 1, 1, alpha_degeri) 
+	
+	# Butonun her durumu için yazının iç rengini kodla basıyoruz
+	add_theme_color_override(\"font_color\", guncel_renk)
+	add_theme_color_override(\"font_hover_color\", guncel_renk)
+	add_theme_color_override(\"font_focus_color\", guncel_renk)
+	add_theme_color_override(\"font_pressed_color\", guncel_renk)
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_cm266"]
+font_size = 31
+
+[sub_resource type="VoxelGIData" id="VoxelGIData_oiatc"]
+normal_bias = 0.43
+interior = true
+
+[node name="Main_menu" type="Node3D" unique_id=1885920113]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=752455225]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.874419, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=68821425]
+transform = Transform3D(1, 0, 0, 0, -0.7071067, -0.7071068, 0, 0.7071068, -0.7071067, 0, 2.356325, 0.7735646)
+
+[node name="okul" type="Node3D" parent="." unique_id=1703799758]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="okul" unique_id=778665285]
+environment = SubResource("Environment_fu7sn")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="okul/WorldEnvironment" unique_id=914350593]
+transform = Transform3D(1, 0, 0, 0, -2.9802322e-08, 1.0000001, 0, -1.0000001, -2.9802322e-08, 0.53027344, 2.081623, -3.6420898)
+use_collision = true
+size = Vector3(15.756836, 0.18359375, 3.1559753)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="okul/WorldEnvironment" unique_id=354665935]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.26513672, -0.94492435, -1.8210449)
+use_collision = true
+size = Vector3(15.756836, 0.18359375, 4.64209)
+material = SubResource("StandardMaterial3D_j5v2v")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="okul/WorldEnvironment" unique_id=719980402]
+transform = Transform3D(1, 0, 0, 0, -2.9802322e-08, 1.0000001, 0, -1.0000001, -2.9802322e-08, 0.53027344, -0.15018454, -3.6420898)
+material_override = SubResource("StandardMaterial3D_fu7sn")
+use_collision = true
+size = Vector3(15.756836, 0.18359375, 1.4010925)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="okul/WorldEnvironment" unique_id=1553034014]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -1.2668633, 4.982893, -3.0421038)
+shadow_enabled = true
+spot_range = 6.722328
+spot_attenuation = 1.55
+spot_angle = 44.72
+spot_angle_attenuation = 1.0352663
+script = ExtResource("4_jix8l")
+
+[node name="SingleDoor17" parent="okul/WorldEnvironment" unique_id=387920440 instance=ExtResource("5_glbon")]
+transform = Transform3D(1.3669258, 0, 7.1054274e-15, 0, 1.1178577, 0, 0, 0, 1, -1.2456055, -0.86351585, -3.5828125)
+
+[node name="Wall Shelf A" parent="okul/WorldEnvironment" unique_id=1748659254 instance=ExtResource("6_qe12f")]
+transform = Transform3D(0.17134723, 0, 0, 0, 0.19197583, 0, 0, 0, 0.1779364, 0.2727332, 0.49565864, -3.452513)
+
+[node name="Books B" parent="okul/WorldEnvironment" unique_id=934033058 instance=ExtResource("7_8qtwp")]
+transform = Transform3D(0.50433403, 0, 0, 0, 0.5537033, 0, 0, 0, 0.4984513, 0.31969404, 0.8868593, -3.4676871)
+
+[node name="Window" parent="okul/WorldEnvironment/Books B" unique_id=1099526382 instance=ExtResource("8_8qtwp")]
+transform = Transform3D(3.182963, 0, 0, 0, 2.2758875, 0, 0, 0, 1.0000006, -7.8525305, -3.7210593, -0.20935535)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="okul/WorldEnvironment/Books B/Window" unique_id=1495705093]
+transform = Transform3D(0.9999758, 0, 0, 0, 0.9999999, 0, 0, 0, 0.99997485, 0.012002468, 1.5250416, -0.40182495)
+use_collision = true
+size = Vector3(1.6562433, 1.0482483, 0.9102783)
+material = SubResource("StandardMaterial3D_dy7ct")
+
+[node name="Standing Idle" parent="okul/WorldEnvironment" unique_id=939594305 instance=ExtResource("9_dy7ct")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -2.2026079, -0.80021834, -2.906317)
+script = ExtResource("8_mg3m2")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="okul/WorldEnvironment" unique_id=971672433]
+transform = Transform3D(1, 0, 0, 0, -2.9802322e-08, 1.0000001, 0, -1.0000001, -2.9802322e-08, -1.2492509, 1.8709013, -3.5974147)
+use_collision = true
+size = Vector3(1.1264648, 0.18359375, 0.3792572)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="okul/WorldEnvironment" unique_id=1679788432]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2283795, 1.81884, -3.5296574)
+material_override = SubResource("StandardMaterial3D_0k4wn")
+mesh = SubResource("TextMesh_j5v2v")
+skeleton = NodePath("../../..")
+
+[node name="menu" type="Node3D" parent="." unique_id=2059142029]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="menu" unique_id=1349976491]
+stream = ExtResource("12_j5v2v")
+autoplay = true
+script = ExtResource("13_iotk1")
+
+[node name="Label" type="Label" parent="menu" unique_id=1436186230]
+offset_left = 16.0
+offset_top = 25.0
+offset_right = 490.0
+offset_bottom = 245.0
+theme_override_fonts/font = ExtResource("1_06t4h")
+theme_override_font_sizes/font_size = 75
+text = "Oynamak İçin 
+Kulaklık Önerilir"
+label_settings = SubResource("LabelSettings_mg3m2")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="menu" unique_id=1226659566]
+offset_left = 1122.0
+offset_top = 70.0
+offset_right = 1849.0
+offset_bottom = 353.0
+theme_override_fonts/font = ExtResource("1_06t4h")
+theme_override_font_sizes/font_size = 200
+text = "VALERIUS"
+label_settings = SubResource("LabelSettings_fu7sn")
+
+[node name="ColorRect" type="ColorRect" parent="menu" unique_id=1591940833]
+material = SubResource("ShaderMaterial_oiatc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Oyna" type="Button" parent="menu" unique_id=1935976486]
+offset_left = 1319.0
+offset_top = 368.0
+offset_right = 1656.0
+offset_bottom = 518.0
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_8u0te")
+theme_override_font_sizes/font_size = 75
+text = "OYNA"
+flat = true
+script = ExtResource("2_7vrkn")
+
+[node name="SesTikla" type="AudioStreamPlayer" parent="menu/Oyna" unique_id=2025108392]
+stream = ExtResource("3_cm266")
+
+[node name="SesHover" type="AudioStreamPlayer" parent="menu/Oyna" unique_id=241905675]
+stream = ExtResource("4_g8g3n")
+
+[node name="Çıkış" type="Button" parent="menu" unique_id=1055315150]
+offset_left = 1321.0
+offset_top = 602.0
+offset_right = 1637.0
+offset_bottom = 752.0
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_8u0te")
+theme_override_font_sizes/font_size = 75
+text = "ÇIKIŞ"
+flat = true
+script = ExtResource("3_fu7sn")
+
+[node name="SesTikla" type="AudioStreamPlayer" parent="menu/Çıkış" unique_id=487181570]
+stream = ExtResource("3_cm266")
+
+[node name="SesHover" type="AudioStreamPlayer" parent="menu/Çıkış" unique_id=1488334250]
+stream = ExtResource("4_g8g3n")
+
+[node name="Sonlar" type="Button" parent="menu" unique_id=1587419263]
+offset_left = 1248.0
+offset_top = 508.0
+offset_right = 1735.0
+offset_bottom = 605.0
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_8u0te")
+theme_override_font_sizes/font_size = 75
+text = "SONLAR"
+flat = true
+script = SubResource("GDScript_0o4t1")
+
+[node name="SesTikla" type="AudioStreamPlayer" parent="menu/Sonlar" unique_id=334162447]
+stream = ExtResource("3_cm266")
+
+[node name="SesHover" type="AudioStreamPlayer" parent="menu/Sonlar" unique_id=1391012770]
+stream = ExtResource("4_g8g3n")
+
+[node name="Label3" type="Label" parent="menu" unique_id=208629717]
+offset_left = 1750.0
+offset_top = 1028.0
+offset_right = 1908.0
+offset_bottom = 1079.0
+label_settings = SubResource("LabelSettings_cm266")
+
+[node name="Button" type="Button" parent="menu" unique_id=998173638]
+offset_left = 10.0
+offset_top = 997.0
+offset_right = 395.0
+offset_bottom = 1069.0
+theme_override_fonts/font = ExtResource("1_8u0te")
+theme_override_font_sizes/font_size = 39
+text = "FPS GÖSTER"
+script = ExtResource("19_mg3m2")
+
+[node name="VoxelGI" type="VoxelGI" parent="menu" unique_id=658809126]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.82706606, 1.0621338, -0.20810843)
+size = Vector3(16.08374, 5.7053223, 9.05188)
+data = SubResource("VoxelGIData_oiatc")
+
+[connection signal="tree_entered" from="menu/Oyna/SesTikla" to="menu/Oyna" method="_on_ses_tikla_tree_entered"]

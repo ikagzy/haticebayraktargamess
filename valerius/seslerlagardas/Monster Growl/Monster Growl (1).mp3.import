@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://wsrb2b4niaba"
+path="res://.godot/imported/Monster Growl (1).mp3-30a106ff83289e53e6450f070d1a9714.mp3str"
+
+[deps]
+
+source_file="res://seslerlagardas/Monster Growl/Monster Growl (1).mp3"
+dest_files=["res://.godot/imported/Monster Growl (1).mp3-30a106ff83289e53e6450f070d1a9714.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

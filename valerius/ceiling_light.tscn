@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://j8rftylomkr0"]
+
+[ext_resource type="PackedScene" uid="uid://b2thx0vtdy0m7" path="res://models/Low Poly Furniture/Lights/Ceiling Light.fbx" id="1_548kw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uej5p"]
+albedo_color = Color(0.5370987, 0.088113904, 0.0815112, 1)
+
+[node name="Ceiling Light" unique_id=1001409268 instance=ExtResource("1_548kw")]
+
+[node name="Ceiling light" parent="." index="0" unique_id=751554132]
+surface_material_override/1 = SubResource("StandardMaterial3D_uej5p")

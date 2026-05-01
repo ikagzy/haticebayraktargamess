@@ -1,0 +1,1554 @@
+[gd_scene format=3 uid="uid://bxxhicu0hclvr"]
+
+[ext_resource type="PackedScene" uid="uid://cnsmlkbqhk3ug" path="res://single_door.tscn" id="1_487fp"]
+[ext_resource type="Script" uid="uid://c1xuldhol0kxb" path="res://kutuphane_ara_sahne.gd" id="1_s0x7t"]
+[ext_resource type="Script" uid="uid://ddjstr0fwp4jv" path="res://kapı_acilma.gd" id="2_s0x7t"]
+[ext_resource type="PackedScene" uid="uid://b1fk1fauc181y" path="res://models/Doors and Props/BlendFIles/SingleDoor.blend" id="3_2pku7"]
+[ext_resource type="Texture2D" uid="uid://du225eafc3nxn" path="res://models/128x128/Checker Tiles/WO_Marble_Tile_04-128x128.png" id="4_daw1r"]
+[ext_resource type="Texture2D" uid="uid://cwmaikd2sm3cg" path="res://models/walls BASE/BASE_WHITE_WALL.png" id="5_1s2jv"]
+[ext_resource type="Texture2D" uid="uid://d2mbd6skti852" path="res://models/textures/Metal/Metal_15-128x128.png" id="6_ca8t0"]
+[ext_resource type="PackedScene" uid="uid://bnnq0oi1yj0rn" path="res://models/CSGStairMaker3D.tscn" id="7_1hdtj"]
+[ext_resource type="Texture2D" uid="uid://dm3eyjrmg71db" path="res://models/128x128/Diamond Tiles/White_Marble_Tile_01-128x128.png" id="8_dr2og"]
+[ext_resource type="PackedScene" uid="uid://dg7xp0svoedmk" path="res://models/Doors and Props/BlendFIles/DoubleDoor.blend" id="9_j6qmt"]
+[ext_resource type="Script" uid="uid://4yo3iikso0ht" path="res://kutuphane_uyari_tetigi.gd" id="10_ut3m4"]
+[ext_resource type="FontFile" uid="uid://b857wkgpxyh1s" path="res://Montserrat-VariableFont_wght.ttf" id="11_kp2tx"]
+[ext_resource type="FontFile" uid="uid://cncxy5prw3iw4" path="res://Horizon.otf" id="12_r4rqf"]
+[ext_resource type="PackedScene" uid="uid://vmoa8fjghnlm" path="res://models/low-poly-house-kit/Interiors_A/Scenes/Decal/decal_ceiling_b_light.tscn" id="13_ig1em"]
+[ext_resource type="PackedScene" uid="uid://dw8b4qsso1hhp" path="res://models/Doors and Props/BlendFIles/Window.blend" id="14_bq7te"]
+[ext_resource type="Script" uid="uid://c43qxmf0ya3yc" path="res://flickeringlight.gd" id="15_q22pe"]
+[ext_resource type="PackedScene" uid="uid://pl8xfdjt33aa" path="res://models/Doors and Props/BlendFIles/EntranceDoor.blend" id="16_8w8yy"]
+[ext_resource type="PackedScene" uid="uid://blo3crqggr1j3" path="res://models/Doors and Props/SchoolProps/Models/TallShelf.fbx" id="17_x5s25"]
+[ext_resource type="PackedScene" uid="uid://bpevjbqi7da4c" path="res://models/Low Poly Furniture/Miscellaneous/Books B.fbx" id="18_knvr6"]
+[ext_resource type="PackedScene" uid="uid://bu077ktuwmut7" path="res://models/Low Poly Furniture/Miscellaneous/Books A.fbx" id="19_ewifh"]
+[ext_resource type="ArrayMesh" uid="uid://dfntffq51bmxt" path="res://model.obj" id="20_khdlr"]
+[ext_resource type="PackedScene" uid="uid://cudyukd3ov5wv" path="res://models/Low Poly Furniture/Tables/Table A.fbx" id="21_e4wka"]
+[ext_resource type="PackedScene" uid="uid://euxv6thayago" path="res://old_book.glb" id="22_g2s4p"]
+[ext_resource type="Texture2D" uid="uid://bsu6kx1gq1trh" path="res://cookie_2.jpg" id="24_2pku7"]
+[ext_resource type="Script" uid="uid://di1dia1uw45t6" path="res://spot_light_3d(2).gd" id="25_daw1r"]
+[ext_resource type="PackedScene" uid="uid://pvebopmgmlhh" path="res://theatresignhang.tscn" id="26_1s2jv"]
+
+[sub_resource type="Animation" id="Animation_tuemg"]
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Kapı_acilma:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.76, 0.934, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Kapı_acilma:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i0g27"]
+resource_name = "kapi_kapali"
+length = 0.6666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Kapı_acilma:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6300138),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.702, 0.934, 0.684), Vector3(0.208, 0.934, 0.516), Vector3(-0.035690308, 0.934, -0.06322479)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Kapı_acilma:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6300138),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5707963, 0), Vector3(0, 0.7766715, 0), Vector3(0, -0.016493399, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ealrb"]
+resource_name = "kapı_acik"
+length = 0.73333335
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Kapı_acilma:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20840217, 0.4033195, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.745, 0.934, 0), Vector3(0.754, 0.934, 0.011), Vector3(0.765, 0.934, 0.059), Vector3(0.702, 0.934, 0.114)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Kapı_acilma:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.20840217, 0.4033195, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.54110503, 0), Vector3(0, 1.0471975, 0), Vector3(0, 1.5707963, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ka3rv"]
+_data = {
+&"RESET": SubResource("Animation_tuemg"),
+&"kapi_kapali": SubResource("Animation_i0g27"),
+&"kapı_acik": SubResource("Animation_ealrb")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4tcyq"]
+size = Vector3(1.029541, 2.060299, 0.53759766)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ydph"]
+albedo_texture = ExtResource("4_daw1r")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_vdkwa"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xw4oe"]
+size = Vector3(1, 1, 0.047729492)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_twf3c"]
+albedo_texture = ExtResource("5_1s2jv")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1cup4"]
+albedo_texture = ExtResource("4_daw1r")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_53p7u"]
+albedo_texture = ExtResource("6_ca8t0")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iob57"]
+albedo_texture = ExtResource("6_ca8t0")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hcgrg"]
+albedo_texture = ExtResource("6_ca8t0")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4cq2j"]
+albedo_texture = ExtResource("6_ca8t0")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mcewc"]
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xo8j1"]
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5ful"]
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a25rh"]
+albedo_texture = ExtResource("4_daw1r")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3h5tp"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ftvtm"]
+albedo_texture = ExtResource("8_dr2og")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w0hfl"]
+albedo_texture = ExtResource("8_dr2og")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxt81"]
+albedo_texture = ExtResource("8_dr2og")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ibddb"]
+albedo_texture = ExtResource("8_dr2og")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ahc6r"]
+albedo_texture = ExtResource("8_dr2og")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i4s4d"]
+albedo_color = Color(1, 0.62352943, 0.03137255, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x4kqy"]
+albedo_texture = ExtResource("4_daw1r")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1iygc"]
+albedo_texture = ExtResource("4_daw1r")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r2vwj"]
+size = Vector3(6.387207, 4.656311, 5.6552734)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4iept"]
+size = Vector3(6.579834, 5.675354, 7.684082)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ype4i"]
+disable_receive_shadows = true
+
+[sub_resource type="TextMesh" id="TextMesh_pdy7h"]
+material = SubResource("StandardMaterial3D_ype4i")
+text = "KÜTÜPHANE"
+font = ExtResource("11_kp2tx")
+font_size = 31
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_riyl1"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_v3dr4"]
+material = SubResource("StandardMaterial3D_riyl1")
+text = "Yurt Odaları
+B Bloğu"
+font = ExtResource("12_r4rqf")
+font_size = 15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qpkl4"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_lt87w"]
+material = SubResource("StandardMaterial3D_qpkl4")
+text = "Yurt ODALARI
+A BLOĞU"
+font = ExtResource("12_r4rqf")
+font_size = 15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sarfs"]
+albedo_color = Color(0.12054757, 0.72725064, 0.99999934, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1q667"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_et47q"]
+material = SubResource("StandardMaterial3D_1q667")
+text = "Merdiven"
+font = ExtResource("11_kp2tx")
+font_size = 127
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pf4ct"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_pulkh"]
+material = SubResource("StandardMaterial3D_pf4ct")
+text = "Tuvaletler"
+font = ExtResource("12_r4rqf")
+font_size = 46
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e5erq"]
+albedo_color = Color(0.5729883, 0.5729883, 0.5729883, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_poxbk"]
+text = "Kızlar"
+font = ExtResource("11_kp2tx")
+font_size = 75
+
+[sub_resource type="TextMesh" id="TextMesh_w3pux"]
+text = "Erkekler"
+font = ExtResource("11_kp2tx")
+font_size = 75
+
+[sub_resource type="Sky" id="Sky_3v7ru"]
+process_mode = 1
+
+[sub_resource type="Environment" id="Environment_u5l4w"]
+background_energy_multiplier = 0.28
+sky = SubResource("Sky_3v7ru")
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_exposure = 0.02
+tonemap_agx_white = 7.76
+tonemap_agx_contrast = 1.11
+ssr_enabled = false
+ssao_enabled = true
+ssil_enabled = false
+sdfgi_enabled = false
+sdfgi_min_cell_size = 0.3125
+sdfgi_y_scale = 0
+sdfgi_energy = 0.455
+glow_intensity = 1.32
+glow_strength = 0.05
+glow_bloom = 0.04
+glow_hdr_threshold = 4.0
+glow_hdr_scale = 4.0
+glow_hdr_luminance_cap = 24.09
+fog_mode = 1
+fog_light_energy = 3.0
+fog_density = 0.3765
+fog_sky_affect = 0.0
+fog_height = -1024.0
+fog_height_density = 16.0
+adjustment_brightness = 2.0
+
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_114bx"]
+auto_exposure_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0q11p"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xtd6w"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_x4g25"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-13.706119, 2.3692877, -19.819035)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.1415925, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Tüm Ögeler/SingleDoor/Kapı_acilma/SingleDoor:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.7594576, -0.93436, -0.06857872)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Tüm Ögeler/SingleDoor/Kapı_acilma/SingleDoor:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5glg4"]
+resource_name = "kapiittirme"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.23333333, 0.53333336, 1.0333333, 1.2666667, 3, 3.6077356, 5.243334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-13.706119, 2.3692877, -19.819035), Vector3(-13.706119, 2.3692877, -18.685253), Vector3(-13.706119, 1.7079935, -16.636517), Vector3(-13.706119, 1.4441457, -15.887706), Vector3(-13.706119, 1.9618609, -15.178783), Vector3(-13.706119, 2.5352893, -15.079206), Vector3(-13.706119, 2.5352893, -15.079206)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.23333333, 0.53333336, 1.0333333, 1.2666667, 3, 3.6077356, 5.243334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.1415925, 0), Vector3(0.4400848, -3.1415925, 7.1101525e-08), Vector3(-0.4997401, -3.1415925, -7.6433906e-08), Vector3(-0.8953887, -3.1415925, -1.695135e-07), Vector3(-0.41390482, -3.1415925, -9.313883e-08), Vector3(0.009599325, -3.1415925, -3.10831e-08), Vector3(0.009599325, 6.357305e-08, -3.10831e-08)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Tüm Ögeler/SingleDoor/Kapı_acilma/SingleDoor:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2666667, 0.43333346, 0.6000001, 3.6333337),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.7594576, -0.93436, -0.06857872), Vector3(-0.47359848, -0.93436, 0.6724396), Vector3(-0.05618286, -0.93436, 0.6860676), Vector3(-0.7963486, -0.93436, 0.25277328)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Tüm Ögeler/SingleDoor/Kapı_acilma/SingleDoor:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.2666667, 0.43333346, 0.6000001, 3.6333337),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.92870724, 0), Vector3(0, 1.529432, 0), Vector3(0, -0.028536139, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xl1y8"]
+_data = {
+&"RESET": SubResource("Animation_x4g25"),
+&"kapiittirme": SubResource("Animation_5glg4")
+}
+
+[node name="KutuphaneAraSahne" type="Node3D" unique_id=192717869]
+script = ExtResource("1_s0x7t")
+
+[node name="Tüm Ögeler" type="Node3D" parent="." unique_id=1065763214]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler" unique_id=156303407]
+transform = Transform3D(1.585782, 0, 0, 0, 1.2946517, 0, 0, 0, 1, -12.941175, 1.5171558, -17.692652)
+size = Vector3(0.053741455, 2.5713196, 0.91137695)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Tüm Ögeler" unique_id=955296490]
+transform = Transform3D(1.585782, 0, 0, 0, 1.2946517, 0, 0, 0, 1, -14.492673, 1.5171558, -17.698511)
+size = Vector3(0.053741455, 2.5713196, 0.8996582)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Tüm Ögeler" unique_id=1429575742]
+transform = Transform3D(-6.9316734e-08, -1.5857811, 0, 1.2946517, -5.6590952e-08, 0, 1.7763568e-15, 1.7881393e-07, 1, -13.713564, 3.1918554, -17.708696)
+size = Vector3(0.053741455, 1.029789, 0.9203186)
+
+[node name="SingleDoor" parent="Tüm Ögeler" unique_id=387920440 instance=ExtResource("1_487fp")]
+transform = Transform3D(0.99946743, 0, 0.032631923, 0, 1, 0, -0.032631923, 0, 0.99946743, -13.716226, 0.5, -17.82839)
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Tüm Ögeler/SingleDoor" unique_id=931476810]
+libraries/ = SubResource("AnimationLibrary_ka3rv")
+
+[node name="Kapı_acilma" type="AnimatableBody3D" parent="Tüm Ögeler/SingleDoor" unique_id=670666734 groups=["Kapi"]]
+transform = Transform3D(0.9999997, 0, 0, 0, 1, 0, 0, 0, 0.9999997, 0.76, 0.934, 0)
+disable_mode = 2
+script = ExtResource("2_s0x7t")
+
+[node name="SingleDoor" parent="Tüm Ögeler/SingleDoor/Kapı_acilma" unique_id=987566676 instance=ExtResource("3_2pku7")]
+transform = Transform3D(1.4482054, 0, 0, 0, 1.2834315, 0, 0, 0, 0.99999964, -0.7594576, -0.93436, -0.06857872)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tüm Ögeler/SingleDoor/Kapı_acilma" unique_id=1115620713]
+transform = Transform3D(1.0000005, 0, 1.2665987e-07, 0, 1.0000001, 0, 0, 0, 1, -0.7643919, 0.10947204, 0.20619774)
+shape = SubResource("BoxShape3D_4tcyq")
+
+[node name="Okul" type="Node3D" parent="Tüm Ögeler" unique_id=1002878700 groups=["YurtGirisAlani"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.674715, 0)
+
+[node name="Zemin" type="StaticBody3D" parent="Tüm Ögeler/Okul" unique_id=1943042321]
+transform = Transform3D(37.779213, 0, 0, 0, 1, 0, 0, 0, 39.88183, -1.2404027, -6.674715, -23.026064)
+metadata/_edit_group_ = true
+
+[node name="Zeminşekil" type="MeshInstance3D" parent="Tüm Ögeler/Okul/Zemin" unique_id=321382205]
+material_override = SubResource("StandardMaterial3D_2ydph")
+mesh = SubResource("BoxMesh_vdkwa")
+
+[node name="Zeminhitbox" type="CollisionShape3D" parent="Tüm Ögeler/Okul/Zemin" unique_id=893464258]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 20.751049, 0, 0, 0.0012663603)
+shape = SubResource("BoxShape3D_xw4oe")
+
+[node name="okuldurvarları" type="Node3D" parent="Tüm Ögeler/Okul" unique_id=1933695018]
+metadata/_edit_lock_ = true
+
+[node name="duvar1" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=559367069]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51958275, 3.000843, -42.459156)
+material_override = SubResource("StandardMaterial3D_twf3c")
+use_collision = true
+size = Vector3(36.306347, 2.4456434, 1)
+
+[node name="merviden arkadası" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=54101189]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.289715, -3.2608438, -39.512917)
+material_override = SubResource("StandardMaterial3D_1cup4")
+use_collision = true
+size = Vector3(4.0407104, 6.6140547, 5.900116)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=853935228]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.409956, 2.8278484, -42.16471)
+material_override = SubResource("StandardMaterial3D_53p7u")
+use_collision = true
+size = Vector3(2.6992188, 17.998627, 3.352417)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=201111951]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.64159, 2.8137875, -4.546167)
+material_override = SubResource("StandardMaterial3D_iob57")
+use_collision = true
+size = Vector3(2.6992188, 17.970505, 3.352417)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1221152825]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.607288, 2.7155209, -4.546167)
+material_override = SubResource("StandardMaterial3D_hcgrg")
+use_collision = true
+size = Vector3(2.6992188, 17.773972, 3.352417)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=643981328]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.97647, 2.7155209, -41.922855)
+material_override = SubResource("StandardMaterial3D_4cq2j")
+use_collision = true
+size = Vector3(2.6992188, 17.773972, 3.352417)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1236778375]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6391773, -2.2897062, -10.928871)
+material_override = SubResource("StandardMaterial3D_mcewc")
+use_collision = true
+size = Vector3(1, 3.084, 14.475)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=953461732]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.279294, -2.2616377, -17.707478)
+material_override = SubResource("StandardMaterial3D_xo8j1")
+use_collision = true
+size = Vector3(0.9111328, 3.1244202, 11.278761)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=69143273]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.411228, -2.0931435, -17.708378)
+material_override = SubResource("StandardMaterial3D_o5ful")
+use_collision = true
+size = Vector3(0.9093323, 2.735033, 15.542629)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1025705379]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -15.849541, -2.2980547, -17.707539)
+material_override = SubResource("StandardMaterial3D_o5ful")
+use_collision = true
+size = Vector3(0.91101074, 3.1271706, 2.6660037)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1105625627]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1287575, 5.2172756, -21.410702)
+material_override = SubResource("StandardMaterial3D_4cq2j")
+use_collision = true
+size = Vector3(39.79904, 2.4710922, 43.511993)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1784564893]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0787897, 2.700468, -24.917639)
+material_override = SubResource("StandardMaterial3D_53p7u")
+use_collision = true
+size = Vector3(2.2387695, 7.158636, 2.6862488)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=906788209]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0787897, 2.7725506, -35.634895)
+material_override = SubResource("StandardMaterial3D_53p7u")
+use_collision = true
+size = Vector3(2.2387695, 7.302801, 2.8038597)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=624225651]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0787897, 2.7519817, -10.864666)
+material_override = SubResource("StandardMaterial3D_53p7u")
+use_collision = true
+size = Vector3(2.2387695, 7.2616634, 2.5062866)
+
+[node name="merviden arkadası2" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=603350570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.25763, -3.2615452, -39.512917)
+material_override = SubResource("StandardMaterial3D_a25rh")
+use_collision = true
+size = Vector3(4.139, 6.618, 5.9)
+
+[node name="CSGBox3D25" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1326667706]
+transform = Transform3D(-1.5904676e-07, 1.0133945e-14, 1.4029866, 2.283006, 3.7408319, 3.84791e-08, -2.8332036, 3.0143764, -4.775245e-08, -15.627756, -5.208337, -33.778244)
+use_collision = true
+size = Vector3(2.8357692, 1.062316, 3.2565918)
+material = SubResource("StandardMaterial3D_3h5tp")
+
+[node name="CSGStairMaker3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1344390623 instance=ExtResource("7_1hdtj")]
+transform = Transform3D(-1.5904676e-07, 0, 1.4029866, 0, 4.804195, 0, -3.6385658, 0, -6.1326496e-08, -15.228714, -3.2493687, -32.473064)
+material_override = SubResource("StandardMaterial3D_ftvtm")
+size = Vector3(2.2885742, 1.361206, 2.7645264)
+num_stairs = 16
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=956652639]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9970398, -1.1418543, -16.21456)
+material_override = SubResource("StandardMaterial3D_w0hfl")
+use_collision = true
+size = Vector3(30.507355, 1, 26.548676)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=311948052]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9144669, -1.1307883, -39.50895)
+material_override = SubResource("StandardMaterial3D_cxt81")
+use_collision = true
+size = Vector3(30.6725, 1, 5.8419075)
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1590209546]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008849144, -1.1260829, -35.70258)
+material_override = SubResource("StandardMaterial3D_ibddb")
+use_collision = true
+size = Vector3(26.508501, 1, 13.454645)
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=278009929]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.88436, -1.1418543, -16.133886)
+material_override = SubResource("StandardMaterial3D_ahc6r")
+use_collision = true
+size = Vector3(4.994997, 1, 26.107239)
+
+[node name="duvar2" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=881203953]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5488796, 0.1276927, -42.459156)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(36.36494, 3.3655612, 1)
+
+[node name="duvar3" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1481048733]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -17.631275, 0.14144611, -23.17693)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(37.758, 3.253, 1.062)
+
+[node name="duvar4" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=2083341629]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -17.705982, 3.000843, -23.17693)
+material_override = SubResource("StandardMaterial3D_twf3c")
+use_collision = true
+size = Vector3(37.7582, 2.4456434, 1)
+
+[node name="duvar11" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1376262311]
+transform = Transform3D(-1.0000001, 0, 0, 0, 1, 0, 0, 0, -1.0000001, -0.83652294, 0.1276927, -3.3250928)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(36.008034, 3.3655612, 1)
+
+[node name="duvar12" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=930441997]
+transform = Transform3D(-1.0000001, 0, 0, 0, 1, 0, 0, 0, -1.0000001, -0.8431052, 3.000843, -3.3230264)
+material_override = SubResource("StandardMaterial3D_twf3c")
+use_collision = true
+size = Vector3(36.02119, 2.4456434, 1)
+
+[node name="duvar13" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1576754640]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 16.934795, 0.1276927, -23.17693)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(37.7582, 3.3655612, 1)
+
+[node name="duvar14" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1354021017]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 16.89085, 3.000843, -23.17693)
+material_override = SubResource("StandardMaterial3D_twf3c")
+use_collision = true
+size = Vector3(37.7582, 2.4456434, 1)
+
+[node name="duvar15" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1493202450]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.165239, 0.088142395, -28.688255)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(4.559619, 3.4446619, 1.0095215)
+
+[node name="duvar16" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1407174375]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.789074, 3.000843, -28.63955)
+material_override = SubResource("StandardMaterial3D_twf3c")
+use_collision = true
+size = Vector3(3.6869993, 2.4456434, 1)
+
+[node name="duvar17" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=237531778]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 17.00993, -5.455959, -23.17693)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(37.7582, 3.3655612, 1)
+
+[node name="duvar18" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=187316290]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 16.965984, -2.5828085, -23.17693)
+material_override = SubResource("StandardMaterial3D_twf3c")
+use_collision = true
+size = Vector3(37.7582, 2.4456434, 1)
+
+[node name="duvar19" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=403196760]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1.6290252, -5.455959, -4.274031)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(34.12434, 3.3655612, 1)
+
+[node name="duvar20" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=847160453]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1.6716328, -2.5828085, -4.27069)
+material_override = SubResource("StandardMaterial3D_twf3c")
+use_collision = true
+size = Vector3(34.016, 2.446, 1)
+
+[node name="duvar21" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1543394907]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -17.660507, -5.500901, -22.566742)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(37.7582, 3.2756763, 1)
+
+[node name="duvar22" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1452437159]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -17.616562, -2.611534, -22.566742)
+material_override = SubResource("StandardMaterial3D_twf3c")
+use_collision = true
+size = Vector3(37.7582, 2.5030951, 1)
+
+[node name="duvar23" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=982283626]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -0.020809174, -5.455959, -42.483315)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(35.92793, 3.3655612, 1)
+
+[node name="duvar24" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=546475784]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 0.09057999, -2.5828085, -42.43937)
+material_override = SubResource("StandardMaterial3D_twf3c")
+use_collision = true
+size = Vector3(36.150707, 2.4456434, 1)
+
+[node name="duvar25" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=615269311]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.745441, 0.09436798, -19.967077)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(32.750904, 3.4322107, 1.0473633)
+
+[node name="duvar26" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=212207134]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.711151, 3.000843, -19.94988)
+material_override = SubResource("StandardMaterial3D_twf3c")
+use_collision = true
+size = Vector3(32.855274, 2.4456434, 1)
+
+[node name="duvar27" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=662153624]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 3.0671072, 0.11589241, -35.65782)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(20.319, 3.352, 2.642)
+
+[node name="duvar28" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=685006554]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 3.028139, 3.000843, -35.65629)
+material_override = SubResource("StandardMaterial3D_twf3c")
+use_collision = true
+size = Vector3(20.369335, 2.4456434, 2.6348877)
+
+[node name="duvar5" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1757614625]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12.840854, 0.1276927, -20.15326)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(32.88774, 3.3655612, 1.1074219)
+
+[node name="duvar6" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1900858604]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12.843356, 3.000843, -20.160873)
+material_override = SubResource("StandardMaterial3D_twf3c")
+use_collision = true
+size = Vector3(32.829964, 2.4456434, 1.0880127)
+
+[node name="duvar29" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1079280395]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -15.248699, 0.16213751, -27.284206)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(5.675033, 3.2966719, 4.4439087)
+
+[node name="duvar30" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=2007046567]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -15.240103, 3.000843, -25.586422)
+material_override = SubResource("StandardMaterial3D_twf3c")
+use_collision = true
+size = Vector3(5.8696566, 2.4456434, 1.0395508)
+
+[node name="duvar31" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=817095526]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.76649, -5.583272, -35.189987)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(13.819793, 3.3655612, 0.9682617)
+
+[node name="duvar32" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1797698039]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.738414, -2.7101216, -35.18267)
+material_override = SubResource("StandardMaterial3D_twf3c")
+use_collision = true
+size = Vector3(13.791877, 2.4456434, 1)
+
+[node name="duvar33" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1549785847]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12.933946, -5.583272, -34.63169)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(14.936386, 3.3655612, 0.9682617)
+
+[node name="duvar34" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=609114162]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12.939419, -2.7101216, -34.629417)
+material_override = SubResource("StandardMaterial3D_twf3c")
+use_collision = true
+size = Vector3(14.898, 2.446, 0.955)
+
+[node name="duvar35" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=499097441]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -7.034781, -5.455959, -17.69918)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(11.7736, 3.3655612, 0.90441895)
+
+[node name="duvar36" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=735921541]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.6487172, -5.4574904, -11.203026)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(13.3862505, 3.3624983, 0.9822998)
+
+[node name="duvar37" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=516659661]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -16.332321, -5.455959, -17.69918)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(3.5878396, 3.3655612, 0.90441895)
+
+[node name="duvar38" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=425040766]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.2110553, 0.14742517, -30.252453)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(10.824942, 3.3655612, 1)
+
+[node name="duvar39" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=2103422767]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.221664, 3.0205755, -30.190525)
+material_override = SubResource("StandardMaterial3D_twf3c")
+use_collision = true
+size = Vector3(10.706396, 2.4456434, 1)
+
+[node name="duvar40" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=758866357]
+transform = Transform3D(-1.0000001, 0, 0, 0, 1, 0, 0, 0, -1.0000001, -3.635528, 0.14742517, -25.55342)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(5.924678, 3.3655612, 1)
+
+[node name="duvar41" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=837165393]
+transform = Transform3D(-1.0000001, 0, 0, 0, 1, 0, 0, 0, -1.0000001, -3.6446257, 3.0205755, -25.564028)
+material_override = SubResource("StandardMaterial3D_twf3c")
+use_collision = true
+size = Vector3(5.911792, 2.4456434, 1)
+
+[node name="duvar42" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1211134717]
+transform = Transform3D(0.00076076394, 0.005252788, -0.999986, 0.00040579084, 0.9999861, 0.0052530984, 0.99999976, -0.00040978633, 0.0007586192, -6.5568657, 0.14742517, -17.918425)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(12.996397, 3.3655612, 1)
+
+[node name="duvar43" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=894966268]
+transform = Transform3D(4.3711392e-08, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 4.3711392e-08, -6.5674744, 3.0205755, -17.896523)
+material_override = SubResource("StandardMaterial3D_twf3c")
+use_collision = true
+size = Vector3(13.009119, 2.4456434, 1)
+
+[node name="duvar44" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=156404707]
+transform = Transform3D(1.0000001, 0, 8.742279e-08, 0, 1, 0, -8.742279e-08, 0, 1.0000001, 3.9544828, 0.14742517, -10.498829)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(18.710114, 3.3655612, 1)
+
+[node name="duvar45" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=623709802]
+transform = Transform3D(1.0000001, 0, 8.742279e-08, 0, 1, 0, -8.742279e-08, 0, 1.0000001, 3.741514, 3.0205755, -10.500683)
+material_override = SubResource("StandardMaterial3D_twf3c")
+use_collision = true
+size = Vector3(18.253094, 2.4456434, 1)
+
+[node name="CSGStairMaker3D2" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=748131159 instance=ExtResource("7_1hdtj")]
+transform = Transform3D(-1.5904676e-07, 0, 1.4029866, 0, 4.804195, 0, -3.6385658, 0, -6.1326496e-08, 15.165999, -3.055734, -32.46929)
+material_override = SubResource("StandardMaterial3D_ftvtm")
+use_collision = true
+size = Vector3(2.2885742, 1.2970581, 2.7645264)
+num_stairs = 16
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1536775761]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, -0.5, 0, 0.5, 0.8660254, 14.792088, 2.2629042, -31.8797)
+material_override = SubResource("StandardMaterial3D_4cq2j")
+use_collision = true
+size = Vector3(3.311306, 1.0456047, 8.634956)
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=532512911]
+transform = Transform3D(1, 0, 0, 0, 0.7071067, -0.70710677, 0, 0.70710677, 0.7071067, -15.287865, 2.401144, -31.785513)
+material_override = SubResource("StandardMaterial3D_4cq2j")
+use_collision = true
+size = Vector3(3.9755316, 1.0456047, 8.634956)
+
+[node name="DoubleDoor" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=404853199 instance=ExtResource("9_j6qmt")]
+transform = Transform3D(1.7999916, 0, 0, 0, 1.2475115, 0, 0, 0, 1, -0.8199919, -6.174715, -41.951195)
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=847754251]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008849144, -0.46133566, -35.70258)
+material_override = SubResource("StandardMaterial3D_x4kqy")
+use_collision = true
+size = Vector3(26.508501, 1.019268, 13.454645)
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=190973458]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9970398, -0.4659996, -16.21456)
+material_override = SubResource("StandardMaterial3D_1iygc")
+use_collision = true
+size = Vector3(30.507, 1.026, 26.549)
+
+[node name="duvar46" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=114734387]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -4.6824446, -5.583272, -26.921738)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(17.476, 3.366, 0.948)
+
+[node name="duvar47" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=2101526516]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -4.6374645, -2.7101216, -26.949814)
+material_override = SubResource("StandardMaterial3D_twf3c")
+use_collision = true
+size = Vector3(17.552841, 2.4456434, 1)
+
+[node name="duvar48" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=809455708]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 4.4725413, -5.586222, -19.701683)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(15.5411825, 3.3596606, 0.9682617)
+
+[node name="duvar49" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=263600867]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 4.4811473, -2.7101216, -19.7087)
+material_override = SubResource("StandardMaterial3D_twf3c")
+use_collision = true
+size = Vector3(15.543184, 2.4456434, 0.9610596)
+
+[node name="duvar50" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1401724659]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 12.749887, -5.6000266, -20.405968)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(15.753195, 3.332052, 0.9682617)
+
+[node name="duvar51" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=745535392]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 12.758493, -2.7101216, -20.478613)
+material_override = SubResource("StandardMaterial3D_twf3c")
+use_collision = true
+size = Vector3(15.950344, 2.4456434, 0.9610596)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1704677295]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.541236, 0, -39.521248)
+
+[node name="KutuphaneUyariTetigi" type="Area3D" parent="Tüm Ögeler/Okul/okuldurvarları/StaticBody3D" unique_id=638525671]
+script = ExtResource("10_ut3m4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tüm Ögeler/Okul/okuldurvarları/StaticBody3D/KutuphaneUyariTetigi" unique_id=1267150383]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6936035, 2.2553596, -0.06591797)
+shape = SubResource("BoxShape3D_r2vwj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tüm Ögeler/Okul/okuldurvarları/StaticBody3D" unique_id=1607527598]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1588135, 1.228199, 0.8156738)
+shape = SubResource("BoxShape3D_4iept")
+
+[node name="CSGBox3D21" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1913528432]
+transform = Transform3D(-1, -8.7422784e-08, -2.6054018e-15, 0, -2.9802322e-08, 1.0000001, -8.742278e-08, 1.0000001, 2.9802322e-08, -13.706405, -3.2605863, -18.087936)
+use_collision = true
+size = Vector3(1.1264648, 0.18359375, 0.34490204)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1887348980]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -13.703412, -3.2928395, -18.155693)
+mesh = SubResource("TextMesh_pdy7h")
+
+[node name="CSGBox3D22" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=743069818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7097597, -3.8464165, -4.546167)
+material_override = SubResource("StandardMaterial3D_iob57")
+use_collision = true
+size = Vector3(2.6992188, 4.650097, 3.352417)
+
+[node name="CSGBox3D23" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1222203594]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.024656, -2.6027536, -7.290761)
+material_override = SubResource("StandardMaterial3D_mcewc")
+use_collision = true
+size = Vector3(1, 2.339039, 5.264)
+
+[node name="CSGBox3D24" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1840935121]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -13.879152, -2.6027536, -9.458263)
+material_override = SubResource("StandardMaterial3D_mcewc")
+use_collision = true
+size = Vector3(1, 2.339039, 6.722332)
+
+[node name="duvar52" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=2141792940]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -11.067156, -5.4574904, -7.2322683)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(5.444735, 3.3624983, 1.0883179)
+
+[node name="duvar53" type="CSGBox3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1198951553]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -13.271908, -5.4574904, -9.42392)
+material_override = SubResource("StandardMaterial3D_i4s4d")
+use_collision = true
+size = Vector3(5.444735, 3.3624983, 1.0883179)
+
+[node name="SingleDoor13" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=439285920 instance=ExtResource("3_2pku7")]
+transform = Transform3D(-5.975023e-08, 0, 1, 0, 1.1178577, 0, -1.3669258, 0, -4.371139e-08, -12.298313, 0.063723564, -26.115692)
+
+[node name="SingleDoor14" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=958111166 instance=ExtResource("3_2pku7")]
+transform = Transform3D(1.3669258, 0, 0, 0, 1.1178577, 0, -7.1054274e-15, 0, 1, -6.2796187, 0.063723564, -41.861427)
+
+[node name="SingleDoor15" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1587338566 instance=ExtResource("3_2pku7")]
+transform = Transform3D(1.3669258, 0, 0, 0, 1.1178577, 0, -7.1054274e-15, 0, 1, -0.8822746, 0.063723564, -41.861427)
+
+[node name="SingleDoor17" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1766673127 instance=ExtResource("3_2pku7")]
+transform = Transform3D(1.3669258, 0, 0, 0, 1.1178577, 0, -7.1054274e-15, 0, 1, 3.4096737, 0.063723564, -41.861427)
+
+[node name="SingleDoor18" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=691521444 instance=ExtResource("3_2pku7")]
+transform = Transform3D(1.3669258, 0, 0, 0, 1.1178577, 0, -7.1054274e-15, 0, 1, 8.244724, 0.063723564, -41.861427)
+
+[node name="SingleDoor19" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1765582161 instance=ExtResource("3_2pku7")]
+transform = Transform3D(1.3669258, 0, 0, 0, 1.1178577, 0, -7.1054274e-15, 0, 1, 14.287874, 0.063723564, -41.861427)
+
+[node name="SingleDoor22" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=45342838 instance=ExtResource("3_2pku7")]
+transform = Transform3D(1.3669258, 0, 0, 0, 1.1178577, 0, -7.1054274e-15, 0, 1, 2.8993917, 0.063723564, -37.08299)
+
+[node name="SingleDoor23" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=586435052 instance=ExtResource("3_2pku7")]
+transform = Transform3D(1.3669258, 0, 0, 0, 1.1178577, 0, -7.1054274e-15, 0, 1, 8.964912, 0.063723564, -37.08299)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=759771738]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -6.0927124, 3.7052298, -39.781967)
+mesh = SubResource("TextMesh_v3dr4")
+skeleton = NodePath("../../../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1318182831]
+transform = Transform3D(1, 0, -7.1054274e-15, 0, 1, 0, 7.1054274e-15, 0, 1, -9.528498, 3.7052298, -36.601692)
+mesh = SubResource("TextMesh_lt87w")
+skeleton = NodePath("../../../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1488166701]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -5.853832, 3.7052298, -39.781967)
+mesh = SubResource("TextMesh_v3dr4")
+skeleton = NodePath("../../../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1301620473]
+transform = Transform3D(-1, 0, 8.7422784e-08, 0, 1, 0, -8.7422784e-08, 0, -1, -9.528498, 3.7052298, -36.841366)
+mesh = SubResource("TextMesh_lt87w")
+skeleton = NodePath("../../../..")
+
+[node name="Okuldekor" type="Node3D" parent="Tüm Ögeler/Okul" unique_id=1606885338]
+
+[node name="Decal_Ceiling_B_Light" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=2122348141 instance=ExtResource("13_ig1em")]
+transform = Transform3D(6.6575456, 0, 0, 0, -3.3097987, 4.8546216e-08, 0, -2.893518e-07, -0.55530393, 1.4493749, -0.94650507, -13.7676935)
+
+[node name="Decal_Ceiling_B_Light2" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=2024203471 instance=ExtResource("13_ig1em")]
+transform = Transform3D(7.378036, 0, 0, 0, -3.3097987, 4.8546216e-08, 0, -2.893518e-07, -0.55530393, 8.040421, -0.94650507, -17.737831)
+
+[node name="Decal_Ceiling_B_Light3" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1395689411 instance=ExtResource("13_ig1em")]
+transform = Transform3D(7.378036, 0, 0, 0, -3.3097987, 4.8546216e-08, 0, -2.893518e-07, -0.55530393, 8.508846, -0.94650507, -25.965252)
+
+[node name="Decal_Ceiling_B_Light4" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=746167927 instance=ExtResource("13_ig1em")]
+transform = Transform3D(7.378036, 0, 0, 0, -3.3097987, 4.8546216e-08, 0, -2.893518e-07, -0.55530393, 8.147879, -0.94650507, -35.718857)
+
+[node name="Decal_Ceiling_B_Light5" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=116252715 instance=ExtResource("13_ig1em")]
+transform = Transform3D(7.378036, 0, 0, 0, -3.3097987, 4.8546216e-08, 0, -2.893518e-07, -0.55530393, -5.1538315, -0.94650507, -35.718857)
+
+[node name="Decal_Ceiling_B_Light6" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=170138885 instance=ExtResource("13_ig1em")]
+transform = Transform3D(-3.225042e-07, -2.8935182e-07, -0.55530393, 0, -3.3097992, 4.8546227e-08, -7.378036, 1.26479654e-14, 2.4273106e-08, -3.0582414, -0.94650507, -22.670172)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=254759469]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5877612, -4.554058, -42.424076)
+use_collision = true
+size = Vector3(1.4719238, 3.5666504, 1)
+material = SubResource("StandardMaterial3D_sarfs")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=786655304]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.165504, -4.554058, -42.424076)
+use_collision = true
+size = Vector3(1.4719238, 3.5666504, 1)
+material = SubResource("StandardMaterial3D_sarfs")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1494333511]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.951913, -3.5881462, -42.431725)
+use_collision = true
+size = Vector3(4.963028, 2.4714966, 1)
+material = SubResource("StandardMaterial3D_sarfs")
+
+[node name="Decal_Ceiling_B_Light7" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1954922192 instance=ExtResource("13_ig1em")]
+transform = Transform3D(-7.5641816e-07, 2.8935185e-07, 0.555304, 3.6010027e-14, -3.3098001, 4.854624e-08, 5.8519773, 0, 5.9604645e-08, -5.1538315, 4.657469, -39.59665)
+
+[node name="Decal_Ceiling_B_Light8" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=758669935 instance=ExtResource("13_ig1em")]
+transform = Transform3D(-6.762039e-07, 2.8935185e-07, 0.55530393, 3.2191348e-14, -3.3098001, 4.8546237e-08, 5.2314053, 0, 5.960464e-08, 5.13995, 4.657469, -39.59665)
+
+[node name="Decal_Ceiling_B_Light9" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1232275621 instance=ExtResource("13_ig1em")]
+transform = Transform3D(6.3895664, 1.4467591e-07, 0.27765203, 2.2700302e-14, -3.3098001, 4.854624e-08, 3.6890185, -2.5058606e-07, -0.48090732, -9.003463, 4.657469, -31.336657)
+
+[node name="Decal_Ceiling_B_Light10" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=715205051 instance=ExtResource("13_ig1em")]
+transform = Transform3D(6.9198613, -1.4210855e-14, 4.4703484e-08, 4.258123e-14, -3.3098001, 4.854624e-08, 4.4722566e-07, -2.8935185e-07, -0.55530393, -9.757039, 4.657469, -19.262346)
+
+[node name="SingleDoor" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=404959960 instance=ExtResource("3_2pku7")]
+transform = Transform3D(-6.931677e-08, 0, -1.0000001, 0, 1.2946525, 0, 1.5857826, 0, -4.371139e-08, -1.7143669, 0.069319725, -27.718672)
+
+[node name="SingleDoor2" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1462555168 instance=ExtResource("3_2pku7")]
+transform = Transform3D(2.079503e-07, 0, 1.0000001, 0, 1.2946526, 0, -1.5857826, 0, 1.3113417e-07, -1.8299193, 0.069319725, -32.662716)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1911982319]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.05718, -3.5881462, -42.431725)
+use_collision = true
+size = Vector3(4.963028, 2.4714966, 1)
+material = SubResource("StandardMaterial3D_sarfs")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1307492629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7835188, -3.143055, -42.431725)
+use_collision = true
+size = Vector3(3.3316994, 0.7924347, 1)
+material = SubResource("StandardMaterial3D_sarfs")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=131534912]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.1047487, -3.5881462, -17.712334)
+use_collision = true
+size = Vector3(5.2636185, 2.4714966, 0.9102783)
+material = SubResource("StandardMaterial3D_sarfs")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=978249662]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.1047487, -3.5881462, -17.690329)
+use_collision = true
+size = Vector3(5.2636185, 2.4714966, 0.9102783)
+material = SubResource("StandardMaterial3D_sarfs")
+
+[node name="Decal_Ceiling_B_Light11" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1920249964 instance=ExtResource("13_ig1em")]
+transform = Transform3D(6.6575456, 0, 0, 0, -3.3097987, 4.8546216e-08, 0, -2.893518e-07, -0.55530393, 8.272877, -0.94650507, -7.3627796)
+
+[node name="Decal_Ceiling_B_Light12" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1092392027 instance=ExtResource("13_ig1em")]
+transform = Transform3D(3.507054, 0, 0, 0, -3.3097987, 4.8546216e-08, 0, -2.893518e-07, -0.55530393, 14.602446, -0.94650507, -13.7676935)
+
+[node name="Decal_Ceiling_B_Light13" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=2147357648 instance=ExtResource("13_ig1em")]
+transform = Transform3D(3.507054, 0, 0, 0, -3.3097987, 4.8546216e-08, 0, -2.893518e-07, -0.55530393, 14.602446, -0.94650507, -21.217575)
+
+[node name="Window" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1099526382 instance=ExtResource("14_bq7te")]
+transform = Transform3D(3.1829617, 0, 0, 0, 2.275886, 0, 0, 0, 1, -7.107176, -7.1283627, -18.243462)
+
+[node name="Window3" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=611964834 instance=ExtResource("14_bq7te")]
+transform = Transform3D(2.885087, 0, 0, 0, 2.372748, 0, 0, 0, 1, 6.8861704, -7.1386147, -41.98332)
+
+[node name="Window4" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1348531227 instance=ExtResource("14_bq7te")]
+transform = Transform3D(2.885087, 0, 0, 0, 2.372748, 0, 0, 0, 1, -8.011089, -7.1386147, -41.98332)
+
+[node name="Window2" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=43761678 instance=ExtResource("14_bq7te")]
+transform = Transform3D(3.1829617, 0, 0, 0, 2.275886, 0, 0, 0, 1, -7.1072025, -7.124996, -17.247395)
+
+[node name="Decal_Ceiling_B_Light14" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1782960496 instance=ExtResource("13_ig1em")]
+transform = Transform3D(7.378036, 0, 0, 0, -3.3097987, 4.8546216e-08, 0, -2.893518e-07, -0.55530393, -13.706167, -0.97667074, -19.843504)
+
+[node name="SpotLight3D7" type="SpotLight3D" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=405816252]
+transform = Transform3D(0.989003, 6.4647274e-09, -0.14789574, 0.14789574, -4.3230692e-08, 0.989003, 0, -1, -4.3711392e-08, -14.044236, -1.4061427, -19.230251)
+light_color = Color(0.9999998, 0.9244828, 0.999232, 1)
+light_energy = 16.0
+light_specular = 0.0
+light_bake_mode = 1
+shadow_enabled = true
+shadow_normal_bias = 0.0
+spot_range = 8.774
+spot_attenuation = -2.74
+spot_angle = 52.05
+spot_angle_attenuation = 4.141062
+script = ExtResource("15_q22pe")
+
+[node name="Decal_Ceiling_B_Light15" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1892829245 instance=ExtResource("13_ig1em")]
+transform = Transform3D(6.9198613, -1.4210855e-14, 4.4703484e-08, 4.258123e-14, -3.3098001, 4.854624e-08, 4.4722566e-07, -2.8935185e-07, -0.55530393, -9.757039, 4.657469, -9.968597)
+
+[node name="Decal_Ceiling_B_Light16" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=2022021824 instance=ExtResource("13_ig1em")]
+transform = Transform3D(1.4474895e-07, -2.8935185e-07, -0.55530393, 4.258122e-14, -3.3098, 4.8546237e-08, -6.9198613, 5.037637e-14, -2.0430381e-08, -3.456768, 4.657469, -7.1637278)
+
+[node name="Decal_Ceiling_B_Light17" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1460356093 instance=ExtResource("13_ig1em")]
+transform = Transform3D(1.4474895e-07, -2.8935185e-07, -0.55530393, 4.258122e-14, -3.3098, 4.8546237e-08, -6.9198613, 5.037637e-14, -2.0430381e-08, 3.1053066, 4.657469, -7.1637278)
+
+[node name="Decal_Ceiling_B_Light18" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1634363524 instance=ExtResource("13_ig1em")]
+transform = Transform3D(1.4474895e-07, -2.8935185e-07, -0.55530393, 4.258122e-14, -3.3098, 4.8546237e-08, -6.9198613, 5.037637e-14, -2.0430381e-08, 8.52908, 4.657469, -7.1637278)
+
+[node name="Decal_Ceiling_B_Light19" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=459592013 instance=ExtResource("13_ig1em")]
+transform = Transform3D(4.580575, -2.3517534e-14, 2.056013e-29, 2.5990397e-22, -2.8663707, 0.27765203, -9.699747e-22, -1.6549001, -0.48090726, -15.2726555, 2.9417, -32.185524)
+
+[node name="EntranceDoor" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=160594069 instance=ExtResource("16_8w8yy")]
+transform = Transform3D(1.6005564, 0, 0, 0, 1.2475115, 0, 0, 0, 1, -0.78672045, -6.174715, -41.95707)
+
+[node name="SingleDoor7" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=464424786 instance=ExtResource("3_2pku7")]
+transform = Transform3D(-5.975023e-08, 0, 1, 0, 1.1178577, 0, -1.3669258, 0, -4.371139e-08, 12.177342, 0.063723564, -6.7711687)
+
+[node name="SingleDoor8" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=891129657 instance=ExtResource("3_2pku7")]
+transform = Transform3D(-1.3669258, 0, -8.742278e-08, 0, 1.1178577, 0, 1.1950046e-07, 0, -1, 8.712393, 0.063723564, -9.945612)
+
+[node name="SingleDoor10" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1825972741 instance=ExtResource("3_2pku7")]
+transform = Transform3D(-1.3669258, 0, -8.742278e-08, 0, 1.1178577, 0, 1.1950046e-07, 0, -1, -1.7742897, 0.063723564, -9.945612)
+
+[node name="SingleDoor11" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=850999082 instance=ExtResource("3_2pku7")]
+transform = Transform3D(1.3669258, 0, 7.1054274e-15, 0, 1.1178577, 0, 0, 0, 1, -1.7745062, 0.063723564, -3.8937387)
+
+[node name="SingleDoor12" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=306220082 instance=ExtResource("3_2pku7")]
+transform = Transform3D(1.3669258, 0, 7.1054274e-15, 0, 1.1178577, 0, 0, 0, 1, -9.497832, 0.063723564, -3.8937387)
+
+[node name="SingleDoor13" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1217310890 instance=ExtResource("3_2pku7")]
+transform = Transform3D(-5.975023e-08, 0, 1, 0, 1.1178577, 0, -1.3669258, 0, -4.371139e-08, -12.298313, 0.063723564, -6.7711687)
+
+[node name="SingleDoor14" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=723437034 instance=ExtResource("3_2pku7")]
+transform = Transform3D(-5.975023e-08, 0, 1, 0, 1.1178577, 0, -1.3669258, 0, -4.371139e-08, -12.298313, 0.063723564, -14.4705925)
+
+[node name="SingleDoor15" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1532263423 instance=ExtResource("3_2pku7")]
+transform = Transform3D(-5.975023e-08, 0, -1, 0, 1.1178577, 0, 1.3669258, 0, -4.371139e-08, -7.043168, 0.063723564, -14.4705925)
+
+[node name="SingleDoor16" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1987140074 instance=ExtResource("3_2pku7")]
+transform = Transform3D(-5.975023e-08, 0, -1, 0, 1.1178577, 0, 1.3669258, 0, -4.371139e-08, -7.043168, 0.063723564, -20.90334)
+
+[node name="SingleDoor17" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1229001629 instance=ExtResource("3_2pku7")]
+transform = Transform3D(-5.975023e-08, 0, 1, 0, 1.1178577, 0, -1.3669258, 0, -4.371139e-08, -12.318746, 0.063723564, -20.90334)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1327883200]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12.289608, 2.851822, -34.104553)
+mesh = SubResource("TextMesh_et47q")
+skeleton = NodePath("../../../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=446022169]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -1.727514, 3.712593, -30.311771)
+mesh = SubResource("TextMesh_pulkh")
+skeleton = NodePath("../../../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1372845633]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -1.727514, 3.0953007, -32.64319)
+material_override = SubResource("StandardMaterial3D_e5erq")
+mesh = SubResource("TextMesh_poxbk")
+skeleton = NodePath("../../../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1993487840]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -1.727514, 3.0953007, -27.707426)
+material_override = SubResource("StandardMaterial3D_e5erq")
+mesh = SubResource("TextMesh_w3pux")
+skeleton = NodePath("../../../..")
+
+[node name="SingleDoor9" parent="Tüm Ögeler/Okul/Okuldekor" unique_id=1492595166 instance=ExtResource("3_2pku7")]
+transform = Transform3D(1.3669258, 0, 1.7484555e-07, 0, 1.1178577, 0, -2.390009e-07, 0, 1, 8.712393, 0.063723564, -3.905371)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Tüm Ögeler" unique_id=1117833842]
+environment = SubResource("Environment_u5l4w")
+camera_attributes = SubResource("CameraAttributesPhysical_114bx")
+
+[node name="TallShelf" parent="Tüm Ögeler" unique_id=45548839 instance=ExtResource("17_x5s25")]
+transform = Transform3D(-8.673693e-08, 0, 1, 0, 1.776443, 0, -1.9843098, 0, -4.371139e-08, -16.811668, 0.5, -17.224258)
+metadata/_edit_group_ = true
+
+[node name="Books B" parent="Tüm Ögeler/TallShelf" unique_id=934033058 instance=ExtResource("18_knvr6")]
+transform = Transform3D(0.1294114, 0, -1.7763568e-15, 0, 0.19773869, 0, -7.993606e-15, 0, 0.8105721, -0.2023964, 1.5113165, -0.14077568)
+
+[node name="Books A" parent="Tüm Ögeler/TallShelf" unique_id=2098093198 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.75018406, 1.5511348, -0.030853271)
+
+[node name="Books A2" parent="Tüm Ögeler/TallShelf" unique_id=467643107 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.47762585, 0.92085433, 0.009721756)
+
+[node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf" unique_id=520884166]
+transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
+mesh = ExtResource("20_khdlr")
+skeleton = NodePath("")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf" unique_id=1493887918]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
+material_override = SubResource("StandardMaterial3D_0q11p")
+use_collision = true
+size = Vector3(0.9456787, 2.2826538, 1)
+
+[node name="TallShelf2" parent="Tüm Ögeler" unique_id=567097454 instance=ExtResource("17_x5s25")]
+transform = Transform3D(-8.673693e-08, 0, 1, 0, 1.776443, 0, -1.9843098, 0, -4.371139e-08, -16.811668, 0.5, -15.063742)
+metadata/_edit_group_ = true
+
+[node name="Books B" parent="Tüm Ögeler/TallShelf2" unique_id=1312182539 instance=ExtResource("18_knvr6")]
+transform = Transform3D(0.1294114, 0, -1.7763568e-15, 0, 0.19773869, 0, -7.993606e-15, 0, 0.8105721, -0.2023964, 1.5113165, -0.14077568)
+
+[node name="Books A" parent="Tüm Ögeler/TallShelf2" unique_id=1368393097 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.75018406, 1.5511348, -0.030853271)
+
+[node name="Books A2" parent="Tüm Ögeler/TallShelf2" unique_id=95948031 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.47762585, 0.92085433, 0.009721756)
+
+[node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf2" unique_id=1596005545]
+transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
+mesh = ExtResource("20_khdlr")
+skeleton = NodePath("")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf2" unique_id=473316443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
+material_override = SubResource("StandardMaterial3D_0q11p")
+use_collision = true
+size = Vector3(0.9456787, 2.2826538, 1)
+
+[node name="TallShelf3" parent="Tüm Ögeler" unique_id=1074167296 instance=ExtResource("17_x5s25")]
+transform = Transform3D(-8.673693e-08, 0, 1, 0, 1.776443, 0, -1.9843098, 0, -4.371139e-08, -16.811668, 0.5, -12.919525)
+metadata/_edit_group_ = true
+
+[node name="Books B" parent="Tüm Ögeler/TallShelf3" unique_id=1297819963 instance=ExtResource("18_knvr6")]
+transform = Transform3D(0.1294114, 0, -1.7763568e-15, 0, 0.19773869, 0, -7.993606e-15, 0, 0.8105721, -0.2023964, 1.5113165, -0.14077568)
+
+[node name="Books A" parent="Tüm Ögeler/TallShelf3" unique_id=1483644791 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.75018406, 1.5511348, -0.030853271)
+
+[node name="Books A2" parent="Tüm Ögeler/TallShelf3" unique_id=500340216 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.47762585, 0.92085433, 0.009721756)
+
+[node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf3" unique_id=1449799612]
+transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
+mesh = ExtResource("20_khdlr")
+skeleton = NodePath("")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf3" unique_id=559608122]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
+material_override = SubResource("StandardMaterial3D_0q11p")
+use_collision = true
+size = Vector3(0.9456787, 2.2826538, 1)
+
+[node name="TallShelf4" parent="Tüm Ögeler" unique_id=1052089496 instance=ExtResource("17_x5s25")]
+transform = Transform3D(-1.9843098, 0, -8.742278e-08, 0, 1.776443, 0, 1.7347386e-07, 0, -1, -16.638002, 0.5, -10.285487)
+metadata/_edit_group_ = true
+
+[node name="Books B" parent="Tüm Ögeler/TallShelf4" unique_id=989213171 instance=ExtResource("18_knvr6")]
+transform = Transform3D(0.1294114, 0, -1.7763568e-15, 0, 0.19773869, 0, -7.993606e-15, 0, 0.8105721, -0.2023964, 1.5113165, -0.14077568)
+
+[node name="Books A" parent="Tüm Ögeler/TallShelf4" unique_id=1652989111 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.75018406, 1.5511348, -0.030853271)
+
+[node name="Books A2" parent="Tüm Ögeler/TallShelf4" unique_id=1797295852 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.47762585, 0.92085433, 0.009721756)
+
+[node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf4" unique_id=734306493]
+transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
+mesh = ExtResource("20_khdlr")
+skeleton = NodePath("")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf4" unique_id=1001319418]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
+material_override = SubResource("StandardMaterial3D_0q11p")
+use_collision = true
+size = Vector3(0.9456787, 2.2826538, 1)
+
+[node name="TallShelf5" parent="Tüm Ögeler" unique_id=1058477540 instance=ExtResource("17_x5s25")]
+transform = Transform3D(-1.9843098, 0, -8.742278e-08, 0, 1.776443, 0, 1.7347386e-07, 0, -1, -14.560841, 0.5, -10.29268)
+metadata/_edit_group_ = true
+
+[node name="Books B" parent="Tüm Ögeler/TallShelf5" unique_id=807602501 instance=ExtResource("18_knvr6")]
+transform = Transform3D(0.1294114, 0, -1.7763568e-15, 0, 0.19773869, 0, -7.993606e-15, 0, 0.8105721, -0.2023964, 1.5113165, -0.14077568)
+
+[node name="Books A" parent="Tüm Ögeler/TallShelf5" unique_id=1285483719 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.75018406, 1.5511348, -0.030853271)
+
+[node name="Books A2" parent="Tüm Ögeler/TallShelf5" unique_id=1464229420 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.47762585, 0.92085433, 0.009721756)
+
+[node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf5" unique_id=1095720410]
+transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
+mesh = ExtResource("20_khdlr")
+skeleton = NodePath("")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf5" unique_id=260354049]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
+material_override = SubResource("StandardMaterial3D_0q11p")
+use_collision = true
+size = Vector3(0.9456787, 2.2826538, 1)
+
+[node name="TallShelf6" parent="Tüm Ögeler" unique_id=1111747495 instance=ExtResource("17_x5s25")]
+transform = Transform3D(-1.9843098, 0, -8.742278e-08, 0, 1.776443, 0, 1.7347386e-07, 0, -1, -12.527533, 0.5, -10.289286)
+metadata/_edit_group_ = true
+
+[node name="Books B" parent="Tüm Ögeler/TallShelf6" unique_id=145454181 instance=ExtResource("18_knvr6")]
+transform = Transform3D(0.1294114, 0, -1.7763568e-15, 0, 0.19773869, 0, -7.993606e-15, 0, 0.8105721, -0.2023964, 1.5113165, -0.14077568)
+
+[node name="Books A" parent="Tüm Ögeler/TallShelf6" unique_id=1724285819 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.75018406, 1.5511348, -0.030853271)
+
+[node name="Books A2" parent="Tüm Ögeler/TallShelf6" unique_id=318451395 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.47762585, 0.92085433, 0.009721756)
+
+[node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf6" unique_id=455263165]
+transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
+mesh = ExtResource("20_khdlr")
+skeleton = NodePath("")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf6" unique_id=1080183192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
+material_override = SubResource("StandardMaterial3D_0q11p")
+use_collision = true
+size = Vector3(0.9456787, 2.2826538, 1)
+
+[node name="TallShelf7" parent="Tüm Ögeler" unique_id=1255812318 instance=ExtResource("17_x5s25")]
+transform = Transform3D(-8.673693e-08, 0, 1, 0, 1.776443, 0, -1.9843098, 0, -4.3711395e-08, -10.175877, 0.5, -9.958256)
+metadata/_edit_group_ = true
+
+[node name="Books B" parent="Tüm Ögeler/TallShelf7" unique_id=2041716662 instance=ExtResource("18_knvr6")]
+transform = Transform3D(0.1294114, 0, -1.7763568e-15, 0, 0.19773869, 0, -7.993606e-15, 0, 0.8105721, -0.2023964, 1.5113165, -0.14077568)
+
+[node name="Books A" parent="Tüm Ögeler/TallShelf7" unique_id=650891453 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.75018406, 1.5511348, -0.030853271)
+
+[node name="Books A2" parent="Tüm Ögeler/TallShelf7" unique_id=2112372270 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.47762585, 0.92085433, 0.009721756)
+
+[node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf7" unique_id=1492932631]
+transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
+mesh = ExtResource("20_khdlr")
+skeleton = NodePath("")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf7" unique_id=1302298378]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
+material_override = SubResource("StandardMaterial3D_0q11p")
+use_collision = true
+size = Vector3(0.9456787, 2.2826538, 1)
+
+[node name="TallShelf8" parent="Tüm Ögeler" unique_id=1472412238 instance=ExtResource("17_x5s25")]
+transform = Transform3D(-8.673693e-08, 0, 1, 0, 1.776443, 0, -1.9843098, 0, -4.3711395e-08, -10.175877, 0.5, -7.3179355)
+
+[node name="Books B" parent="Tüm Ögeler/TallShelf8" unique_id=600244057 instance=ExtResource("18_knvr6")]
+transform = Transform3D(0.1294114, 0, -1.7763568e-15, 0, 0.19773869, 0, -7.993606e-15, 0, 0.8105721, -0.2023964, 1.5113165, -0.14077568)
+
+[node name="Books A" parent="Tüm Ögeler/TallShelf8" unique_id=1380849070 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.75018406, 1.5511348, -0.030853271)
+
+[node name="Books A2" parent="Tüm Ögeler/TallShelf8" unique_id=949070851 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.47762585, 0.92085433, 0.009721756)
+
+[node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf8" unique_id=1443456231]
+transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
+mesh = ExtResource("20_khdlr")
+skeleton = NodePath("")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf8" unique_id=2015544605]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
+material_override = SubResource("StandardMaterial3D_0q11p")
+use_collision = true
+size = Vector3(0.9456787, 2.2826538, 1)
+
+[node name="Table A" parent="Tüm Ögeler" unique_id=1656769632 instance=ExtResource("21_e4wka")]
+transform = Transform3D(0.424384, 0, 0, 0, 0.25776756, 0, 0, 0, 0.5433067, -6.51984, 1.016737, -5.9409833)
+
+[node name="TallShelf9" parent="Tüm Ögeler" unique_id=1280788442 instance=ExtResource("17_x5s25")]
+transform = Transform3D(2.602108e-07, 0, -1, 0, 1.776443, 0, 1.9843098, 0, 1.3113417e-07, -2.5322077, 0.5, -7.937723)
+
+[node name="Books B" parent="Tüm Ögeler/TallShelf9" unique_id=586447989 instance=ExtResource("18_knvr6")]
+transform = Transform3D(0.1294114, 0, -1.7763568e-15, 0, 0.19773869, 0, -7.993606e-15, 0, 0.8105721, -0.2023964, 1.5113165, -0.14077568)
+
+[node name="Books A" parent="Tüm Ögeler/TallShelf9" unique_id=1663978624 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.75018406, 1.5511348, -0.030853271)
+
+[node name="Books A2" parent="Tüm Ögeler/TallShelf9" unique_id=511237970 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.47762585, 0.92085433, 0.009721756)
+
+[node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf9" unique_id=2130077981]
+transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
+mesh = ExtResource("20_khdlr")
+skeleton = NodePath("")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf9" unique_id=15186555]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
+material_override = SubResource("StandardMaterial3D_0q11p")
+use_collision = true
+size = Vector3(0.9456787, 2.2826538, 1)
+
+[node name="TallShelf10" parent="Tüm Ögeler" unique_id=947682778 instance=ExtResource("17_x5s25")]
+transform = Transform3D(2.602108e-07, 0, -1, 0, 1.776443, 0, 1.9843098, 0, 1.3113417e-07, -2.5322077, 0.5, -10.275152)
+
+[node name="Books B" parent="Tüm Ögeler/TallShelf10" unique_id=32843509 instance=ExtResource("18_knvr6")]
+transform = Transform3D(0.1294114, 0, -1.7763568e-15, 0, 0.19773869, 0, -7.993606e-15, 0, 0.8105721, -0.2023964, 1.5113165, -0.14077568)
+
+[node name="Books A" parent="Tüm Ögeler/TallShelf10" unique_id=1826467243 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.75018406, 1.5511348, -0.030853271)
+
+[node name="Books A2" parent="Tüm Ögeler/TallShelf10" unique_id=124020389 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.47762585, 0.92085433, 0.009721756)
+
+[node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf10" unique_id=1217002847]
+transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
+mesh = ExtResource("20_khdlr")
+skeleton = NodePath("")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf10" unique_id=736319093]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
+material_override = SubResource("StandardMaterial3D_0q11p")
+use_collision = true
+size = Vector3(0.9456787, 2.2826538, 1)
+
+[node name="TallShelf11" parent="Tüm Ögeler" unique_id=245958364 instance=ExtResource("17_x5s25")]
+transform = Transform3D(2.602108e-07, 0, -1, 0, 1.776443, 0, 1.9843098, 0, 1.3113417e-07, -2.5322077, 0.5, -12.4638195)
+
+[node name="Books B" parent="Tüm Ögeler/TallShelf11" unique_id=1363249586 instance=ExtResource("18_knvr6")]
+transform = Transform3D(0.1294114, 0, -1.7763568e-15, 0, 0.19773869, 0, -7.993606e-15, 0, 0.8105721, -0.2023964, 1.5113165, -0.14077568)
+
+[node name="Books A" parent="Tüm Ögeler/TallShelf11" unique_id=388471684 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.75018406, 1.5511348, -0.030853271)
+
+[node name="Books A2" parent="Tüm Ögeler/TallShelf11" unique_id=1370248326 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.47762585, 0.92085433, 0.009721756)
+
+[node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf11" unique_id=138863647]
+transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
+mesh = ExtResource("20_khdlr")
+skeleton = NodePath("")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf11" unique_id=587350301]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
+material_override = SubResource("StandardMaterial3D_0q11p")
+use_collision = true
+size = Vector3(0.9456787, 2.2826538, 1)
+
+[node name="TallShelf12" parent="Tüm Ögeler" unique_id=429380781 instance=ExtResource("17_x5s25")]
+transform = Transform3D(2.602108e-07, 0, -1, 0, 1.776443, 0, 1.9843098, 0, 1.3113417e-07, -2.5322077, 0.5, -14.79944)
+
+[node name="Books B" parent="Tüm Ögeler/TallShelf12" unique_id=1968426494 instance=ExtResource("18_knvr6")]
+transform = Transform3D(0.1294114, 0, -1.7763568e-15, 0, 0.19773869, 0, -7.993606e-15, 0, 0.8105721, -0.2023964, 1.5113165, -0.14077568)
+
+[node name="Books A" parent="Tüm Ögeler/TallShelf12" unique_id=14033071 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.75018406, 1.5511348, -0.030853271)
+
+[node name="Books A2" parent="Tüm Ögeler/TallShelf12" unique_id=182418770 instance=ExtResource("19_ewifh")]
+transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044216e-09, 0, 0.65050995, -0.47762585, 0.92085433, 0.009721756)
+
+[node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf12" unique_id=1052081260]
+transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
+mesh = ExtResource("20_khdlr")
+skeleton = NodePath("")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf12" unique_id=1189636569]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
+material_override = SubResource("StandardMaterial3D_0q11p")
+use_collision = true
+size = Vector3(0.9456787, 2.2826538, 1)
+
+[node name="Sketchfab_Scene" parent="Tüm Ögeler" unique_id=1262520888 instance=ExtResource("22_g2s4p")]
+transform = Transform3D(0.6866202, -6.3079646e-08, -5.182324e-08, -6.0026245e-08, -0.72154707, 4.530532e-15, -6.0026245e-08, 0, -0.5927888, -6.522299, 1.6195439, -6.207026)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Tüm Ögeler" unique_id=343997810]
+transform = Transform3D(1, 0, 0, 0, -0.25881907, 0.9659258, 0, -0.9659259, -0.25881907, -6.3771114, 4.2895217, -7.9647155)
+light_color = Color(0.5748865, 0.46662086, 1, 1)
+light_energy = 16.0
+shadow_enabled = true
+spot_attenuation = -1.22
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Tüm Ögeler" unique_id=1316433907]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5182405, 0.9764954, -5.9501553)
+material_override = SubResource("StandardMaterial3D_xtd6w")
+use_collision = true
+size = Vector3(3.4204102, 0.9941406, 1.9020996)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Tüm Ögeler" unique_id=1322030443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.514914, 1.5669584, -6.1978664)
+material_override = SubResource("StandardMaterial3D_xtd6w")
+use_collision = true
+size = Vector3(0.9833374, 0.36083984, 1.189148)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=962186530]
+libraries/ = SubResource("AnimationLibrary_xl1y8")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1528619101]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -13.706119, 2.3692877, -19.819035)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D" unique_id=1067429860 node_paths=PackedStringArray("takip_edilecek_hedef")]
+light_energy = 5.744
+light_indirect_energy = 0.316
+light_projector = ExtResource("24_2pku7")
+shadow_enabled = true
+spot_range = 6.01
+spot_attenuation = -4.05
+spot_angle = 35.0
+spot_angle_attenuation = 0.07966018
+script = ExtResource("25_daw1r")
+takip_edilecek_hedef = NodePath("..")
+smooth_hizi = 6.54
+
+[node name="theatresignhang2" parent="." unique_id=2141197594 instance=ExtResource("26_1s2jv")]
+transform = Transform3D(-4.371139e-08, 0, -0.7664432, 0, 0.30712205, 0, 1, 0, -3.3502296e-08, -9.556299, 10.220931, -36.725037)
+
+[connection signal="body_entered" from="Tüm Ögeler/Okul/okuldurvarları/StaticBody3D/KutuphaneUyariTetigi" to="Tüm Ögeler/Okul/okuldurvarları/StaticBody3D/KutuphaneUyariTetigi" method="_on_body_entered"]

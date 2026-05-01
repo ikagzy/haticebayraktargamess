@@ -1,0 +1,347 @@
+{
+  "accessors": [
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 13193,
+      "max": [
+        0.9945099949836731,
+        0.4181399941444397,
+        0.9962499737739563
+      ],
+      "min": [
+        -0.9945099949836731,
+        -0.4181399941444397,
+        -1.0637400150299072
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 158316,
+      "componentType": 5126,
+      "count": 13193,
+      "max": [
+        0.9999313354492188,
+        1.0,
+        0.9992939829826355
+      ],
+      "min": [
+        -0.9999313354492188,
+        -1.0,
+        -1.0
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 78774,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 316632,
+      "componentType": 5126,
+      "count": 24640,
+      "max": [
+        1.0808299779891968,
+        0.07056999951601028,
+        1.0661200284957886
+      ],
+      "min": [
+        -1.0712499618530273,
+        -0.06757000088691711,
+        -1.0741499662399292
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 612312,
+      "componentType": 5126,
+      "count": 24640,
+      "max": [
+        0.9999382495880127,
+        0.999979555606842,
+        0.999857485294342
+      ],
+      "min": [
+        -0.9999720454216003,
+        -0.9999580979347229,
+        -0.9999305009841919
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 315096,
+      "componentType": 5125,
+      "count": 147456,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 907992,
+      "componentType": 5126,
+      "count": 160,
+      "max": [
+        0.9371100068092346,
+        0.9294800162315369,
+        0.2795200049877167
+      ],
+      "min": [
+        -0.9383900165557861,
+        -0.9300600290298462,
+        -0.4000000059604645
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 909912,
+      "componentType": 5126,
+      "count": 160,
+      "max": [
+        0.9226719737052917,
+        0.94243985414505,
+        0.9999986290931702
+      ],
+      "min": [
+        -0.922306478023529,
+        -0.948505699634552,
+        -0.998909056186676
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 904920,
+      "componentType": 5125,
+      "count": 948,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "taigo (https://sketchfab.com/taigo)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/narya-gandalfs-ring-53d05a2840b544cd8bb4c4c478e27644",
+      "title": "Narya, Gandalf's ring"
+    },
+    "generator": "Sketchfab-12.68.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 908712,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 911832,
+      "byteOffset": 908712,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 1820544,
+      "uri": "scene.bin"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "gold",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.3749243577773902,
+          0.26461528793617284,
+          0.09472151008838874,
+          1.0
+        ],
+        "roughnessFactor": 0.1934070121951219
+      }
+    },
+    {
+      "alphaMode": "BLEND",
+      "doubleSided": true,
+      "emissiveFactor": [
+        0.005000000000000001,
+        0.005000000000000001,
+        0.005000000000000001
+      ],
+      "name": "Rubi",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.12930118905928462,
+          0.0024441292951828926,
+          0.0024441292951828926,
+          0.995
+        ],
+        "metallicFactor": 0.9159999999999999,
+        "roughnessFactor": 0.09927591463414634
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Plane.001_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0
+          },
+          "indices": 2,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "BezierCircle.013_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 4,
+            "POSITION": 3
+          },
+          "indices": 5,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Gem.001_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 7,
+            "POSITION": 6
+          },
+          "indices": 8,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        0.06479460746049881,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.4387293014838944e-17,
+        -0.06479460746049881,
+        0.0,
+        0.0,
+        0.06479460746049881,
+        1.4387293014838944e-17,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "name": "Root"
+    },
+    {
+      "children": [
+        3,
+        4,
+        6
+      ],
+      "name": "Plane.001",
+      "rotation": [
+        -0.25362980365753174,
+        0.9485992193222046,
+        0.04888995736837387,
+        0.18286985158920288
+      ],
+      "translation": [
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "mesh": 0,
+      "name": "Plane.001_0"
+    },
+    {
+      "children": [
+        5
+      ],
+      "name": "BezierCircle.013",
+      "rotation": [
+        -0.0,
+        -0.38268035650253296,
+        -0.0,
+        0.9238808751106262
+      ],
+      "scale": [
+        0.9790300130844116,
+        0.9790300130844116,
+        0.9790300130844116
+      ]
+    },
+    {
+      "mesh": 1,
+      "name": "BezierCircle.013_0"
+    },
+    {
+      "children": [
+        7
+      ],
+      "name": "Gem.001",
+      "rotation": [
+        -0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        0.43158000707626343,
+        0.33618998527526855,
+        0.43158000707626343
+      ],
+      "translation": [
+        -0.001509999972768128,
+        -0.0,
+        -1.014870047569275
+      ]
+    },
+    {
+      "mesh": 2,
+      "name": "Gem.001_0"
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ]
+}

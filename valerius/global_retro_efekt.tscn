@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dqupqikmabh4o"]
+
+[ext_resource type="Shader" uid="uid://b7bbnt4kos4jv" path="res://vhsgoruntu.gdshader" id="1_rfgm1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4rhuo"]
+shader = ExtResource("1_rfgm1")
+shader_parameter/piksel_boyutu = 2.5
+
+[node name="GlobalRetroEfekt" type="CanvasLayer" unique_id=1434287669]
+layer = 10
+
+[node name="RetroEfekt" type="ColorRect" parent="." unique_id=203200065]
+material = SubResource("ShaderMaterial_4rhuo")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+mouse_filter = 2

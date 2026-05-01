@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://pvebopmgmlhh"]
+
+[ext_resource type="PackedScene" uid="uid://r0m0eutu0qdn" path="res://DuvarAğları/theatresignhang.fbx" id="1_tgvxa"]
+[ext_resource type="Texture2D" uid="uid://ddxmx57p1fxkb" path="res://DuvarAğları/signUV.png" id="2_4sfum"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qmfci"]
+albedo_texture = ExtResource("2_4sfum")
+
+[node name="theatresignhang" unique_id=2141197594 instance=ExtResource("1_tgvxa")]
+
+[node name="theatresign" parent="." index="0" unique_id=1908783409]
+material_override = SubResource("StandardMaterial3D_qmfci")

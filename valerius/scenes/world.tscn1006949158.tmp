@@ -1,0 +1,2126 @@
+[gd_scene format=3 uid="uid://ckavqb25bdaul"]
+
+[ext_resource type="Script" uid="uid://82l1c27xikiy" path="res://character/character_body_3d.gd" id="1_f3sb7"]
+[ext_resource type="Texture2D" uid="uid://c2j23pkx5li8c" path="res://models/textures/Tile/Tile_17-128x128.png" id="2_q5onr"]
+[ext_resource type="Texture2D" uid="uid://dphbpx8pjchkw" path="res://Untitled.png" id="2_xgqkh"]
+[ext_resource type="Texture2D" uid="uid://efesl7kvm06w" path="res://models/textures/Dirt/Dirt_20-128x128.png" id="3_7iits"]
+[ext_resource type="PackedScene" uid="uid://dnnl3c2k62u61" path="res://building_b_2.tscn" id="3_k0juu"]
+[ext_resource type="Texture2D" uid="uid://by0akvp2ws7iu" path="res://Untitled1.png" id="3_munwf"]
+[ext_resource type="ArrayMesh" uid="uid://cko4gmpsxdylm" path="res://models/crypt/streetlight.obj" id="3_pm21f"]
+[ext_resource type="Texture2D" uid="uid://djob6qciiplgq" path="res://models/crypt/citybits_texture.png" id="4_qfnet"]
+[ext_resource type="ArrayMesh" uid="uid://lf55htwvvnod" path="res://models/crypt/building_H.obj" id="5_71j4m"]
+[ext_resource type="ArrayMesh" uid="uid://ya05lxm78gir" path="res://models/crypt/box_B.obj" id="5_i7141"]
+[ext_resource type="ArrayMesh" uid="uid://c30cju5sy8btj" path="res://models/KayKit_Forest_Nature_Pack_1.0_FREE/Assets/obj/Rock_1_I_Color1.obj" id="6_0nbtd"]
+[ext_resource type="ArrayMesh" uid="uid://dx7hoa876ut3j" path="res://models/crypt/building_F.obj" id="6_7r4gi"]
+[ext_resource type="ArrayMesh" uid="uid://pkyqs0r81kd8" path="res://models/crypt/road_straight.obj" id="6_qfnet"]
+[ext_resource type="ArrayMesh" uid="uid://hnn5ru5y1vxa" path="res://models/crypt/car_police.obj" id="7_e3hyu"]
+[ext_resource type="ArrayMesh" uid="uid://brobnx3a8mcnx" path="res://models/crypt/road_tsplit.obj" id="7_i7141"]
+[ext_resource type="ArrayMesh" uid="uid://bbl8nadwq2pjt" path="res://models/crypt/building_A.obj" id="8_jhx03"]
+[ext_resource type="ArrayMesh" uid="uid://32867fumb6j3" path="res://models/crypt/car_police_wheel_front_left.obj" id="8_q5onr"]
+[ext_resource type="ArrayMesh" uid="uid://dah8l802viy25" path="res://models/crypt/trafficlight_A.obj" id="9_w7kh3"]
+[ext_resource type="ArrayMesh" uid="uid://c4natmuomj2x5" path="res://models/crypt/base.obj" id="14_o8fc1"]
+[ext_resource type="ArrayMesh" uid="uid://33h4gkg3q5mp" path="res://models/crypt/dumpster.obj" id="15_xo05s"]
+[ext_resource type="ArrayMesh" uid="uid://c6irw5t5c2si4" path="res://models/crypt/building_E.obj" id="16_dss4m"]
+[ext_resource type="ArrayMesh" uid="uid://bb2bcgoldbakd" path="res://models/crypt/road_corner.obj" id="17_7t5mc"]
+[ext_resource type="Script" uid="uid://dwajnje2utl4r" path="res://scenes/policelight.gd" id="18_2lf6f"]
+[ext_resource type="ArrayMesh" uid="uid://66g0idwtbolc" path="res://models/crypt/building_G.obj" id="18_lakw3"]
+[ext_resource type="Texture2D" uid="uid://cq2srl7uq6kuw" path="res://assets/forest/textures/color_g.png" id="23_xgqkh"]
+[ext_resource type="ArrayMesh" uid="uid://b52y01u6fgv07" path="res://assets/forest/textures/low poly forest 1.obj" id="24_munwf"]
+[ext_resource type="ArrayMesh" uid="uid://c8sh1nd3yrxnp" path="res://models/crypt/watertower.obj" id="26_munwf"]
+[ext_resource type="ArrayMesh" uid="uid://dieaxt8owf75r" path="res://models/KayKit_Forest_Nature_Pack_1.0_FREE/Assets/obj/Rock_1_D_Color1.obj" id="27_37qwj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3sb7"]
+sky_top_color = Color(0.37327912, 0.43669263, 0.52620524, 1)
+sky_horizon_color = Color(0.59491664, 0.5949392, 0.61838454, 1)
+sky_curve = 0.057926394
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+sun_angle_max = 326.51
+sun_curve = 0.007883377
+
+[sub_resource type="Sky" id="Sky_fj7yv"]
+sky_material = SubResource("ProceduralSkyMaterial_f3sb7")
+process_mode = 1
+
+[sub_resource type="Environment" id="Environment_tlwt5"]
+background_mode = 2
+background_energy_multiplier = 0.29
+sky = SubResource("Sky_fj7yv")
+tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+fog_light_color = Color(0.27912152, 0.3054834, 0.3465005, 1)
+fog_light_energy = 2.19
+fog_density = 0.031
+fog_height = -157.54
+fog_height_density = 16.0
+volumetric_fog_density = 0.029
+volumetric_fog_emission_energy = 0.0
+volumetric_fog_anisotropy = -0.9
+volumetric_fog_length = 21.04
+volumetric_fog_detail_spread = 6.0
+volumetric_fog_ambient_inject = 0.35
+adjustment_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0nbtd"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fj7yv"]
+material = SubResource("StandardMaterial3D_0nbtd")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tlwt5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0nbtd"]
+font_size = 30
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jhx03"]
+albedo_texture = ExtResource("2_q5onr")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_f3sb7"]
+size = Vector3(100, 0.5, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fj7yv"]
+size = Vector3(89.02478, 0.5, 100.23462)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oo54l"]
+albedo_texture = ExtResource("3_7iits")
+uv1_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_npbic"]
+size = Vector3(0.5465088, 1, 1.291565)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qfnet"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i7141"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_71j4m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4mrxx"]
+albedo_texture = ExtResource("4_qfnet")
+
+[sub_resource type="BoxMesh" id="BoxMesh_71j4m"]
+size = Vector3(0.3, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qfnet"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_i7141"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4mrxx"]
+size = Vector3(1, 1, 1.0258789)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o8fc1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q5onr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dss4m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e3hyu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pm21f"]
+size = Vector3(1.3710938, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2lf6f"]
+size = Vector3(1.0194092, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e6ckp"]
+size = Vector3(1.0780029, 1.6543579, 1.1606445)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37qwj"]
+albedo_texture = ExtResource("23_xgqkh")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kpybi"]
+size = Vector3(10.037828, 7.5305405, 5.9228783)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ctatt"]
+size = Vector3(6.9889526, 5.6206036, 6.832016)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xgqkh"]
+size = Vector3(8.7561035, 5.711914, 9.889999)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_munwf"]
+size = Vector3(8.231934, 6.6118164, 6.0040283)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ts3gi"]
+size = Vector3(12.253616, 6.621155, 7.0238647)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0nbtd"]
+size = Vector3(6.05011, 6.64563, 14.124207)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_37qwj"]
+size = Vector3(5.404236, 6.5144653, 5.5601196)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_navra"]
+size = Vector3(10.716827, 11.512146, 5.6728954)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_luhhm"]
+size = Vector3(7.4588623, 8.387268, 5.980713)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fh13f"]
+size = Vector3(6.736328, 6.015503, 7.1967773)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rup4s"]
+size = Vector3(7.4787903, 5.0268555, 4.960449)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4kbfs"]
+size = Vector3(1.1894531, 2.4682617, 0.44519043)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f17e3"]
+size = Vector3(6.2266235, 2.468872, 2.4161377)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x2olw"]
+size = Vector3(15.494736, 5.7145996, 8.038361)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_817gm"]
+size = Vector3(10.093262, 4.8547974, 6.1262817)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ggc52"]
+size = Vector3(0.32910156, 2.446289, 2.9716797)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l8ah6"]
+size = Vector3(1, 2.6269531, 7.5880127)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e75v4"]
+size = Vector3(0.15997314, 2.7939758, 6.2626953)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8u370"]
+size = Vector3(9.306091, 5.5889435, 0.66064453)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rga7q"]
+size = Vector3(9.121704, 2.8583984, 0.63671875)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6oujy"]
+size = Vector3(11.123596, 2.83667, 0.115722656)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hi6a0"]
+size = Vector3(2.3539124, 2.5483093, 7.89888)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eo1xk"]
+size = Vector3(0.111968994, 2.5604248, 7.170624)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_18clu"]
+size = Vector3(0.6188965, 2.5288696, 2.3890457)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4wdv8"]
+size = Vector3(7.9655724, 2.6743164, 1.3905029)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d46x8"]
+size = Vector3(0.47479248, 1.6938477, 6.8356667)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3l05q"]
+size = Vector3(0.4473877, 1.9932861, 4.9726563)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x28ej"]
+size = Vector3(6.43042, 2.8643188, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1jxku"]
+size = Vector3(1, 3.807495, 9.023926)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1dgkn"]
+size = Vector3(0.31152344, 3.0177002, 3.5632324)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e68xj"]
+size = Vector3(0.6434326, 4.4796143, 4.4243164)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5hglh"]
+size = Vector3(1.0131836, 3.2077637, 7.157856)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qg546"]
+size = Vector3(0.22314453, 1, 10.417603)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pf35h"]
+size = Vector3(1, 1.0195313, 1.1395264)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iexy4"]
+size = Vector3(1.0692139, 0.8486328, 1.4414063)
+
+[node name="world" type="Node3D" unique_id=1130929048]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1036813653]
+environment = SubResource("Environment_tlwt5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1687699002]
+transform = Transform3D(0.2943067, 0.74240977, 0.60184, -0.8817285, -0.032016426, 0.4706696, 0.36869854, -0.66918087, 0.64518124, 84.56602, 0, 0)
+light_energy = 0.0
+shadow_enabled = true
+shadow_reverse_cull_face = true
+shadow_blur = 0.0
+directional_shadow_split_1 = 0.0
+directional_shadow_split_2 = 0.0
+directional_shadow_fade_start = 1.0
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=524477078]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.369501, -0.81242085, -23.156923)
+script = ExtResource("1_f3sb7")
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D" unique_id=499096734]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6519246, 0)
+mesh = SubResource("CapsuleMesh_fj7yv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=1240981928]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6519246, 0)
+shape = SubResource("CapsuleShape3D_tlwt5")
+
+[node name="head" type="Node3D" parent="CharacterBody3D" unique_id=504080296]
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/head" unique_id=1080560015]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1106644, -0.055066228)
+
+[node name="Label" type="Label" parent="CharacterBody3D/head/Camera3D" unique_id=1369769877]
+offset_left = 1562.0
+offset_top = 1016.0
+offset_right = 1895.0
+offset_bottom = 1058.0
+text = "V0.1 DEVELOPER VERSE"
+label_settings = SubResource("LabelSettings_0nbtd")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="CharacterBody3D/head/Camera3D" unique_id=697213728]
+visible = false
+shadow_enabled = true
+spot_range = 32.251278
+spot_angle = 24.55575
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CharacterBody3D/head" unique_id=276229169]
+offset_left = 41.0
+offset_top = 1022.0
+offset_right = 451.0
+offset_bottom = 1046.0
+rotation = -1.5707964
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_xgqkh")
+texture_progress = ExtResource("3_munwf")
+
+[node name="Zemin_1" type="StaticBody3D" parent="." unique_id=1646050372]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Zemin_1" unique_id=1340876151]
+transform = Transform3D(1.4705942, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_jhx03")
+mesh = SubResource("BoxMesh_f3sb7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Zemin_1" unique_id=864293159]
+transform = Transform3D(1.6637452, 0, 0, 0, 1, 0, 0, 0, 1, -17.242672, 0, -0.11730957)
+shape = SubResource("BoxShape3D_fj7yv")
+
+[node name="Zemin_2" type="StaticBody3D" parent="." unique_id=1269860534]
+transform = Transform3D(0.68520737, 0, 0, 0, 1, 0, 0, 0, 1, -23.612122, 0, -97.25814)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Zemin_2" unique_id=65161304]
+transform = Transform3D(1.4705942, 0, 0, 0, 1, 0, 0, 0, 1, 0.4650741, -0.0753994, -1.2297287)
+material_override = SubResource("StandardMaterial3D_oo54l")
+mesh = SubResource("BoxMesh_f3sb7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Zemin_2" unique_id=1729437631]
+transform = Transform3D(1.6637452, 0, 0, 0, 1, 0, 0, 0, 1, 0.49372864, 0, 2.9484558)
+shape = SubResource("BoxShape3D_fj7yv")
+
+[node name="LevelDesign" type="Node3D" parent="." unique_id=1806576082]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.214169, 0, -22.546768)
+
+[node name="Rock1IColor1" type="MeshInstance3D" parent="LevelDesign" unique_id=1289336722]
+transform = Transform3D(1.9002215, 0, 1.0883157, 0, 1.8466278, 0, -1.3926369, 0, 1.4849818, -32.896137, 0.25, -26.65355)
+mesh = ExtResource("6_0nbtd")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Rock1IColor1" unique_id=2062573]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Rock1IColor1/StaticBody3D" unique_id=1902506276]
+transform = Transform3D(4.1604786, 0, 2.4946923, 0, -4.180957, 0, -5.477855, 0, 1.8947399, -0.83244324, 0, -0.8003731)
+shape = SubResource("BoxShape3D_npbic")
+
+[node name="Binalar" type="Node3D" parent="LevelDesign" unique_id=1052921375]
+
+[node name="bina 1" parent="LevelDesign/Binalar" unique_id=1444988396 instance=ExtResource("3_k0juu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -1.2521477, -0.15869164, -10.70879)
+
+[node name="bina1" type="StaticBody3D" parent="LevelDesign/Binalar/bina 1" unique_id=1161318615]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 1/bina1" unique_id=130001067]
+transform = Transform3D(0.43064082, 0, 0, 0, 0.22148849, 0, 0, 0, 0.2713059, -0.22021146, 0.22711024, -0.80378294)
+mesh = SubResource("BoxMesh_qfnet")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 1/bina1" unique_id=93937581]
+transform = Transform3D(1.5973272, 0, 0, 0, 3.1527586, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_qfnet")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 1/bina1" unique_id=2072363856]
+transform = Transform3D(1.5283904, 0, 0, 0, 3.363917, 0, 0, 0, 1.1523404, 0, 0, 0)
+shape = SubResource("BoxShape3D_i7141")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 1/bina1" unique_id=656661998]
+transform = Transform3D(0.46335047, 0, 0, 0, 0.6770639, 0, 0, 0, 0.68598306, -0.22209525, 0, -0.60017633)
+shape = SubResource("BoxShape3D_71j4m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 1" unique_id=357175467]
+
+[node name="BoxB" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 1" unique_id=845868269]
+transform = Transform3D(1.2608372, -0.035243, 0.17580275, 0.045313377, 1.1167244, -0.03359736, -0.17622544, 0.03499486, 1.2491746, -0.9955036, 0.10914524, 0.42500138)
+material_override = SubResource("StandardMaterial3D_4mrxx")
+mesh = ExtResource("5_i7141")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 1/BoxB" unique_id=46446510]
+transform = Transform3D(1.0000001, -2.561137e-09, 1.4901161e-08, -5.122274e-09, 1, 0, 1.4901161e-08, 0, 0.99999994, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 1/BoxB/StaticBody3D" unique_id=576519823]
+transform = Transform3D(0.4501939, 1.5133992e-09, 5.5879354e-09, -1.8626451e-09, 0.26449254, 9.313226e-10, 1.4901161e-08, 0, 0.13331117, 0, 0, 0)
+mesh = SubResource("BoxMesh_71j4m")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 1/BoxB/StaticBody3D" unique_id=250226538]
+transform = Transform3D(0.14069258, 5.820766e-10, -5.5879354e-09, -2.3283064e-09, 0.26658773, 1.8626451e-09, 1.3038516e-08, 1.3969839e-09, 0.14344689, 0, 0, 0)
+shape = SubResource("BoxShape3D_qfnet")
+
+[node name="bina 2" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=1865442885]
+transform = Transform3D(3.1125479, 0, 0, 0, 3.7795715, 0, 0, 0, 5.2653894, 5.538904, -0.12584424, -11.748913)
+mesh = ExtResource("5_71j4m")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 2" unique_id=1439393770]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 2/StaticBody3D" unique_id=1401064974]
+transform = Transform3D(1.1860105, 0, 0, 0, 5.87747, 0, 0, 0, 1, -0.40314007, 0, 0)
+mesh = SubResource("BoxMesh_i7141")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 2/StaticBody3D" unique_id=228152223]
+transform = Transform3D(2.5645852, 0, 0, 0, 6.118658, 0, 0, 0, 1.2031559, -0.2830813, 0, 0)
+shape = SubResource("BoxShape3D_4mrxx")
+
+[node name="bina 3" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=606319644]
+transform = Transform3D(3.1125479, 0, 0, 0, 3.7795715, 0, 0, 0, 5.2653894, -8.581461, -0.12584424, -11.724594)
+mesh = ExtResource("5_71j4m")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 3" unique_id=892698919]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 3/StaticBody3D" unique_id=1859009956]
+transform = Transform3D(1.1860105, 0, 0, 0, 5.87747, 0, 0, 0, 1, -0.40314007, 0, 0)
+mesh = SubResource("BoxMesh_i7141")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 3/StaticBody3D" unique_id=8260583]
+transform = Transform3D(7.753876, 0, 0, 0, 6.118658, 0, 0, 0, 1.3095038, 0.5693338, 0, 0.015568018)
+shape = SubResource("BoxShape3D_4mrxx")
+
+[node name="bina4" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=70248737]
+transform = Transform3D(3.3756707, 0, 0, 0, 2.7311773, 0, 0, 0, 4.9016523, -15.521687, -0.017035484, -11.337875)
+mesh = ExtResource("6_7r4gi")
+skeleton = NodePath("../../..")
+
+[node name="bina5" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=85246919]
+transform = Transform3D(-2.1387585e-07, 0, -6.411082, 0, 4.6587725, 0, 4.892909, 0, -2.802373e-07, -14.877602, -0.2107184, -18.061653)
+mesh = ExtResource("8_jhx03")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina5" unique_id=1674112419]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina5/StaticBody3D" unique_id=1982674199]
+transform = Transform3D(3.0122075, 0, 1.7053026e-13, 0, 3.4120412, 0, -3.5527137e-14, 0, 1.6319823, 0.45283794, 0, -0.17359972)
+shape = SubResource("BoxShape3D_o8fc1")
+
+[node name="bina 4" parent="LevelDesign/Binalar" unique_id=1861651129 instance=ExtResource("3_k0juu")]
+transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, -15.787449, -0.15869164, 5.8442135)
+
+[node name="bina1" type="StaticBody3D" parent="LevelDesign/Binalar/bina 4" unique_id=1632530965]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 4/bina1" unique_id=2037752302]
+transform = Transform3D(0.43064082, 0, 0, 0, 0.22148849, 0, 0, 0, 0.2713059, -0.22021146, 0.22711024, -0.80378294)
+mesh = SubResource("BoxMesh_qfnet")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 4/bina1" unique_id=1631830649]
+transform = Transform3D(1.5973272, 0, 0, 0, 3.1527586, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_qfnet")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 4/bina1" unique_id=1187035942]
+transform = Transform3D(1.5283904, 0, 0, 0, 3.363917, 0, 0, 0, 1.1523404, 0, 0, 0)
+shape = SubResource("BoxShape3D_i7141")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 4/bina1" unique_id=566104844]
+transform = Transform3D(0.46335047, 0, 0, 0, 0.6770639, 0, 0, 0, 0.68598306, -0.22209525, 0, -0.60017633)
+shape = SubResource("BoxShape3D_71j4m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 4" unique_id=1830193421]
+
+[node name="BoxB" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 4" unique_id=1698211075]
+transform = Transform3D(1.2608372, -0.035243, 0.17580275, 0.045313377, 1.1167244, -0.03359736, -0.17622544, 0.03499486, 1.2491746, -0.9955036, 0.10914524, 0.42500138)
+material_override = SubResource("StandardMaterial3D_4mrxx")
+mesh = ExtResource("5_i7141")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 4/BoxB" unique_id=2054636427]
+transform = Transform3D(1.0000001, -2.561137e-09, 1.4901161e-08, -5.122274e-09, 1, 0, 1.4901161e-08, 0, 0.99999994, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 4/BoxB/StaticBody3D" unique_id=1421267209]
+transform = Transform3D(0.4501939, 1.5133992e-09, 5.5879354e-09, -1.8626451e-09, 0.26449254, 9.313226e-10, 1.4901161e-08, 0, 0.13331117, 0, 0, 0)
+mesh = SubResource("BoxMesh_71j4m")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 4/BoxB/StaticBody3D" unique_id=1466675660]
+transform = Transform3D(0.14069258, 5.820766e-10, -5.5879354e-09, -2.3283064e-09, 0.26658773, 1.8626451e-09, 1.3038516e-08, 1.3969839e-09, 0.14344689, 0, 0, 0)
+shape = SubResource("BoxShape3D_qfnet")
+
+[node name="bina 5" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=1219264198]
+transform = Transform3D(-3.1125479, 0, -4.6031496e-07, 0, 3.7795715, 0, 2.7210757e-07, 0, -5.2653894, 5.538904, -0.12584424, 6.5044975)
+mesh = ExtResource("5_71j4m")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 5" unique_id=1277722479]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 5/StaticBody3D" unique_id=2024622689]
+transform = Transform3D(1.1860105, 0, 0, 0, 5.87747, 0, 0, 0, 1, -0.40314007, 0, 0)
+mesh = SubResource("BoxMesh_i7141")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 5/StaticBody3D" unique_id=1492572917]
+transform = Transform3D(2.5645852, 0, 0, 0, 6.118658, 0, 0, 0, 1.2031559, -0.2830813, 0, 0)
+shape = SubResource("BoxShape3D_4mrxx")
+
+[node name="bina 6" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=1588138771]
+transform = Transform3D(-3.1125479, 0, -4.6031496e-07, 0, 3.7795715, 0, 2.7210757e-07, 0, -5.2653894, -8.581461, -0.12584424, 6.9649887)
+mesh = ExtResource("5_71j4m")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 6" unique_id=1783120763]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 6/StaticBody3D" unique_id=1782116596]
+transform = Transform3D(1.1860105, 0, 0, 0, 5.87747, 0, 0, 0, 1, -0.40314007, 0, 0)
+mesh = SubResource("BoxMesh_i7141")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 6/StaticBody3D" unique_id=1085991501]
+transform = Transform3D(7.753876, 0, 0, 0, 6.118658, 0, 0, 0, 1.3095038, -0.4251452, 0, 0.015568018)
+shape = SubResource("BoxShape3D_4mrxx")
+
+[node name="bina6" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=1464916848]
+transform = Transform3D(-3.3756707, 0, -4.2851605e-07, 0, 2.7311773, 0, 2.951105e-07, 0, -4.9016523, -1.5078907, -0.017035484, 6.624482)
+mesh = ExtResource("6_7r4gi")
+skeleton = NodePath("../../..")
+
+[node name="bina 7" parent="LevelDesign/Binalar" unique_id=978716472 instance=ExtResource("3_k0juu")]
+transform = Transform3D(-0.10798828, 0, 3.998542, 0, 4, 0, -3.998542, 0, -0.10798828, -34.031677, -0.15869164, -11.499983)
+
+[node name="bina1" type="StaticBody3D" parent="LevelDesign/Binalar/bina 7" unique_id=925213246]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 7/bina1" unique_id=1606569023]
+transform = Transform3D(0.43064082, 0, 0, 0, 0.22148849, 0, 0, 0, 0.2713059, -0.22021146, 0.22711024, -0.80378294)
+mesh = SubResource("BoxMesh_qfnet")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 7/bina1" unique_id=1695633046]
+transform = Transform3D(1.5973272, 0, 0, 0, 3.1527586, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_qfnet")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 7/bina1" unique_id=600822181]
+transform = Transform3D(1.5283904, 0, 0, 0, 3.363917, 0, 0, 0, 1.1523404, 0, 0, 0)
+shape = SubResource("BoxShape3D_i7141")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 7/bina1" unique_id=575307886]
+transform = Transform3D(0.46335047, 0, 0, 0, 0.6770639, 0, 0, 0, 0.68598306, -0.22209525, 0, -0.60017633)
+shape = SubResource("BoxShape3D_71j4m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 7" unique_id=198138717]
+
+[node name="BoxB" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 7" unique_id=703747547]
+transform = Transform3D(1.2608372, -0.035243, 0.17580275, 0.045313377, 1.1167244, -0.03359736, -0.17622544, 0.03499486, 1.2491746, -0.9955036, 0.10914524, 0.42500138)
+material_override = SubResource("StandardMaterial3D_4mrxx")
+mesh = ExtResource("5_i7141")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 7/BoxB" unique_id=985185087]
+transform = Transform3D(1.0000001, -2.561137e-09, 1.4901161e-08, -5.122274e-09, 1, 0, 1.4901161e-08, 0, 0.99999994, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 7/BoxB/StaticBody3D" unique_id=1556467286]
+transform = Transform3D(0.4501939, 1.5133992e-09, 5.5879354e-09, -1.8626451e-09, 0.26449254, 9.313226e-10, 1.4901161e-08, 0, 0.13331117, 0, 0, 0)
+mesh = SubResource("BoxMesh_71j4m")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 7/BoxB/StaticBody3D" unique_id=80602355]
+transform = Transform3D(0.14069258, 5.820766e-10, -5.5879354e-09, -2.3283064e-09, 0.26658773, 1.8626451e-09, 1.3038516e-08, 1.3969839e-09, 0.14344689, 0, 0, 0)
+shape = SubResource("BoxShape3D_qfnet")
+
+[node name="bina 8" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=1288701736]
+transform = Transform3D(-0.08402968, 0, 5.26347, 0, 3.7795715, 0, -3.1114135, 0, -0.14215009, -35.104492, -0.12584424, 1.4940596)
+mesh = ExtResource("5_71j4m")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 8" unique_id=1476882309]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 8/StaticBody3D" unique_id=155049434]
+transform = Transform3D(1.1860105, 0, 0, 0, 5.87747, 0, 0, 0, 1, -0.40314007, 0, 0)
+mesh = SubResource("BoxMesh_i7141")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 8/StaticBody3D" unique_id=1633951280]
+transform = Transform3D(2.5645852, 0, 0, 0, 6.118658, 0, 0, 0, 1.6178315, -0.2830813, 0, 0)
+shape = SubResource("BoxShape3D_4mrxx")
+
+[node name="bina 9" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=1560250699]
+transform = Transform3D(-0.08402968, 0, 5.26347, 0, 3.7795715, 0, -3.1114135, 0, -0.14215009, -35.479565, -0.12584424, -4.9757667)
+mesh = ExtResource("5_71j4m")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 9" unique_id=922717757]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 9/StaticBody3D" unique_id=910189160]
+transform = Transform3D(1.1860105, 0, 0, 0, 5.87747, 0, 0, 0, 1, -0.40314007, 0, 0)
+mesh = SubResource("BoxMesh_i7141")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 9/StaticBody3D" unique_id=2100101142]
+transform = Transform3D(13.632946, 0, 0, 0, 6.1186585, 0, 0, 0, 1.847252, 0.9220171, 0, 0.01556778)
+shape = SubResource("BoxShape3D_4mrxx")
+
+[node name="bina7" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=915712669]
+transform = Transform3D(-0.09113322, 0, 4.8998656, 0, 2.7311773, 0, -3.3744402, 0, -0.13233025, -34.74009, -0.017035484, -18.294508)
+mesh = ExtResource("6_7r4gi")
+skeleton = NodePath("../../..")
+
+[node name="bina8" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=139288257]
+transform = Transform3D(-4.0968633, 0, -4.45437e-07, 0, 3.748449, 0, 3.5815916e-07, 0, -5.0952053, 21.089813, -0.1650481, 7.3461437)
+mesh = ExtResource("16_dss4m")
+
+[node name="bina9" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=109792898]
+transform = Transform3D(4.0968633, 0, 0, 0, 3.748449, 0, 0, 0, 5.0952053, 13.234365, -0.1650481, -12.622414)
+mesh = ExtResource("16_dss4m")
+skeleton = NodePath("../../..")
+
+[node name="BuildingG" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=214957978]
+transform = Transform3D(-3.5295136, 0, 3.43941e-07, 0, 3.5195363, 0, -3.085599e-07, 0, -3.9342263, 12.819942, -0.105882645, 5.344757)
+mesh = ExtResource("18_lakw3")
+skeleton = NodePath("../../..")
+
+[node name="bina 10" parent="LevelDesign/Binalar" unique_id=1902160687 instance=ExtResource("3_k0juu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 21.006609, -0.15869164, -11.812798)
+
+[node name="bina1" type="StaticBody3D" parent="LevelDesign/Binalar/bina 10" unique_id=871557671]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 10/bina1" unique_id=348271146]
+transform = Transform3D(0.43064082, 0, 0, 0, 0.22148849, 0, 0, 0, 0.2713059, -0.22021146, 0.22711024, -0.80378294)
+mesh = SubResource("BoxMesh_qfnet")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 10/bina1" unique_id=266314661]
+transform = Transform3D(1.5973272, 0, 0, 0, 3.1527586, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_qfnet")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 10/bina1" unique_id=442484869]
+transform = Transform3D(1.5283904, 0, 0, 0, 3.363917, 0, 0, 0, 1.1523404, 0, 0, 0)
+shape = SubResource("BoxShape3D_i7141")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 10/bina1" unique_id=832658331]
+transform = Transform3D(0.46335047, 0, 0, 0, 0.6770639, 0, 0, 0, 0.68598306, -0.22209525, 0, -0.60017633)
+shape = SubResource("BoxShape3D_71j4m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 10" unique_id=329335845]
+
+[node name="BoxB" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 10" unique_id=592690429]
+transform = Transform3D(1.2608372, -0.035243, 0.17580275, 0.045313377, 1.1167244, -0.03359736, -0.17622544, 0.03499486, 1.2491746, -0.9955036, 0.10914524, 0.42500138)
+material_override = SubResource("StandardMaterial3D_4mrxx")
+mesh = ExtResource("5_i7141")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 10/BoxB" unique_id=903601378]
+transform = Transform3D(1.0000001, -2.561137e-09, 1.4901161e-08, -5.122274e-09, 1, 0, 1.4901161e-08, 0, 0.99999994, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 10/BoxB/StaticBody3D" unique_id=901303381]
+transform = Transform3D(0.4501939, 1.5133992e-09, 5.5879354e-09, -1.8626451e-09, 0.26449254, 9.313226e-10, 1.4901161e-08, 0, 0.13331117, 0, 0, 0)
+mesh = SubResource("BoxMesh_71j4m")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 10/BoxB/StaticBody3D" unique_id=458404448]
+transform = Transform3D(0.14069258, 5.820766e-10, -5.5879354e-09, -2.3283064e-09, 0.26658773, 1.8626451e-09, 1.3038516e-08, 1.3969839e-09, 0.14344689, 0, 0, 0)
+shape = SubResource("BoxShape3D_qfnet")
+
+[node name="bina10" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=944348827]
+transform = Transform3D(3.3756707, 0, 0, 0, 2.7311773, 0, 0, 0, 4.9016523, 27.85117, -0.017035484, -12.255329)
+mesh = ExtResource("6_7r4gi")
+skeleton = NodePath("../../..")
+
+[node name="bina 11" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=568242375]
+transform = Transform3D(4.0816136e-07, 0, -5.2653894, 0, 3.7795715, 0, 3.1125479, 0, 6.9047246e-07, 45.932217, -0.12584424, 6.5044937)
+mesh = ExtResource("5_71j4m")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 11" unique_id=735774724]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 11/StaticBody3D" unique_id=545204995]
+transform = Transform3D(1.1860105, 0, 0, 0, 5.87747, 0, 0, 0, 1, -0.40314007, 0, 0)
+mesh = SubResource("BoxMesh_i7141")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 11/StaticBody3D" unique_id=1303150765]
+transform = Transform3D(2.5645852, 0, 0, 0, 6.118658, 0, 0, 0, 1.2031559, -0.2830813, 0, 0)
+shape = SubResource("BoxShape3D_4mrxx")
+
+[node name="bina11" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=26747350]
+transform = Transform3D(2.5225594, 0, -3.2572129, 0, 2.7311773, 0, 2.243178, 0, 3.6628895, 41.425415, -0.017035484, -9.765398)
+mesh = ExtResource("6_7r4gi")
+skeleton = NodePath("../../..")
+
+[node name="bina12" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=1278673212]
+transform = Transform3D(-1.7907958e-07, 0, 5.0952053, 0, 3.748449, 0, -4.0968633, 0, -2.227185e-07, 22.336935, -0.1650481, 15.732268)
+mesh = ExtResource("16_dss4m")
+
+[node name="bina13" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=32243155]
+transform = Transform3D(5.3723875e-07, 0, -5.0952053, 0, 3.748449, 0, 4.0968633, 0, 6.681555e-07, 45.872334, -0.1650481, -1.172535)
+mesh = ExtResource("16_dss4m")
+skeleton = NodePath("../..")
+
+[node name="bina 12" parent="LevelDesign/Binalar" unique_id=1190172837 instance=ExtResource("3_k0juu")]
+transform = Transform3D(3.9995515, 0, -0.05989746, 0, 4, 0, 0.05989746, 0, 3.9995515, 34.58763, -0.15869164, -13.176586)
+
+[node name="bina1" type="StaticBody3D" parent="LevelDesign/Binalar/bina 12" unique_id=498819861]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 12/bina1" unique_id=792638660]
+transform = Transform3D(0.43064082, 0, 0, 0, 0.22148849, 0, 0, 0, 0.2713059, -0.22021146, 0.22711024, -0.80378294)
+mesh = SubResource("BoxMesh_qfnet")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 12/bina1" unique_id=674130348]
+transform = Transform3D(1.5973272, 0, 0, 0, 3.1527586, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_qfnet")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 12/bina1" unique_id=9234007]
+transform = Transform3D(1.5283904, 0, 0, 0, 3.363917, 0, 0, 0, 1.1523404, 0, 0, 0)
+shape = SubResource("BoxShape3D_i7141")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 12/bina1" unique_id=318362145]
+transform = Transform3D(0.46335047, 0, 0, 0, 0.6770639, 0, 0, 0, 0.68598306, -0.22209525, 0, -0.60017633)
+shape = SubResource("BoxShape3D_71j4m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 12" unique_id=792632132]
+
+[node name="BoxB" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 12" unique_id=676546372]
+transform = Transform3D(1.2608372, -0.035243, 0.17580275, 0.045313377, 1.1167244, -0.03359736, -0.17622544, 0.03499486, 1.2491746, -0.9955036, 0.10914524, 0.42500138)
+material_override = SubResource("StandardMaterial3D_4mrxx")
+mesh = ExtResource("5_i7141")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 12/BoxB" unique_id=1178609729]
+transform = Transform3D(1.0000001, -2.561137e-09, 1.4901161e-08, -5.122274e-09, 1, 0, 1.4901161e-08, 0, 0.99999994, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 12/BoxB/StaticBody3D" unique_id=2062643312]
+transform = Transform3D(0.4501939, 1.5133992e-09, 5.5879354e-09, -1.8626451e-09, 0.26449254, 9.313226e-10, 1.4901161e-08, 0, 0.13331117, 0, 0, 0)
+mesh = SubResource("BoxMesh_71j4m")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 12/BoxB/StaticBody3D" unique_id=1274070175]
+transform = Transform3D(0.14069258, 5.820766e-10, -5.5879354e-09, -2.3283064e-09, 0.26658773, 1.8626451e-09, 1.3038516e-08, 1.3969839e-09, 0.14344689, 0, 0, 0)
+shape = SubResource("BoxShape3D_qfnet")
+
+[node name="bina 13" parent="LevelDesign/Binalar" unique_id=1614256069 instance=ExtResource("3_k0juu")]
+transform = Transform3D(-0.059897635, 0, -3.9995515, 0, 4, 0, 3.9995515, 0, -0.059897635, 46.083652, -0.15869164, 13.014212)
+metadata/_edit_group_ = true
+
+[node name="bina1" type="StaticBody3D" parent="LevelDesign/Binalar/bina 13" unique_id=1743299615]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 13/bina1" unique_id=1934134656]
+transform = Transform3D(0.43064082, 0, 0, 0, 0.22148849, 0, 0, 0, 0.2713059, -0.22021146, 0.22711024, -0.80378294)
+mesh = SubResource("BoxMesh_qfnet")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 13/bina1" unique_id=23003433]
+transform = Transform3D(1.5973272, 0, 0, 0, 3.1527586, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_qfnet")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 13/bina1" unique_id=1905471419]
+transform = Transform3D(1.5283904, 0, 0, 0, 3.363917, 0, 0, 0, 1.1523404, 0, 0, 0)
+shape = SubResource("BoxShape3D_i7141")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 13/bina1" unique_id=800556390]
+transform = Transform3D(0.46335047, 0, 0, 0, 0.6770639, 0, 0, 0, 0.68598306, -0.22209525, 0, -0.60017633)
+shape = SubResource("BoxShape3D_71j4m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 13" unique_id=1989286124]
+
+[node name="BoxB" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 13" unique_id=1907031885]
+transform = Transform3D(1.2608372, -0.035243, 0.17580275, 0.045313377, 1.1167244, -0.03359736, -0.17622544, 0.03499486, 1.2491746, -0.9955036, 0.10914524, 0.42500138)
+material_override = SubResource("StandardMaterial3D_4mrxx")
+mesh = ExtResource("5_i7141")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 13/BoxB" unique_id=929132754]
+transform = Transform3D(1.0000001, -2.561137e-09, 1.4901161e-08, -5.122274e-09, 1, 0, 1.4901161e-08, 0, 0.99999994, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 13/BoxB/StaticBody3D" unique_id=1960009248]
+transform = Transform3D(0.4501939, 1.5133992e-09, 5.5879354e-09, -1.8626451e-09, 0.26449254, 9.313226e-10, 1.4901161e-08, 0, 0.13331117, 0, 0, 0)
+mesh = SubResource("BoxMesh_71j4m")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 13/BoxB/StaticBody3D" unique_id=1694995173]
+transform = Transform3D(0.14069258, 5.820766e-10, -5.5879354e-09, -2.3283064e-09, 0.26658773, 1.8626451e-09, 1.3038516e-08, 1.3969839e-09, 0.14344689, 0, 0, 0)
+shape = SubResource("BoxShape3D_qfnet")
+
+[node name="bina14" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=2067200910]
+transform = Transform3D(-1.7907958e-07, 0, 5.0952053, 0, 3.748449, 0, -4.0968633, 0, -2.227185e-07, -33.565567, -0.1650481, 8.793833)
+mesh = ExtResource("16_dss4m")
+skeleton = NodePath("../../..")
+
+[node name="bina15" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=646225135]
+transform = Transform3D(3.3756707, 0, 8.570321e-07, 0, 2.7311773, 0, -5.90221e-07, 0, 4.9016523, 4.361307, -0.017035484, 15.153188)
+mesh = ExtResource("6_7r4gi")
+skeleton = NodePath("../../..")
+
+[node name="bina 14" parent="LevelDesign/Binalar" unique_id=1929039451 instance=ExtResource("3_k0juu")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -9.976536, -0.15869164, 14.437023)
+
+[node name="bina1" type="StaticBody3D" parent="LevelDesign/Binalar/bina 14" unique_id=1897274788]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 14/bina1" unique_id=239117440]
+transform = Transform3D(0.43064082, 0, 0, 0, 0.22148849, 0, 0, 0, 0.2713059, -0.22021146, 0.22711024, -0.80378294)
+mesh = SubResource("BoxMesh_qfnet")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 14/bina1" unique_id=450245998]
+transform = Transform3D(1.5973272, 0, 0, 0, 3.1527586, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_qfnet")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 14/bina1" unique_id=322733624]
+transform = Transform3D(1.5283904, 0, 0, 0, 3.363917, 0, 0, 0, 1.1523404, 0, 0, 0)
+shape = SubResource("BoxShape3D_i7141")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 14/bina1" unique_id=223889896]
+transform = Transform3D(0.46335047, 0, 0, 0, 0.6770639, 0, 0, 0, 0.68598306, -0.22209525, 0, -0.60017633)
+shape = SubResource("BoxShape3D_71j4m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 14" unique_id=1228030608]
+
+[node name="BoxB" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 14" unique_id=491762442]
+transform = Transform3D(1.2608372, -0.035243, 0.17580275, 0.045313377, 1.1167244, -0.03359736, -0.17622544, 0.03499486, 1.2491746, -0.9955036, 0.10914524, 0.42500138)
+material_override = SubResource("StandardMaterial3D_4mrxx")
+mesh = ExtResource("5_i7141")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 14/BoxB" unique_id=538172318]
+transform = Transform3D(1.0000001, -2.561137e-09, 1.4901161e-08, -5.122274e-09, 1, 0, 1.4901161e-08, 0, 0.99999994, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 14/BoxB/StaticBody3D" unique_id=1629758570]
+transform = Transform3D(0.4501939, 1.5133992e-09, 5.5879354e-09, -1.8626451e-09, 0.26449254, 9.313226e-10, 1.4901161e-08, 0, 0.13331117, 0, 0, 0)
+mesh = SubResource("BoxMesh_71j4m")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 14/BoxB/StaticBody3D" unique_id=689765914]
+transform = Transform3D(0.14069258, 5.820766e-10, -5.5879354e-09, -2.3283064e-09, 0.26658773, 1.8626451e-09, 1.3038516e-08, 1.3969839e-09, 0.14344689, 0, 0, 0)
+shape = SubResource("BoxShape3D_qfnet")
+
+[node name="bina 15" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=84076851]
+transform = Transform3D(3.1125479, 0, 0, 0, 3.7795715, 0, 0, 0, 5.2653894, -2.5978508, -0.12584424, 16.140642)
+mesh = ExtResource("5_71j4m")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 15" unique_id=594761752]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 15/StaticBody3D" unique_id=457222321]
+transform = Transform3D(1.1860105, 0, 0, 0, 5.87747, 0, 0, 0, 1, -0.40314007, 0, 0)
+mesh = SubResource("BoxMesh_i7141")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 15/StaticBody3D" unique_id=139450144]
+transform = Transform3D(2.5645852, 0, 0, 0, 6.118658, 0, 0, 0, 1.2031559, -0.2830813, 0, 0)
+shape = SubResource("BoxShape3D_4mrxx")
+
+[node name="bina 16" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=1382059276]
+transform = Transform3D(3.1125479, 0, 0, 0, 3.7795715, 0, 0, 0, 5.2653894, -16.777462, -0.12584424, 15.699277)
+mesh = ExtResource("5_71j4m")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 16" unique_id=203512286]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 16/StaticBody3D" unique_id=498933003]
+transform = Transform3D(1.1860105, 0, 0, 0, 5.87747, 0, 0, 0, 1, -0.40314007, 0, 0)
+mesh = SubResource("BoxMesh_i7141")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 16/StaticBody3D" unique_id=490547289]
+transform = Transform3D(7.753876, 0, 0, 0, 6.118658, 0, 0, 0, 1.3095038, -0.4251452, 0, 0.015568018)
+shape = SubResource("BoxShape3D_4mrxx")
+
+[node name="bina16" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=769828822]
+transform = Transform3D(-1.4755528e-07, 0, 4.9016523, 0, 2.7311773, 0, -3.3756707, 0, -2.1425808e-07, -33.60897, -0.017035484, 16.830318)
+mesh = ExtResource("6_7r4gi")
+skeleton = NodePath("../../..")
+
+[node name="bina 17" parent="LevelDesign/Binalar" unique_id=1393003458 instance=ExtResource("3_k0juu")]
+transform = Transform3D(-1.7484555e-07, 0, -4, 0, 4, 0, 4, 0, -1.7484555e-07, -42.19083, -0.15869164, -6.887424)
+
+[node name="bina1" type="StaticBody3D" parent="LevelDesign/Binalar/bina 17" unique_id=741035777]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 17/bina1" unique_id=599669955]
+transform = Transform3D(0.43064082, 0, 0, 0, 0.22148849, 0, 0, 0, 0.2713059, -0.22021146, 0.22711024, -0.80378294)
+mesh = SubResource("BoxMesh_qfnet")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 17/bina1" unique_id=1799427372]
+transform = Transform3D(1.5973272, 0, 0, 0, 3.1527586, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_qfnet")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 17/bina1" unique_id=1224990586]
+transform = Transform3D(0.46335047, 0, 0, 0, 0.6770639, 0, 0, 0, 0.68598306, -0.22209525, 0, -0.60017633)
+shape = SubResource("BoxShape3D_71j4m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 17" unique_id=1766200572]
+
+[node name="BoxB" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 17" unique_id=71894099]
+transform = Transform3D(1.2608372, -0.035243, 0.17580275, 0.045313377, 1.1167244, -0.03359736, -0.17622544, 0.03499486, 1.2491746, -0.9955036, 0.10914524, 0.42500138)
+material_override = SubResource("StandardMaterial3D_4mrxx")
+mesh = ExtResource("5_i7141")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 17/BoxB" unique_id=1411595501]
+transform = Transform3D(1.0000001, -2.561137e-09, 1.4901161e-08, -5.122274e-09, 1, 0, 1.4901161e-08, 0, 0.99999994, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 17/BoxB/StaticBody3D" unique_id=899267297]
+transform = Transform3D(0.4501939, 1.5133992e-09, 5.5879354e-09, -1.8626451e-09, 0.26449254, 9.313226e-10, 1.4901161e-08, 0, 0.13331117, 0, 0, 0)
+mesh = SubResource("BoxMesh_71j4m")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 17/BoxB/StaticBody3D" unique_id=608902142]
+transform = Transform3D(0.14069258, 5.820766e-10, -5.5879354e-09, -2.3283064e-09, 0.26658773, 1.8626451e-09, 1.3038516e-08, 1.3969839e-09, 0.14344689, 0, 0, 0)
+shape = SubResource("BoxShape3D_qfnet")
+
+[node name="bina 18" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=857215619]
+transform = Transform3D(-1.3605379e-07, 0, -5.2653894, 0, 3.7795715, 0, 3.1125479, 0, -2.3015748e-07, -43.000504, -0.12584424, 14.094937)
+mesh = ExtResource("5_71j4m")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 18" unique_id=1446555072]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 18/StaticBody3D" unique_id=2001850767]
+transform = Transform3D(1.1860105, 0, 0, 0, 5.87747, 0, 0, 0, 1, -0.40314007, 0, 0)
+mesh = SubResource("BoxMesh_i7141")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 18/StaticBody3D" unique_id=1975099357]
+transform = Transform3D(2.5645852, 0, 0, 0, 6.118658, 0, 0, 0, 1.2031559, -0.2830813, 0, 0)
+shape = SubResource("BoxShape3D_4mrxx")
+
+[node name="bina 19" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=1348085859]
+transform = Transform3D(-1.3605379e-07, 0, -5.2653894, 0, 3.7795715, 0, 3.1125479, 0, -2.3015748e-07, -42.94581, -0.12584424, -13.564807)
+mesh = ExtResource("5_71j4m")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 19" unique_id=2135219050]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 19/StaticBody3D" unique_id=1818138340]
+transform = Transform3D(1.1860105, 0, 0, 0, 5.87747, 0, 0, 0, 1, -0.40314007, 0, 0)
+mesh = SubResource("BoxMesh_i7141")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 19/StaticBody3D" unique_id=1693252665]
+transform = Transform3D(7.753876, 0, 0, 0, 6.118658, 0, 0, 0, 1.3095038, -0.4251452, 0, 0.015568018)
+shape = SubResource("BoxShape3D_4mrxx")
+
+[node name="bina 20" parent="LevelDesign/Binalar" unique_id=235650500 instance=ExtResource("3_k0juu")]
+transform = Transform3D(-1.7484555e-07, 0, -4, 0, 4, 0, 4, 0, -1.7484555e-07, -42.19083, -0.15869164, 2.5951133)
+
+[node name="bina1" type="StaticBody3D" parent="LevelDesign/Binalar/bina 20" unique_id=448666804]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 20/bina1" unique_id=191667534]
+transform = Transform3D(0.43064082, 0, 0, 0, 0.22148849, 0, 0, 0, 0.2713059, -0.22021146, 0.22711024, -0.80378294)
+mesh = SubResource("BoxMesh_qfnet")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 20/bina1" unique_id=951506370]
+transform = Transform3D(1.5973272, 0, 0, 0, 3.1527586, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_qfnet")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 20/bina1" unique_id=82760565]
+transform = Transform3D(0.46335047, 0, 0, 0, 0.6770639, 0, 0, 0, 0.68598306, -0.22209525, 0, -0.60017633)
+shape = SubResource("BoxShape3D_71j4m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 20" unique_id=1075702887]
+
+[node name="BoxB" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 20" unique_id=1914509885]
+transform = Transform3D(1.2608372, -0.035243, 0.17580275, 0.045313377, 1.1167244, -0.03359736, -0.17622544, 0.03499486, 1.2491746, -0.9955036, 0.10914524, 0.42500138)
+material_override = SubResource("StandardMaterial3D_4mrxx")
+mesh = ExtResource("5_i7141")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 20/BoxB" unique_id=622486001]
+transform = Transform3D(1.0000001, -2.561137e-09, 1.4901161e-08, -5.122274e-09, 1, 0, 1.4901161e-08, 0, 0.99999994, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 20/BoxB/StaticBody3D" unique_id=104362810]
+transform = Transform3D(0.4501939, 1.5133992e-09, 5.5879354e-09, -1.8626451e-09, 0.26449254, 9.313226e-10, 1.4901161e-08, 0, 0.13331117, 0, 0, 0)
+mesh = SubResource("BoxMesh_71j4m")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 20/BoxB/StaticBody3D" unique_id=753291738]
+transform = Transform3D(0.14069258, 5.820766e-10, -5.5879354e-09, -2.3283064e-09, 0.26658773, 1.8626451e-09, 1.3038516e-08, 1.3969839e-09, 0.14344689, 0, 0, 0)
+shape = SubResource("BoxShape3D_qfnet")
+
+[node name="bina17" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=1596563325]
+transform = Transform3D(-3.478348, 0, 2.6920488, 0, 3.748449, 0, -2.1645753, 0, -4.325968, -28.868332, -0.1650481, 31.757904)
+mesh = ExtResource("16_dss4m")
+
+[node name="bina 21" parent="LevelDesign/Binalar" unique_id=451333785 instance=ExtResource("3_k0juu")]
+transform = Transform3D(0.059897985, 0, 3.9995515, 0, 4, 0, -3.9995515, 0, 0.059897985, -33.085964, -0.15869164, 23.509228)
+metadata/_edit_group_ = true
+
+[node name="bina1" type="StaticBody3D" parent="LevelDesign/Binalar/bina 21" unique_id=1338038951]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 21/bina1" unique_id=575641174]
+transform = Transform3D(0.43064082, 0, 0, 0, 0.22148849, 0, 0, 0, 0.2713059, -0.22021146, 0.22711024, -0.80378294)
+mesh = SubResource("BoxMesh_qfnet")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 21/bina1" unique_id=1384900661]
+transform = Transform3D(1.5973272, 0, 0, 0, 3.1527586, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_qfnet")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 21/bina1" unique_id=1389758122]
+transform = Transform3D(1.5283904, 0, 0, 0, 3.363917, 0, 0, 0, 1.1523404, 0, 0, 0)
+shape = SubResource("BoxShape3D_i7141")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 21/bina1" unique_id=1786292349]
+transform = Transform3D(0.46335047, 0, 0, 0, 0.6770639, 0, 0, 0, 0.68598306, -0.22209525, 0, -0.60017633)
+shape = SubResource("BoxShape3D_71j4m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 21" unique_id=1703067131]
+
+[node name="BoxB" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 21" unique_id=1115753954]
+transform = Transform3D(1.2608372, -0.035243, 0.17580275, 0.045313377, 1.1167244, -0.03359736, -0.17622544, 0.03499486, 1.2491746, -0.9955036, 0.10914524, 0.42500138)
+material_override = SubResource("StandardMaterial3D_4mrxx")
+mesh = ExtResource("5_i7141")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 21/BoxB" unique_id=790143298]
+transform = Transform3D(1.0000001, -2.561137e-09, 1.4901161e-08, -5.122274e-09, 1, 0, 1.4901161e-08, 0, 0.99999994, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 21/BoxB/StaticBody3D" unique_id=2037453606]
+transform = Transform3D(0.4501939, 1.5133992e-09, 5.5879354e-09, -1.8626451e-09, 0.26449254, 9.313226e-10, 1.4901161e-08, 0, 0.13331117, 0, 0, 0)
+mesh = SubResource("BoxMesh_71j4m")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 21/BoxB/StaticBody3D" unique_id=314576292]
+transform = Transform3D(0.14069258, 5.820766e-10, -5.5879354e-09, -2.3283064e-09, 0.26658773, 1.8626451e-09, 1.3038516e-08, 1.3969839e-09, 0.14344689, 0, 0, 0)
+shape = SubResource("BoxShape3D_qfnet")
+
+[node name="bina 22" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=635768569]
+transform = Transform3D(-3.1125479, 0, 4.6031496e-07, 0, 3.7795715, 0, -2.7210757e-07, 0, -5.2653894, -20.328018, -0.12584424, 32.967964)
+mesh = ExtResource("5_71j4m")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 22" unique_id=1662249812]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 22/StaticBody3D" unique_id=1770906169]
+transform = Transform3D(1.1860105, 0, 0, 0, 5.87747, 0, 0, 0, 1, -0.40314007, 0, 0)
+mesh = SubResource("BoxMesh_i7141")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 22/StaticBody3D" unique_id=1634233821]
+transform = Transform3D(7.753876, 0, 0, 0, 6.118658, 0, 0, 0, 1.3095038, -0.4251452, 0, 0.015568018)
+shape = SubResource("BoxShape3D_4mrxx")
+
+[node name="bina18" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=782674702]
+transform = Transform3D(-4.0962963, 0, 0.08474392, 0, 3.748449, 0, -0.06813939, 0, -5.0945005, -6.4473505, -0.1650481, 33.13355)
+mesh = ExtResource("16_dss4m")
+skeleton = NodePath("../..")
+
+[node name="bina 23" parent="LevelDesign/Binalar" unique_id=1022599806 instance=ExtResource("3_k0juu")]
+transform = Transform3D(-3.999999, 0, -0.0028621852, 0, 4, 0, 0.0028621852, 0, -3.999999, -13.800195, -0.15869164, 32.07541)
+metadata/_edit_group_ = true
+
+[node name="bina1" type="StaticBody3D" parent="LevelDesign/Binalar/bina 23" unique_id=1639013296]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 23/bina1" unique_id=1617211632]
+transform = Transform3D(0.43064082, 0, 0, 0, 0.22148849, 0, 0, 0, 0.2713059, -0.22021146, 0.22711024, -0.80378294)
+mesh = SubResource("BoxMesh_qfnet")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 23/bina1" unique_id=1744928954]
+transform = Transform3D(1.5973272, 0, 0, 0, 3.1527586, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_qfnet")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 23/bina1" unique_id=1303933601]
+transform = Transform3D(1.5283904, 0, 0, 0, 3.363917, 0, 0, 0, 1.1523404, 0, 0, 0)
+shape = SubResource("BoxShape3D_i7141")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 23/bina1" unique_id=1297749950]
+transform = Transform3D(0.46335047, 0, 0, 0, 0.6770639, 0, 0, 0, 0.68598306, -0.22209525, 0, -0.60017633)
+shape = SubResource("BoxShape3D_71j4m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 23" unique_id=2022974762]
+
+[node name="BoxB" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 23" unique_id=1925501903]
+transform = Transform3D(1.2608372, -0.035243, 0.17580275, 0.045313377, 1.1167244, -0.03359736, -0.17622544, 0.03499486, 1.2491746, -0.9955036, 0.10914524, 0.42500138)
+material_override = SubResource("StandardMaterial3D_4mrxx")
+mesh = ExtResource("5_i7141")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 23/BoxB" unique_id=1092183421]
+transform = Transform3D(1.0000001, -2.561137e-09, 1.4901161e-08, -5.122274e-09, 1, 0, 1.4901161e-08, 0, 0.99999994, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 23/BoxB/StaticBody3D" unique_id=1438762335]
+transform = Transform3D(0.4501939, 1.5133992e-09, 5.5879354e-09, -1.8626451e-09, 0.26449254, 9.313226e-10, 1.4901161e-08, 0, 0.13331117, 0, 0, 0)
+mesh = SubResource("BoxMesh_71j4m")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 23/BoxB/StaticBody3D" unique_id=1801130072]
+transform = Transform3D(0.14069258, 5.820766e-10, -5.5879354e-09, -2.3283064e-09, 0.26658773, 1.8626451e-09, 1.3038516e-08, 1.3969839e-09, 0.14344689, 0, 0, 0)
+shape = SubResource("BoxShape3D_qfnet")
+
+[node name="bina 24" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=2142713117]
+transform = Transform3D(3.1120362, 0, 0.09547703, 0, 3.7795715, 0, -0.056439668, 0, 5.264524, -24.708542, -0.12584424, 41.109455)
+mesh = ExtResource("5_71j4m")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 24" unique_id=479132855]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 24/StaticBody3D" unique_id=1535244043]
+transform = Transform3D(1.1860105, 0, 0, 0, 5.87747, 0, 0, 0, 1, -0.40314007, 0, 0)
+mesh = SubResource("BoxMesh_i7141")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 24/StaticBody3D" unique_id=1850753666]
+transform = Transform3D(7.753876, 0, 0, 0, 6.118658, 0, 0, 0, 1.3095038, -0.4251452, 0, 0.015568018)
+shape = SubResource("BoxShape3D_4mrxx")
+
+[node name="bina19" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=1215036701]
+transform = Transform3D(4.0968585, 0, 0.0076487735, 0, 3.748449, 0, -0.0061500967, 0, 5.0952, -12.330283, -0.1650481, 40.942577)
+mesh = ExtResource("16_dss4m")
+skeleton = NodePath("../..")
+
+[node name="bina20" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=743412475]
+transform = Transform3D(-1.4755526e-07, 0, -4.9016523, 0, 2.7311773, 0, 3.3756707, 0, -2.1425802e-07, 46.2778, -0.017035484, 19.689007)
+mesh = ExtResource("6_7r4gi")
+skeleton = NodePath("../../..")
+
+[node name="bina 25" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=1420312107]
+transform = Transform3D(-1.3605379e-07, 0, 5.2653894, 0, 3.7795715, 0, -3.1125479, 0, -2.301575e-07, 55.04663, -0.12584424, 8.957384)
+mesh = ExtResource("5_71j4m")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 25" unique_id=402556847]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 25/StaticBody3D" unique_id=889612775]
+transform = Transform3D(1.1860105, 0, 0, 0, 5.87747, 0, 0, 0, 1, -0.40314007, 0, 0)
+mesh = SubResource("BoxMesh_i7141")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 25/StaticBody3D" unique_id=1488672705]
+transform = Transform3D(2.5645852, 0, 0, 0, 6.118658, 0, 0, 0, 1.2031559, 9.357671, 0, -1.7097873e-14)
+shape = SubResource("BoxShape3D_4mrxx")
+
+[node name="bina21" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=1992317352]
+transform = Transform3D(-1.7907959e-07, 0, 5.0952053, 0, 3.748449, 0, -4.0968633, 0, -2.2271851e-07, 54.81888, -0.1650481, 1.0581955)
+mesh = ExtResource("16_dss4m")
+skeleton = NodePath("../..")
+
+[node name="bina 26" parent="LevelDesign/Binalar" unique_id=1394282252 instance=ExtResource("3_k0juu")]
+transform = Transform3D(0.059897985, 0, 3.9995515, 0, 5.687064, 0, -3.9995515, 0, 0.059897985, 54.015934, -0.15869164, 16.32244)
+metadata/_edit_group_ = true
+
+[node name="bina1" type="StaticBody3D" parent="LevelDesign/Binalar/bina 26" unique_id=1880231191]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 26/bina1" unique_id=46771247]
+transform = Transform3D(0.43064082, 0, 0, 0, 0.22148849, 0, 0, 0, 0.2713059, -0.22021146, 0.22711024, -0.80378294)
+mesh = SubResource("BoxMesh_qfnet")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 26/bina1" unique_id=2041615892]
+transform = Transform3D(1.5973272, 0, 0, 0, 3.1527586, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_qfnet")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 26/bina1" unique_id=1685728359]
+transform = Transform3D(1.5283904, 0, 0, 0, 3.363917, 0, 0, 0, 1.1523404, 0, 0, 0)
+shape = SubResource("BoxShape3D_i7141")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 26/bina1" unique_id=1638563652]
+transform = Transform3D(0.46335047, 0, 0, 0, 0.6770639, 0, 0, 0, 0.68598306, -0.22209525, 0, -0.60017633)
+shape = SubResource("BoxShape3D_71j4m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 26" unique_id=1315197513]
+
+[node name="BoxB" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 26" unique_id=1657825666]
+transform = Transform3D(1.2608372, -0.035243, 0.17580275, 0.045313377, 1.1167244, -0.03359736, -0.17622544, 0.03499486, 1.2491746, -0.9955036, 0.10914524, 0.42500138)
+material_override = SubResource("StandardMaterial3D_4mrxx")
+mesh = ExtResource("5_i7141")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 26/BoxB" unique_id=1125934042]
+transform = Transform3D(1.0000001, -2.561137e-09, 1.4901161e-08, -5.122274e-09, 1, 0, 1.4901161e-08, 0, 0.99999994, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 26/BoxB/StaticBody3D" unique_id=1149726733]
+transform = Transform3D(0.4501939, 1.5133992e-09, 5.5879354e-09, -1.8626451e-09, 0.26449254, 9.313226e-10, 1.4901161e-08, 0, 0.13331117, 0, 0, 0)
+mesh = SubResource("BoxMesh_71j4m")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 26/BoxB/StaticBody3D" unique_id=1914134162]
+transform = Transform3D(0.14069258, 5.820766e-10, -5.5879354e-09, -2.3283064e-09, 0.26658773, 1.8626451e-09, 1.3038516e-08, 1.3969839e-09, 0.14344689, 0, 0, 0)
+shape = SubResource("BoxShape3D_qfnet")
+
+[node name="bina22" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=525186667]
+transform = Transform3D(4.4266577e-07, 0, 4.9016523, 0, 4.2040334, 0, -3.3756707, 0, 6.4277407e-07, 56.05774, -0.017035484, 23.872353)
+mesh = ExtResource("6_7r4gi")
+skeleton = NodePath("../../..")
+
+[node name="bina23" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=685679764]
+transform = Transform3D(-2.0062428, 0, 4.4424577, 0, 3.748449, 0, -3.5720134, 0, -2.495133, 52.169846, -0.1650481, -9.0395)
+mesh = ExtResource("16_dss4m")
+skeleton = NodePath("../..")
+
+[node name="bina 27" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=2124673097]
+transform = Transform3D(-2.98949, 0, 1.4659076, 0, 3.7795715, 0, -0.86654705, 0, -5.0572166, 40.82071, -0.12584424, -18.661139)
+mesh = ExtResource("5_71j4m")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 27" unique_id=175903567]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 27/StaticBody3D" unique_id=1890366194]
+transform = Transform3D(1.1860105, 0, 0, 0, 5.87747, 0, 0, 0, 1, -0.40314007, 0, 0)
+mesh = SubResource("BoxMesh_i7141")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 27/StaticBody3D" unique_id=764028312]
+transform = Transform3D(2.5645852, 0, 0, 0, 6.118658, 0, 0, 0, 1.2031559, 9.357671, 0, -1.7097873e-14)
+shape = SubResource("BoxShape3D_4mrxx")
+
+[node name="bina 28" parent="LevelDesign/Binalar" unique_id=1147131320 instance=ExtResource("3_k0juu")]
+transform = Transform3D(2.3476386, 0, -3.2386098, 0, 2.9465382, 0, 3.2386098, 0, 2.3476386, -44.261524, -0.15869164, -24.17252)
+
+[node name="bina1" type="StaticBody3D" parent="LevelDesign/Binalar/bina 28" unique_id=291804744]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 28/bina1" unique_id=826860000]
+transform = Transform3D(0.43064082, 0, 0, 0, 0.22148849, 0, 0, 0, 0.2713059, -0.22021146, 0.22711024, -0.80378294)
+mesh = SubResource("BoxMesh_qfnet")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 28/bina1" unique_id=310436371]
+transform = Transform3D(1.5973272, 0, 0, 0, 3.1527586, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_qfnet")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 28/bina1" unique_id=1406974300]
+transform = Transform3D(1.5283904, 0, 0, 0, 3.363917, 0, 0, 0, 1.1523404, 0, 0, 0)
+shape = SubResource("BoxShape3D_i7141")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 28/bina1" unique_id=1877878054]
+transform = Transform3D(0.46335047, 0, 0, 0, 0.6770639, 0, 0, 0, 0.68598306, -0.22209525, 0, -0.60017633)
+shape = SubResource("BoxShape3D_71j4m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 28" unique_id=458491632]
+
+[node name="BoxB" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 28" unique_id=1384040997]
+transform = Transform3D(1.2608372, -0.035243, 0.17580275, 0.045313377, 1.1167244, -0.03359736, -0.17622544, 0.03499486, 1.2491746, -0.9955036, 0.10914524, 0.42500138)
+material_override = SubResource("StandardMaterial3D_4mrxx")
+mesh = ExtResource("5_i7141")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 28/BoxB" unique_id=1314479090]
+transform = Transform3D(1.0000001, -2.561137e-09, 1.4901161e-08, -5.122274e-09, 1, 0, 1.4901161e-08, 0, 0.99999994, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 28/BoxB/StaticBody3D" unique_id=3710176]
+transform = Transform3D(0.4501939, 1.5133992e-09, 5.5879354e-09, -1.8626451e-09, 0.26449254, 9.313226e-10, 1.4901161e-08, 0, 0.13331117, 0, 0, 0)
+mesh = SubResource("BoxMesh_71j4m")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 28/BoxB/StaticBody3D" unique_id=1211223758]
+transform = Transform3D(0.14069258, 5.820766e-10, -5.5879354e-09, -2.3283064e-09, 0.26658773, 1.8626451e-09, 1.3038516e-08, 1.3969839e-09, 0.14344689, 0, 0, 0)
+shape = SubResource("BoxShape3D_qfnet")
+
+[node name="bina24" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=771106365]
+transform = Transform3D(0.09113352, 0, -4.8998656, 0, 2.7311776, 0, 3.3744407, 0, 0.1323307, -42.18394, -0.017035484, -19.4944)
+mesh = ExtResource("6_7r4gi")
+skeleton = NodePath("../../..")
+
+[node name="bina 29" parent="LevelDesign/Binalar" unique_id=1449244681 instance=ExtResource("3_k0juu")]
+transform = Transform3D(-4, 0, 3.496911e-07, 0, 4, 0, -3.496911e-07, 0, -4, 0.99485207, -0.15869164, -19.962051)
+
+[node name="bina1" type="StaticBody3D" parent="LevelDesign/Binalar/bina 29" unique_id=137594929]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 29/bina1" unique_id=256671708]
+transform = Transform3D(0.43064082, 0, 0, 0, 0.22148849, 0, 0, 0, 0.2713059, -0.22021146, 0.22711024, -0.80378294)
+mesh = SubResource("BoxMesh_qfnet")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 29/bina1" unique_id=755541074]
+transform = Transform3D(1.5973272, 0, 0, 0, 3.1527586, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_qfnet")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 29/bina1" unique_id=1554955590]
+transform = Transform3D(1.5283904, 0, 0, 0, 3.363917, 0, 0, 0, 1.1523404, 0, 0, 0)
+shape = SubResource("BoxShape3D_i7141")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 29/bina1" unique_id=389268287]
+transform = Transform3D(0.46335047, 0, 0, 0, 0.6770639, 0, 0, 0, 0.68598306, -0.22209525, 0, -0.60017633)
+shape = SubResource("BoxShape3D_71j4m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 29" unique_id=498473348]
+
+[node name="BoxB" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 29" unique_id=1449297495]
+transform = Transform3D(1.2608372, -0.035243, 0.17580275, 0.045313377, 1.1167244, -0.03359736, -0.17622544, 0.03499486, 1.2491746, -0.9955036, 0.10914524, 0.42500138)
+material_override = SubResource("StandardMaterial3D_4mrxx")
+mesh = ExtResource("5_i7141")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 29/BoxB" unique_id=1571944322]
+transform = Transform3D(1.0000001, -2.561137e-09, 1.4901161e-08, -5.122274e-09, 1, 0, 1.4901161e-08, 0, 0.99999994, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 29/BoxB/StaticBody3D" unique_id=417091735]
+transform = Transform3D(0.4501939, 1.5133992e-09, 5.5879354e-09, -1.8626451e-09, 0.26449254, 9.313226e-10, 1.4901161e-08, 0, 0.13331117, 0, 0, 0)
+mesh = SubResource("BoxMesh_71j4m")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 29/BoxB/StaticBody3D" unique_id=1728865935]
+transform = Transform3D(0.14069258, 5.820766e-10, -5.5879354e-09, -2.3283064e-09, 0.26658773, 1.8626451e-09, 1.3038516e-08, 1.3969839e-09, 0.14344689, 0, 0, 0)
+shape = SubResource("BoxShape3D_qfnet")
+
+[node name="bina 30" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=1482034276]
+transform = Transform3D(-3.1125476, 0, 4.6031494e-07, 0, 3.7795715, 0, -2.7210757e-07, 0, -5.2653894, -5.7962, -0.12584424, -18.921928)
+mesh = ExtResource("5_71j4m")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 30" unique_id=38614049]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 30/StaticBody3D" unique_id=1957350058]
+transform = Transform3D(1.1860105, 0, 0, 0, 5.87747, 0, 0, 0, 1, -0.40314007, 0, 0)
+mesh = SubResource("BoxMesh_i7141")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 30/StaticBody3D" unique_id=1056535594]
+transform = Transform3D(2.5645852, 0, 0, 0, 6.118658, 0, 0, 0, 1.2031559, -0.2830813, 0, 0)
+shape = SubResource("BoxShape3D_4mrxx")
+
+[node name="bina 31" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=1321269713]
+transform = Transform3D(-3.1125476, 0, 4.6031494e-07, 0, 3.7795715, 0, -2.7210757e-07, 0, -5.2653894, 8.324165, -0.12584424, -18.94625)
+mesh = ExtResource("5_71j4m")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 31" unique_id=756439802]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 31/StaticBody3D" unique_id=1686542161]
+transform = Transform3D(1.1860105, 0, 0, 0, 5.87747, 0, 0, 0, 1, -0.40314007, 0, 0)
+mesh = SubResource("BoxMesh_i7141")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 31/StaticBody3D" unique_id=673012828]
+transform = Transform3D(7.753876, 0, 0, 0, 6.118658, 0, 0, 0, 1.3095038, 0.5693338, 0, 0.015568018)
+shape = SubResource("BoxShape3D_4mrxx")
+
+[node name="bina 32" parent="LevelDesign/Binalar" unique_id=1947414188 instance=ExtResource("3_k0juu")]
+transform = Transform3D(-4, 0, 3.496911e-07, 0, 4, 0, -3.496911e-07, 0, -4, 21.64136, -0.15869164, -19.962051)
+
+[node name="bina1" type="StaticBody3D" parent="LevelDesign/Binalar/bina 32" unique_id=1255023845]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 32/bina1" unique_id=1428587628]
+transform = Transform3D(0.43064082, 0, 0, 0, 0.22148849, 0, 0, 0, 0.2713059, -0.22021146, 0.22711024, -0.80378294)
+mesh = SubResource("BoxMesh_qfnet")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 32/bina1" unique_id=2011649686]
+transform = Transform3D(1.5973272, 0, 0, 0, 3.1527586, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_qfnet")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 32/bina1" unique_id=357415825]
+transform = Transform3D(1.5283904, 0, 0, 0, 3.363917, 0, 0, 0, 1.1523404, 0, 0, 0)
+shape = SubResource("BoxShape3D_i7141")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 32/bina1" unique_id=1660187666]
+transform = Transform3D(0.46335047, 0, 0, 0, 0.6770639, 0, 0, 0, 0.68598306, -0.22209525, 0, -0.60017633)
+shape = SubResource("BoxShape3D_71j4m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 32" unique_id=6638431]
+
+[node name="BoxB" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 32" unique_id=1220211213]
+transform = Transform3D(1.2608372, -0.035243, 0.17580275, 0.045313377, 1.1167244, -0.03359736, -0.17622544, 0.03499486, 1.2491746, -0.9955036, 0.10914524, 0.42500138)
+material_override = SubResource("StandardMaterial3D_4mrxx")
+mesh = ExtResource("5_i7141")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 32/BoxB" unique_id=2132366412]
+transform = Transform3D(1.0000001, -2.561137e-09, 1.4901161e-08, -5.122274e-09, 1, 0, 1.4901161e-08, 0, 0.99999994, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 32/BoxB/StaticBody3D" unique_id=142155683]
+transform = Transform3D(0.4501939, 1.5133992e-09, 5.5879354e-09, -1.8626451e-09, 0.26449254, 9.313226e-10, 1.4901161e-08, 0, 0.13331117, 0, 0, 0)
+mesh = SubResource("BoxMesh_71j4m")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 32/BoxB/StaticBody3D" unique_id=822210828]
+transform = Transform3D(0.14069258, 5.820766e-10, -5.5879354e-09, -2.3283064e-09, 0.26658773, 1.8626451e-09, 1.3038516e-08, 1.3969839e-09, 0.14344689, 0, 0, 0)
+shape = SubResource("BoxShape3D_qfnet")
+
+[node name="bina 33" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=173575091]
+transform = Transform3D(-3.1125476, 0, 4.6031494e-07, 0, 3.7795715, 0, -2.7210757e-07, 0, -5.2653894, 14.850307, -0.12584424, -18.921928)
+mesh = ExtResource("5_71j4m")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 33" unique_id=1086658441]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 33/StaticBody3D" unique_id=732229143]
+transform = Transform3D(1.1860105, 0, 0, 0, 5.87747, 0, 0, 0, 1, -0.40314007, 0, 0)
+mesh = SubResource("BoxMesh_i7141")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 33/StaticBody3D" unique_id=281120224]
+transform = Transform3D(2.5645852, 0, 0, 0, 6.118658, 0, 0, 0, 1.2031559, -0.2830813, 0, 0)
+shape = SubResource("BoxShape3D_4mrxx")
+
+[node name="bina 34" type="MeshInstance3D" parent="LevelDesign/Binalar" unique_id=1605863843]
+transform = Transform3D(-3.1125476, 0, 4.6031494e-07, 0, 3.7795715, 0, -2.7210757e-07, 0, -5.2653894, 28.970673, -0.12584424, -18.94625)
+mesh = ExtResource("5_71j4m")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Binalar/bina 34" unique_id=1661663405]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign/Binalar/bina 34/StaticBody3D" unique_id=1576044064]
+transform = Transform3D(1.1860105, 0, 0, 0, 5.87747, 0, 0, 0, 1, -0.40314007, 0, 0)
+mesh = SubResource("BoxMesh_i7141")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Binalar/bina 34/StaticBody3D" unique_id=575441039]
+transform = Transform3D(7.753876, 0, 0, 0, 6.118658, 0, 0, 0, 1.3095038, 0.5693338, 0, 0.015568018)
+shape = SubResource("BoxShape3D_4mrxx")
+
+[node name="Yollar" type="Node3D" parent="LevelDesign" unique_id=492716199]
+transform = Transform3D(-1.2180236e-07, 0, 8.524701, 0, 1.0000005, 0, -2.7865133, 0, -3.7262654e-07, 3.2520747, 0.20501232, -3.0018182)
+
+[node name="RoadStraight3" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=1308657095]
+transform = Transform3D(0.9999999, 0, -1.4210855e-14, 0, 0.9999999, 0, 0, 0, 0.99999994, 0, 0, 0)
+mesh = ExtResource("6_qfnet")
+skeleton = NodePath("../../..")
+
+[node name="RoadStraight" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=2087734087]
+transform = Transform3D(0.9999999, 0, -1.4210855e-14, 0, 0.9999999, 0, 0, 0, 0.99999994, -3.5762787e-07, 0, 1.9767944)
+mesh = ExtResource("6_qfnet")
+skeleton = NodePath("../..")
+
+[node name="RoadStraight" type="MeshInstance3D" parent="LevelDesign/Yollar/RoadStraight" unique_id=305333684]
+transform = Transform3D(-2.9619088e-08, 0, -1.4777672, 0, 0.9999999, 0, 0.6776057, 0, -6.459528e-08, -2.4218776, -0.023718584, 1.6697567)
+mesh = ExtResource("6_qfnet")
+skeleton = NodePath("../..")
+
+[node name="RoadStraight2" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=455094362]
+transform = Transform3D(-1.517057e-08, 0, 0.9999976, 0, 0.9999981, 0, -0.34706268, 0, -4.371133e-08, -1.9617496, 0.004054606, -3.3105226)
+mesh = ExtResource("6_qfnet")
+skeleton = NodePath("../..")
+
+[node name="RoadStraight4" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=559989863]
+transform = Transform3D(0.9999999, 0, -1.4210855e-14, 0, 0.9999999, 0, 0, 0, 0.99999994, 2.3841858e-07, 0, -1.9869322)
+mesh = ExtResource("6_qfnet")
+skeleton = NodePath("../..")
+
+[node name="RoadTsplit" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=487558769]
+transform = Transform3D(-4.6357584e-08, 0, -1.0034776, 0, 0.9999983, 0, 0.3466635, 0, -1.4337857e-08, 0.0024504662, 0.0016732812, -3.3109665)
+mesh = ExtResource("7_i7141")
+skeleton = NodePath("../../..")
+
+[node name="RoadStraight5" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=1081867029]
+transform = Transform3D(-1.5170567e-08, 0, 0.99999744, 0, 0.999998, 0, -0.34706265, 0, -4.3711328e-08, 1.9712383, 0.004054606, -3.3105223)
+mesh = ExtResource("6_qfnet")
+skeleton = NodePath("../..")
+
+[node name="RoadStraight6" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=54303568]
+transform = Transform3D(-1.5170563e-08, 0, 0.9999973, 0, 0.99999785, 0, -0.34706262, 0, -4.3711324e-08, 3.917461, 0.004054606, -3.3105218)
+mesh = ExtResource("6_qfnet")
+skeleton = NodePath("../..")
+
+[node name="RoadStraight7" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=1939312181]
+transform = Transform3D(-1.517056e-08, 0, 0.9999972, 0, 0.99999774, 0, -0.3470626, 0, -4.3711324e-08, 5.9007583, 0.004054606, -3.3105214)
+mesh = ExtResource("6_qfnet")
+skeleton = NodePath("../..")
+
+[node name="RoadStraight8" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=1970354013]
+transform = Transform3D(-1.5170556e-08, 0, 0.999997, 0, 0.9999976, 0, -0.34706256, 0, -4.371132e-08, 7.8114777, 0.004054606, -3.3105206)
+mesh = ExtResource("6_qfnet")
+skeleton = NodePath("../..")
+
+[node name="TrafficlightA" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=283032343]
+transform = Transform3D(-7.210375e-08, 0, -1.250013, 0, 4.990529, 0, 0.5391942, 0, -1.7860398e-08, 1.1784452, 0.04498765, -2.9179816)
+mesh = ExtResource("9_w7kh3")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Yollar/TrafficlightA" unique_id=1291587684]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="LevelDesign/Yollar/TrafficlightA/StaticBody3D" unique_id=1359708414]
+transform = Transform3D(0.2175583, 0, 2.4478346e-15, 0, 0.20037945, 0, -3.7057691e-22, 0, 0.28709415, 0, 0.5569341, 0.10673094)
+light_color = Color(0, 0.40900782, 0, 1)
+light_energy = 0.456
+light_indirect_energy = 1.327
+light_size = 1.0
+shadow_enabled = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Yollar/TrafficlightA/StaticBody3D" unique_id=1838977275]
+transform = Transform3D(0.05691748, 0, -2.9116758e-22, 0, 1.4398463, 0, 0, 0, 0.064252794, 0, 0, 0)
+shape = SubResource("BoxShape3D_q5onr")
+
+[node name="Base" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=779983509]
+transform = Transform3D(-6.036812e-07, 0, -3.0304577, 0, 0.99999905, 0, 4.514348, 0, -4.3299707e-08, 4.254177, -0.052880496, 1.6539083)
+mesh = ExtResource("14_o8fc1")
+skeleton = NodePath("../../..")
+
+[node name="Dumpster" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=1854243753]
+transform = Transform3D(0.70702296, 0, 0.95660526, 0, 3.996177, 0, -0.40029114, 0, 0.18053202, -2.0119174, 0.04498765, -3.9098241)
+mesh = ExtResource("15_xo05s")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Yollar/Dumpster" unique_id=1796521002]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Yollar/Dumpster/StaticBody3D" unique_id=332434589]
+transform = Transform3D(0.58185506, 0, -1.0430813e-07, 0, 0.64931, 0, 0, 0, 0.4407287, 0, 0, 0)
+shape = SubResource("BoxShape3D_dss4m")
+
+[node name="Base2" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=547146491]
+transform = Transform3D(-3.8729803e-07, 0, -3.0304577, 0, 0.99999905, 0, 2.8962276, 0, -4.3299707e-08, -4.236302, -0.052880496, -1.4557786e-05)
+mesh = ExtResource("14_o8fc1")
+skeleton = NodePath("../../..")
+
+[node name="Base3" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=2047800096]
+transform = Transform3D(-9.590942, 0, 3.5800486e-08, 0, 0.99999905, 0, -1.7017823e-06, 0, -0.6172544, -7.7994595, -0.052880496, 5.009777)
+mesh = ExtResource("14_o8fc1")
+skeleton = NodePath("../../..")
+
+[node name="polisarabası" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=1224211574]
+transform = Transform3D(-0.8807594, 0, 1.0839653, 0, 3.5986876, 0, -0.3632113, 0, -0.2808519, -3.1729035, 0.35122907, -3.076753)
+mesh = ExtResource("7_e3hyu")
+skeleton = NodePath("../../..")
+
+[node name="CarPoliceWheelFrontLeft" type="MeshInstance3D" parent="LevelDesign/Yollar/polisarabası" unique_id=311342924]
+transform = Transform3D(0.8160275, 0, 0, 0, 1.0937668, 0, 0, 0, 1.0512918, 0.0399065, -0.0076206774, -0.011198759)
+mesh = ExtResource("8_q5onr")
+skeleton = NodePath("../../../..")
+
+[node name="CarPoliceWheelFrontLeft2" type="MeshInstance3D" parent="LevelDesign/Yollar/polisarabası" unique_id=2060341170]
+transform = Transform3D(0.8160275, 0, 0, 0, 1.0937668, 0, 0, 0, 1.0512917, 0.0399065, -0.0076206774, -0.51284933)
+mesh = ExtResource("8_q5onr")
+skeleton = NodePath("../../../..")
+
+[node name="CarPoliceWheelFrontLeft3" type="MeshInstance3D" parent="LevelDesign/Yollar/polisarabası" unique_id=1606994524]
+transform = Transform3D(-0.8160275, 0, -9.190679e-08, 0, 1.0937667, 0, 7.133938e-08, 0, -1.0512908, -0.038179874, -0.0076206774, -0.00068712234)
+mesh = ExtResource("8_q5onr")
+skeleton = NodePath("../../../..")
+
+[node name="CarPoliceWheelFrontLeft4" type="MeshInstance3D" parent="LevelDesign/Yollar/polisarabası" unique_id=1755426758]
+transform = Transform3D(-0.8160275, 0, -9.1906784e-08, 0, 1.0937667, 0, 7.133938e-08, 0, -1.0512906, -0.038179874, -0.0076206774, 0.50753987)
+mesh = ExtResource("8_q5onr")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Yollar/polisarabası" unique_id=2063205636]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Yollar/polisarabası/StaticBody3D" unique_id=1336224474]
+transform = Transform3D(0.43482187, 0, 0, 0, 0.71911705, 0, 0, 0, 0.9421202, 0, 0, 0)
+shape = SubResource("BoxShape3D_e3hyu")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="LevelDesign/Yollar/polisarabası/StaticBody3D" unique_id=1532476570]
+transform = Transform3D(-5.9604645e-08, 0, -0.253102, 0, 0.2778789, 0, 0.25945234, 0, -7.4505806e-08, 0.07763463, 0.3702373, -0.06522175)
+light_color = Color(0.094991826, 0.33026928, 1, 1)
+light_energy = 16.0
+light_indirect_energy = 2.415
+light_size = 1.0
+shadow_enabled = true
+script = ExtResource("18_2lf6f")
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="LevelDesign/Yollar/polisarabası/StaticBody3D" unique_id=1662435617]
+transform = Transform3D(-5.9604645e-08, 0, -0.253102, 0, 0.2778789, 0, 0.25945234, 0, -7.4505806e-08, -0.08369914, 0.3702373, -0.065221794)
+light_color = Color(1, 0, 0, 1)
+light_energy = 16.0
+light_indirect_energy = 1.327
+light_size = 1.0
+shadow_enabled = true
+script = ExtResource("18_2lf6f")
+
+[node name="polisarabası2" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=1622456936]
+transform = Transform3D(1.0855477, 0, 0.8898172, 0, 3.5986876, 0, -0.29815683, 0, 0.34615368, -2.9788194, 0.35122907, -3.5331206)
+mesh = ExtResource("7_e3hyu")
+skeleton = NodePath("../../..")
+
+[node name="CarPoliceWheelFrontLeft" type="MeshInstance3D" parent="LevelDesign/Yollar/polisarabası2" unique_id=1844699446]
+transform = Transform3D(0.8160275, 0, 0, 0, 1.0937668, 0, 0, 0, 1.0512918, 0.0399065, -0.0076206774, -0.011198759)
+mesh = ExtResource("8_q5onr")
+skeleton = NodePath("../../../..")
+
+[node name="CarPoliceWheelFrontLeft2" type="MeshInstance3D" parent="LevelDesign/Yollar/polisarabası2" unique_id=375324798]
+transform = Transform3D(0.8160275, 0, 0, 0, 1.0937668, 0, 0, 0, 1.0512917, 0.0399065, -0.0076206774, -0.51284933)
+mesh = ExtResource("8_q5onr")
+skeleton = NodePath("../../../..")
+
+[node name="CarPoliceWheelFrontLeft3" type="MeshInstance3D" parent="LevelDesign/Yollar/polisarabası2" unique_id=2090291954]
+transform = Transform3D(-0.8160275, 0, -9.190679e-08, 0, 1.0937667, 0, 7.133938e-08, 0, -1.0512908, -0.038179874, -0.0076206774, -0.00068712234)
+mesh = ExtResource("8_q5onr")
+skeleton = NodePath("../../../..")
+
+[node name="CarPoliceWheelFrontLeft4" type="MeshInstance3D" parent="LevelDesign/Yollar/polisarabası2" unique_id=1079482234]
+transform = Transform3D(-0.8160275, 0, -9.1906784e-08, 0, 1.0937667, 0, 7.133938e-08, 0, -1.0512906, -0.038179874, -0.0076206774, 0.50753987)
+mesh = ExtResource("8_q5onr")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Yollar/polisarabası2" unique_id=700208247]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Yollar/polisarabası2/StaticBody3D" unique_id=1531276164]
+transform = Transform3D(0.43482187, 0, 0, 0, 0.71911705, 0, 0, 0, 0.9421202, 0, 0, 0)
+shape = SubResource("BoxShape3D_e3hyu")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="LevelDesign/Yollar/polisarabası2/StaticBody3D" unique_id=42489496]
+transform = Transform3D(-5.9604645e-08, 0, -0.253102, 0, 0.2778789, 0, 0.25945234, 0, -7.4505806e-08, 0.07763463, 0.3702373, -0.06522175)
+light_color = Color(0.08549138, 0.3231256, 1, 1)
+light_energy = 16.0
+light_indirect_energy = 1.327
+light_size = 1.0
+shadow_enabled = true
+script = ExtResource("18_2lf6f")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="LevelDesign/Yollar/polisarabası2" unique_id=1649774039]
+transform = Transform3D(-5.9604645e-08, 0, -0.253102, 0, 0.2778789, 0, 0.25945234, 0, -7.4505806e-08, -0.078665495, 0.3702373, -0.06522179)
+light_color = Color(0.99999994, 0.04050286, 0.022352692, 1)
+light_energy = 2.742
+light_indirect_energy = 1.327
+light_size = 1.0
+shadow_enabled = true
+script = ExtResource("18_2lf6f")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="LevelDesign/Yollar/polisarabası2" unique_id=787820766]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Yollar/polisarabası2/StaticBody3D2" unique_id=30086934]
+transform = Transform3D(0.89318776, 0, -2.582427, 0, 0.99998915, 0, 0.6938726, 0, 3.3242104, -0.25095922, 0.5870185, -0.19495685)
+shape = SubResource("BoxShape3D_pm21f")
+
+[node name="polisarabası3" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=1151663791]
+transform = Transform3D(-0.8807594, 0, 1.0839653, 0, 3.5986876, 0, -0.3632113, 0, -0.2808519, -0.80246925, 0.35122907, 0.86419713)
+mesh = ExtResource("7_e3hyu")
+skeleton = NodePath("../../..")
+
+[node name="CarPoliceWheelFrontLeft" type="MeshInstance3D" parent="LevelDesign/Yollar/polisarabası3" unique_id=1394806964]
+transform = Transform3D(0.8160275, 0, 0, 0, 1.0937668, 0, 0, 0, 1.0512918, 0.0399065, -0.0076206774, -0.011198759)
+mesh = ExtResource("8_q5onr")
+skeleton = NodePath("../../../..")
+
+[node name="CarPoliceWheelFrontLeft2" type="MeshInstance3D" parent="LevelDesign/Yollar/polisarabası3" unique_id=914280185]
+transform = Transform3D(0.8160275, 0, 0, 0, 1.0937668, 0, 0, 0, 1.0512917, 0.0399065, -0.0076206774, -0.51284933)
+mesh = ExtResource("8_q5onr")
+skeleton = NodePath("../../../..")
+
+[node name="CarPoliceWheelFrontLeft3" type="MeshInstance3D" parent="LevelDesign/Yollar/polisarabası3" unique_id=1551883463]
+transform = Transform3D(-0.8160275, 0, -9.190679e-08, 0, 1.0937667, 0, 7.133938e-08, 0, -1.0512908, -0.038179874, -0.0076206774, -0.00068712234)
+mesh = ExtResource("8_q5onr")
+skeleton = NodePath("../../../..")
+
+[node name="CarPoliceWheelFrontLeft4" type="MeshInstance3D" parent="LevelDesign/Yollar/polisarabası3" unique_id=1984529401]
+transform = Transform3D(-0.8160275, 0, -9.1906784e-08, 0, 1.0937667, 0, 7.133938e-08, 0, -1.0512906, -0.038179874, -0.0076206774, 0.50753987)
+mesh = ExtResource("8_q5onr")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Yollar/polisarabası3" unique_id=606456120]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Yollar/polisarabası3/StaticBody3D" unique_id=2115377560]
+transform = Transform3D(0.43482187, 0, 0, 0, 0.71911705, 0, 0, 0, 0.9421202, 0, 0, 0)
+shape = SubResource("BoxShape3D_e3hyu")
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="LevelDesign/Yollar/polisarabası3/StaticBody3D" unique_id=22805270]
+transform = Transform3D(-5.9604645e-08, 0, -0.253102, 0, 0.2778789, 0, 0.25945234, 0, -7.4505806e-08, -0.07285917, 0.3702373, -0.065221794)
+light_color = Color(0.89827543, 2.5990605e-06, 1.2513996e-06, 1)
+light_energy = 16.0
+light_indirect_energy = 2.415
+light_size = 1.0
+shadow_enabled = true
+script = ExtResource("18_2lf6f")
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="LevelDesign/Yollar/polisarabası3/StaticBody3D" unique_id=1604524288]
+transform = Transform3D(-5.9604645e-08, 0, -0.253102, 0, 0.2778789, 0, 0.25945234, 0, -7.4505806e-08, 0.07455835, 0.3702373, -0.06522175)
+light_color = Color(0, 0, 1, 1)
+light_energy = 16.0
+light_indirect_energy = 2.415
+light_size = 1.0
+shadow_enabled = true
+script = ExtResource("18_2lf6f")
+
+[node name="Dumpster" type="MeshInstance3D" parent="LevelDesign/Yollar/polisarabası3" unique_id=2039280241]
+transform = Transform3D(0.19033009, 0, 1.3106602, 0, 1.1065675, 0, -1.2895257, 0, 0.16125101, -1.4324267, -0.085098095, 1.0686406)
+mesh = ExtResource("15_xo05s")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="LevelDesign/Yollar/polisarabası3" unique_id=1666673473]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Yollar/polisarabası3/StaticBody3D2" unique_id=1749447795]
+transform = Transform3D(0.7071066, 0, -4.655855, 0, 1.683095, 0, 0.70710677, 0, 4.655855, 0.0068622828, 0, 0.0068621635)
+shape = SubResource("BoxShape3D_2lf6f")
+
+[node name="polisarabası4" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=1735443881]
+transform = Transform3D(-0.6302452, 0, -1.2390343, 0, 3.5986876, 0, 0.41517133, 0, -0.20096922, 0.49185276, 0.35122907, 0.91376746)
+mesh = ExtResource("7_e3hyu")
+skeleton = NodePath("../../..")
+
+[node name="CarPoliceWheelFrontLeft" type="MeshInstance3D" parent="LevelDesign/Yollar/polisarabası4" unique_id=677117561]
+transform = Transform3D(0.8160275, 0, 0, 0, 1.0937668, 0, 0, 0, 1.0512918, 0.0399065, -0.0076206774, -0.011198759)
+mesh = ExtResource("8_q5onr")
+skeleton = NodePath("../../../..")
+
+[node name="CarPoliceWheelFrontLeft2" type="MeshInstance3D" parent="LevelDesign/Yollar/polisarabası4" unique_id=1549327450]
+transform = Transform3D(0.8160275, 0, 0, 0, 1.0937668, 0, 0, 0, 1.0512917, 0.0399065, -0.0076206774, -0.51284933)
+mesh = ExtResource("8_q5onr")
+skeleton = NodePath("../../../..")
+
+[node name="CarPoliceWheelFrontLeft3" type="MeshInstance3D" parent="LevelDesign/Yollar/polisarabası4" unique_id=684260835]
+transform = Transform3D(-0.8160275, 0, -9.190679e-08, 0, 1.0937667, 0, 7.133938e-08, 0, -1.0512908, -0.038179874, -0.0076206774, -0.00068712234)
+mesh = ExtResource("8_q5onr")
+skeleton = NodePath("../../../..")
+
+[node name="CarPoliceWheelFrontLeft4" type="MeshInstance3D" parent="LevelDesign/Yollar/polisarabası4" unique_id=1527191913]
+transform = Transform3D(-0.8160275, 0, -9.1906784e-08, 0, 1.0937667, 0, 7.133938e-08, 0, -1.0512906, -0.038179874, -0.0076206774, 0.50753987)
+mesh = ExtResource("8_q5onr")
+skeleton = NodePath("../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Yollar/polisarabası4" unique_id=508213759]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Yollar/polisarabası4/StaticBody3D" unique_id=1200492401]
+transform = Transform3D(0.43482187, 0, 0, 0, 0.71911705, 0, 0, 0, 0.9421202, 0, 0, 0)
+shape = SubResource("BoxShape3D_e3hyu")
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="LevelDesign/Yollar/polisarabası4" unique_id=1213746596]
+transform = Transform3D(-5.9604645e-08, 0, -0.253102, 0, 0.2778789, 0, 0.25945234, 0, -7.4505806e-08, 0.088755965, 0.3702373, -0.06522174)
+light_color = Color(0.094991826, 0.33026928, 1, 1)
+light_energy = 16.0
+light_indirect_energy = 2.415
+light_size = 1.0
+shadow_enabled = true
+script = ExtResource("18_2lf6f")
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="LevelDesign/Yollar/polisarabası4" unique_id=2045995605]
+transform = Transform3D(-5.9604645e-08, 0, -0.253102, 0, 0.2778789, 0, 0.25945234, 0, -7.4505806e-08, -0.08280726, 0.3702373, -0.065221794)
+light_color = Color(0.89827543, 2.5990605e-06, 1.2513996e-06, 1)
+light_energy = 16.0
+light_indirect_energy = 2.415
+light_size = 1.0
+shadow_enabled = true
+script = ExtResource("18_2lf6f")
+
+[node name="Base4" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=1402157022]
+transform = Transform3D(-9.43644, 0, 5.8428057e-08, 0, 0.99999905, 0, -1.6743679e-06, 0, -1.0073879, -1.842376, -0.052880496, -4.719875)
+mesh = ExtResource("14_o8fc1")
+skeleton = NodePath("../../..")
+
+[node name="RoadStraight9" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=1889178465]
+transform = Transform3D(-1.5170563e-08, 0, 0.9999973, 0, 0.99999785, 0, -0.34706262, 0, -4.3711324e-08, -3.872795, 0.004054606, -3.3105216)
+mesh = ExtResource("6_qfnet")
+skeleton = NodePath("../..")
+
+[node name="RoadStraight10" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=399152606]
+transform = Transform3D(-1.5170563e-08, 0, 0.9999973, 0, 0.99999785, 0, -0.34706262, 0, -4.3711324e-08, -5.8189383, 0.004054606, -3.3105216)
+mesh = ExtResource("6_qfnet")
+skeleton = NodePath("../..")
+
+[node name="RoadStraight11" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=703898194]
+transform = Transform3D(-1.5170563e-08, 0, 0.9999973, 0, 0.99999785, 0, -0.34706262, 0, -4.3711324e-08, -7.750556, 0.004054606, -3.3105216)
+mesh = ExtResource("6_qfnet")
+skeleton = NodePath("../..")
+
+[node name="RoadCorner" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=2044027275]
+transform = Transform3D(-1.0069987, 0, 0.013754206, 0, 0.9999999, 0, -0.0021831181, 0, -0.67787725, -0.012505531, -0.019538984, 3.647714)
+mesh = ExtResource("17_7t5mc")
+skeleton = NodePath("../../..")
+
+[node name="Streetlight2" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=784668408]
+transform = Transform3D(-2.2992022, 0, 1.8894946e-07, 0, 4.9942546, 0, -6.5702785e-08, 0, -0.70648515, -1.1361227, 0.04498765, -2.8647666)
+mesh = ExtResource("3_pm21f")
+skeleton = NodePath("../../..")
+
+[node name="Streetlight" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=723521478]
+transform = Transform3D(-2.2992022, 0, 1.8894946e-07, 0, 4.9942546, 0, -6.5702785e-08, 0, -0.70648515, -1.1414509, 0.04498765, -1.762648)
+mesh = ExtResource("3_pm21f")
+skeleton = NodePath("../..")
+
+[node name="Streetlight3" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=817897387]
+transform = Transform3D(-2.2992022, 0, 1.8894946e-07, 0, 4.9942546, 0, -6.5702785e-08, 0, -0.70648515, -1.1414528, 0.04498765, -0.25816548)
+mesh = ExtResource("3_pm21f")
+skeleton = NodePath("../..")
+
+[node name="Streetlight4" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=776463109]
+transform = Transform3D(-2.2992022, 0, 1.8894946e-07, 0, 4.9942546, 0, -6.5702785e-08, 0, -0.70648515, -1.1414528, 0.04498765, 1.1548047)
+mesh = ExtResource("3_pm21f")
+skeleton = NodePath("../..")
+
+[node name="Streetlight5" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=710598345]
+transform = Transform3D(-2.2992022, 0, 1.8894946e-07, 0, 4.9942546, 0, -6.5702785e-08, 0, -0.70648515, -1.1414528, 0.04498765, 2.5677748)
+mesh = ExtResource("3_pm21f")
+skeleton = NodePath("../..")
+
+[node name="Streetlight6" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=665230000]
+transform = Transform3D(2.2992022, 0, -7.1054274e-15, 0, 4.9942546, 0, 0, 0, 0.70648515, 1.2310448, 0.04498765, -1.7626477)
+mesh = ExtResource("3_pm21f")
+skeleton = NodePath("../..")
+
+[node name="Streetlight7" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=986187899]
+transform = Transform3D(2.2992022, 0, -7.1054274e-15, 0, 4.9942546, 0, 0, 0, 0.70648515, 1.2310429, 0.04498765, -0.25816524)
+mesh = ExtResource("3_pm21f")
+skeleton = NodePath("../..")
+
+[node name="Streetlight8" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=881784719]
+transform = Transform3D(2.2992022, 0, -7.1054274e-15, 0, 4.9942546, 0, 0, 0, 0.70648515, 1.2310429, 0.04498765, 1.1548047)
+mesh = ExtResource("3_pm21f")
+skeleton = NodePath("../..")
+
+[node name="Streetlight9" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=427566497]
+transform = Transform3D(2.2992022, 0, -7.1054274e-15, 0, 4.9942546, 0, 0, 0, 0.70648515, 1.2310429, 0.04498765, 2.5677748)
+mesh = ExtResource("3_pm21f")
+skeleton = NodePath("../..")
+
+[node name="RoadStraight12" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=1381353479]
+transform = Transform3D(-2.9466747e-08, 0, -0.99999994, 0, 0.9999999, 0, 0.67412055, 0, -4.37114e-08, -4.790048, -0.0108997775, 3.6467109)
+mesh = ExtResource("6_qfnet")
+skeleton = NodePath("../../..")
+
+[node name="RoadStraight13" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=2023334606]
+transform = Transform3D(-2.9466747e-08, 0, -0.99999994, 0, 0.9999999, 0, 0.67412055, 0, -4.37114e-08, -6.6870885, -0.0108997775, 3.6467109)
+mesh = ExtResource("6_qfnet")
+skeleton = NodePath("../../..")
+
+[node name="RoadCorner2" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=223576687]
+transform = Transform3D(1.0069987, 0, -0.007051989, 0, 0.9999999, 0, 0.0021832061, 0, 0.3475564, -9.666881, -0.00996851, -3.3121173)
+mesh = ExtResource("17_7t5mc")
+skeleton = NodePath("../../..")
+
+[node name="RoadStraight14" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=597947650]
+transform = Transform3D(0.9999999, 0, -1.4210855e-14, 0, 0.9999999, 0, 0, 0, 0.99999994, -9.683772, 0, -1.9869322)
+mesh = ExtResource("6_qfnet")
+skeleton = NodePath("../..")
+
+[node name="RoadStraight15" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=92874413]
+transform = Transform3D(0.9999999, 0, -1.4210855e-14, 0, 0.9999999, 0, 0, 0, 0.99999994, -9.683772, 0, -0.034487605)
+mesh = ExtResource("6_qfnet")
+skeleton = NodePath("../..")
+
+[node name="Base5" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=1712076993]
+transform = Transform3D(5.3614684e-07, 0, 2.4365523, 0, 0.99999905, 0, -2.424383, 0, 2.4782403e-07, -6.0937243, -0.052880496, -0.4123027)
+mesh = ExtResource("14_o8fc1")
+skeleton = NodePath("../../..")
+
+[node name="Base6" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=82372322]
+transform = Transform3D(1.1281638e-06, 0, 2.4365523, 0, 0.99999905, 0, -5.1014028, 0, 2.4782403e-07, -13.408079, -0.052880496, -0.41230345)
+mesh = ExtResource("14_o8fc1")
+skeleton = NodePath("../../..")
+
+[node name="RoadStraight16" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=466796840]
+transform = Transform3D(-2.9466747e-08, 0, -0.99999994, 0, 0.9999999, 0, 0.67412055, 0, -4.37114e-08, -8.68647, -0.0108997775, 3.6467109)
+mesh = ExtResource("6_qfnet")
+skeleton = NodePath("../../..")
+
+[node name="RoadStraight17" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=38705325]
+transform = Transform3D(-2.9466747e-08, 0, -0.99999994, 0, 0.9999999, 0, 0.67412055, 0, -4.37114e-08, -10.651391, -0.0108997775, 3.6467109)
+mesh = ExtResource("6_qfnet")
+skeleton = NodePath("../../..")
+
+[node name="Rock1IColor2" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=1362318892]
+transform = Transform3D(0.38171527, 0, -0.58954054, 0, 1.8466268, 0, 0.2465919, 0, 0.097507596, 7.4242373, 0.04498765, -4.4954257)
+mesh = ExtResource("6_0nbtd")
+skeleton = NodePath("../../..")
+
+[node name="Rock1DColor1" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=541446463]
+transform = Transform3D(1.1170353, 0, 0.9605365, 0, 4.766317, 0, -0.3649782, 0, 0.31410712, 7.246213, 0.11867136, -2.443901)
+mesh = ExtResource("27_37qwj")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Yollar/Rock1DColor1" unique_id=1179214845]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Yollar/Rock1DColor1/StaticBody3D" unique_id=523645773]
+transform = Transform3D(1, 0, 0, 0, 0.99998397, 0, 0, 0, 1, 0.039003372, 0.3271786, -0.08032036)
+shape = SubResource("BoxShape3D_e6ckp")
+
+[node name="Rock1DColor2" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=1021548289]
+transform = Transform3D(0.7904616, 0, -1.176279, 0, 4.7663164, 0, 0.44695464, 0, 0.22227556, 8.981156, 0.11867136, -4.5568275)
+mesh = ExtResource("27_37qwj")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Yollar/Rock1DColor2" unique_id=676965803]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Yollar/Rock1DColor2/StaticBody3D" unique_id=1451418586]
+transform = Transform3D(1, 0, 0, 0, 0.99998397, 0, 0, 0, 1, 0.039003372, 0.3271786, -0.08032036)
+shape = SubResource("BoxShape3D_e6ckp")
+
+[node name="Rock1DColor3" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=161954956]
+transform = Transform3D(1.4136399, 0, -0.6059253, 0, 5.9588847, 0, 0.23023549, 0, 0.3975115, 8.981156, 0.11867136, -5.1160607)
+mesh = ExtResource("27_37qwj")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Yollar/Rock1DColor3" unique_id=793816501]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Yollar/Rock1DColor3/StaticBody3D" unique_id=837157323]
+transform = Transform3D(1, 0, 0, 0, 0.99998397, 0, 0, 0, 1, 0.039003372, 0.3271786, -0.08032036)
+shape = SubResource("BoxShape3D_e6ckp")
+
+[node name="Rock1DColor4" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=884162208]
+transform = Transform3D(0.7904616, 0, -1.176279, 0, 4.7663164, 0, 0.44695464, 0, 0.22227556, 8.123618, 0.11867136, -4.791842)
+mesh = ExtResource("27_37qwj")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Yollar/Rock1DColor4" unique_id=845468739]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Yollar/Rock1DColor4/StaticBody3D" unique_id=1442995453]
+transform = Transform3D(1, 0, 0, 0, 0.99998397, 0, 0, 0, 1, 0.039003372, 0.3271786, -0.08032036)
+shape = SubResource("BoxShape3D_e6ckp")
+
+[node name="Rock1DColor5" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=76030017]
+transform = Transform3D(1.4136399, 0, -0.6059253, 0, 5.9588847, 0, 0.23023549, 0, 0.3975115, 9.9627695, 0.11867136, -5.2261086)
+mesh = ExtResource("27_37qwj")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Yollar/Rock1DColor5" unique_id=454177398]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Yollar/Rock1DColor5/StaticBody3D" unique_id=599721225]
+transform = Transform3D(1, 0, 0, 0, 0.99998397, 0, 0, 0, 1, 0.039003372, 0.3271786, -0.08032036)
+shape = SubResource("BoxShape3D_e6ckp")
+
+[node name="Rock1DColor6" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=2113968351]
+transform = Transform3D(1.487206, 0, -0.6692111, 0, 6.6141963, 0, 0.24221696, 0, 0.43902954, 9.73635, 0.11867136, -4.888035)
+mesh = ExtResource("27_37qwj")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Yollar/Rock1DColor6" unique_id=491936760]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Yollar/Rock1DColor6/StaticBody3D" unique_id=1009119760]
+transform = Transform3D(1, 0, 0, 0, 0.99998397, 0, 0, 0, 1, 0.039003372, 0.3271786, -0.08032036)
+shape = SubResource("BoxShape3D_e6ckp")
+
+[node name="Rock1DColor7" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=658510065]
+transform = Transform3D(1.487206, 0, -0.6692111, 0, 6.6141963, 0, 0.24221696, 0, 0.43902954, 9.73635, 0.11867136, -4.888035)
+mesh = ExtResource("27_37qwj")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Yollar/Rock1DColor7" unique_id=661852117]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Yollar/Rock1DColor7/StaticBody3D" unique_id=590261244]
+transform = Transform3D(1, 0, 0, 0, 0.99998397, 0, 0, 0, 1, 0.039003372, 0.3271786, -0.08032036)
+shape = SubResource("BoxShape3D_e6ckp")
+
+[node name="Rock1IColor3" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=25028370]
+transform = Transform3D(0.14678453, 0, -0.6506797, 0, 1.8466268, 0, 0.27216506, 0, 0.037495513, 8.849683, 0.04498765, -3.8500261)
+mesh = ExtResource("6_0nbtd")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Yollar/Rock1IColor3" unique_id=2073297975]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Yollar/Rock1IColor3/StaticBody3D" unique_id=121837845]
+transform = Transform3D(4.1604786, 0, 2.4946923, 0, -4.1808248, 0, -5.4778557, 0, 1.8947399, -1.7860527, 0, 0.47399712)
+shape = SubResource("BoxShape3D_npbic")
+
+[node name="Rock1IColor4" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=189666458]
+transform = Transform3D(-0.56171757, 0, -0.6651299, 0, 1.8466268, 0, 0.30126482, 0, -0.13250732, 9.173011, 0.04498765, -2.6841793)
+mesh = ExtResource("6_0nbtd")
+skeleton = NodePath("../../..")
+
+[node name="Watertower" type="MeshInstance3D" parent="LevelDesign/Yollar" unique_id=1277097687]
+transform = Transform3D(-4.389676e-07, 0, -8.72856, 0, 26.622402, 0, 3.282614, 0, -1.2471514e-07, -10.306924, 0.044988662, -5.879508)
+mesh = ExtResource("26_munwf")
+skeleton = NodePath("../../..")
+
+[node name="Orman" type="MeshInstance3D" parent="LevelDesign" unique_id=1247167636]
+transform = Transform3D(-0.06821614, 0.0010512767, 2.6484458, -0.00021866488, 3.0713747, -0.00091315666, -2.5653558, -0.00028974074, -0.07042557, -21.024048, 0.21316648, -62.04528)
+material_override = SubResource("StandardMaterial3D_37qwj")
+mesh = ExtResource("24_munwf")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=1307104445]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, -14.744934, 5.55598, 0.9072647)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D2" unique_id=1935755622]
+transform = Transform3D(0.9999773, 0, -3.7252903e-08, 0, 1, 0, 3.7252903e-08, 0, 0.9999773, -1.4501381, -2.1697083, 3.3646278)
+shape = SubResource("BoxShape3D_kpybi")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=1333434362]
+transform = Transform3D(0.9999998, 0, 0, 0, 1, 0, 0, 0, 0.9999998, -14.855381, 5.55598, -0.887764)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D3" unique_id=1813143314]
+transform = Transform3D(0.9999809, 0, -2.6077032e-08, 0, 1, 0, 2.6077032e-08, 0, 0.9999809, 3.7153473, -1.4160919, -10.283974)
+shape = SubResource("BoxShape3D_kpybi")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=246526039]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, -14.744934, 5.55598, 0.9072647)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D4" unique_id=1719724082]
+transform = Transform3D(0.9999773, 0, -3.7252903e-08, 0, 1, 0, 3.7252903e-08, 0, 0.9999773, 1.4702682, -1.3075485, 7.415779)
+shape = SubResource("BoxShape3D_kpybi")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=2044343878]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, -14.744934, 5.55598, 0.9072647)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D5" unique_id=1561587506]
+transform = Transform3D(0.9999773, 0, -3.7252903e-08, 0, 1, 0, 3.7252903e-08, 0, 0.9999773, -1.0223465, -2.6160526, 12.791485)
+shape = SubResource("BoxShape3D_kpybi")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=14612336]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 2.1599803, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D" unique_id=50917175]
+transform = Transform3D(0.9999773, 0, -6.7055225e-08, 0, 1, 0, 6.7055225e-08, 0, 0.9999773, -7.430973, -0.2757101, 17.107128)
+shape = SubResource("BoxShape3D_ctatt")
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=1273853853]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D6" unique_id=452833350]
+transform = Transform3D(0.9999807, 0, -9.685755e-08, 0, 1, 0, 9.685755e-08, 0, 0.9999807, -0.9475403, 2.355957, 19.335323)
+shape = SubResource("BoxShape3D_xgqkh")
+
+[node name="StaticBody3D7" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=991673277]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D7" unique_id=1351166866]
+transform = Transform3D(0.9999923, 0, 1.1175871e-08, 0, 1, 0, -1.1175871e-08, 0, 0.9999923, 4.5417976, 2.8059082, 17.548946)
+shape = SubResource("BoxShape3D_munwf")
+
+[node name="StaticBody3D8" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=579547206]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D8" unique_id=2108924307]
+transform = Transform3D(0.9999773, 0, -9.313226e-08, 0, 1, 0, 9.313226e-08, 0, 0.9999773, 7.6751137, 2.8105774, 17.152372)
+shape = SubResource("BoxShape3D_ts3gi")
+
+[node name="StaticBody3D9" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=793872672]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D9" unique_id=1907103500]
+transform = Transform3D(0.9999773, 0, -9.313226e-08, 0, 1, 0, 9.313226e-08, 0, 0.9999773, 16.613155, 2.822815, 17.922115)
+shape = SubResource("BoxShape3D_0nbtd")
+
+[node name="StaticBody3D10" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=2085941011]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D10" unique_id=330316417]
+transform = Transform3D(0.9999773, 0, -9.313226e-08, 0, 1, 0, 9.313226e-08, 0, 0.9999773, 20.339046, 2.7572327, 10.645309)
+shape = SubResource("BoxShape3D_37qwj")
+
+[node name="StaticBody3D11" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=1697480952]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D11" unique_id=724910140]
+transform = Transform3D(0.9999773, 0, -9.313226e-08, 0, 1, 0, 9.313226e-08, 0, 0.9999773, 20.61668, 1.1129456, -2.3415146)
+shape = SubResource("BoxShape3D_navra")
+
+[node name="StaticBody3D12" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=1602221975]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D12" unique_id=1102923587]
+transform = Transform3D(0.9999832, 0, -1.0058284e-07, 0, 1, 0, 1.0058284e-07, 0, 0.9999832, 18.645184, 3.693634, -8.355579)
+shape = SubResource("BoxShape3D_luhhm")
+
+[node name="StaticBody3D13" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=697415393]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D13" unique_id=213261444]
+transform = Transform3D(0.9999912, 0, 1.4901161e-08, 0, 1, 0, -1.4901161e-08, 0, 0.9999912, 20.576252, 2.5077515, 4.6697845)
+shape = SubResource("BoxShape3D_fh13f")
+
+[node name="StaticBody3D14" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=771088555]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D14" unique_id=699855712]
+transform = Transform3D(0.9999773, 0, -9.313226e-08, 0, 1, 0, 9.313226e-08, 0, 0.9999773, 14.652233, 2.2006803, -12.542038)
+shape = SubResource("BoxShape3D_rup4s")
+
+[node name="StaticBody3D15" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=1474535054]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D15" unique_id=1226748]
+transform = Transform3D(0.79194397, -0.03276474, -0.60969114, -0.0035876695, 0.99829215, -0.05830699, 0.61056036, 0.048364237, 0.79047334, -6.943615, 0.7328771, -0.67949677)
+shape = SubResource("BoxShape3D_4kbfs")
+
+[node name="StaticBody3D16" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=764063935]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D16" unique_id=1554015206]
+transform = Transform3D(0.9999773, 0, -9.313226e-08, 0, 1, 0, 9.313226e-08, 0, 0.9999773, -10.905663, 0.73443604, -0.06409073)
+shape = SubResource("BoxShape3D_f17e3")
+
+[node name="StaticBody3D17" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=537249938]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D17" unique_id=168032495]
+transform = Transform3D(0.9999773, 0, -9.313226e-08, 0, 1, 0, 9.313226e-08, 0, 0.9999773, -6.851467, 2.9984887, -15.935356)
+shape = SubResource("BoxShape3D_x2olw")
+
+[node name="StaticBody3D18" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=659570497]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D18" unique_id=1017222584]
+transform = Transform3D(0.9999814, 0, -1.0058284e-07, 0, 1, 0, 1.0058284e-07, 0, 0.9999814, 3.6313438, 1.9273987, -11.233738)
+shape = SubResource("BoxShape3D_817gm")
+
+[node name="StaticBody3D19" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=1800903798]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D19" unique_id=334128767]
+transform = Transform3D(0.6042058, 0, 0.7968119, 0, 1, 0, -0.7968119, 0, 0.6042058, -5.6707, 0.72314453, 0.6707382)
+shape = SubResource("BoxShape3D_ggc52")
+
+[node name="StaticBody3D20" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=1054825531]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D20" unique_id=1427952873]
+transform = Transform3D(0.7445189, 0, 0.6675926, 0, 1, 0, -0.6675926, 0, 0.7445189, -1.6244278, 0.81347656, 4.7206116)
+shape = SubResource("BoxShape3D_l8ah6")
+
+[node name="StaticBody3D21" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=1444898185]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D21" unique_id=1548943887]
+transform = Transform3D(0.59308577, 0, 0.8051283, 0, 1, 0, -0.8051283, 0, 0.59308577, -0.4979248, 0.81791687, 4.9706154)
+shape = SubResource("BoxShape3D_e75v4")
+
+[node name="StaticBody3D22" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=182349604]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D22" unique_id=686664360]
+transform = Transform3D(0.9999773, 0, -9.313226e-08, 0, 1, 0, 9.313226e-08, 0, 0.9999773, 6.402767, 2.2944717, 6.8642387)
+shape = SubResource("BoxShape3D_8u370")
+
+[node name="StaticBody3D23" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=1708406769]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D23" unique_id=2145780254]
+transform = Transform3D(0.7909223, 0, 0.61191285, 0, 1, 0, -0.61191285, 0, 0.7909223, 14.331928, 0.9291992, 4.0773964)
+shape = SubResource("BoxShape3D_rga7q")
+
+[node name="StaticBody3D24" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=1710587285]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D24" unique_id=1539124343]
+transform = Transform3D(0.74020463, 0, 0.67237806, 0, 1, 0, -0.67237806, 0, 0.74020463, 15.477619, 0.91833496, 0.7342911)
+shape = SubResource("BoxShape3D_6oujy")
+
+[node name="StaticBody3D26" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=161200412]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D26" unique_id=1467526374]
+transform = Transform3D(0.97399247, 0, -0.22647676, 0, 1, 0, 0.22647676, 0, 0.97399247, 9.300434, 0.77415466, -0.09096527)
+shape = SubResource("BoxShape3D_hi6a0")
+
+[node name="StaticBody3D27" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=1971788588]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D27" unique_id=178714641]
+transform = Transform3D(0.7678945, -6.475602e-10, 0.64055645, 2.5465852e-11, 0.9999949, 2.4992914e-09, -0.64055645, 9.640644e-11, 0.7678944, 9.979656, 0.8866851, -7.5205803)
+shape = SubResource("BoxShape3D_eo1xk")
+
+[node name="StaticBody3D28" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=1309011801]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D28" unique_id=1417335242]
+transform = Transform3D(0.9999842, -1.8189894e-09, 6.444752e-07, 1.02591e-09, 0.9999862, 5.507445e-09, -6.4074993e-07, -7.607923e-10, 0.9999842, 11.531284, 0.916351, -4.310528)
+shape = SubResource("BoxShape3D_18clu")
+
+[node name="StaticBody3D29" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=1630053540]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D29" unique_id=284229453]
+transform = Transform3D(0.9999773, 0, -9.313226e-08, 0, 1, 0, 9.313226e-08, 0, 0.9999773, 5.625866, 0.8371582, 3.8829536)
+shape = SubResource("BoxShape3D_4wdv8")
+
+[node name="StaticBody3D30" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=236509960]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D30" unique_id=524137773]
+transform = Transform3D(0.6457809, 0, 0.763499, 0, 1, 0, -0.763499, 0, 0.6457809, -0.8532562, 0.34692383, 2.222309)
+shape = SubResource("BoxShape3D_d46x8")
+
+[node name="StaticBody3D31" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=1459312279]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D31" unique_id=2034153340]
+transform = Transform3D(0.6534933, 0, 0.7569193, 0, 1, 0, -0.7569193, 0, 0.6534933, -4.990864, 0.5317993, -1.519783)
+shape = SubResource("BoxShape3D_3l05q")
+
+[node name="StaticBody3D32" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=1300788890]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D32" unique_id=745250521]
+transform = Transform3D(0.9999775, 0, -9.313226e-08, 0, 1, 0, 9.313226e-08, 0, 0.9999775, -10.111954, 0.9321594, -3.1724625)
+shape = SubResource("BoxShape3D_x28ej")
+
+[node name="StaticBody3D33" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=856735249]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D33" unique_id=896737219]
+transform = Transform3D(0.9999883, 0, 1.4901161e-08, 0, 1, 0, -1.4901161e-08, 0, 0.9999883, -12.945572, 1.4037476, -7.894432)
+shape = SubResource("BoxShape3D_1jxku")
+
+[node name="StaticBody3D34" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=939310100]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D34" unique_id=1739144994]
+transform = Transform3D(0.9871939, -3.3469405e-10, -0.15948384, 7.275958e-12, 0.9999972, 9.094947e-13, 0.15948384, 1.2687451e-10, 0.9871939, 11.141041, 1.00885, -12.657204)
+shape = SubResource("BoxShape3D_1dgkn")
+
+[node name="StaticBody3D35" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=1139968393]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D35" unique_id=355678019]
+transform = Transform3D(0.9795251, -3.3469405e-10, -0.20126335, 0, 0.9999972, 1.3169483e-09, 0.2012634, 1.2687451e-10, 0.9795249, 8.712475, 1.7398072, -12.316471)
+shape = SubResource("BoxShape3D_e68xj")
+
+[node name="StaticBody3D36" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=541813780]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D36" unique_id=1057555074]
+transform = Transform3D(0.917089, 0, 0.3986156, 0, 1, 0, -0.3986156, 0, 0.917089, 12.950626, 1.1038818, -7.788784)
+shape = SubResource("BoxShape3D_5hglh")
+
+[node name="StaticBody3D25" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=1523432966]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D25" unique_id=705745180]
+transform = Transform3D(0.94968224, 0, -0.3131572, 0, 1, 0, 0.3131572, 0, 0.94968224, 13.322651, 0, -0.97602844)
+shape = SubResource("BoxShape3D_qg546")
+
+[node name="StaticBody3D37" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=1199854382]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D37" unique_id=142186728]
+transform = Transform3D(0.93392086, -0.00012883966, -0.3574704, 0.000117579475, 0.99999684, -5.3233103e-05, 0.35747153, 7.685425e-06, 0.9339202, 11.650394, 0.010985836, 0.7296829)
+shape = SubResource("BoxShape3D_pf35h")
+
+[node name="StaticBody3D38" type="StaticBody3D" parent="LevelDesign/Orman" unique_id=700552177]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Orman/StaticBody3D38" unique_id=375867147]
+transform = Transform3D(0.9999977, -1.0113581e-09, 6.3329935e-08, 6.9849193e-10, 0.99999297, 7.6033757e-10, -5.5879354e-08, -1.6598278e-10, 0.9999978, 11.896839, -0.07518765, -1.537365)
+shape = SubResource("BoxShape3D_iexy4")

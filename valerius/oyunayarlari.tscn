@@ -1,0 +1,135 @@
+[gd_scene load_steps=4 format=3 uid="uid://ea05n1mtaibg"]
+
+[ext_resource type="Script" uid="uid://c7ktyxjdprct8" path="res://gameayarlari.gd" id="1_bf88q"]
+[ext_resource type="FontFile" uid="uid://b857wkgpxyh1s" path="res://Montserrat-VariableFont_wght.ttf" id="1_tgypd"]
+[ext_resource type="Script" uid="uid://demupyypkvne5" path="res://geridonoyunayari.gd" id="2_tgypd"]
+
+[node name="ColorRect" type="ColorRect"]
+offset_right = 1924.0
+offset_bottom = 1086.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_bf88q")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 14.0
+offset_right = 1922.0
+offset_bottom = 203.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_tgypd")
+theme_override_font_sizes/font_size = 200
+text = "AYARLAR"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 190.0
+offset_right = 383.0
+offset_bottom = 298.0
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_tgypd")
+theme_override_font_sizes/font_size = 114
+text = "Ses Ayarları"
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_top = 341.0
+offset_right = 225.0
+offset_bottom = 436.0
+theme_override_fonts/font = ExtResource("1_tgypd")
+theme_override_font_sizes/font_size = 100
+text = "Ana Ses:"
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 474.0
+offset_right = 744.0
+offset_bottom = 569.0
+theme_override_fonts/font = ExtResource("1_tgypd")
+theme_override_font_sizes/font_size = 100
+text = "Grafik Ayarları (YAKINDA)"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 600.0
+offset_right = 592.0
+offset_bottom = 747.0
+theme_override_fonts/font = ExtResource("1_tgypd")
+theme_override_font_sizes/font_size = 100
+text = "Düşük"
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 650.0
+offset_top = 600.0
+offset_right = 1082.0
+offset_bottom = 747.0
+theme_override_fonts/font = ExtResource("1_tgypd")
+theme_override_font_sizes/font_size = 100
+text = "Orta"
+
+[node name="Button4" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1140.0
+offset_top = 600.0
+offset_right = 1572.0
+offset_bottom = 747.0
+theme_override_fonts/font = ExtResource("1_tgypd")
+theme_override_font_sizes/font_size = 100
+text = "Yüksek"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 863.0
+offset_right = 477.0
+offset_bottom = 992.0
+theme_override_fonts/font = ExtResource("1_tgypd")
+theme_override_font_sizes/font_size = 100
+text = "Geri dön"
+script = ExtResource("2_tgypd")
+
+[node name="seslabeli" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -2.361
+anchor_top = -2.058
+anchor_right = -2.361
+anchor_bottom = -2.058
+offset_left = 5136.564
+offset_top = 2557.988
+offset_right = 5336.564
+offset_bottom = 2694.988
+theme_override_fonts/font = ExtResource("1_tgypd")
+theme_override_font_sizes/font_size = 70
+text = "%50"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArtirButon" type="Button" parent="."]
+layout_mode = 0
+offset_left = 406.0
+offset_top = 296.0
+offset_right = 712.0
+offset_bottom = 399.0
+theme_override_fonts/font = ExtResource("1_tgypd")
+theme_override_font_sizes/font_size = 100
+text = "+"
+
+[node name="AzaltButon" type="Button" parent="."]
+layout_mode = 0
+offset_left = 932.0
+offset_top = 296.0
+offset_right = 1238.0
+offset_bottom = 399.0
+theme_override_fonts/font = ExtResource("1_tgypd")
+theme_override_font_sizes/font_size = 100
+text = "-"
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="pressed" from="ArtirButon" to="." method="_on_artir_buton_pressed"]
+[connection signal="pressed" from="AzaltButon" to="." method="_on_azalt_buton_pressed"]

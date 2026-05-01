@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://ubbql2qwrwyv"]
+
+[ext_resource type="PackedScene" uid="uid://cr1hsxrc5esbb" path="res://models/Lanterna.fbx" id="1_d45ms"]
+[ext_resource type="Texture2D" uid="uid://vgwrqb6em8fl" path="res://models/Tex_Lanterna.png" id="2_0ay2b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yld0h"]
+albedo_texture = ExtResource("2_0ay2b")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fener"]
+radius = 0.2
+
+[node name="Lanterna" type="Node3D" groups=["Fener"]]
+
+[node name="Model" parent="." instance=ExtResource("1_d45ms")]
+
+[node name="Cilindro" parent="Model" index="0" unique_id=548756548]
+material_override = SubResource("StandardMaterial3D_yld0h")
+
+[node name="FenerAlaniArea3D" type="Area3D" parent="." groups=["Fener"]]
+collision_layer = 1
+collision_mask = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FenerAlaniArea3D"]
+shape = SubResource("SphereShape3D_fener")

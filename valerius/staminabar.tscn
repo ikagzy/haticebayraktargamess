@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bp1seq5pf3udt"]
+
+[ext_resource type="Script" uid="uid://di4ys7ikyg7ng" path="res://staminabar.gd" id="1_jcq85"]
+[ext_resource type="Texture2D" uid="uid://dphbpx8pjchkw" path="res://Untitled.png" id="1_lg7q7"]
+[ext_resource type="Texture2D" uid="uid://by0akvp2ws7iu" path="res://Untitled1.png" id="2_jcq85"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_jcq85")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = 853.0
+offset_top = 969.0
+offset_right = 1063.0
+offset_bottom = 1005.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_lg7q7")
+texture_progress = ExtResource("2_jcq85")

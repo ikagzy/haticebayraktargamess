@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c2rcvq4c6g6kk"]
+
+[ext_resource type="FontFile" uid="uid://cpkgcr012dkxk" path="res://Oakters.otf" id="1_h08u7"]
+[ext_resource type="Script" uid="uid://c05ep25es3dw8" path="res://gorev_arayuzu.gd" id="1_sgnco"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sgnco"]
+font_size = 70
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="GorevArayuzu" type="CanvasLayer" unique_id=2069439689]
+script = ExtResource("1_sgnco")
+
+[node name="Label" type="Label" parent="." unique_id=1077105810]
+offset_left = 15.0
+offset_top = 17.0
+offset_right = 274.0
+offset_bottom = 98.0
+theme_override_fonts/font = ExtResource("1_h08u7")
+theme_override_font_sizes/font_size = 100
+label_settings = SubResource("LabelSettings_sgnco")
+
+[node name="Cizgi" type="ColorRect" parent="Label" unique_id=2042000924]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 86.0
+offset_right = 268.0
+offset_bottom = 93.0
+color = Color(0, 0, 0, 1)

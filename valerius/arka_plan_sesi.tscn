@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c56usqqrbtxn4"]
+
+[ext_resource type="AudioStream" uid="uid://cecc4rto6ndwf" path="res://models/model/fbx/universfield-horror-background-atmosphere-06-199279.mp3" id="1_n4mvd"]
+
+[node name="ArkaPlanSesi" type="AudioStreamPlayer" unique_id=453141332]
+stream = ExtResource("1_n4mvd")
+volume_db = -20.65
+autoplay = true

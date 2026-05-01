@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnnl3c2k62u61"]
+
+[ext_resource type="PackedScene" uid="uid://cy27lyutm3idb" path="res://models/crypt/building_B.gltf" id="1_6d3kp"]
+[ext_resource type="Texture2D" uid="uid://djob6qciiplgq" path="res://models/crypt/citybits_texture.png" id="2_b7gry"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_boxjo"]
+albedo_texture = ExtResource("2_b7gry")
+
+[node name="building_B2" instance=ExtResource("1_6d3kp")]
+
+[node name="building_B" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_boxjo")

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bp2rk1q36q4pe"
+path="res://.godot/imported/Ambient Wind (6).mp3-28bdccb1b496ffcbd7af78992d32785e.mp3str"
+
+[deps]
+
+source_file="res://seslerlagardas/Ambient Wind/Ambient Wind (6).mp3"
+dest_files=["res://.godot/imported/Ambient Wind (6).mp3-28bdccb1b496ffcbd7af78992d32785e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

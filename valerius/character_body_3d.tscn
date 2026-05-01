@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://bpxtpu67atgrf"]
+
+[ext_resource type="Script" uid="uid://82l1c27xikiy" path="res://character/character_body_3d.gd" id="1_jvo56"]
+[ext_resource type="Texture2D" uid="uid://bsu6kx1gq1trh" path="res://cookie_2.jpg" id="2_1igb4"]
+[ext_resource type="Texture2D" uid="uid://dphbpx8pjchkw" path="res://Untitled.png" id="3_ew7rt"]
+[ext_resource type="Texture2D" uid="uid://by0akvp2ws7iu" path="res://Untitled1.png" id="4_u3olo"]
+[ext_resource type="FontFile" uid="uid://b857wkgpxyh1s" path="res://SpecialElite.ttf" id="5_nvtkd"]
+[ext_resource type="AudioStream" uid="uid://bvhk12fqgy5gw" path="res://seslerlagardas/Concrete Footsteps/Concrete Footsteps (1).mp3" id="6_jvo56"]
+[ext_resource type="AudioStream" uid="uid://cun48ygnf0oo6" path="res://freesound_community-flashlight-clicking-on-105809.mp3" id="7_18j2g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dsgk7"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_i5arm"]
+material = SubResource("StandardMaterial3D_dsgk7")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wc5p8"]
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_jka67"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tcnuu"]
+font = ExtResource("5_nvtkd")
+font_size = 70
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=2053614635 groups=["Player"]]
+floor_max_angle = 1.0471976
+script = ExtResource("1_jvo56")
+BOB_HEIGHT = 3.51
+metadata/_edit_group_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1977942963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6519246, 0)
+mesh = SubResource("CapsuleMesh_i5arm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1739485973]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6519246, 0)
+shape = SubResource("CapsuleShape3D_wc5p8")
+
+[node name="head" type="Node3D" parent="." unique_id=581866767]
+
+[node name="Camera3D" type="Camera3D" parent="head" unique_id=1197810323]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1106644, -0.055066228)
+
+[node name="RayCast3D" type="RayCast3D" parent="head/Camera3D" unique_id=193549720]
+target_position = Vector3(0, 0, -2)
+collide_with_areas = true
+
+[node name="SpotLight3D" type="SpotLight3D" parent="head/Camera3D" unique_id=119902289]
+visible = false
+light_energy = 5.744
+light_indirect_energy = 0.316
+light_projector = ExtResource("2_1igb4")
+shadow_enabled = true
+spot_range = 9.179
+spot_attenuation = -1.3
+spot_angle = 35.0
+spot_angle_attenuation = 4.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="head" unique_id=152491755]
+offset_left = 17.0
+offset_top = 1025.0
+offset_right = 427.0
+offset_bottom = 1049.0
+rotation = -1.5707964
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("3_ew7rt")
+texture_progress = ExtResource("4_u3olo")
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1152119023]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 2.7663512, -0.7290497)
+shape = SubResource("SeparationRayShape3D_jka67")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=243170442]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=580716571]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_tcnuu")
+
+[node name="AyakSesi" type="AudioStreamPlayer" parent="." unique_id=933882211]
+stream = ExtResource("6_jvo56")
+volume_db = -15.095
+
+[node name="FenerSesi" type="AudioStreamPlayer" parent="." unique_id=443473166]
+stream = ExtResource("7_18j2g")

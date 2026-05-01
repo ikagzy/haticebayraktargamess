@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ikd4ag7nfqkt"
+path="res://.godot/imported/Concrete Footsteps (3).mp3-42fc79ca65366d930b0f63e31e09690d.mp3str"
+
+[deps]
+
+source_file="res://seslerlagardas/Concrete Footsteps/Concrete Footsteps (3).mp3"
+dest_files=["res://.godot/imported/Concrete Footsteps (3).mp3-42fc79ca65366d930b0f63e31e09690d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

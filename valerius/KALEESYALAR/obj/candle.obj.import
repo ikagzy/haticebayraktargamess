@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://x0hpk16lkm8n"
+path="res://.godot/imported/candle.obj-4b80918983cfd86c8249cbdc717639e4.mesh"
+
+[deps]
+
+files=["res://.godot/imported/candle.obj-4b80918983cfd86c8249cbdc717639e4.mesh"]
+
+source_file="res://KALEESYALAR/obj/candle.obj"
+dest_files=["res://.godot/imported/candle.obj-4b80918983cfd86c8249cbdc717639e4.mesh", "res://.godot/imported/candle.obj-4b80918983cfd86c8249cbdc717639e4.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

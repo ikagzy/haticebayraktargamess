@@ -1,22 +1,16 @@
-# GlobalAyarlar.gd
 extends Node
 
-# Ses ayarları
 var ses_seviyesi = 70.0
 
-# Grafik ayarları
 var grafik_kalitesi = "Orta"
 
-#Yüzük ve çubuk alındı mı ?
 var yuzuk_alindi = false
 var cubuk_alindi = false
 
-# FPS Göstergesi
-var fps_goster = true  # Başlangıçta açık (test için)
+var fps_goster = false
 var fps_etiketi: Label
 
 func _ready():
-	# FPS Label'ını kalıcı olarar UI'ın en tepesine ekliyoruz (128 layerı)
 	var canvas = CanvasLayer.new()
 	canvas.layer = 128
 	add_child(canvas)
@@ -45,33 +39,29 @@ func _ready():
 	
 	canvas.add_child(fps_etiketi)
 	
-	# Oyun başladığında kayıtlı ayarları yükle
 	_load_settings()
 
 func _process(_delta):
 	if fps_goster:
-		fps_etiketi.visible = true
+		fps_etiketi.visible = false
 		fps_etiketi.text = "FPS: " + str(int(Engine.get_frames_per_second()))
 	else:
-		fps_etiketi.visible = false
+		fps_etiketi.visible = true
 
-# Dilediğin butona bağlayacağın sihirli fonksiyon (! ile tam tersini yapar)
 func toggle_fps():
 	fps_goster = !fps_goster
 	save_settings()
 
 func _load_settings():
-	# Ses ayarını yükle
 	var file = FileAccess.open("user://ayarlar.dat", FileAccess.READ)
 	if file:
 		var data = file.get_var()
 		if data is Dictionary:
 			ses_seviyesi = data.get("ses_seviyesi", 70.0)
 			grafik_kalitesi = data.get("grafik_kalitesi", "Orta")
-			fps_goster = data.get("fps_goster", false)
+			fps_goster = data.get("fps_goster", true)
 
 func save_settings():
-	# Tüm ayarları kaydet
 	var data = {
 		"ses_seviyesi": ses_seviyesi,
 		"grafik_kalitesi": grafik_kalitesi,

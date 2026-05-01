@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bi24fcqh8x1vm"
+path="res://.godot/imported/Cliff_3.obj-643d2fc52293acd554e5e8e14d1b48c3.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Cliff_3.obj-643d2fc52293acd554e5e8e14d1b48c3.mesh"]
+
+source_file="res://OBJ/Terrain/Cliff_3.obj"
+dest_files=["res://.godot/imported/Cliff_3.obj-643d2fc52293acd554e5e8e14d1b48c3.mesh", "res://.godot/imported/Cliff_3.obj-643d2fc52293acd554e5e8e14d1b48c3.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

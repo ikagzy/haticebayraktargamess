@@ -15,10 +15,9 @@ func _on_pressed():
 		var data = file.get_var()
 		file.close()
 		
-		get_tree().paused = false # Oyunun donuk başlamaması için
+		get_tree().paused = false
 		get_tree().change_scene_to_file(data["scene"])
 		
-		# Sahne yüklenince karakteri ışınla
 		await get_tree().process_frame
 		var player = get_tree().root.find_child("Player", true, false)
 		if player:

@@ -1,5 +1,3 @@
-# Copyright © 2025 Cory Petkovsek, Roope Palmroos, and Contributors.
-# Tool settings bar for Terrain3D
 extends PanelContainer
 
 signal picking(type, callback)
@@ -28,17 +26,16 @@ const DEFAULT_BRUSH: String = "circle0.exr"
 const BRUSH_PATH: String = "res://addons/terrain_3d/brushes"
 const ES_TOOL_SETTINGS: String = "terrain3d/tool_settings/"
 
-# Add settings flags
 const NONE: int = 0x0
 const ALLOW_LARGER: int = 0x1
 const ALLOW_SMALLER: int = 0x2
-const ALLOW_OUT_OF_BOUNDS: int = 0x3 # LARGER|SMALLER
+const ALLOW_OUT_OF_BOUNDS: int = 0x3
 const NO_LABEL: int = 0x4
-const ADD_SEPARATOR: int = 0x8 # Add a vertical line before this entry
-const ADD_SPACER: int = 0x10 # Add a space before this entry
-const NO_SAVE: int = 0x20 # Don't save this in EditorSettings
+const ADD_SEPARATOR: int = 0x8
+const ADD_SPACER: int = 0x10
+const NO_SAVE: int = 0x20
 
-var plugin: EditorPlugin # Actually Terrain3DEditorPlugin, but Godot still has CRC errors
+var plugin: EditorPlugin
 var brush_preview_material: ShaderMaterial
 var select_brush_button: Button
 var selected_brush_imgs: Array
@@ -52,11 +49,9 @@ var settings: Dictionary = {}
 
 
 func _ready() -> void:
-	# Remove old editor settings
 	for setting in ["lift_floor", "flatten_peaks", "lift_flatten", "automatic_regions"]:
 		plugin.erase_setting(ES_TOOL_SETTINGS + setting)
 
-	# Setup buttons	
 	main_list = HFlowContainer.new()
 	add_child(main_list, true)
 	
@@ -95,7 +90,6 @@ func _ready() -> void:
 	add_setting({ "name":"margin", "type":SettingType.SLIDER, "list":main_list, "default":0, 
 								"unit":"", "range":Vector3(-50, 50, 1), "flags":ALLOW_OUT_OF_BOUNDS })
 
-	# Slope painting filter
 	add_setting({ "name":"slope", "type":SettingType.DOUBLE_SLIDER, "list":main_list, "default":Vector2(0, 90), 
 								"unit":"°", "range":Vector3(0, 90, 1), "flags":ADD_SEPARATOR })
 	
@@ -115,14 +109,12 @@ func _ready() -> void:
 	add_setting({ "name":"scale_picker", "type":SettingType.PICKER, "list":main_list, 
 								"default":Terrain3DEditor.SCALE, "flags":NO_LABEL })
 
-	## Slope sculpting brush
 	add_setting({ "name":"gradient_points", "type":SettingType.MULTI_PICKER, "label":"Points", 
 								"list":main_list, "default":Terrain3DEditor.SCULPT, "flags":ADD_SEPARATOR })
 	add_setting({ "name":"drawable", "type":SettingType.CHECKBOX, "list":main_list, "default":false, 
 								"flags":ADD_SEPARATOR })
 	settings["drawable"].toggled.connect(_on_drawable_toggled)
 	
-	## Instancer
 	height_list = create_submenu(main_list, "Height", Layout.VERTICAL)
 	add_setting({ "name":"height_offset", "type":SettingType.SLIDER, "list":height_list, "default":0, 
 								"unit":"m", "range":Vector3(-10, 10, 0.05), "flags":ALLOW_OUT_OF_BOUNDS })
@@ -154,8 +146,6 @@ func _ready() -> void:
 								"list":color_list, "default":0, "unit":"°", "range":Vector3(0, 360, 1) })
 	add_setting({ "name":"random_darken", "type":SettingType.SLIDER, "list":color_list, "default":50, 
 								"unit":"%", "range":Vector3(0, 100, 1) })
-	#add_setting({ "name":"blend_mode", "type":SettingType.OPTION, "list":color_list, "default":0, 
-								#"range":Vector3(0, 3, 1) })
 
 	if DisplayServer.is_touchscreen_available():
 		add_setting({ "name":"remove", "label":"Invert", "type":SettingType.CHECKBOX, "list":main_list, "default":false, "flags":ADD_SEPARATOR })
@@ -164,7 +154,6 @@ func _ready() -> void:
 	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	main_list.add_child(spacer, true)
 
-	## Advanced Settings Menu
 	advanced_list = create_submenu(main_list, "", Layout.VERTICAL, false)
 	add_setting({ "name":"auto_regions", "label":"Add regions while sculpting", "type":SettingType.CHECKBOX, 
 								"list":advanced_list, "default":true })
@@ -198,14 +187,12 @@ func create_submenu(p_parent: Control, p_button_name: String, p_layout: Layout, 
 	submenu.set("theme_override_styles/panel", panel_style)
 	submenu.add_to_group("terrain3d_submenus")
 
-	# Pop up menu on hover, hide on exit
 	if p_hover_pop:
 		menu_button.mouse_entered.connect(_on_show_submenu.bind(true, menu_button))
 		
 	submenu.mouse_entered.connect(func(): submenu.set_meta("mouse_entered", true))
 	
 	submenu.mouse_exited.connect(func():
-		# On mouse_exit, hide popup unless LineEdit focused
 		var focused_element: Control = submenu.gui_get_focus_owner()
 		if not focused_element is LineEdit:
 			_on_show_submenu(false, menu_button)
@@ -213,7 +200,6 @@ func create_submenu(p_parent: Control, p_button_name: String, p_layout: Layout, 
 			return
 			
 		focused_element.focus_exited.connect(func():
-			# Close submenu once lineedit loses focus
 			if not submenu.get_meta("mouse_entered"):
 				_on_show_submenu(false, menu_button)
 				submenu.set_meta("mouse_entered", false)
@@ -237,11 +223,9 @@ func create_submenu(p_parent: Control, p_button_name: String, p_layout: Layout, 
 
 
 func _on_show_submenu(p_toggled: bool, p_button: Button) -> void:
-	# Don't show if mouse already down (from painting)
 	if p_toggled and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		return
 	
-	# Hide menu if mouse is not in button or panel 
 	var button_rect: Rect2 = Rect2(p_button.get_screen_transform().origin, p_button.get_global_rect().size)
 	var in_button: bool = button_rect.has_point(DisplayServer.mouse_get_position())
 	var popup: PopupPanel = p_button.get_child(0)
@@ -250,7 +234,6 @@ func _on_show_submenu(p_toggled: bool, p_button: Button) -> void:
 	if not p_toggled and ( in_button or in_popup ):
 		return
 	
-	# Hide all submenus before possibly enabling the current one
 	get_tree().call_group("terrain3d_submenus", "set_visible", false)
 	popup.set_visible(p_toggled)
 	var popup_pos: Vector2 = p_button.get_screen_transform().origin
@@ -321,7 +304,6 @@ func add_brushes(p_parent: Control) -> void:
 	settings["brush"] = brush_button_group
 
 	select_brush_button = brush_list.get_parent().get_parent()
-	# Optionally erase the main brush button text and replace it with the texture
 	select_brush_button.set_text("")
 	select_brush_button.set_button_icon(default_brush_btn.get_button_icon())
 	select_brush_button.set_custom_minimum_size(Vector2.ONE * 36)
@@ -350,7 +332,6 @@ func _on_picked(p_type: Terrain3DEditor.Tool, p_color: Color, p_global_position:
 		Terrain3DEditor.COLOR:
 			settings["color"].color = p_color if not is_nan(p_color.r) else Color.WHITE
 		Terrain3DEditor.ROUGHNESS:
-			# 200... -.5 converts 0,1 to -100,100
 			settings["roughness"].value = round(200 * (p_color.a - 0.5)) if not is_nan(p_color.r) else 0.499
 		Terrain3DEditor.ANGLE:
 			settings["angle"].value = p_color.r
@@ -374,7 +355,7 @@ func _on_point_picked(p_type: Terrain3DEditor.Tool, p_color: Color, p_global_pos
 
 func add_setting(p_args: Dictionary) -> void:
 	var p_name: StringName = p_args.get("name", "")
-	var p_label: String = p_args.get("label", "") # Optional replacement for name
+	var p_label: String = p_args.get("label", "")
 	var p_type: SettingType = p_args.get("type", SettingType.TYPE_MAX)
 	var p_list: Control = p_args.get("list")
 	var p_default: Variant = p_args.get("default")
@@ -390,7 +371,7 @@ func add_setting(p_args: Dictionary) -> void:
 
 	var container: HBoxContainer = HBoxContainer.new()
 	container.set_v_size_flags(SIZE_EXPAND_FILL)
-	var control: Control	# Houses the setting to be saved
+	var control: Control
 	var pending_children: Array[Control]
 
 	match p_type:
@@ -459,7 +440,6 @@ func add_setting(p_args: Dictionary) -> void:
 		SettingType.SLIDER, SettingType.DOUBLE_SLIDER:
 			var slider: Control
 			if p_type == SettingType.SLIDER:
-				# Create an editable value box
 				var spin_slider := EditorSpinSlider.new()
 				spin_slider.set_flat(false)
 				spin_slider.set_hide_slider(true)
@@ -471,7 +451,6 @@ func add_setting(p_args: Dictionary) -> void:
 				spin_slider.set_v_size_flags(SIZE_SHRINK_CENTER)
 				spin_slider.set_custom_minimum_size(Vector2(65, 0))
 
-				# Create horizontal slider linked to the above box
 				slider = HSlider.new()
 				slider.share(spin_slider)
 				if p_flags & ALLOW_LARGER:
@@ -483,7 +462,7 @@ func add_setting(p_args: Dictionary) -> void:
 				pending_children.push_back(spin_slider)
 				control = spin_slider
 						
-			else: # DOUBLE_SLIDER
+			else:
 				var label := Label.new()
 				label.set_custom_minimum_size(Vector2(60, 0))
 				label.set_horizontal_alignment(HORIZONTAL_ALIGNMENT_CENTER)
@@ -514,9 +493,7 @@ func add_setting(p_args: Dictionary) -> void:
 	control.name = p_name.to_pascal_case()
 	settings[p_name] = control
 
-	# Setup button labels
 	if not (p_flags & NO_LABEL):
-		# Labels are actually buttons styled to look like labels
 		var label := Button.new()
 		label.set("theme_override_styles/normal", get_theme_stylebox("normal", "Label"))
 		label.set("theme_override_styles/hover", get_theme_stylebox("normal", "Label"))
@@ -529,7 +506,6 @@ func add_setting(p_args: Dictionary) -> void:
 			label.set_text(p_label.capitalize() + ": ")
 		pending_children.push_front(label)
 
-	# Add separators to front
 	if p_flags & ADD_SEPARATOR:
 		pending_children.push_front(VSeparator.new())
 	if p_flags & ADD_SPACER:
@@ -537,13 +513,11 @@ func add_setting(p_args: Dictionary) -> void:
 		spacer.set_custom_minimum_size(Vector2(5, 0))
 		pending_children.push_front(spacer)
 
-	# Add all children to container and list
 	for child in pending_children:
 		container.add_child(child, true)
 	p_list.add_child(container, true)
 
 
-# If label button is pressed, reset value to default or toggle checkbox
 func _on_label_pressed(p_name: String, p_default: Variant) -> void:
 	var control: Control = settings.get(p_name)
 	if not control:
@@ -566,13 +540,12 @@ func get_setting(p_setting: String) -> Variant:
 	var value: Variant
 	if object is Range:
 		value = object.get_value()
-		# Adjust widths of all sliders on update of values
 		var digits: float = count_digits(value)
 		var width: float = clamp( (1 + count_digits(value)) * 19., 50, 80) * clamp(EditorInterface.get_editor_scale(), .9, 2)
 		object.set_custom_minimum_size(Vector2(width, 0))
 	elif object is DoubleSlider:
 		value = object.get_value()
-	elif object is ButtonGroup: # "brush"
+	elif object is ButtonGroup:
 		value = selected_brush_imgs
 	elif object is CheckBox:
 		value = object.is_pressed()
@@ -587,11 +560,11 @@ func get_setting(p_setting: String) -> Variant:
 
 func set_setting(p_setting: String, p_value: Variant) -> void:
 	var object: Object = settings.get(p_setting)
-	if object is DoubleSlider: # Expects p_value is Vector2
+	if object is DoubleSlider:
 		object.set_value(p_value)
 	elif object is Range:
 		object.set_value(p_value)
-	elif object is ButtonGroup: # Expects p_value is Array [ "button name", boolean ]
+	elif object is ButtonGroup:
 		if p_value is Array and p_value.size() == 2:
 			for button in object.get_buttons():
 				if button.name == p_value[0]:
@@ -600,8 +573,8 @@ func set_setting(p_setting: String, p_value: Variant) -> void:
 		object.button_pressed = p_value
 	elif object is ColorPickerButton:
 		object.color = p_value
-		plugin.set_setting(ES_TOOL_SETTINGS + p_setting, p_value) # Signal doesn't fire on CPB
-	elif object is MultiPicker: # Expects p_value is PackedVector3Array
+		plugin.set_setting(ES_TOOL_SETTINGS + p_setting, p_value)
+	elif object is MultiPicker:
 		object.points = p_value
 	_on_setting_changed(object)
 
@@ -622,15 +595,11 @@ func show_settings(p_settings: PackedStringArray) -> void:
 
 
 func _on_setting_changed(p_object: Variant = null) -> void:
-	# If a brush was selected
 	if p_object is Button and p_object.get_parent().name == "BrushList":
 		_generate_brush_texture(p_object)
-		# Optionally Set selected brush texture in main brush button
 		if select_brush_button:
 			select_brush_button.set_button_icon(p_object.get_button_icon())
-		# Hide popup
 		p_object.get_parent().get_parent().set_visible(false)
-		# Hide label
 		if p_object.get_child_count() > 0:
 			p_object.get_child(0).visible = false
 	emit_signal("setting_changed")
@@ -670,7 +639,6 @@ func _get_brush_preview_material() -> ShaderMaterial:
 	return brush_preview_material
 
 
-# Counts digits of a number including negative sign, decimal points, and up to 3 decimals 
 func count_digits(p_value: float) -> int:
 	var count: int = 1
 	for i in range(5, 0, -1):
@@ -678,14 +646,13 @@ func count_digits(p_value: float) -> int:
 			count = i+1
 			break
 	if p_value - floor(p_value) >= .1:
-		count += 1 # For the decimal
+		count += 1
 		if p_value*10 - floor(p_value*10.) >= .1: 
 			count += 1
 			if p_value*100 - floor(p_value*100.) >= .1: 
 				count += 1
 				if p_value*1000 - floor(p_value*1000.) >= .1: 
 					count += 1
-	# Negative sign
 	if p_value < 0:
 		count += 1
 	return count

@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cemab47d5ku5i"
+path="res://.godot/imported/Prop_Chimney2.obj-07311eddd1e553209a0700ba86ab12af.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Prop_Chimney2.obj-07311eddd1e553209a0700ba86ab12af.mesh"]
+
+source_file="res://megakit/OBJ/Prop_Chimney2.obj"
+dest_files=["res://.godot/imported/Prop_Chimney2.obj-07311eddd1e553209a0700ba86ab12af.mesh", "res://.godot/imported/Prop_Chimney2.obj-07311eddd1e553209a0700ba86ab12af.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

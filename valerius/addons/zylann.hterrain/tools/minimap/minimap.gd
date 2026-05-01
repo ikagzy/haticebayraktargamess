@@ -7,8 +7,6 @@ const HTerrainData = preload("../../hterrain_data.gd")
 const HT_MinimapOverlay = preload("./minimap_overlay.gd")
 
 const HT_MinimapShader = preload("./minimap_normal.gdshader")
-# TODO Can't preload because it causes the plugin to fail loading if assets aren't imported
-#const HT_WhiteTexture = preload("../icons/white.png")
 const WHITE_TEXTURE_PATH = "res://addons/zylann.hterrain/tools/icons/white.png"
 
 const MODE_QUADTREE = 0
@@ -68,7 +66,6 @@ func _gui_input(event: InputEvent):
 					_popup_menu.position = get_screen_position() + event.position
 					_popup_menu.popup()
 				MOUSE_BUTTON_LEFT:
-					# Teleport there?
 					pass
 
 
@@ -111,9 +108,6 @@ func _update_normal_material():
 	_set_if_changed(_color_rect.material, "u_globalmap", globalmap)
 
 
-# Need to check if it has changed, otherwise Godot's update spinner
-# indicates that the editor keeps redrawing every frame,
-# which is not intended and consumes more power.
 static func _set_if_changed(sm: ShaderMaterial, param: String, v):
 	if sm.get_shader_parameter(param) != v:
 		sm.set_shader_parameter(param, v)
@@ -127,7 +121,6 @@ func _draw():
 		var lod_count := _terrain.get_lod_count()
 	
 		if lod_count > 0:
-			# Fit drawing to rect
 			
 			var qsize = 1 << (lod_count - 1)
 			var vsize := size

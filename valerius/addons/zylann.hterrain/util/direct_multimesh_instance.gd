@@ -1,6 +1,5 @@
 @tool
 
-# Implementation of MultiMeshInstance which doesn't use the scene tree
 
 var _multimesh_instance := RID()
 

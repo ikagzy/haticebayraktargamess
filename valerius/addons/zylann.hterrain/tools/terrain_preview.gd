@@ -13,7 +13,6 @@ signal dragged(relative, button_mask)
 @onready var _camera : Camera3D = $Viewport/Camera
 @onready var _light : DirectionalLight3D = $Viewport/DirectionalLight
 
-# Use the simplest shader
 var _shader : Shader = load("res://addons/zylann.hterrain/shaders/simple4_lite.gdshader")
 var _yaw := 0.0
 var _pitch := -PI / 6.0
@@ -60,7 +59,6 @@ func setup(heights_texture: Texture2D, normals_texture: Texture2D):
 		_mesh_instance.mesh = mesh
 		_default_distance = _mesh_instance.get_aabb().size.x
 		_distance = _default_distance
-		#_mesh_instance.translation -= 0.5 * Vector3(terrain_size, 0, terrain_size)
 		_update_camera()
 
 	var mat : ShaderMaterial = _mesh_instance.mesh.surface_get_material(0)
@@ -121,7 +119,6 @@ func _gui_input(event: InputEvent):
 			_update_camera()
 		else:
 			var rel : Vector2 = 0.01 * event.relative
-			# Align dragging to view rotation
 			rel = -rel.rotated(-_yaw)
 			dragged.emit(rel, event.button_mask)
 	
@@ -133,7 +130,6 @@ func _gui_input(event: InputEvent):
 			var min_distance := _default_distance / max_factor
 			var max_distance := _default_distance
 			
-			# Zoom in/out
 			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 				_distance = clampf(_distance * factor, min_distance, max_distance)
 				_update_camera()

@@ -2,7 +2,6 @@
 extends AcceptDialog
 
 
-#onready var _label = get_node("VBoxContainer/Label")
 @onready var _progress_bar : ProgressBar = $VBoxContainer/ProgressBar
 
 
@@ -28,5 +27,3 @@ func handle_progress(info: Dictionary):
 			message = info.message
 		
 		_show_progress(info.message, info.progress)
-		# TODO Have builtin modal progress bar
-		# https://github.com/godotengine/godot/issues/17763

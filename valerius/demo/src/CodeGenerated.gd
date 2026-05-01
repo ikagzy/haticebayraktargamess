@@ -11,14 +11,11 @@ func _ready() -> void:
 
 	terrain = await create_terrain()
 
-	# Enable runtime navigation baking using the terrain
-	# Enable `Debug/Visible Navigation` if you wish to see it
 	$RuntimeNavigationBaker.terrain = terrain
 	$RuntimeNavigationBaker.enabled = true
 
 
 func create_terrain() -> Terrain3D:
-	# Create textures
 	var green_gr := Gradient.new()
 	green_gr.set_color(0, Color.from_hsv(100./360., .35, .3))
 	green_gr.set_color(1, Color.from_hsv(120./360., .4, .37))
@@ -35,12 +32,10 @@ func create_terrain() -> Terrain3D:
 	
 	var grass_ma: Terrain3DMeshAsset = create_mesh_asset("Grass", Color.from_hsv(120./360., .4, .37)) 
 
-	# Create a terrain
 	var terrain := Terrain3D.new()
 	terrain.name = "Terrain3D"
 	add_child(terrain, true)
 
-	# Set material and assets
 	terrain.material.world_background = Terrain3DMaterial.NONE
 	terrain.material.auto_shader = true
 	terrain.material.set_shader_param("auto_slope", 10)
@@ -50,7 +45,6 @@ func create_terrain() -> Terrain3D:
 	terrain.assets.set_texture(1, brown_ta)
 	terrain.assets.set_mesh_asset(0, grass_ma)
 
-	# Generate height map w/ 32-bit noise and import it with scale
 	var noise := FastNoiseLite.new()
 	noise.frequency = 0.0005
 	var img: Image = Image.create_empty(2048, 2048, false, Image.FORMAT_RF)
@@ -60,7 +54,6 @@ func create_terrain() -> Terrain3D:
 	terrain.region_size = 1024
 	terrain.data.import_images([img, null, null], Vector3(-1024, 0, -1024), 0.0, 150.0)
 
-	# Instance foliage
 	var xforms: Array[Transform3D]
 	var width: int = 100
 	var step: int = 2
@@ -71,18 +64,14 @@ func create_terrain() -> Terrain3D:
 			xforms.push_back(Transform3D(Basis(), pos))
 	terrain.instancer.add_transforms(0, xforms)
 
-	# Enable the next line and `Debug/Visible Collision Shapes` to see collision
-	#terrain.collision.mode = Terrain3DCollision.DYNAMIC_EDITOR
 
 	return terrain
 
 
 func create_texture_asset(asset_name: String, gradient: Gradient, texture_size: int = 512) -> Terrain3DTextureAsset:
-	# Create noise map
 	var fnl := FastNoiseLite.new()
 	fnl.frequency = 0.004
 	
-	# Create albedo noise texture
 	var alb_noise_tex := NoiseTexture2D.new()
 	alb_noise_tex.width = texture_size
 	alb_noise_tex.height = texture_size
@@ -92,16 +81,14 @@ func create_texture_asset(asset_name: String, gradient: Gradient, texture_size: 
 	await alb_noise_tex.changed
 	var alb_noise_img: Image = alb_noise_tex.get_image()
 
-	# Create albedo + height texture
 	for x in alb_noise_img.get_width():
 		for y in alb_noise_img.get_height():
 			var clr: Color = alb_noise_img.get_pixel(x, y)
-			clr.a = clr.v # Noise as height
+			clr.a = clr.v
 			alb_noise_img.set_pixel(x, y, clr)
 	alb_noise_img.generate_mipmaps()
 	var albedo := ImageTexture.create_from_image(alb_noise_img)
 
-	# Create normal + rough texture
 	var nrm_noise_tex := NoiseTexture2D.new()
 	nrm_noise_tex.width = texture_size
 	nrm_noise_tex.height = texture_size
@@ -113,7 +100,7 @@ func create_texture_asset(asset_name: String, gradient: Gradient, texture_size: 
 	for x in nrm_noise_img.get_width():
 		for y in nrm_noise_img.get_height():
 			var normal_rgh: Color = nrm_noise_img.get_pixel(x, y)
-			normal_rgh.a = 0.8 # Roughness
+			normal_rgh.a = 0.8
 			nrm_noise_img.set_pixel(x, y, normal_rgh)
 	nrm_noise_img.generate_mipmaps()
 	var normal := ImageTexture.create_from_image(nrm_noise_img)

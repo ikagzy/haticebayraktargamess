@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://csmlcntx548tm"
+path="res://.godot/imported/Overhang_Plaster_Long.obj-a00699b35322b0d2d4f16abfd93f2dfa.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Overhang_Plaster_Long.obj-a00699b35322b0d2d4f16abfd93f2dfa.mesh"]
+
+source_file="res://megakit/OBJ/Overhang_Plaster_Long.obj"
+dest_files=["res://.godot/imported/Overhang_Plaster_Long.obj-a00699b35322b0d2d4f16abfd93f2dfa.mesh", "res://.godot/imported/Overhang_Plaster_Long.obj-a00699b35322b0d2d4f16abfd93f2dfa.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -1,13 +1,3 @@
-# This script can be used to move your regions by an offset. 
-# Eventually this tool will find its way into a built in UI
-# 
-# Attach it to your Terrain3D node
-# Save and reload your scene
-# Select your Terrain3D node
-# Enter a valid `offset` where all regions will be within -16, +15
-# Run it
-# It should unload the regions, rename files, and reload them
-# Clear the script and resave your scene
 
 
 @tool

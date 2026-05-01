@@ -4,7 +4,6 @@ extends NoiseNode
 
 const NoiseNode = preload("res://addons/terrainy/nodes/basic/noise_node.gd")
 
-## Voronoi/cellular pattern for rocky/cracked terrain
 
 @export_enum("F1", "F2", "F2 - F1", "Cells") var distance_mode: int = 0:
 	set(value):
@@ -31,20 +30,18 @@ func get_height_at(world_pos: Vector3) -> float:
 	if not noise:
 		return 0.0
 	
-	# Set cellular return type based on distance mode
 	match distance_mode:
-		0: # F1 - closest cell
+		0:
 			noise.cellular_return_type = FastNoiseLite.RETURN_DISTANCE
-		1: # F2 - second closest
+		1:
 			noise.cellular_return_type = FastNoiseLite.RETURN_DISTANCE2
-		2: # F2 - F1 - cell borders
+		2:
 			noise.cellular_return_type = FastNoiseLite.RETURN_DISTANCE2_ADD
-		3: # Cells - cell values
+		3:
 			noise.cellular_return_type = FastNoiseLite.RETURN_CELL_VALUE
 	
 	var voronoi_value = noise.get_noise_2d(world_pos.x, world_pos.z)
 	
-	# Normalize from [-1, 1] to [0, 1]
 	var height = (voronoi_value + 1.0) * 0.5 * amplitude
 	
 	return height

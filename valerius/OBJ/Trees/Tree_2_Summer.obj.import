@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ch3w8xmq8ehe3"
+path="res://.godot/imported/Tree_2_Summer.obj-7e4397d760e8a1a0c5d806ce2d2980a8.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Tree_2_Summer.obj-7e4397d760e8a1a0c5d806ce2d2980a8.mesh"]
+
+source_file="res://OBJ/Trees/Tree_2_Summer.obj"
+dest_files=["res://.godot/imported/Tree_2_Summer.obj-7e4397d760e8a1a0c5d806ce2d2980a8.mesh", "res://.godot/imported/Tree_2_Summer.obj-7e4397d760e8a1a0c5d806ce2d2980a8.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

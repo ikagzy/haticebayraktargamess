@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cd7ht372qnm5n"
+path="res://.godot/imported/Rock_5_Snow.obj-5755a33eb8e339b23f8255419c2420c1.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Rock_5_Snow.obj-5755a33eb8e339b23f8255419c2420c1.mesh"]
+
+source_file="res://Nature Pack Low Poly By RgsDev/OBJ/Rocks/Rock_5_Snow.obj"
+dest_files=["res://.godot/imported/Rock_5_Snow.obj-5755a33eb8e339b23f8255419c2420c1.mesh", "res://.godot/imported/Rock_5_Snow.obj-5755a33eb8e339b23f8255419c2420c1.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -1,5 +1,3 @@
-# Copyright © 2025 Cory Petkovsek, Roope Palmroos, and Contributors.
-# Baker for Terrain3D
 extends Node
 
 const BakeLodDialog: PackedScene = preload("res://addons/terrain_3d/menu/bake_lod_dialog.tscn")
@@ -172,7 +170,6 @@ func find_terrain_nav_regions(p_terrain: Terrain3D) -> Array[NavigationRegion3D]
 
 func bake_nav_mesh() -> void:
 	if plugin.nav_region:
-		# A NavigationRegion3D is selected. We only need to bake that one navmesh.
 		_bake_nav_region_nav_mesh(plugin.nav_region)
 		print("Terrain3DNavigation: Finished baking 1 NavigationMesh.")
 	
@@ -180,11 +177,6 @@ func bake_nav_mesh() -> void:
 		if plugin.terrain.data.get_region_count() == 0:
 			push_error("Terrain3D has no active regions to bake")
 			return
-		# A Terrain3D is selected. There are potentially multiple navmeshes to bake and we need to
-		# find them all. (The multiple navmesh use-case is likely on very large scenes with lots of
-		# geometry. Each navmesh in this case would define its own, non-overlapping, baking AABB, to
-		# cut down on the amount of geometry to bake. In a large open-world RPG, for instance, there
-		# could be a navmesh for each town.)
 		var nav_regions: Array[NavigationRegion3D] = find_terrain_nav_regions(plugin.terrain)
 		for nav_region in nav_regions:
 			_bake_nav_region_nav_mesh(nav_region)
@@ -210,30 +202,21 @@ func _bake_nav_region_nav_mesh(p_nav_region: NavigationRegion3D) -> void:
 	
 	_postprocess_nav_mesh(nav_mesh)
 	
-	# Assign null first to force the debug display to actually update:
 	p_nav_region.set_navigation_mesh(null)
 	p_nav_region.set_navigation_mesh(nav_mesh)
 	
-	# Trigger save to disk if it is saved as an external file
 	if not nav_mesh.get_path().is_empty():
 		ResourceSaver.save(nav_mesh, nav_mesh.get_path(), ResourceSaver.FLAG_COMPRESS)
 	
-	# Let other editor plugins and tool scripts know the nav mesh was just baked:
 	p_nav_region.bake_finished.emit()
 
 
 func _postprocess_nav_mesh(p_nav_mesh: NavigationMesh) -> void:
-	# Post-process the nav mesh to work around Godot issue #85548
 	
-	# Round all the vertices in the nav_mesh to the nearest cell_size/cell_height so that it doesn't
-	# contain any edges shorter than cell_size/cell_height (one cause of #85548).
 	var vertices: PackedVector3Array = _postprocess_nav_mesh_round_vertices(p_nav_mesh)
 	
-	# Rounding vertices can collapse some edges to 0 length. We remove these edges, and any polygons
-	# that have been reduced to 0 area.
 	var polygons: Array[PackedInt32Array] = _postprocess_nav_mesh_remove_empty_polygons(p_nav_mesh, vertices)
 	
-	# Another cause of #85548 is baking producing overlapping polygons. We remove these.
 	_postprocess_nav_mesh_remove_overlapping_polygons(p_nav_mesh, vertices, polygons)
 	
 	p_nav_mesh.clear_polygons()
@@ -249,8 +232,6 @@ func _postprocess_nav_mesh_round_vertices(p_nav_mesh: NavigationMesh) -> PackedV
 	
 	var cell_size: Vector3 = Vector3(p_nav_mesh.cell_size, p_nav_mesh.cell_height, p_nav_mesh.cell_size)
 	
-	# Round a little harder to avoid rounding errors with non-power-of-two cell_size/cell_height
-	# causing the navigation map to put two non-matching edges in the same cell:
 	var round_factor := cell_size * 1.001
 	
 	var vertices: PackedVector3Array = p_nav_mesh.get_vertices()
@@ -266,7 +247,6 @@ func _postprocess_nav_mesh_remove_empty_polygons(p_nav_mesh: NavigationMesh, p_v
 		var old_polygon: PackedInt32Array = p_nav_mesh.get_polygon(i)
 		var new_polygon: PackedInt32Array = []
 		
-		# Remove duplicate vertices (introduced by rounding) from the polygon:
 		var polygon_vertices: PackedVector3Array = []
 		for index in old_polygon:
 			var vertex: Vector3 = p_vertices[index]
@@ -275,7 +255,6 @@ func _postprocess_nav_mesh_remove_empty_polygons(p_nav_mesh: NavigationMesh, p_v
 			polygon_vertices.push_back(vertex)
 			new_polygon.push_back(index)
 		
-		# If we removed some vertices, we might be able to remove the polygon too:
 		if new_polygon.size() <= 2:
 			continue
 		polygons.push_back(new_polygon)
@@ -284,21 +263,10 @@ func _postprocess_nav_mesh_remove_empty_polygons(p_nav_mesh: NavigationMesh, p_v
 
 
 func _postprocess_nav_mesh_remove_overlapping_polygons(p_nav_mesh: NavigationMesh, p_vertices: PackedVector3Array, p_polygons: Array[PackedInt32Array]) -> void:
-	# Occasionally, a baked nav mesh comes out with overlapping polygons:
-	# https://github.com/godotengine/godot/issues/85548#issuecomment-1839341071
-	# Until the bug is fixed in the engine, this function attempts to detect and remove overlapping
-	# polygons.
 	
-	# This function has to make a choice of which polygon to remove when an overlap is detected,
-	# because in this case the nav mesh is ambiguous. To do this it uses a heuristic:
-	# (1) an 'overlap' is defined as an edge that is shared by 3 or more polygons.
-	# (2) a 'bad polygon' is defined as a polygon that contains 2 or more 'overlaps'.
-	# The function removes the 'bad polygons', which in practice seems to be enough to remove all
-	# overlaps without creating holes in the nav mesh.
 	
 	var cell_size: Vector3 = Vector3(p_nav_mesh.cell_size, p_nav_mesh.cell_height, p_nav_mesh.cell_size)
 	
-	# `edges` is going to map edges (vertex pairs) to arrays of polygons that contain that edge.
 	var edges: Dictionary = {}
 	
 	for polygon_index in range(p_polygons.size()):
@@ -307,11 +275,6 @@ func _postprocess_nav_mesh_remove_overlapping_polygons(p_nav_mesh: NavigationMes
 			var vertex: Vector3 = p_vertices[polygon[j]]
 			var next_vertex: Vector3 = p_vertices[polygon[(j + 1) % polygon.size()]]
 			
-			# edge_key is a key we can use in the edges dictionary that uniquely identifies the
-			# edge. We use cell coordinates here (Vector3i) because with a non-power-of-two
-			# cell_size, rounding errors can cause Vector3 vertices to not be equal.
-			# Array.sort IS defined for vector types - see the Godot docs. It's necessary here
-			# because polygons that share an edge can have their vertices in a different order.
 			var edge_key: Array = [Vector3i(vertex / cell_size), Vector3i(next_vertex / cell_size)]
 			edge_key.sort()
 			

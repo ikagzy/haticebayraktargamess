@@ -1,5 +1,3 @@
-# Copyright © 2025 Cory Petkovsek, Roope Palmroos, and Contributors.
-# Multipicker for Terrain3D
 extends HBoxContainer
 
 
@@ -70,12 +68,10 @@ func add_point(p_value: Vector3) -> void:
 	if points.has(p_value):
 		return
 	
-	# If manually selecting a point individually
 	if picking_index != -1:
 		points[picking_index] = p_value
 		picking_index = -1
 	else:
-		# Else picking a sequence of points (non-drawable)
 		for i in range(MAX_POINTS):
 			if points[i] == Vector3.ZERO:
 				points[i] = p_value

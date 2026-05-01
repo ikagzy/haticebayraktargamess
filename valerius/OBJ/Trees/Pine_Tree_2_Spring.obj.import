@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cj880is5yb7ct"
+path="res://.godot/imported/Pine_Tree_2_Spring.obj-65ca391b1ee0a26c56500eeb8011d739.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Pine_Tree_2_Spring.obj-65ca391b1ee0a26c56500eeb8011d739.mesh"]
+
+source_file="res://OBJ/Trees/Pine_Tree_2_Spring.obj"
+dest_files=["res://.godot/imported/Pine_Tree_2_Spring.obj-65ca391b1ee0a26c56500eeb8011d739.mesh", "res://.godot/imported/Pine_Tree_2_Spring.obj-65ca391b1ee0a26c56500eeb8011d739.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

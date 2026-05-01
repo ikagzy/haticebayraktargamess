@@ -22,7 +22,7 @@ func write_to_code_editor(text_answer:String, code_placement:AIQuickPromptResour
 			AIQuickPromptResource.CodePlacement.BeforeSelection:
 				code_editor.insert_line_at(start_line, text_answer)
 			AIQuickPromptResource.CodePlacement.AfterSelection:
-				if end_line == code_editor.get_line_count() - 1: #it is at the end of the editor
+				if end_line == code_editor.get_line_count() - 1:
 					code_editor.text += "\n%s" % text_answer
 				else:
 					code_editor.insert_line_at(end_line + 1, text_answer)

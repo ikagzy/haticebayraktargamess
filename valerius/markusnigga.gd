@@ -1,16 +1,13 @@
 extends CharacterBody3D
 
-# ==================== HAREKET AYARLARI ====================
 const WALK_SPEED = 5.0
 var SPEED = WALK_SPEED 
 
-# ==================== KAMERA AYARLARI ====================
 @export var BOB_HEIGHT: float = 1.8 
 const MARKUS_FREQ = 2.0
 const MARKUS_AMP = 0.08
 var t_markus = 0.0
 
-# ==================== FENER VE ETKİLEŞİM AYARLARI ====================
 @export var flashlight_rotation_smoothness : float = 15.0 
 @export var flashlight_position_smoothness : float = 15.0 
 @export var shake_intensity : float = 0.015
@@ -48,10 +45,9 @@ func _ready() -> void:
 		
 	if isik: isik.visible = isik_acik_mi 
 	
-	# TextureRect içine koyduğun Label'ı bul
 	if not is_instance_valid(etkilesim_yazisi):
 		etkilesim_yazisi = get_node_or_null("CanvasLayer/TextureRect/Label")
-		if not is_instance_valid(etkilesim_yazisi): # Belki başka CanvasGroup vb içindedir
+		if not is_instance_valid(etkilesim_yazisi):
 			etkilesim_yazisi = find_child("Label", true, false)
 	
 	if is_instance_valid(etkilesim_yazisi):
@@ -63,7 +59,6 @@ func _ready() -> void:
 		if mont:
 			etk_lset.font = mont
 		etkilesim_yazisi.label_settings = etk_lset
-		# Set alignment safely if not a generic node wrapper
 		etkilesim_yazisi.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		etkilesim_yazisi.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		etkilesim_yazisi.hide()
@@ -76,9 +71,6 @@ func _process(delta: float) -> void:
 		
 	var oncelikli_yazi_aktif = false
 	
-	# ====================================================================
-	# 1. GPS İLE MESAFE ÖLÇÜMÜ (Yurt Kapısı Tespiti)
-	# ====================================================================
 	var yurt_kapilari = get_tree().get_nodes_in_group("YurtKapisi")
 	if yurt_kapilari.size() > 0:
 		var kapi = yurt_kapilari[0]
@@ -104,9 +96,6 @@ func _process(delta: float) -> void:
 					else:
 						get_tree().change_scene_to_file("res://oda.tscn")
 
-	# ====================================================================
-	# 2. RAYCAST ETKİLEŞİMİ (Diğer Nesneler)
-	# ====================================================================
 	if not oncelikli_yazi_aktif and is_instance_valid(raycast) and raycast.is_colliding():
 		var bakilan_obje = raycast.get_collider()
 		
@@ -125,23 +114,29 @@ func _process(delta: float) -> void:
 				kapiyla_etkilesime_gir(bakilan_obje)
 
 		elif is_instance_valid(bakilan_obje) and bakilan_obje.is_in_group("Girilmez"):
-			# 2. BİRİNCİ BUTONUN GÖREVLERİNİ VE ALTYAZISINI VER
 			if is_instance_valid(get_node_or_null("/root/GorevArayuzu")):
 				get_node("/root/GorevArayuzu").visible = true
 				get_node("/root/GorevArayuzu")._on_gorev_guncellendi("Görev: Kütüphaneyi araştır")
 				
 				if get_node("/root/GorevArayuzu").has_method("altyazi_goster"):
-					# Yazıyı 4 saniye ekranda tutuyoruz ki adam olayı anlasın
 					get_node("/root/GorevArayuzu").altyazi_goster("Kütüphaneye gireceğim. En fazla ne olabilir ki?", 4.0)
 
-				# YENİ EKLENEN: KÜTÜPHANEYE GİRİNCE EĞİLME BİLGİSİ
 				if get_node("/root/GorevArayuzu").has_method("ekrana_bilgi_bas"):
-					# Yazı ve görev çıktıktan 3.5 saniye sonra bilgiyi sağdan kaydırarak getir
 					get_tree().create_timer(3.5).timeout.connect(func():
 						get_node("/root/GorevArayuzu").ekrana_bilgi_bas("Sessiz Ol...\nEğilmek için [CTRL]")
 					)
+		
+		elif is_instance_valid(bakilan_obje) and bakilan_obje.is_in_group("Keypad"):
+			if is_instance_valid(etkilesim_yazisi):
+				etkilesim_yazisi.text = "Şifre Gir [E]"
+				etkilesim_yazisi.visible = true
+			if Input.is_action_just_pressed("interact"):
+				if bakilan_obje.has_method("etkilesime_gir"):
+					bakilan_obje.etkilesime_gir()
+				elif is_instance_valid(bakilan_obje.get_parent()) and bakilan_obje.get_parent().has_method("etkilesime_gir"):
+					bakilan_obje.get_parent().etkilesime_gir()
 
-# Fener Titreme ve Kamera Efektleri
+
 func update_flashlight(delta: float) -> void:
 	if is_instance_valid(isik) and is_instance_valid(camera):
 		isik.global_position = camera.global_position
@@ -168,7 +163,6 @@ func feneri_yerden_al(obje):
 		if is_instance_valid(OyunVerisi):
 			OyunVerisi.fenere_sahip_mi = true
 			
-		# YENİ EKLENEN: Feneri alınca Görevi "Koridora Çık" yap
 		if is_instance_valid(GorevArayuzu):
 			GorevArayuzu._on_gorev_guncellendi("Görev: Koridora Çık")
 

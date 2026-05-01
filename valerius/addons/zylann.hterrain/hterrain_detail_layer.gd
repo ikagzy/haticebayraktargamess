@@ -1,33 +1,20 @@
 @tool
 extends Node3D
 
-# Child node of the terrain, used to render numerous small objects on the ground
-# such as grass or rocks. They do so by using a texture covering the terrain
-# (a "detail map"), which is found in the terrain data itself.
-# A terrain can have multiple detail maps, and you can choose which one will be
-# used with `layer_index`.
-# Details use instanced rendering within their own chunk grid, scattered around
-# the player. Importantly, the position and rotation of this node don't matter,
-# and they also do NOT scale with map scale. Indeed, scaling the heightmap
-# doesn't mean we want to scale grass blades (which is not a use case I know of).
 
 const HTerrainData = preload("./hterrain_data.gd")
 const HT_DirectMultiMeshInstance = preload("./util/direct_multimesh_instance.gd")
 const HT_DirectMeshInstance = preload("./util/direct_mesh_instance.gd")
 const HT_Util = preload("./util/util.gd")
 const HT_Logger = preload("./util/logger.gd")
-# TODO Can't preload because it causes the plugin to fail loading if assets aren't imported
 const DEFAULT_MESH_PATH = "res://addons/zylann.hterrain/models/grass_quad.obj"
 
-# Cannot use `const` because `HTerrain` depends on the current script
 var HTerrain = load("res://addons/zylann.hterrain/hterrain.gd")
 
 const CHUNK_SIZE = 32
 const DEFAULT_SHADER_PATH = "res://addons/zylann.hterrain/shaders/detail.gdshader"
 const DEBUG = false
 
-# These parameters are considered built-in,
-# they are managed internally so they are not directly exposed
 const _API_SHADER_PARAMS = {
 	"u_terrain_heightmap": true,
 	"u_terrain_detailmap": true,
@@ -40,8 +27,6 @@ const _API_SHADER_PARAMS = {
 	"u_ambient_wind": true
 }
 
-# TODO Should be renamed `map_index`
-# Which detail map this layer will use
 @export var layer_index := 0:
 	get:
 		return layer_index
@@ -54,7 +39,6 @@ const _API_SHADER_PARAMS = {
 			HT_Util.update_configuration_warning(self, false)
 
 
-# Texture to render on the detail meshes.
 @export var texture : Texture:
 	get:
 		return texture
@@ -63,9 +47,6 @@ const _API_SHADER_PARAMS = {
 		_material.set_shader_parameter("u_albedo_alpha", tex)
 
 
-# How far detail meshes can be seen.
-# TODO Improve speed of _get_chunk_aabb() so we can increase the limit
-# See https://github.com/Zylann/godot_heightmap_plugin/issues/155
 @export_range(1.0, 500.0) var view_distance := 100.0:
 	get:
 		return view_distance
@@ -77,7 +58,6 @@ const _API_SHADER_PARAMS = {
 			_update_material()
 
 
-# Custom shader to replace the default one.
 @export var custom_shader : Shader:
 	get:
 		return custom_shader
@@ -91,12 +71,10 @@ const _API_SHADER_PARAMS = {
 			_material.shader = custom_shader
 
 			if Engine.is_editor_hint():
-				# Ability to fork default shader
 				if shader.code == "":
 					shader.code = _default_shader.code
 
 
-# Density modifier, to make more or less detail meshes appear overall.
 @export_range(0, 10) var density := 4.0:
 	get:
 		return density
@@ -108,9 +86,6 @@ const _API_SHADER_PARAMS = {
 		_multimesh_need_regen = true
 
 
-# Mesh used for every detail instance (for example, every grass patch).
-# If not assigned, an internal quad mesh will be used.
-# I would have called it `mesh` but that's too broad and conflicts with local vars ._.
 @export var instance_mesh : Mesh:
 	get:
 		return instance_mesh
@@ -121,8 +96,6 @@ const _API_SHADER_PARAMS = {
 		_multimesh.mesh = _get_used_mesh()
 
 
-# Exposes rendering layers, similar to `VisualInstance.layers`
-# (IMO this annotation is not specific enough, something might be off...)
 @export_flags_3d_render var render_layers := 1:
 	get:
 		return render_layers
@@ -133,9 +106,6 @@ const _API_SHADER_PARAMS = {
 			chunk.set_layer_mask(mask)
 
 
-# Exposes shadow casting setting.
-# Possible values are the same as the enum `GeometryInstance.SHADOW_CASTING_SETTING_*`.
-# TODO Casting to `int` should not be necessary! Had to do it otherwise GDScript complains...
 @export_enum("Off", "On", "DoubleSided", "ShadowsOnly") \
 	var cast_shadow := int(GeometryInstance3D.SHADOW_CASTING_SETTING_ON):
 	get:
@@ -152,14 +122,12 @@ const _API_SHADER_PARAMS = {
 var _material: ShaderMaterial = null
 var _default_shader: Shader = null
 
-# Vector2 => DirectMultiMeshInstance
 var _chunks := {}
 
 var _multimesh: MultiMesh
 var _multimesh_need_regen = true
 var _multimesh_instance_pool := []
 var _ambient_wind_time := 0.0
-#var _auto_pick_index_on_enter_tree := Engine.is_editor_hint()
 var _debug_wirecube_mesh: Mesh = null
 var _debug_cubes := []
 var _logger := HT_Logger.get_for(self)
@@ -172,9 +140,6 @@ func _init():
 	
 	_multimesh = MultiMesh.new()
 	_multimesh.transform_format = MultiMesh.TRANSFORM_3D
-	# TODO Godot 3 had the option to specify color format, but Godot 4 no longer does...
-	# I only need 8-bit, but Godot 4 uses 32-bit components colors...
-	#_multimesh.color_format = MultiMesh.COLOR_8BIT
 	_multimesh.use_colors = true
 
 
@@ -183,9 +148,6 @@ func _enter_tree():
 	if terrain != null:
 		terrain.transform_changed.connect(_on_terrain_transform_changed)
 
-		#if _auto_pick_index_on_enter_tree:
-		#	_auto_pick_index_on_enter_tree = false
-		#	_auto_pick_index()
 
 		terrain._internal_add_detail_layer(self)
 
@@ -203,39 +165,9 @@ func _exit_tree():
 	_chunks.clear()
 
 
-#func _auto_pick_index():
-#	# Automatically pick an unused layer
-#
-#	var terrain = _get_terrain()
-#	if terrain == null:
-#		return
-#
-#	var terrain_data = terrain.get_data()
-#	if terrain_data == null or terrain_data.is_locked():
-#		return
-#
-#	var auto_index := layer_index
-#	var others = terrain.get_detail_layers()
-#
-#	if len(others) > 0:
-#		var used_layers := []
-#		for other in others:
-#			used_layers.append(other.layer_index)
-#		used_layers.sort()
-#
-#		auto_index = used_layers[-1]
-#		for i in range(1, len(used_layers)):
-#			if used_layers[i - 1] - used_layers[i] > 1:
-#				# Found a hole, take it instead
-#				auto_index = used_layers[i] - 1
-#				break
-#
-#	print("Auto picked ", auto_index, " ")
-#	layer_index = auto_index
 
 
 func _get_property_list() -> Array:
-	# Dynamic properties coming from the shader
 	var props := []
 	if _material != null:
 		var shader_params = RenderingServer.get_shader_parameter_list(_material.shader.get_rid())
@@ -278,62 +210,50 @@ func _get_terrain():
 	return null
 
 
-# Compat
 func set_texture(tex: Texture):
 	texture = tex
 
 
-# Compat
 func get_texture() -> Texture:
 	return texture
 
 
-# Compat
 func set_layer_index(v: int):
 	layer_index = v
 
 
-# Compat
 func get_layer_index() -> int:
 	return layer_index
 
 
-# Compat
 func set_view_distance(v: float):
 	return view_distance
 
 
-# Compat
 func get_view_distance() -> float:
 	return view_distance
 
 
-# Compat
 func set_custom_shader(shader: Shader):
 	custom_shader = shader
 
 
-# Compat
 func get_custom_shader() -> Shader:
 	return custom_shader
 
 
-# Compat
 func set_instance_mesh(p_mesh: Mesh):
 	instance_mesh = p_mesh
 
 
-# Compat
 func get_instance_mesh() -> Mesh:
 	return instance_mesh
 
 
-# Compat
 func set_render_layer_mask(mask: int):
 	render_layers = mask
 
 
-# Compat
 func get_render_layer_mask() -> int:
 	return render_layers
 
@@ -347,22 +267,16 @@ func _get_used_mesh() -> Mesh:
 	return instance_mesh
 
 
-# Compat
 func set_density(v: float):
 	density = v
 
 
-# Compat
 func get_density() -> float:
 	return density
 
 
-# Updates texture references and values that come from the terrain itself.
-# This is typically used when maps are being swapped around in terrain data,
-# so we can restore texture references that may break.
 func update_material():
 	_update_material()
-	# Formerly update_ambient_wind, reset
 
 
 func _notification(what: int):
@@ -377,8 +291,6 @@ func _notification(what: int):
 			_set_visible(visible)
 			
 		NOTIFICATION_PREDELETE:
-			# Force DirectMeshInstances to be destroyed before the material.
-			# Otherwise it causes RenderingServer errors...
 			_chunks.clear()
 			_multimesh_instance_pool.clear()
 
@@ -405,11 +317,9 @@ func _on_terrain_transform_changed(gt: Transform3D):
 	
 	var terrain_transform : Transform3D = terrain.get_internal_transform()
 
-	# Update AABBs and transforms, because scale might have changed
 	for k in _chunks:
 		var mmi = _chunks[k]
 		var aabb = _get_chunk_aabb(terrain, Vector3(k.x * CHUNK_SIZE, 0, k.y * CHUNK_SIZE))
-		# Nullify XZ translation because that's done by transform already
 		aabb.position.x = 0
 		aabb.position.z = 0
 		mmi.set_aabb(aabb)
@@ -425,13 +335,10 @@ func process(delta: float, viewer_pos: Vector3):
 	if _multimesh_need_regen:
 		_regen_multimesh()
 		_multimesh_need_regen = false
-		# Crash workaround for Godot 3.1
-		# See https://github.com/godotengine/godot/issues/32500
 		for k in _chunks:
 			var mmi = _chunks[k]
 			mmi.set_multimesh(_multimesh)
 
-	# Detail layers are unaffected by ground map_scale
 	var terrain_transform_without_map_scale : Transform3D = \
 		terrain.get_internal_transform_unscaled()
 	var local_viewer_pos := terrain_transform_without_map_scale.affine_inverse() * viewer_pos
@@ -489,16 +396,12 @@ func process(delta: float, viewer_pos: Vector3):
 	for k in to_recycle:
 		_recycle_chunk(k)
 
-	# Update time manually, so we can accelerate the animation when strength is increased,
-	# without causing phase jumps (which would be the case if we just scaled TIME)
 	var ambient_wind_frequency = 1.0 + 3.0 * terrain.ambient_wind
 	_ambient_wind_time += delta * ambient_wind_frequency
 	var awp = _get_ambient_wind_params()
 	_material.set_shader_parameter("u_ambient_wind", awp)
 
 
-# Gets local-space AABB of a detail chunk.
-# This only apply map_scale in Y, because details are not affected by X and Z map scale.
 func _get_chunk_aabb(terrain, lpos: Vector3):
 	var terrain_scale = terrain.map_scale
 	var terrain_data = terrain.get_data()
@@ -517,7 +420,6 @@ func _get_chunk_aabb(terrain, lpos: Vector3):
 
 func _get_chunk_transform(terrain_transform: Transform3D, cx: int, cz: int) -> Transform3D:
 	var lpos := Vector3(cx, 0, cz) * CHUNK_SIZE
-	# `terrain_transform` should be the terrain's internal transform, without `map_scale`.
 	var trans := Transform3D(
 		terrain_transform.basis,
 		terrain_transform.origin + terrain_transform.basis * lpos)
@@ -561,12 +463,10 @@ func _get_ambient_wind_params() -> Vector2:
 	var terrain = _get_terrain()
 	if terrain != null:
 		aw = terrain.ambient_wind
-	# amplitude, time
 	return Vector2(aw, _ambient_wind_time)
 
 
 func _update_material():
-	# Sets API shader properties. Custom properties are assumed to be set already
 	_logger.debug("Updating detail layer material")
 
 	var terrain_data = null
@@ -578,9 +478,6 @@ func _update_material():
 		var gt = terrain.get_internal_transform()
 		it = gt.affine_inverse()
 		terrain_data = terrain.get_data()
-		# This is needed to properly transform normals if the terrain is scaled.
-		# However we don't want to pick up rotation because it's already factored in the instance
-		#normal_basis = gt.basis.inverse().transposed()
 		normal_basis = Basis().scaled(terrain.map_scale).inverse().transposed()
 
 	var mat = _material
@@ -630,16 +527,12 @@ func _add_debug_cube(terrain: Node3D, aabb: AABB):
 	var debug_cube := HT_DirectMeshInstance.new()
 	debug_cube.set_mesh(_debug_wirecube_mesh)
 	debug_cube.set_world(world)
-	#aabb.position.y += 0.2*randf()
 	debug_cube.set_transform(Transform3D(Basis().scaled(aabb.size), aabb.position))
 
 	_debug_cubes.append(debug_cube)
 
 
 func _regen_multimesh():
-	# We modify the existing multimesh instead of replacing it.
-	# DirectMultiMeshInstance does not keep a strong reference to them,
-	# so replacing would break pooled instances.
 	_generate_multimesh(CHUNK_SIZE, density, _get_used_mesh(), _multimesh)
 
 
@@ -682,12 +575,10 @@ func _get_configuration_warnings() -> PackedStringArray:
 	return warnings
 
 
-# Compat
 func set_cast_shadow(option: int):
 	cast_shadow = option
 
 
-# Compat
 func get_cast_shadow() -> int:
 	return cast_shadow
 
@@ -697,7 +588,6 @@ static func _generate_multimesh(resolution: int, density: float, mesh: Mesh, mul
 	
 	var position_randomness := 0.5
 	var scale_randomness := 0.0
-	#var color_randomness = 0.5
 
 	var cell_count := resolution * resolution
 	var idensity := int(density)
@@ -707,7 +597,6 @@ static func _generate_multimesh(resolution: int, density: float, mesh: Mesh, mul
 	multimesh.instance_count = total_instance_count
 	multimesh.mesh = mesh
 
-	# First pass ensures uniform spread
 	var i := 0
 	for z in resolution:
 		for x in resolution:
@@ -722,7 +611,6 @@ static func _generate_multimesh(resolution: int, density: float, mesh: Mesh, mul
 					Transform3D(_get_random_instance_basis(scale_randomness), pos))
 				i += 1
 	
-	# Second pass adds the rest
 	for j in random_instance_count:
 		var pos = Vector3(randf_range(0, resolution), 0, randf_range(0, resolution))
 		multimesh.set_instance_color(i, Color(1, 1, 1))

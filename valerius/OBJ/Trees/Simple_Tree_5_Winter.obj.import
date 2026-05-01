@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bhr65o52n57ha"
+path="res://.godot/imported/Simple_Tree_5_Winter.obj-227b8cb516d24a66a6dd5f39d2d854ab.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Simple_Tree_5_Winter.obj-227b8cb516d24a66a6dd5f39d2d854ab.mesh"]
+
+source_file="res://OBJ/Trees/Simple_Tree_5_Winter.obj"
+dest_files=["res://.godot/imported/Simple_Tree_5_Winter.obj-227b8cb516d24a66a6dd5f39d2d854ab.mesh", "res://.godot/imported/Simple_Tree_5_Winter.obj-227b8cb516d24a66a6dd5f39d2d854ab.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

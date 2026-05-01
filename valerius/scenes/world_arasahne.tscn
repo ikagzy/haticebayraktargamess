@@ -24,14 +24,16 @@
 [ext_resource type="ArrayMesh" uid="uid://bb2bcgoldbakd" path="res://models/crypt/road_corner.obj" id="21_5gpby"]
 [ext_resource type="ArrayMesh" uid="uid://dieaxt8owf75r" path="res://models/KayKit_Forest_Nature_Pack_1.0_FREE/Assets/obj/Rock_1_D_Color1.obj" id="22_x0kxq"]
 [ext_resource type="ArrayMesh" uid="uid://c8sh1nd3yrxnp" path="res://models/crypt/watertower.obj" id="23_haxym"]
-[ext_resource type="Texture2D" uid="uid://cq2srl7uq6kuw" path="res://assets/forest/textures/color_g.png" id="24_aqihw"]
-[ext_resource type="ArrayMesh" uid="uid://b52y01u6fgv07" path="res://assets/forest/textures/low poly forest 1.obj" id="25_o8af8"]
+[ext_resource type="Texture2D" uid="uid://cq2srl7uq6kuw" path="res://forest/textures/color_g.png" id="24_aqihw"]
+[ext_resource type="ArrayMesh" uid="uid://b52y01u6fgv07" path="res://forest/textures/low poly forest 1.obj" id="25_o8af8"]
 [ext_resource type="PackedScene" uid="uid://duk3ewm10gp4l" path="res://models/Doors and Props/BlendFIles/EntranceDoor.blend" id="26_m8xfs"]
 [ext_resource type="PackedScene" uid="uid://dg7xp0svoedmk" path="res://models/Doors and Props/BlendFIles/DoubleDoor.blend" id="27_ltoiu"]
 [ext_resource type="FontFile" uid="uid://cncxy5prw3iw4" path="res://Horizon.otf" id="28_kmg2t"]
 [ext_resource type="PackedScene" uid="uid://csar4pirahlsa" path="res://models/Low Poly Furniture/Windows/Window B.fbx" id="29_h5vt1"]
 [ext_resource type="PackedScene" uid="uid://t7f7lc8h1od6" path="res://addons/quaternius simple nature pack/static bodies/tree_3.tscn" id="30_eey5a"]
 [ext_resource type="FontFile" uid="uid://c5d5ry2nva7at" path="res://Montserrat-VariableFont_wght.ttf" id="31_1klrm"]
+[ext_resource type="AudioStream" uid="uid://qvrc3krq0idt" path="res://SESLER/freesound_community-concrete-footsteps-6752.wav" id="31_ixfc5"]
+[ext_resource type="AudioStream" uid="uid://7xe26llh6y0g" path="res://seslerlagardas/soundreality-whoosh-scary-cumb-243131.mp3" id="32_bjc8w"]
 [ext_resource type="PackedScene" uid="uid://cdx067p4hl57e" path="res://standing_idle.tscn" id="33_ixfc5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rj7yd"]
@@ -480,6 +482,37 @@ tracks/7/keys = {
 "update": 0,
 "values": [Vector3(0, -0.26179945, 0), Vector3(0.12024822, -0.26374894, -0.03238228)]
 }
+tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AnimationPlayer/AudioStreamPlayer")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"clips": [{
+"end_offset": 57.980923,
+"start_offset": 0.0,
+"stream": ExtResource("31_ixfc5")
+}, {
+"end_offset": 59.71258,
+"start_offset": 0.0,
+"stream": ExtResource("31_ixfc5")
+}, {
+"end_offset": 59.71258,
+"start_offset": 0.0,
+"stream": ExtResource("31_ixfc5")
+}, {
+"end_offset": 59.71258,
+"start_offset": 0.0,
+"stream": ExtResource("31_ixfc5")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.39526996,
+"stream": ExtResource("32_bjc8w")
+}],
+"times": PackedFloat32Array(0.04925713, 4.3067603, 5.046609, 5.7781854, 8.784888)
+}
+tracks/8/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1klrm"]
 _data = {

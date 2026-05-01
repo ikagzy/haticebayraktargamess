@@ -1,18 +1,12 @@
 @tool
 
-# Brush properties (shape, transform, timing and opacity).
-# Other attributes like color, height or texture index are tool-specific,
-# while brush properties apply to all of them.
-# This is separate from Painter because it could apply to multiple Painters at once.
 
 const HT_Errors = preload("../../util/errors.gd")
 const HT_Painter = preload("./painter.gd")
 
 const SHAPES_DIR = "addons/zylann.hterrain/tools/brush/shapes"
 const DEFAULT_BRUSH_TEXTURE_PATH = SHAPES_DIR + "/round2.exr"
-# Reasonable size for sliders to be usable
 const MAX_SIZE_FOR_SLIDERS = 500
-# Absolute size limit. Terrains can't be larger than that, and it will be very slow to paint
 const MAX_SIZE = 4000
 
 signal size_changed(new_size)
@@ -25,10 +19,8 @@ var _random_rotation := false
 var _pressure_enabled := false
 var _pressure_over_scale := 0.5
 var _pressure_over_opacity := 0.5
-# TODO Rename stamp_*?
 var _frequency_distance := 0.0
 var _frequency_time_ms := 0
-# Array of greyscale textures
 var _shapes : Array[Texture2D] = []
 
 var _shape_index := 0
@@ -150,10 +142,6 @@ static func load_shape_from_image_file(fpath: String, logger, retries := 1) -> T
 	var err := im.load(fpath)
 	if err != OK:
 		if retries > 0:
-			# TODO There is a bug with Godot randomly being unable to load images.
-			# See https://github.com/Zylann/godot_heightmap_plugin/issues/219
-			# Attempting to workaround this by retrying (I suspect it's because of non-initialized
-			# variable in Godot's C++ code...)
 			logger.error("Could not load image at '{0}', error {1}. Retrying..." \
 				.format([fpath, HT_Errors.get_message(err)]))
 			return load_shape_from_image_file(fpath, logger, retries - 1)
@@ -165,13 +153,9 @@ static func load_shape_from_image_file(fpath: String, logger, retries := 1) -> T
 	return tex
 
 
-# Call this while handling mouse or pen input.
-# If it returns false, painting should not run.
 func configure_paint_input(painters: Array[HT_Painter], position: Vector2, pressure: float) -> bool:
 	assert(len(_shapes) != 0)
 	
-	# DEBUG
-	#pressure = 0.5 + 0.5 * sin(OS.get_ticks_msec() / 200.0)
 	
 	if position.distance_to(_prev_position) < _frequency_distance:
 		return false
@@ -199,7 +183,6 @@ func configure_paint_input(painters: Array[HT_Painter], position: Vector2, press
 			painter.set_brush_scale(1.0)
 			painter.set_brush_opacity(_opacity)
 		
-		#painter.paint_input(position)
 
 	if _shape_cycling_enabled:
 		_shape_index += 1
@@ -209,7 +192,6 @@ func configure_paint_input(painters: Array[HT_Painter], position: Vector2, press
 	return true
 
 
-# Call this when the user releases the pen or mouse button
 func on_paint_end():
 	_prev_position = Vector2(-999, -999)
 	_prev_time_ms = 0

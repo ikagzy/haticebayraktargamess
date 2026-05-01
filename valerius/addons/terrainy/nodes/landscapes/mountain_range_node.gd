@@ -4,12 +4,6 @@ extends LandscapeNode
 
 const LandscapeNode = preload("res://addons/terrainy/nodes/landscapes/landscape_node.gd")
 
-## A mountain range terrain feature
-##
-## TIP: Mountains can appear very spiky by default. Try using the Modifiers:
-## - Set "Smoothing" to MEDIUM or HEAVY for more natural-looking peaks
-## - Adjust "Smoothing Radius" to 2.0-4.0 for best results
-## - Enable "Terracing" with 8-12 levels for a layered mountain effect
 
 @export var ridge_sharpness: float = 0.5:
 	set(value):
@@ -47,7 +41,6 @@ func get_height_at(world_pos: Vector3) -> float:
 	var local_pos = to_local(world_pos)
 	return get_height_at_safe(world_pos, local_pos)
 
-## Thread-safe version using pre-computed local position
 func get_height_at_safe(world_pos: Vector3, local_pos: Vector3) -> float:
 	var distance_2d = Vector2(local_pos.x, local_pos.z).length()
 	
@@ -56,25 +49,20 @@ func get_height_at_safe(world_pos: Vector3, local_pos: Vector3) -> float:
 	if distance_2d >= radius:
 		return 0.0
 	
-	# Distance perpendicular to ridge
 	var perpendicular = Vector2(-direction.y, direction.x)
 	var lateral_distance = abs(Vector2(local_pos.x, local_pos.z).dot(perpendicular))
 	
-	# Along ridge for peak variation
 	var along_ridge = Vector2(local_pos.x, local_pos.z).dot(direction)
 	
-	# Base ridge height profile
 	var ridge_falloff = 1.0 - pow(lateral_distance / radius, ridge_sharpness)
 	ridge_falloff = max(0.0, ridge_falloff)
 	
 	var result_height = height * ridge_falloff
 	
-	# Vary height along ridge
 	if peak_noise:
 		var peak_variation = peak_noise.get_noise_1d(along_ridge)
 		result_height *= 0.7 + peak_variation * 0.3
 	
-	# Add detail using world coordinates (FastNoiseLite is thread-safe)
 	if detail_noise:
 		var detail = detail_noise.get_noise_2d(world_pos.x, world_pos.z)
 		result_height += result_height * detail * 0.2

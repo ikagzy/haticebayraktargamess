@@ -20,11 +20,8 @@ func _init(attached_node: Node, initial_layer: int, initial_mask: int):
 	PhysicsServer3D.body_set_collision_layer(_body_rid, initial_layer)
 	PhysicsServer3D.body_set_collision_mask(_body_rid, initial_mask)
 
-	# TODO This is an attempt to workaround https://github.com/godotengine/godot/issues/24390
 	PhysicsServer3D.body_set_ray_pickable(_body_rid, false)
 
-	# Assigng dummy data
-	# TODO This is a workaround to https://github.com/godotengine/godot/issues/25304
 	PhysicsServer3D.shape_set_data(_shape_rid, {
 		"width": 2,
 		"depth": 2,
@@ -35,7 +32,6 @@ func _init(attached_node: Node, initial_layer: int, initial_mask: int):
 
 	PhysicsServer3D.body_add_shape(_body_rid, _shape_rid)
 	
-	# This makes collision hits report the provided object as `collider`
 	PhysicsServer3D.body_attach_object_instance_id(_body_rid, attached_node.get_instance_id())
 
 
@@ -51,7 +47,6 @@ func _notification(what: int):
 	if what == NOTIFICATION_PREDELETE:
 		_logger.debug("Destroy HTerrainCollider")
 		PhysicsServer3D.free_rid(_body_rid)
-		# The shape needs to be freed after the body, otherwise the engine crashes
 		PhysicsServer3D.free_rid(_shape_rid)
 
 
@@ -97,22 +92,13 @@ func _update_transform(aabb=null):
 		_logger.debug("HTerrainCollider: terrain data not set yet")
 		return
 
-#	if aabb == null:
-#		aabb = _terrain_data.get_aabb()
 
 	var width := _terrain_data.get_resolution()
 	var depth := _terrain_data.get_resolution()
-	#var height = aabb.size.y
 
-	#_terrain_transform
 
 	var trans := Transform3D(Basis(), 0.5 * Vector3(width - 1, 0, depth - 1))
 	
-	# And then apply the terrain transform
 	trans = _terrain_transform * trans
 
 	PhysicsServer3D.body_set_state(_body_rid, PhysicsServer3D.BODY_STATE_TRANSFORM, trans)
-	# Cannot use shape transform when scaling is involved,
-	# because Godot is undoing that scale for some reason.
-	# See https://github.com/Zylann/godot_heightmap_plugin/issues/70
-	#PhysicsServer.body_set_shape_transform(_body_rid, 0, trans)

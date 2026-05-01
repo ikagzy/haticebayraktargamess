@@ -1,5 +1,3 @@
-# Copyright © 2025 Cory Petkovsek, Roope Palmroos, and Contributors.
-# Bake LOD Dialog for Terrain3D
 @tool
 extends ConfirmationDialog
 
@@ -19,9 +17,6 @@ func _on_about_to_popup() -> void:
 
 
 func _on_visibility_changed() -> void:
-	# Change text on the autowrap label only when the popup is visible.
-	# Works around Godot issue #47005:
-	# https://github.com/godotengine/godot/issues/47005
 	if visible:
 		%DescriptionLabel.text = description
 

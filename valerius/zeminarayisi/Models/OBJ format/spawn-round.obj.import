@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://r8c1chfetsvs"
+path="res://.godot/imported/spawn-round.obj-ccec4d06b6aac54e09f3104c32dd1766.mesh"
+
+[deps]
+
+files=["res://.godot/imported/spawn-round.obj-ccec4d06b6aac54e09f3104c32dd1766.mesh"]
+
+source_file="res://zeminarayisi/Models/OBJ format/spawn-round.obj"
+dest_files=["res://.godot/imported/spawn-round.obj-ccec4d06b6aac54e09f3104c32dd1766.mesh", "res://.godot/imported/spawn-round.obj-ccec4d06b6aac54e09f3104c32dd1766.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

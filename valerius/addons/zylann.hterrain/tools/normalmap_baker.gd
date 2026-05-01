@@ -1,7 +1,4 @@
 
-# Bakes normals asynchronously in the editor as the heightmap gets modified.
-# It uses the heightmap texture to change the normalmap image, which is then uploaded like an edit.
-# This is probably not a nice method GPU-wise, but it's way faster than GDScript.
 
 @tool
 extends Node
@@ -27,7 +24,6 @@ func _init():
 	_viewport.size = Vector2(VIEWPORT_SIZE + 2, VIEWPORT_SIZE + 2)
 	_viewport.render_target_update_mode = SubViewport.UPDATE_DISABLED
 	_viewport.render_target_clear_mode = SubViewport.CLEAR_MODE_ALWAYS
-	# We only render 2D, but we don't want the parent world to interfere
 	_viewport.world_3d = World3D.new()
 	_viewport.own_world_3d = true
 	add_child(_viewport)
@@ -71,11 +67,9 @@ func _on_terrain_data_map_changed(maptype: int, index: int):
 
 
 func _on_terrain_data_resolution_changed():
-	# TODO Workaround issue https://github.com/godotengine/godot/issues/24463
 	_ci.queue_redraw()
 
 
-# TODO Use Vector2i
 func request_tiles_in_region(min_pos: Vector2, size: Vector2):
 	assert(is_inside_tree())
 	assert(_terrain_data != null)
@@ -97,7 +91,6 @@ func request_tiles_in_region(min_pos: Vector2, size: Vector2):
 			request_tile(Vector2(x, y))
 
 
-# TODO Use Vector2i
 func request_tile(tpos: Vector2):
 	assert(tpos == tpos.round())
 	if _pending_tiles_grid.has(tpos):
@@ -118,7 +111,6 @@ func _process(delta):
 		var dst = _terrain_data.get_image(HTerrainData.CHANNEL_NORMAL)
 		
 		src.convert(dst.get_format())
-		#src.save_png(str("test_", _processing_tile.x, "_", _processing_tile.y, ".png"))
 		var pos = _processing_tile * VIEWPORT_SIZE
 		var w = src.get_width() - 1
 		var h = src.get_height() - 1
@@ -132,8 +124,6 @@ func _process(delta):
 	if _has_pending_tiles():
 		var tpos = _pending_tiles_queue[-1]
 		_pending_tiles_queue.pop_back()
-		# The sprite will be much larger than the viewport due to the size of the heightmap.
-		# We move it around so the part inside the viewport will correspond to the tile.
 		_ci.position = -VIEWPORT_SIZE * tpos + Vector2(1, 1)
 		_viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
 		_processing_tile = tpos

@@ -38,20 +38,19 @@ func _physics_process(p_delta) -> void:
 	move_and_slide()
 
 
-# Returns the input vector relative to the camera. Forward is always the direction the camera is facing
 func get_camera_relative_input() -> Vector3:
 	var input_dir: Vector3 = Vector3.ZERO
-	if Input.is_key_pressed(KEY_A): # Left
+	if Input.is_key_pressed(KEY_A):
 		input_dir -= %Camera3D.global_transform.basis.x
-	if Input.is_key_pressed(KEY_D): # Right
+	if Input.is_key_pressed(KEY_D):
 		input_dir += %Camera3D.global_transform.basis.x
-	if Input.is_key_pressed(KEY_W): # Forward
+	if Input.is_key_pressed(KEY_W):
 		input_dir -= %Camera3D.global_transform.basis.z
-	if Input.is_key_pressed(KEY_S): # Backward
+	if Input.is_key_pressed(KEY_S):
 		input_dir += %Camera3D.global_transform.basis.z
-	if Input.is_key_pressed(KEY_E) or Input.is_key_pressed(KEY_SPACE): # Up
+	if Input.is_key_pressed(KEY_E) or Input.is_key_pressed(KEY_SPACE):
 		velocity.y += JUMP_SPEED + MOVE_SPEED*.016
-	if Input.is_key_pressed(KEY_Q): # Down
+	if Input.is_key_pressed(KEY_Q):
 		velocity.y -= JUMP_SPEED + MOVE_SPEED*.016
 	if Input.is_key_pressed(KEY_KP_ADD) or Input.is_key_pressed(KEY_EQUAL):
 		MOVE_SPEED = clamp(MOVE_SPEED + .5, 5, 9999)
@@ -76,6 +75,5 @@ func _input(p_event: InputEvent) -> void:
 			elif p_event.keycode == KEY_C:
 				collision_enabled = ! collision_enabled
 
-		# Else if up/down released
 		elif p_event.keycode in [ KEY_Q, KEY_E, KEY_SPACE ]:
 			velocity.y = 0

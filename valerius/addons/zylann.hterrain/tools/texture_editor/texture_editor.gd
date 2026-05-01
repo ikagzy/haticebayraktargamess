@@ -5,7 +5,6 @@ const HTerrain = preload("../../hterrain.gd")
 const HTerrainTextureSet = preload("../../hterrain_texture_set.gd")
 const HT_TextureList = preload("./texture_list.gd")
 const HT_Logger = preload("../../util/logger.gd")
-# TODO Can't preload because it causes the plugin to fail loading if assets aren't imported
 const EMPTY_ICON_TEXTURE_PATH = "res://addons/zylann.hterrain/tools/icons/empty.png"
 
 signal texture_selected(index)
@@ -29,7 +28,6 @@ func _ready():
 	if _empty_icon == null:
 		_logger.error(str("Failed to load empty icon ", EMPTY_ICON_TEXTURE_PATH))
 	
-	# Default amount, will be updated when a terrain is assigned
 	_textures_list.clear()
 	for i in range(4):
 		_textures_list.add_item(str(i), _empty_icon)

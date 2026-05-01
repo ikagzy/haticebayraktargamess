@@ -1,0 +1,217 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://MobileControls.gd" id="1_script"]
+[ext_resource type="FontFile" uid="uid://b857wkgpxyh1s" path="res://SpecialElite.ttf" id="2_font"]
+
+[node name="MobileControls" type="CanvasLayer"]
+layer = 100
+script = ExtResource("1_script")
+
+[node name="JoystickBase" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -260.0
+offset_right = 260.0
+offset_bottom = -40.0
+grow_vertical = 0
+mouse_filter = 1
+color = Color(1, 1, 1, 0.156863)
+
+[node name="JoystickHandle" type="ColorRect" parent="JoystickBase"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0.490196)
+
+[node name="Label" type="Label" parent="JoystickBase"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = -40.0
+offset_right = 50.0
+offset_bottom = -11.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_font")
+text = "HAREKET"
+horizontal_alignment = 1
+
+[node name="RunButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0.6)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -130.0
+offset_right = -30.0
+offset_bottom = -30.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 26
+text = "KOŞ"
+
+[node name="InteractButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0.6)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -310.0
+offset_top = -130.0
+offset_right = -180.0
+offset_bottom = -30.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 22
+text = "ETKİLEŞİM"
+
+[node name="FlashlightButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0.6)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -240.0
+offset_right = -30.0
+offset_bottom = -140.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 26
+text = "FENER"
+
+[node name="CrouchButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0.6)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -310.0
+offset_top = -240.0
+offset_right = -180.0
+offset_bottom = -140.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 26
+text = "EĞİL"
+
+[node name="PauseButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0.6)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -140.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = 85.0
+grow_horizontal = 0
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 22
+text = "MENÜ"
+
+[node name="QuestButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0.6)
+anchors_preset = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 140.0
+offset_bottom = 85.0
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 22
+text = "GÖREV"
+
+[node name="GraphicsToggleBtn" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0.6)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -280.0
+offset_top = 15.0
+offset_right = -155.0
+offset_bottom = 85.0
+grow_horizontal = 0
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 22
+text = "GRAFİK"
+
+[node name="GraphicsPanel" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -280.0
+offset_top = 95.0
+offset_right = -155.0
+offset_bottom = 260.0
+grow_horizontal = 0
+
+[node name="DusukBtn" type="Button" parent="GraphicsPanel"]
+modulate = Color(1, 1, 1, 0.6)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 20
+text = "DÜŞÜK"
+
+[node name="OrtaBtn" type="Button" parent="GraphicsPanel"]
+modulate = Color(1, 1, 1, 0.6)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 20
+text = "ORTA"
+
+[node name="YuksekBtn" type="Button" parent="GraphicsPanel"]
+modulate = Color(1, 1, 1, 0.6)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 20
+text = "YÜKSEK"
+
+[connection signal="button_down" from="RunButton" to="." method="_on_run_button_down"]
+[connection signal="button_up" from="RunButton" to="." method="_on_run_button_up"]
+[connection signal="pressed" from="InteractButton" to="." method="_on_interact_button_pressed"]
+[connection signal="pressed" from="FlashlightButton" to="." method="_on_flashlight_button_pressed"]
+[connection signal="button_down" from="CrouchButton" to="." method="_on_crouch_button_down"]
+[connection signal="button_up" from="CrouchButton" to="." method="_on_crouch_button_up"]
+[connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="QuestButton" to="." method="_on_quest_button_pressed"]
+[connection signal="pressed" from="GraphicsToggleBtn" to="." method="_on_grafik_toggle_pressed"]
+[connection signal="pressed" from="GraphicsPanel/DusukBtn" to="." method="_on_grafik_dusuk_pressed"]
+[connection signal="pressed" from="GraphicsPanel/OrtaBtn" to="." method="_on_grafik_orta_pressed"]
+[connection signal="pressed" from="GraphicsPanel/YuksekBtn" to="." method="_on_grafik_yuksek_pressed"]
+

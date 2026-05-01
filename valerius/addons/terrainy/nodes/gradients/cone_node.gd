@@ -4,7 +4,6 @@ extends GradientNode
 
 const GradientNode = preload("res://addons/terrainy/nodes/gradients/gradient_node.gd")
 
-## Sharp cone shape
 
 @export var sharpness: float = 1.0:
 	set(value):

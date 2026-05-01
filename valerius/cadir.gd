@@ -1,7 +1,5 @@
 extends Area3D
 
-# Çadır ve Sandık Etkileşimi
-# Marcus burada Yüzük (Ring) ve Çubuk (Wand) bulur.
 
 func _on_body_entered(body: Node3D):
 	if body.is_in_group("Player"):
@@ -57,9 +55,12 @@ func sandik_secimi_yapildi(canvas: CanvasLayer):
 	canvas.queue_free()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	get_tree().paused = false
-	GorevArayuzu._on_gorev_guncellendi("Görev: Terk Edilmiş Kaleye Git")
+	if is_instance_valid(GorevArayuzu):
+		GorevArayuzu._on_gorev_guncellendi("Görev: Terk Edilmiş Kaleye Git")
 	
 	if OyunVerisi.yuzuk_sahip:
-		GorevArayuzu.altyazi_goster("Marcus: 'Bu yüzük... İçindeki enerji beni kendine çekiyor sanki.'", 3.0)
+		if is_instance_valid(GorevArayuzu):
+			GorevArayuzu.altyazi_goster("Marcus: 'Bu yüzük... İçindeki enerji beni kendine çekiyor sanki.'", 3.0)
 	else:
-		GorevArayuzu.altyazi_goster("Marcus: 'Bu garip yüzüğe dokunmasam daha iyi...'", 3.0)
+		if is_instance_valid(GorevArayuzu):
+			GorevArayuzu.altyazi_goster("Marcus: 'Bu garip yüzüğe dokunmasam daha iyi...'", 3.0)

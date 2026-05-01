@@ -4,7 +4,6 @@ extends PrimitiveNode
 
 const PrimitiveNode = preload("res://addons/terrainy/nodes/primitives/primitive_node.gd")
 
-## A volcano terrain feature with crater at the peak
 
 @export var crater_radius_ratio: float = 0.2:
 	set(value):
@@ -25,7 +24,6 @@ func get_height_at(world_pos: Vector3) -> float:
 	var local_pos = to_local(world_pos)
 	return get_height_at_safe(world_pos, local_pos)
 
-## Thread-safe version using pre-computed local position
 func get_height_at_safe(world_pos: Vector3, local_pos: Vector3) -> float:
 	var distance_2d = Vector2(local_pos.x, local_pos.z).length()
 	
@@ -40,11 +38,9 @@ func get_height_at_safe(world_pos: Vector3, local_pos: Vector3) -> float:
 	var result_height = 0.0
 	
 	if distance_2d < crater_radius:
-		# Inside crater - depression from rim
 		var crater_t = distance_2d / crater_radius
 		result_height = height - (crater_depth * (1.0 - crater_t * crater_t))
 	else:
-		# Outer slopes
 		var slope_distance = (distance_2d - crater_radius) / (radius - crater_radius)
 		result_height = height * pow(1.0 - slope_distance, slope_concavity)
 	

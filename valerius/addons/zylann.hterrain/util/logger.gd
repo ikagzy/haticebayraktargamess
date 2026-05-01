@@ -25,7 +25,6 @@ class HT_LoggerVerbose extends HT_LoggerBase:
 
 
 static func get_for(owner: Object) -> HT_LoggerBase:
-	# Note: don't store the owner. If it's a Reference, it could create a cycle
 	var script : Script = owner.get_script()
 	var context := script.resource_path.get_file()
 	if OS.is_stdout_verbose():

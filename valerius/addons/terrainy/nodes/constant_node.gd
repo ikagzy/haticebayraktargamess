@@ -4,7 +4,6 @@ extends TerrainFeatureNode
 
 const TerrainFeatureNode = "res://addons/terrainy/nodes/terrain_feature_node.gd"
 
-## Constant flat height - useful as base layer
 
 @export var height: float = 5.0:
 	set(value):

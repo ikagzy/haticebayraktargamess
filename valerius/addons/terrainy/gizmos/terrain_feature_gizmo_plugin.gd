@@ -1,11 +1,9 @@
 @tool
 extends EditorNode3DGizmoPlugin
 
-## Gizmo plugin for TerrainFeatureNodes to visualize influence radius
 
 const TerrainFeatureNode = preload("res://addons/terrainy/nodes/terrain_feature_node.gd")
 
-# Gizmo color constants
 const GIZMO_COLOR_MAIN = Color(0.3, 0.8, 1.0, 0.6)
 const GIZMO_COLOR_FALLOFF = Color(0.8, 0.5, 0.2, 0.4)
 const GIZMO_COLOR_DIRECTION = Color(1.0, 0.3, 0.3, 0.8)
@@ -35,14 +33,12 @@ func _has_gizmo(node: Node3D) -> bool:
 	if not script:
 		return false
 	
-	# Check if this script extends TerrainFeatureNode
 	var base_script = script.get_base_script()
 	while base_script:
 		if base_script.resource_path == "res://addons/terrainy/nodes/terrain_feature_node.gd":
 			return true
 		base_script = base_script.get_base_script()
 	
-	# Also check if the script itself is TerrainFeatureNode
 	if script.resource_path == "res://addons/terrainy/nodes/terrain_feature_node.gd":
 		return true
 	
@@ -66,7 +62,6 @@ func _redraw(gizmo: EditorNode3DGizmo) -> void:
 	var size = node.influence_size
 	var segments = 64
 	
-	# Draw influence shape based on type
 	match node.influence_shape:
 		TerrainFeatureNode.InfluenceShape.CIRCLE:
 			_draw_circle(lines, size.x, segments)
@@ -86,13 +81,11 @@ func _redraw(gizmo: EditorNode3DGizmo) -> void:
 				var falloff_size = size * (1.0 - node.edge_falloff)
 				_draw_ellipse(falloff_lines, falloff_size, segments)
 	
-	# Add cross at center
 	lines.push_back(Vector3(-5, 0, 0))
 	lines.push_back(Vector3(5, 0, 0))
 	lines.push_back(Vector3(0, 0, -5))
 	lines.push_back(Vector3(0, 0, 5))
 	
-	# Draw direction arrow for gradient and landscape nodes
 	if "direction" in node:
 		var dir = node.direction as Vector2
 		var dir_3d = Vector3(dir.x, 0, dir.y).normalized()
@@ -100,12 +93,10 @@ func _redraw(gizmo: EditorNode3DGizmo) -> void:
 		var arrow_length = max_size * 0.7
 		var arrow_head_size = 10.0
 		
-		# Main arrow line
 		var arrow_end = dir_3d * arrow_length
 		direction_lines.push_back(Vector3.ZERO)
 		direction_lines.push_back(arrow_end)
 		
-		# Arrow head
 		var arrow_left = arrow_end - dir_3d * arrow_head_size + Vector3(-dir_3d.z, 0, dir_3d.x) * arrow_head_size * 0.5
 		var arrow_right = arrow_end - dir_3d * arrow_head_size + Vector3(dir_3d.z, 0, -dir_3d.x) * arrow_head_size * 0.5
 		direction_lines.push_back(arrow_end)
@@ -113,31 +104,26 @@ func _redraw(gizmo: EditorNode3DGizmo) -> void:
 		direction_lines.push_back(arrow_end)
 		direction_lines.push_back(arrow_right)
 		
-		# Draw perpendicular lines for gradients to show the gradient direction
 		if node is GradientNode:
 			var perp = Vector3(-dir_3d.z, 0, dir_3d.x)
 			var line_length = max_size * 0.5
 			direction_lines.push_back(arrow_end + perp * line_length)
 			direction_lines.push_back(arrow_end - perp * line_length)
 	
-	# Draw height visualization for primitives and gradients
 	if "height" in node:
 		var height_val = node.height
 		height_lines.push_back(Vector3.ZERO)
 		height_lines.push_back(Vector3(0, height_val, 0))
 		
-		# Add a small horizontal indicator at the height level
 		height_lines.push_back(Vector3(-5, height_val, 0))
 		height_lines.push_back(Vector3(5, height_val, 0))
 		height_lines.push_back(Vector3(0, height_val, -5))
 		height_lines.push_back(Vector3(0, height_val, 5))
 	
-	# For gradient nodes, draw both start and end height
 	if "start_height" in node and "end_height" in node:
 		var start_h = node.start_height
 		var end_h = node.end_height
 		
-		# Start height (at the back of the gradient)
 		var back_pos = Vector3.ZERO
 		if "direction" in node:
 			var dir = node.direction as Vector2
@@ -148,7 +134,6 @@ func _redraw(gizmo: EditorNode3DGizmo) -> void:
 		height_lines.push_back(back_pos)
 		height_lines.push_back(back_pos + Vector3(0, start_h, 0))
 		
-		# End height (at the front of the gradient)
 		var front_pos = Vector3.ZERO
 		if "direction" in node:
 			var dir = node.direction as Vector2
@@ -159,11 +144,9 @@ func _redraw(gizmo: EditorNode3DGizmo) -> void:
 		height_lines.push_back(front_pos)
 		height_lines.push_back(front_pos + Vector3(0, end_h, 0))
 		
-		# Connect the height line across the gradient
 		height_lines.push_back(back_pos + Vector3(0, start_h, 0))
 		height_lines.push_back(front_pos + Vector3(0, end_h, 0))
 	
-	# Add lines to gizmo
 	gizmo.add_lines(lines, get_material("main", gizmo))
 	if falloff_lines.size() > 0:
 		gizmo.add_lines(falloff_lines, get_material("falloff", gizmo))
@@ -172,28 +155,22 @@ func _redraw(gizmo: EditorNode3DGizmo) -> void:
 	if height_lines.size() > 0:
 		gizmo.add_lines(height_lines, get_material("height", gizmo))
 	
-	# Add handles
 	var handles = PackedVector3Array()
 	var handle_ids = PackedInt32Array()
 	
-	# Handle 0: Size control (right side for width)
 	handles.push_back(Vector3(size.x, 0, 0))
 	
-	# Handle 1: Size control (depth, for rectangle and ellipse)
 	if node.influence_shape != TerrainFeatureNode.InfluenceShape.CIRCLE:
 		handles.push_back(Vector3(0, 0, size.y))
 	
-	# Handle 2: Falloff control (if falloff exists)
 	if node.edge_falloff > 0.0:
 		var falloff_size = size.x * (1.0 - node.edge_falloff)
 		handles.push_back(Vector3(falloff_size, 0, 0))
 	
-	# Handle 2: Height control (vertical, for primitives and landscapes)
 	if "height" in node and not ("start_height" in node):
 		var height_val = node.height
 		handles.push_back(Vector3(0, height_val, 0))
 	
-	# Handle 3: Start height control (for gradients)
 	if "start_height" in node and "direction" in node:
 		var start_h = node.start_height
 		var dir = node.direction as Vector2
@@ -202,7 +179,6 @@ func _redraw(gizmo: EditorNode3DGizmo) -> void:
 		var back_pos = -dir_3d * max_size
 		handles.push_back(back_pos + Vector3(0, start_h, 0))
 	
-	# Handle 4: End height control (for gradients)
 	if "end_height" in node and "direction" in node:
 		var end_h = node.end_height
 		var dir = node.direction as Vector2
@@ -211,7 +187,6 @@ func _redraw(gizmo: EditorNode3DGizmo) -> void:
 		var front_pos = dir_3d * max_size
 		handles.push_back(front_pos + Vector3(0, end_h, 0))
 	
-	# Handle 5: Direction control (for landscapes and gradients)
 	if "direction" in node:
 		var dir = node.direction as Vector2
 		var dir_3d = Vector3(dir.x, 0, dir.y).normalized()
@@ -228,7 +203,6 @@ func _get_handle_name(gizmo: EditorNode3DGizmo, handle_id: int, secondary: bool)
 	
 	var handle_index = 0
 	
-	# Handle 0: Size X (width)
 	if handle_index == handle_id:
 		if node.influence_shape == TerrainFeatureNode.InfluenceShape.CIRCLE:
 			return "Radius"
@@ -236,37 +210,31 @@ func _get_handle_name(gizmo: EditorNode3DGizmo, handle_id: int, secondary: bool)
 			return "Width"
 	handle_index += 1
 	
-	# Handle 1: Size Y (depth, for rectangle and ellipse)
 	if node.influence_shape != TerrainFeatureNode.InfluenceShape.CIRCLE:
 		if handle_index == handle_id:
 			return "Depth"
 		handle_index += 1
 	
-	# Handle 2: Falloff (if exists)
 	if node.edge_falloff > 0.0:
 		if handle_index == handle_id:
 			return "Falloff"
 		handle_index += 1
 	
-	# Handle 2: Height (for primitives and landscapes, not gradients)
 	if "height" in node and not ("start_height" in node):
 		if handle_index == handle_id:
 			return "Height"
 		handle_index += 1
 	
-	# Handle 3: Start height (for gradients)
 	if "start_height" in node and "direction" in node:
 		if handle_index == handle_id:
 			return "Start Height"
 		handle_index += 1
 	
-	# Handle 4: End height (for gradients)
 	if "end_height" in node and "direction" in node:
 		if handle_index == handle_id:
 			return "End Height"
 		handle_index += 1
 	
-	# Handle 5: Direction (for landscapes and gradients)
 	if "direction" in node:
 		if handle_index == handle_id:
 			return "Direction"
@@ -279,7 +247,6 @@ func _get_handle_value(gizmo: EditorNode3DGizmo, handle_id: int, secondary: bool
 	if not node:
 		return null
 	
-	# Signal that manipulation is starting (first handle grab)
 	if not node.get_meta("_gizmo_manipulating", false):
 		node.set_meta("_gizmo_manipulating", true)
 		node.set_meta("_gizmo_manipulation_time", Time.get_ticks_msec() / 1000.0)
@@ -287,42 +254,35 @@ func _get_handle_value(gizmo: EditorNode3DGizmo, handle_id: int, secondary: bool
 	
 	var handle_index = 0
 	
-	# Handle 0: Size X (width/radius)
 	if handle_index == handle_id:
 		return node.influence_size.x
 	handle_index += 1
 	
-	# Handle 1: Size Y (depth, for rectangle and ellipse)
 	if node.influence_shape != TerrainFeatureNode.InfluenceShape.CIRCLE:
 		if handle_index == handle_id:
 			return node.influence_size.y
 		handle_index += 1
 	
-	# Handle 2: Falloff (if exists)
 	if node.edge_falloff > 0.0:
 		if handle_index == handle_id:
 			return node.edge_falloff
 		handle_index += 1
 	
-	# Handle 2: Height (for primitives and landscapes, not gradients)
 	if "height" in node and not ("start_height" in node):
 		if handle_index == handle_id:
 			return node.height
 		handle_index += 1
 	
-	# Handle 3: Start height (for gradients)
 	if "start_height" in node and "direction" in node:
 		if handle_index == handle_id:
 			return node.start_height
 		handle_index += 1
 	
-	# Handle 4: End height (for gradients)
 	if "end_height" in node and "direction" in node:
 		if handle_index == handle_id:
 			return node.end_height
 		handle_index += 1
 	
-	# Handle 5: Direction (for landscapes and gradients)
 	if "direction" in node:
 		if handle_index == handle_id:
 			return node.direction
@@ -339,13 +299,11 @@ func _set_handle(gizmo: EditorNode3DGizmo, handle_id: int, secondary: bool, came
 		push_warning("TerrainFeatureGizmoPlugin: undo_redo is invalid, gizmo may not work correctly")
 		return
 	
-	# Get ray from camera
 	var ray_from = camera.project_ray_origin(screen_pos)
 	var ray_dir = camera.project_ray_normal(screen_pos)
 	
 	var handle_index = 0
 	
-	# Handle 0: Size X (width/radius)
 	if handle_index == handle_id:
 		var plane = Plane(Vector3.UP, 0)
 		var intersection = plane.intersects_ray(ray_from, ray_dir)
@@ -360,7 +318,6 @@ func _set_handle(gizmo: EditorNode3DGizmo, handle_id: int, secondary: bool, came
 		return
 	handle_index += 1
 	
-	# Handle 1: Size Y (depth, for rectangle and ellipse)
 	if node.influence_shape != TerrainFeatureNode.InfluenceShape.CIRCLE:
 		if handle_index == handle_id:
 			var plane = Plane(Vector3.UP, 0)
@@ -372,7 +329,6 @@ func _set_handle(gizmo: EditorNode3DGizmo, handle_id: int, secondary: bool, came
 			return
 		handle_index += 1
 	
-	# Handle 2: Falloff
 	if node.edge_falloff > 0.0:
 		if handle_index == handle_id:
 			var plane = Plane(Vector3.UP, 0)
@@ -387,10 +343,8 @@ func _set_handle(gizmo: EditorNode3DGizmo, handle_id: int, secondary: bool, came
 			return
 		handle_index += 1
 	
-	# Handle 3: Height (for primitives and landscapes)
 	if "height" in node and not ("start_height" in node):
 		if handle_index == handle_id:
-			# Create a vertical plane that passes through the node's position
 			var node_pos = node.global_position
 			var vertical_plane = Plane(Vector3.RIGHT, node_pos)
 			var vertical_intersection = vertical_plane.intersects_ray(ray_from, ray_dir)
@@ -401,7 +355,6 @@ func _set_handle(gizmo: EditorNode3DGizmo, handle_id: int, secondary: bool, came
 			return
 		handle_index += 1
 	
-	# Handle 3: Start height (for gradients)
 	if "start_height" in node and "direction" in node:
 		if handle_index == handle_id:
 			var dir = node.direction as Vector2
@@ -417,7 +370,6 @@ func _set_handle(gizmo: EditorNode3DGizmo, handle_id: int, secondary: bool, came
 			return
 		handle_index += 1
 	
-	# Handle 4: End height (for gradients)
 	if "end_height" in node and "direction" in node:
 		if handle_index == handle_id:
 			var dir = node.direction as Vector2
@@ -433,7 +385,6 @@ func _set_handle(gizmo: EditorNode3DGizmo, handle_id: int, secondary: bool, came
 			return
 		handle_index += 1
 	
-	# Handle 5: Direction (for landscapes and gradients)
 	if "direction" in node:
 		if handle_index == handle_id:
 			var plane = Plane(Vector3.UP, 0)
@@ -452,7 +403,6 @@ func _commit_handle(gizmo: EditorNode3DGizmo, handle_id: int, secondary: bool, r
 	if not node:
 		return
 	
-	# Signal that manipulation has ended
 	var was_manipulating = node.get_meta("_gizmo_manipulating", false)
 	if was_manipulating:
 		node.set_meta("_gizmo_manipulating", false)
@@ -461,17 +411,14 @@ func _commit_handle(gizmo: EditorNode3DGizmo, handle_id: int, secondary: bool, r
 	
 	if not is_instance_valid(undo_redo):
 		push_warning("TerrainFeatureGizmoPlugin: undo_redo is invalid, changes will not be undoable")
-		# Still emit the parameters_changed signal to update the terrain
 		if was_manipulating:
 			node.parameters_changed.emit()
 		return
 	
 	var handle_index = 0
 	
-	# Handle 0: Size X (width/radius)
 	if handle_index == handle_id:
 		if cancel:
-			# Restore is a float (influence_size.x), need to update only X component
 			if node.influence_shape == TerrainFeatureNode.InfluenceShape.CIRCLE:
 				node.influence_size = Vector2(restore, restore)
 			else:
@@ -487,11 +434,9 @@ func _commit_handle(gizmo: EditorNode3DGizmo, handle_id: int, secondary: bool, r
 		return
 	handle_index += 1
 	
-	# Handle 1: Size Y (depth, for rectangle and ellipse)
 	if node.influence_shape != TerrainFeatureNode.InfluenceShape.CIRCLE:
 		if handle_index == handle_id:
 			if cancel:
-				# Restore is a float (influence_size.y), need to update only Y component
 				node.influence_size.y = restore
 			else:
 				undo_redo.create_action("Change Influence Depth")
@@ -503,7 +448,6 @@ func _commit_handle(gizmo: EditorNode3DGizmo, handle_id: int, secondary: bool, r
 			return
 		handle_index += 1
 	
-	# Handle 2: Falloff
 	if node.edge_falloff > 0.0 or cancel:
 		if handle_index == handle_id:
 			if cancel:
@@ -518,7 +462,6 @@ func _commit_handle(gizmo: EditorNode3DGizmo, handle_id: int, secondary: bool, r
 			return
 		handle_index += 1
 	
-	# Handle 3: Height (for primitives and landscapes)
 	if "height" in node and not ("start_height" in node):
 		if handle_index == handle_id:
 			if cancel:
@@ -533,7 +476,6 @@ func _commit_handle(gizmo: EditorNode3DGizmo, handle_id: int, secondary: bool, r
 			return
 		handle_index += 1
 	
-	# Handle 3: Start height (for gradients)
 	if "start_height" in node and "direction" in node:
 		if handle_index == handle_id:
 			if cancel:
@@ -548,7 +490,6 @@ func _commit_handle(gizmo: EditorNode3DGizmo, handle_id: int, secondary: bool, r
 			return
 		handle_index += 1
 	
-	# Handle 4: End height (for gradients)
 	if "end_height" in node and "direction" in node:
 		if handle_index == handle_id:
 			if cancel:
@@ -563,7 +504,6 @@ func _commit_handle(gizmo: EditorNode3DGizmo, handle_id: int, secondary: bool, r
 			return
 		handle_index += 1
 	
-	# Handle 5: Direction (for landscapes and gradients)
 	if "direction" in node:
 		if handle_index == handle_id:
 			if cancel:
@@ -578,7 +518,6 @@ func _commit_handle(gizmo: EditorNode3DGizmo, handle_id: int, secondary: bool, r
 			return
 		handle_index += 1
 
-## Helper functions for drawing different shapes
 func _draw_circle(lines: PackedVector3Array, radius: float, segments: int) -> void:
 	for i in range(segments):
 		var angle1 = (i / float(segments)) * TAU
@@ -593,7 +532,6 @@ func _draw_circle(lines: PackedVector3Array, radius: float, segments: int) -> vo
 func _draw_rectangle(lines: PackedVector3Array, size: Vector2) -> void:
 	var half_size = size * 0.5
 
-	# Four corners
 	var corners = [
 	Vector3(-half_size.x, 0, -half_size.y),
 	Vector3(half_size.x, 0, -half_size.y),
@@ -601,7 +539,6 @@ func _draw_rectangle(lines: PackedVector3Array, size: Vector2) -> void:
 	Vector3(-half_size.x, 0, half_size.y)
 	]
 
-	# Draw four edges
 	for i in range(4):
 		lines.push_back(corners[i])
 		lines.push_back(corners[(i + 1) % 4])

@@ -4,7 +4,6 @@ extends TerrainFeatureNode
 
 const TerrainFeatureNode = "res://addons/terrainy/nodes/terrain_feature_node.gd"
 
-## Abstract base class for noise-based terrain features
 
 @export var amplitude: float = 5.0:
 	set(value):

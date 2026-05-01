@@ -1,6 +1,5 @@
 @tool
 
-# Stuff not exposed by Godot for making .import files
 
 const COMPRESS_LOSSLESS = 0
 const COMPRESS_LOSSY = 1

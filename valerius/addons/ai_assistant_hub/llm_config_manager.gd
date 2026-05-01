@@ -60,7 +60,6 @@ func _load_string_property(property:String) -> String:
 	return ""
 
 
-## Function to migrate Base Url settings in version 1.5.0 or earlier, to user settings per LLM
 func migrate_deprecated_1_5_0_base_url() -> void:
 	var deprecated_base_url_1_2_0:= "ai_assistant_hub/base_url"
 	var old_base_url := ""
@@ -80,7 +79,6 @@ func migrate_deprecated_1_5_0_base_url() -> void:
 				save_url(old_base_url)
 
 
-## Function to migrate API keys in version 1.5.0 or earlier, to user settings
 func migrate_deprecated_1_5_0_api_key(old_key:String, old_key_settings:String, old_key_file:String = "") -> void:
 	if not old_key.is_empty():
 		var new_key := load_key()

@@ -9,7 +9,7 @@ const CHAT_HISTORY_ENTRY = preload("res://addons/ai_assistant_hub/chat_history_e
 
 var _converstaion:AIConversation
 var _chat_history:Array
-var _entries_map:Dictionary # ChatHistoryEntry, Dictionary - maps the UI entries to the array entries
+var _entries_map:Dictionary
 
 func initialize(converstaion:AIConversation) -> void:
 	_converstaion = converstaion

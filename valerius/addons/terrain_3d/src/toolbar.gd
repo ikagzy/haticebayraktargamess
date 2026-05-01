@@ -1,5 +1,3 @@
-# Copyright © 2025 Cory Petkovsek, Roope Palmroos, and Contributors.
-# Toolbar for Terrain3D
 extends VFlowContainer
 
 signal tool_changed(p_tool: Terrain3DEditor.Tool, p_operation: Terrain3DEditor.Operation)
@@ -87,14 +85,12 @@ func _ready() -> void:
 		"add_text":"Instance Meshes", "add_op":Terrain3DEditor.ADD, "add_icon":ICON_INSTANCER,
 		"sub_text":"Remove Meshes", "sub_op":Terrain3DEditor.SUBTRACT })
 
-	# Select first button
 	var buttons: Array[BaseButton] = add_tool_group.get_buttons()
 	buttons[0].set_pressed(true)
 	show_add_buttons(true)
 
 
 func add_tool_button(p_params: Dictionary) -> void:
-	# Additive button
 	var button := Button.new()
 	button.set_name(p_params.get("add_text", "blank").to_pascal_case())
 	button.set_meta("Tool", p_params.get("tool", 0))
@@ -108,7 +104,6 @@ func add_tool_button(p_params: Dictionary) -> void:
 	button.set_button_group(p_params.get("group", add_tool_group))
 	add_child(button, true)
 
-	# Subtractive button
 	var button2: Button
 	if p_params.has("sub_text"):
 		button2 = Button.new()
@@ -135,7 +130,6 @@ func show_add_buttons(p_enable: bool) -> void:
 
 
 func _on_tool_selected(p_button: BaseButton) -> void:
-	# Select same tool on negative bar
 	var group: ButtonGroup = p_button.get_button_group()
 	var change_group: ButtonGroup = add_tool_group if group == sub_tool_group else sub_tool_group
 	var id: int = p_button.get_meta("ID", -2)

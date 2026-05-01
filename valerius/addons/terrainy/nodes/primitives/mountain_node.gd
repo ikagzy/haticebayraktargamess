@@ -4,7 +4,6 @@ extends PrimitiveNode
 
 const PrimitiveNode = preload("res://addons/terrainy/nodes/primitives/primitive_node.gd")
 
-## A mountain terrain feature with various peak types and noise detail
 
 @export_enum("Sharp", "Rounded", "Plateau") var peak_type: int = 0:
 	set(value):
@@ -37,7 +36,6 @@ func get_height_at(world_pos: Vector3) -> float:
 	var local_pos = to_local(world_pos)
 	return get_height_at_safe(world_pos, local_pos)
 
-## Thread-safe version using pre-computed local position
 func get_height_at_safe(world_pos: Vector3, local_pos: Vector3) -> float:
 	var distance_2d = Vector2(local_pos.x, local_pos.z).length()
 	
@@ -50,12 +48,12 @@ func get_height_at_safe(world_pos: Vector3, local_pos: Vector3) -> float:
 	var height_multiplier = 0.0
 	
 	match peak_type:
-		0: # Sharp
+		0:
 			height_multiplier = pow(1.0 - normalized_distance, 1.5)
-		1: # Rounded
+		1:
 			height_multiplier = cos(normalized_distance * PI * 0.5)
 			height_multiplier = height_multiplier * height_multiplier
-		2: # Plateau
+		2:
 			if normalized_distance < 0.3:
 				height_multiplier = 1.0
 			else:
@@ -64,7 +62,6 @@ func get_height_at_safe(world_pos: Vector3, local_pos: Vector3) -> float:
 	
 	var base_height = height * height_multiplier
 	
-	# Add noise detail
 	if noise and noise_strength > 0.0:
 		var noise_value = noise.get_noise_3d(world_pos.x, world_pos.y, world_pos.z)
 		base_height += noise_value * height * noise_strength * height_multiplier

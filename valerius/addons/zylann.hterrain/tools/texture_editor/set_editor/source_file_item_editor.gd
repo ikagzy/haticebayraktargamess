@@ -1,8 +1,6 @@
 @tool
 extends Control
 
-# TODO Can't preload because it causes the plugin to fail loading if assets aren't imported
-#const HT_EmptyTexture = preload("../../icons/empty.png")
 const EMPTY_TEXTURE_PATH = "res://addons/zylann.hterrain/tools/icons/empty.png"
 
 signal load_pressed

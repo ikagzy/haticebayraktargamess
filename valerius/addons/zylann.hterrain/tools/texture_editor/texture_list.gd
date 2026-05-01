@@ -1,9 +1,4 @@
 
-# I needed a custom container for this because textures edited by this plugin are often
-# unfit to display in a GUI, they need to go through a shader (either discarding alpha,
-# or picking layers of a TextureArray). Unfortunately, ItemList does not have custom item drawing,
-# and items cannot have individual shaders.
-# I could create new textures just for that but it would be expensive.
 
 @tool
 extends ScrollContainer
@@ -20,18 +15,8 @@ signal item_activated(index)
 var _selected_item := -1
 
 
-# TEST
-#func _ready():
-#	add_item("First", load("res://addons/zylann.hterrain_demo/textures/ground/bricks_albedo_bump.png"), 0)
-#	add_item("Second", load("res://addons/zylann.hterrain_demo/textures/ground/grass_albedo_bump.png"), 0)
-#	add_item("Third", load("res://addons/zylann.hterrain_demo/textures/ground/leaves_albedo_bump.png"), 0)
-#	add_item("Fourth", load("res://addons/zylann.hterrain_demo/textures/ground/sand_albedo_bump.png"), 0)
-#	var texture_array = load("res://tests/texarray/textures/array_albedo_atlas.png")
-#	add_item("Ninth", texture_array, 2)
-#	add_item("Sixth", texture_array, 3)
 
 
-# Note: the texture can be a TextureArray, which does not inherit Texture
 func add_item(text: String, texture: Texture, texture_layer: int = 0):
 	var item : HT_TextureListItem = HT_TextureListItemScene.instantiate()
 	_container.add_child(item)
@@ -74,6 +59,4 @@ func _on_item_activated(item: HT_TextureListItem):
 
 
 func _draw():
-	# TODO Draw same background as Panel
-	# Draw a background
 	draw_rect(get_rect(), Color(0,0,0,0.3))

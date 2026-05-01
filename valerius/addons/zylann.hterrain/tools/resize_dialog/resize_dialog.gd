@@ -73,8 +73,6 @@ func _init():
 func _ready():
 	if HT_Util.is_in_edited_scene(self):
 		return
-	# TEST
-	#show()
 	
 	for i in len(_resolutions):
 		_resolution_dropdown.add_item(str(_resolutions[i]), i)
@@ -100,14 +98,12 @@ func _ready():
 			y += 1
 
 	_anchor_buttons[_selected_anchor].button_pressed = true
-	# The signal apparently doesn't trigger in this case
 	_on_AnchorButton_pressed(_selected_anchor, 0, 0)
 
 
 func _notification(what: int):
 	if what == NOTIFICATION_VISIBILITY_CHANGED:
 		if visible:
-			# Select current resolution
 			if _terrain != null and _terrain.get_data() != null:
 				var res := _terrain.get_data().get_resolution()
 				for i in len(_resolutions):

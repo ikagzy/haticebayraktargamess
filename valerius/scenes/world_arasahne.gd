@@ -2,21 +2,16 @@ extends Node3D
 
 @onready var animation_player = $AnimationPlayer
 
-# Efekt değişkenleri
 var donmus_yagmur: GPUParticles3D
 
 func _ready():
 	if animation_player:
-		# Sahnede animasyon zaten çalmıyorsa başlat
 		if not animation_player.is_playing() and animation_player.has_animation("ormana_gecis"):
 			animation_player.play("ormana_gecis")
 		
-		# Animasyon bitişini dinle
 		if not animation_player.animation_finished.is_connected(_on_animation_finished):
 			animation_player.animation_finished.connect(_on_animation_finished)
 			
-	# === WORLD EFEKTLERİNİ UYGULA ===
-	# 1. Çevresel korku/rüzgar ambiyansı
 	var ortam_sesi = AudioStreamPlayer.new()
 	var ses_dosyasi = load("res://models/model/fbx/universfield-horror-background-atmosphere-06-199279.mp3")
 	if ses_dosyasi:
@@ -27,14 +22,11 @@ func _ready():
 		add_child(ortam_sesi)
 		ortam_sesi.play()
 	
-	# 2. Donmuş yağmur damlacıkları ("zaman durmuş gibi" efekti)
 	_donmus_yagmur_olustur()
 	
-	# 3. Kırık cam ve soluklaştırılmış shader efekti
 	_surekli_zaman_kirilmasi_efekti()
 
 func _process(_delta):
-	# Yağmur bulutunu animasyondaki kameranın tepesinde tut
 	if is_instance_valid(donmus_yagmur):
 		var kamera = get_node_or_null("AnimationPlayer/Camera3D")
 		if kamera:
@@ -46,7 +38,7 @@ func _donmus_yagmur_olustur():
 	damla_mat.albedo_color = Color(0.75, 0.92, 1.0, 0.55)
 	damla_mat.emission_enabled = true
 	damla_mat.emission = Color(0.8, 0.95, 1.0)
-	damla_mat.emission_energy_multiplier = 1.5 # World sahnesindeki uyanmış halinin parlaklığı
+	damla_mat.emission_energy_multiplier = 1.5
 	damla_mat.cull_mode = BaseMaterial3D.CULL_DISABLED
 	
 	var damla_mesh = QuadMesh.new()
@@ -58,7 +50,7 @@ func _donmus_yagmur_olustur():
 	donmus_yagmur.amount = 25000
 	donmus_yagmur.lifetime = 10.0
 	donmus_yagmur.explosiveness = 1.0 
-	donmus_yagmur.speed_scale = 0.01  # Doğduğu gibi dondur
+	donmus_yagmur.speed_scale = 0.01
 	donmus_yagmur.emitting = true
 	donmus_yagmur.one_shot = false
 	donmus_yagmur.draw_pass_1 = damla_mesh
@@ -126,7 +118,6 @@ void fragment() {
 	mat.set_shader_parameter("aberration_amount", 2.5)
 	soldurucu.material = mat
 	
-	# world_kabus_yoneticisi gibi burada da yavaş yavaş hafiflemesini sağlayalım
 	var tween = create_tween()
 	tween.tween_property(mat, "shader_parameter/shatter_amount", 0.25, 2.0).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 	tween.tween_property(mat, "shader_parameter/aberration_amount", 1.0, 2.0)
@@ -136,11 +127,9 @@ func _on_animation_finished(anim_name: String):
 		if is_instance_valid(OyunVerisi):
 			OyunVerisi.ormana_gecis_tamamlandi = true
 			
-		# Görevi güncelle
 		if is_instance_valid(get_node_or_null("/root/GorevArayuzu")):
 			get_node("/root/GorevArayuzu")._on_gorev_guncellendi("Görev: Şehrin ortasındaki garip ormanı araştır")
 
-		# World sahnesine dön
 		if is_instance_valid(get_node_or_null("/root/SahneGecisi")):
 			SahneGecisi.gecis_yap("res://scenes/world.tscn")
 		else:

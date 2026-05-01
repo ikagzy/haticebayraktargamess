@@ -1,5 +1,3 @@
-# Copyright © 2025 Cory Petkovsek, Roope Palmroos, and Contributors.
-# Channel Packer for Terrain3D
 extends RefCounted
 
 const WINDOW_SCENE: String = "res://addons/terrain_3d/menu/channel_packer.tscn"
@@ -97,7 +95,6 @@ func pack_textures_popup() -> void:
 	plugin.add_child(window)
 	_init_file_dialogs()
 	
-	# the dialog disables the parent window "on top" so, restore it after 1 frame to alow the dialog to clear.
 	var set_on_top_fn: Callable = func(_file: String = "") -> void:
 		await RenderingServer.frame_post_draw
 		window.always_on_top = true
@@ -129,9 +126,6 @@ func _init_file_dialogs() -> void:
 	save_file_dialog.file_selected.connect(_on_save_file_selected)
 	save_file_dialog.ok_button_text = "Save"
 	save_file_dialog.size = Vector2i(550, 550)
-	#save_file_dialog.transient = false
-	#save_file_dialog.exclusive = false
-	#save_file_dialog.popup_window = true
 	
 	open_file_dialog = EditorFileDialog.new()
 	open_file_dialog.set_filters(PackedStringArray(
@@ -140,9 +134,6 @@ func _init_file_dialogs() -> void:
 	open_file_dialog.access = EditorFileDialog.ACCESS_FILESYSTEM
 	open_file_dialog.ok_button_text = "Open"
 	open_file_dialog.size = Vector2i(550, 550)
-	#open_file_dialog.transient = false
-	#open_file_dialog.exclusive = false
-	#open_file_dialog.popup_window = true
 	
 	window.add_child(save_file_dialog)
 	window.add_child(open_file_dialog)
@@ -158,7 +149,6 @@ func _init_texture_picker(p_parent: Node, p_image_index: int) -> void:
 	
 	var set_channel_fn: Callable = func(used_channels: int) -> void:
 		var channel_count: int = 4
-		# enum Image.UsedChannels
 		match used_channels:
 			Image.USED_CHANNELS_L, Image.USED_CHANNELS_R: channel_count = 1
 			Image.USED_CHANNELS_LA, Image.USED_CHANNELS_RG: channel_count = 2
@@ -178,12 +168,9 @@ func _init_texture_picker(p_parent: Node, p_image_index: int) -> void:
 	var load_image_fn: Callable = func(path: String):
 		var image: Image = Image.new()
 		var error: int = OK
-		# Special case for dds files
 		if path.get_extension() == "dds":
 			image = ResourceLoader.load(path).get_image()
 			if not image.is_empty():
-				# if the dds file is loaded, we must clear any mipmaps and
-				# decompress if needed in order to do per pixel operations.
 				image.clear_mipmaps()
 				image.decompress()
 			else:
@@ -205,8 +192,6 @@ func _init_texture_picker(p_parent: Node, p_image_index: int) -> void:
 				set_channel_fn.call(image.detect_used_channels())
 	
 	var os_drop_fn: Callable = func(files: PackedStringArray) -> void:
-		# OS drag drop holds mouse focus until released,
-		# Get mouse pos and check directly if inside texture_rect
 		var rect = texture_button.get_global_rect()
 		var mouse_position = texture_button.get_global_mouse_position()
 		if rect.has_point(mouse_position):
@@ -257,12 +242,10 @@ func _init_texture_picker(p_parent: Node, p_image_index: int) -> void:
 				var height_texture: Image = Terrain3DUtil.luminance_to_height(images[IMAGE_ALBEDO])
 				if height_texture.is_empty():
 					_show_message(ERROR, "Height Texture Generation error")
-				# blur the image by resizing down and back..
 				var w: int = height_texture.get_width()
 				var h: int = height_texture.get_height()
 				height_texture.resize(w / 4, h / 4)
 				height_texture.resize(w, h, Image.INTERPOLATE_CUBIC)
-				# "Load" the height texture
 				images[IMAGE_HEIGHT] = height_texture
 				texture_rect.texture = ImageTexture.create_from_image(images[IMAGE_HEIGHT])
 				_set_wh_labels(IMAGE_HEIGHT, height_texture.get_width(), height_texture.get_height())
@@ -360,7 +343,6 @@ func _on_save_file_selected(p_dst_path) -> void:
 		if window.visible:
 			window.hide()
 		await EditorInterface.get_resource_filesystem().resources_reimported
-		# wait 1 extra frame, to ensure the UI is responsive.
 		await RenderingServer.frame_post_draw
 		window.show()
 	
@@ -391,7 +373,6 @@ func _alignment_basis(normal: Vector3) -> Basis:
 
 
 func _set_normal_vector(source: Image, quiet: bool = false) -> void:
-	# Calculate texture normal sum direction
 	var normal: Image = source
 	var sum: Color = Color(0.0, 0.0, 0.0, 0.0)
 	for x in normal.get_width():
@@ -407,9 +388,7 @@ func _set_normal_vector(source: Image, quiet: bool = false) -> void:
 
 
 func _align_normals(source: Image, iteration: int = 0) -> void:
-	# generate matrix to re-align the normalmap
 	var mat3: Basis = _alignment_basis(normal_vector)
-	# re-align the normal map pixels
 	for x in source.get_width():
 		for y in source.get_height():
 			var old_pixel: Color = source.get_pixel(x, y)

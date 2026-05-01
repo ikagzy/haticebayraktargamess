@@ -12,7 +12,6 @@ var _brush : HT_Brush
 
 func _init():
 	var p = HT_Painter.new()
-	# The name is just for debugging
 	p.set_name("Painter")
 	add_child(p)
 	_painter = p
@@ -28,7 +27,6 @@ func get_brush() -> HT_Brush:
 	return _brush
 
 
-# This may be called from an `_input` callback
 func paint_input(position: Vector2, pressure: float):
 	var p : HT_Painter = _painter
 	
@@ -37,5 +35,4 @@ func paint_input(position: Vector2, pressure: float):
 	
 	p.set_brush_shader(HT_ColorShader)
 	p.set_brush_shader_param("u_color", Color(0,0,0,1))
-	#p.set_image(_image, _texture)
 	p.paint_input(position)

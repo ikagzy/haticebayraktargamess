@@ -4,7 +4,6 @@ extends TerrainFeatureNode
 
 const TerrainFeatureNode = "res://addons/terrainy/nodes/terrain_feature_node.gd"
 
-## Abstract base class for directional landscape features (canyons, mountain ranges, dunes)
 
 @export var height: float = 30.0:
 	set(value):

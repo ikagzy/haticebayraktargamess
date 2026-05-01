@@ -1,8 +1,5 @@
 @tool
 class_name LLMInterface
-# The intention of this class is to serve as a base class for any LLM API
-# to be implemented in this plugin. It is mainly to have a clear definition
-# of what properties or functions should be used by other classes.
 
 signal model_changed(model:String)
 signal override_temperature_changed(value:bool)
@@ -11,7 +8,6 @@ signal llm_config_changed
 
 const INVALID_RESPONSE := "[INVALID_RESPONSE]"
 
-# Public properties can be modified from the chat tab, you can subscribe to their change events
 var model: String:
 	set(value):
 		model = value
@@ -75,7 +71,6 @@ func get_full_response(body: PackedByteArray) -> Variant:
 		return body.get_string_from_utf8()
 
 
-#--- All methods below should be overriden by child classes, see for example OllamaAPI ---
 
 func send_get_models_request(http_request:HTTPRequest) -> bool:
 	return false
@@ -93,8 +88,6 @@ func read_response(body:PackedByteArray) -> String:
 	return INVALID_RESPONSE
 
 
-## This is an optional method to override, only if you need to perform any logic
-## after the URL and API key are loaded, e.g. generate custom headers
 func _initialize() -> void:
 	return
 

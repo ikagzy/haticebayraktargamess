@@ -71,9 +71,6 @@ var _allow_greater := false
 		set_allow_greater(v)
 
 
-# There is still a limit when typing a larger value, but this one is to prevent software
-# crashes or freezes. The regular min and max values are for slider UX. Exceeding it should be 
-# a corner case.
 var _greater_max_value := 10000.0
 @export var greater_max_value: float:
 	get:
@@ -98,7 +95,6 @@ func _init():
 	_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	_label.clip_text = true
-	#_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_label.anchor_top = 0
 	_label.anchor_left = 0
 	_label.anchor_right = 1
@@ -113,7 +109,6 @@ func _init():
 	_label2.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	_label2.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	_label2.clip_text = true
-	#_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	_label2.anchor_top = 0
 	_label2.anchor_left = 0
 	_label2.anchor_right = 1
@@ -142,7 +137,7 @@ func _init():
 
 
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
 func set_centered(p_centered: bool):
@@ -189,7 +184,6 @@ func get_value():
 
 func set_min_value(minv: float):
 	_min_value = minv
-	#queue_redraw()
 
 
 func get_min_value() -> float:
@@ -198,7 +192,6 @@ func get_min_value() -> float:
 
 func set_max_value(maxv: float):
 	_max_value = maxv
-	#queue_redraw()
 
 
 func get_max_value() -> float:
@@ -339,10 +332,8 @@ func _draw():
 	if _line_edit.visible:
 		return
 	
-	#var grabber_width := 3
 	var background_v_margin := 0
 	var foreground_margin := FG_MARGIN
-	#var grabber_color := Color(0.8, 0.8, 0.8)
 	var interval_color := Color(0.4,0.4,0.4)
 	var background_color := Color(0.1, 0.1, 0.1)
 	
@@ -356,7 +347,6 @@ func _draw():
 	draw_rect(bg_rect, background_color)
 	
 	var fg_rect := control_rect.grow(-foreground_margin)
-	# Clamping the ratio because the value can be allowed to exceed the slider's boundaries
 	var ratio := clampf(get_ratio(), 0.0, 1.0)
 	fg_rect.size.x *= ratio
 	draw_rect(fg_rect, interval_color)

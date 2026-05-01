@@ -14,14 +14,13 @@
 [ext_resource type="PackedScene" uid="uid://b1fk1fauc181y" path="res://models/Doors and Props/BlendFIles/SingleDoor.blend" id="8_iluis"]
 [ext_resource type="PackedScene" uid="uid://dw8b4qsso1hhp" path="res://models/Doors and Props/BlendFIles/Window.blend" id="9_lkbyh"]
 [ext_resource type="Script" uid="uid://c43qxmf0ya3yc" path="res://flickeringlight.gd" id="10_ftsea"]
-[ext_resource type="PackedScene" uid="uid://pl8xfdjt33aa" path="res://models/Doors and Props/BlendFIles/EntranceDoor.blend" id="11_ebpgp"]
-[ext_resource type="FontFile" uid="uid://b857wkgpxyh1s" path="res://Montserrat-VariableFont_wght.ttf" id="12_4dpac"]
+[ext_resource type="PackedScene" uid="uid://duk3ewm10gp4l" path="res://models/Doors and Props/BlendFIles/EntranceDoor.blend" id="11_ebpgp"]
+[ext_resource type="FontFile" uid="uid://b857wkgpxyh1s" path="res://SpecialElite.ttf" id="12_4dpac"]
 [ext_resource type="Script" uid="uid://4yo3iikso0ht" path="res://kutuphane_uyari_tetigi.gd" id="12_akdso"]
 [ext_resource type="FontFile" uid="uid://cpkgcr012dkxk" path="res://Oakters.otf" id="13_yi7vd"]
 [ext_resource type="FontFile" uid="uid://cncxy5prw3iw4" path="res://Horizon.otf" id="14_ocibk"]
 [ext_resource type="Script" uid="uid://xeafss41q8ly" path="res://kapiyagiris.gd" id="19_jnllh"]
 [ext_resource type="PackedScene" uid="uid://blo3crqggr1j3" path="res://models/Doors and Props/SchoolProps/Models/TallShelf.fbx" id="20_ca1ib"]
-[ext_resource type="PackedScene" uid="uid://bpxtpu67atgrf" path="res://character_body_3d.tscn" id="21_gxiaj"]
 [ext_resource type="PackedScene" uid="uid://bpevjbqi7da4c" path="res://models/Low Poly Furniture/Miscellaneous/Books B.fbx" id="21_wdqhd"]
 [ext_resource type="PackedScene" uid="uid://bu077ktuwmut7" path="res://models/Low Poly Furniture/Miscellaneous/Books A.fbx" id="22_gxiaj"]
 [ext_resource type="ArrayMesh" uid="uid://dfntffq51bmxt" path="res://model.obj" id="23_xj6yy"]
@@ -362,14 +361,15 @@ process_mode = 1
 background_energy_multiplier = 0.28
 sky = SubResource("Sky_72tv7")
 ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 1.65
 reflected_light_source = 2
-tonemap_exposure = 0.02
+tonemap_exposure = 0.09
 tonemap_agx_white = 7.76
 tonemap_agx_contrast = 1.11
-ssr_enabled = false
 ssao_enabled = true
-ssil_enabled = false
-sdfgi_enabled = false
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
 sdfgi_min_cell_size = 0.3125
 sdfgi_y_scale = 0
 sdfgi_energy = 0.455
@@ -495,7 +495,6 @@ offset_left = 1750.0
 offset_top = 1028.0
 offset_right = 1908.0
 offset_bottom = 1079.0
-text = ""
 label_settings = SubResource("LabelSettings_sylpm")
 
 [node name="Tüm Ögeler" type="Node3D" parent="." unique_id=2095386319]
@@ -927,7 +926,6 @@ size = Vector3(18.253094, 2.4456434, 1)
 [node name="CSGStairMaker3D2" parent="Tüm Ögeler/Okul/okuldurvarları" unique_id=1156383662 instance=ExtResource("4_ktqmq")]
 transform = Transform3D(-1.5904676e-07, 0, 1.4029866, 0, 4.804195, 0, -3.6385658, 0, -6.1326496e-08, 15.165999, -3.055734, -32.46929)
 material_override = SubResource("StandardMaterial3D_04nhy")
-use_collision = true
 size = Vector3(2.2885742, 1.2970581, 2.7645264)
 num_stairs = 16
 
@@ -1298,9 +1296,6 @@ theme_override_fonts/font = ExtResource("12_4dpac")
 theme_override_font_sizes/font_size = 70
 text = "İçeri girmek için [E] tuşuna bas."
 
-[node name="CharacterBody3D" parent="Tüm Ögeler" unique_id=2053614635 instance=ExtResource("21_gxiaj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.642837, 5.0112934, -4.436249)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Tüm Ögeler" unique_id=512282443]
 environment = SubResource("Environment_4v525")
 camera_attributes = SubResource("CameraAttributesPhysical_3ecbn")
@@ -1321,7 +1316,7 @@ transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044
 [node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf" unique_id=6292720]
 transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
 mesh = ExtResource("23_xj6yy")
-skeleton = NodePath("../../CharacterBody3D/head/Camera3D")
+skeleton = NodePath("")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf" unique_id=1816116460]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
@@ -1345,7 +1340,7 @@ transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044
 [node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf2" unique_id=1818083800]
 transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
 mesh = ExtResource("23_xj6yy")
-skeleton = NodePath("../../CharacterBody3D/head/Camera3D")
+skeleton = NodePath("")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf2" unique_id=1548539424]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
@@ -1369,7 +1364,7 @@ transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044
 [node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf3" unique_id=1849708658]
 transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
 mesh = ExtResource("23_xj6yy")
-skeleton = NodePath("../../CharacterBody3D/head/Camera3D")
+skeleton = NodePath("")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf3" unique_id=802708159]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
@@ -1393,7 +1388,7 @@ transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044
 [node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf4" unique_id=1100451553]
 transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
 mesh = ExtResource("23_xj6yy")
-skeleton = NodePath("../../CharacterBody3D/head/Camera3D")
+skeleton = NodePath("")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf4" unique_id=1730170051]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
@@ -1417,7 +1412,7 @@ transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044
 [node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf5" unique_id=1461798411]
 transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
 mesh = ExtResource("23_xj6yy")
-skeleton = NodePath("../../CharacterBody3D/head/Camera3D")
+skeleton = NodePath("")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf5" unique_id=328855115]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
@@ -1441,7 +1436,7 @@ transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044
 [node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf6" unique_id=742218409]
 transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
 mesh = ExtResource("23_xj6yy")
-skeleton = NodePath("../../CharacterBody3D/head/Camera3D")
+skeleton = NodePath("")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf6" unique_id=1746046849]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
@@ -1465,7 +1460,7 @@ transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044
 [node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf7" unique_id=525117474]
 transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
 mesh = ExtResource("23_xj6yy")
-skeleton = NodePath("../../CharacterBody3D/head/Camera3D")
+skeleton = NodePath("")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf7" unique_id=1746370937]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
@@ -1488,7 +1483,7 @@ transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044
 [node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf8" unique_id=191223864]
 transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
 mesh = ExtResource("23_xj6yy")
-skeleton = NodePath("../../CharacterBody3D/head/Camera3D")
+skeleton = NodePath("")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf8" unique_id=1644828039]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
@@ -1514,7 +1509,7 @@ transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044
 [node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf9" unique_id=1163687703]
 transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
 mesh = ExtResource("23_xj6yy")
-skeleton = NodePath("../../CharacterBody3D/head/Camera3D")
+skeleton = NodePath("")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf9" unique_id=18292749]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
@@ -1537,7 +1532,7 @@ transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044
 [node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf10" unique_id=101558981]
 transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
 mesh = ExtResource("23_xj6yy")
-skeleton = NodePath("../../CharacterBody3D/head/Camera3D")
+skeleton = NodePath("")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf10" unique_id=1595370384]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
@@ -1560,7 +1555,7 @@ transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044
 [node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf11" unique_id=2073353351]
 transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
 mesh = ExtResource("23_xj6yy")
-skeleton = NodePath("../../CharacterBody3D/head/Camera3D")
+skeleton = NodePath("")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf11" unique_id=1917024552]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
@@ -1583,7 +1578,7 @@ transform = Transform3D(0.15239781, 0, -2.7988527e-08, 0, 0.20161384, 0, -3.3044
 [node name="Model2" type="MeshInstance3D" parent="Tüm Ögeler/TallShelf12" unique_id=407152657]
 transform = Transform3D(2.427996, 0, 0, 0, 4.191569, 0, -4.2632564e-14, 0, 6.9334364, -0.7971597, 0.8617605, 0.08251953)
 mesh = ExtResource("23_xj6yy")
-skeleton = NodePath("../../CharacterBody3D/head/Camera3D")
+skeleton = NodePath("")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Tüm Ögeler/TallShelf12" unique_id=918692518]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.49600983, 0.641327, -0.22045708)
@@ -1636,7 +1631,6 @@ offset_left = 1750.0
 offset_top = 1028.0
 offset_right = 1908.0
 offset_bottom = 1079.0
-text = ""
 label_settings = SubResource("LabelSettings_5k7ko")
 metadata/_edit_use_anchors_ = true
 

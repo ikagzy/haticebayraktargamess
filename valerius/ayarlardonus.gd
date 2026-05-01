@@ -1,7 +1,6 @@
 extends Button
 
 func _ready():
-	# Butona tıklandığında, bu scriptteki '_on_pressed' fonksiyonunu çağır
 	pressed.connect(_on_pressed)
 
 func _on_pressed():

@@ -17,7 +17,6 @@ func _ready() -> void:
 func _process(p_delta: float) -> void:
 	_retarget_timer += p_delta
 	if _retarget_timer > RETARGET_COOLDOWN and target:
-		# Don't reset the target position every frame. It triggers an A* search, which is expensive.
 		_retarget_timer = 0.0
 		nav_agent.set_target_position(target.global_position)
 
@@ -45,7 +44,6 @@ func _physics_process(p_delta: float) -> void:
 	else:
 		_on_velocity_computed(velocity)
 
-	# Ensure enemy doesn't fall through terrain when collision absent
 	if get_parent().terrain:
 		var height: float = get_parent().terrain.data.get_height(global_position)
 		if not is_nan(height):

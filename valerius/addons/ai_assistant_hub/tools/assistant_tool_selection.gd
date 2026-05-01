@@ -29,7 +29,6 @@ func get_selection() -> String:
 		_selected_code = _code_editor.get_selected_text().strip_edges(true, true)
 	
 	if not _selected_code.is_empty():
-		#Make sure we don't start or end with empty lines, as that makes difficult to find the code again
 		var first_not_empty = line(first_line()).strip_edges(true, false)
 		while first_not_empty.is_empty() and first_line() + 1 <= last_line():
 			_code_editor.select(first_line() + 1, 0, last_line(), last_column())
@@ -74,17 +73,13 @@ func forget_selection() -> void:
 	_selected_script = null
 
 
-# Attempts to select the original line range previously used and returns true on success.
 func back_to_selection() -> bool:
 	if _selected_code.is_empty():
 		return false
 	
-	#double check the script to edit is still open, if it's not open it
 	var editor_interface:EditorInterface = _plugin.get_editor_interface()
 	var curr_script:Script = editor_interface.get_script_editor().get_current_script()
 	if curr_script != _selected_script:
-		#print("The script for the original request was: %s" % _selected_script.resource_path)
-		#print("The script currently opened is: %s" % curr_script.resource_path)
 		print("Opening %s" % _selected_script.resource_path)
 		editor_interface.edit_script(_selected_script)
 		forget_selection()
@@ -98,13 +93,11 @@ func back_to_selection() -> bool:
 		if search_start.x == -1:
 			return false
 		else:
-			#print("First line found. Finding: %s" % _selected_code_last_line)
 			var original_line_diff = _selected_code_line_end - _selected_code_line_start
 			var search_end:Vector2i = code_editor.search(_selected_code_last_line, TextEdit.SearchFlags.SEARCH_MATCH_CASE, search_start.y + original_line_diff, 0)
 			if search_end.x == -1:
 				return false
 			else:
-				#print("Last line found.")
 				var line_diff = search_end.y - search_start.y
 				if original_line_diff == line_diff:
 					code_editor.select(search_start.y, search_start.x, search_end.y, _selected_code_line_end_column)

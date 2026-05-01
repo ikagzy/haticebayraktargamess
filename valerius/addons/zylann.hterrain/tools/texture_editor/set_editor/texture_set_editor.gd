@@ -10,8 +10,6 @@ const HT_ColorShader = preload("../display_color.gdshader")
 const HT_ColorSliceShader = preload("../display_color_slice.gdshader")
 const HT_AlphaShader = preload("../display_alpha.gdshader")
 const HT_AlphaSliceShader = preload("../display_alpha_slice.gdshader")
-# TODO Can't preload because it causes the plugin to fail loading if assets aren't imported
-#const HT_EmptyTexture = preload("../../icons/empty.png")
 const EMPTY_TEXTURE_PATH = "res://addons/zylann.hterrain/tools/icons/empty.png"
 
 signal import_selected
@@ -66,11 +64,6 @@ func setup_dialogs(parent: Node):
 	
 	d = ConfirmationDialog.new()
 	d.confirmed.connect(_on_ModeConfirmationDialog_confirmed)
-	# This is ridiculous.
-	# See https://github.com/godotengine/godot/issues/17460
-#	d.connect("modal_closed", self, "_on_ModeConfirmationDialog_cancelled")
-#	d.get_close_button().connect("pressed", self, "_on_ModeConfirmationDialog_cancelled")
-#	d.get_cancel().connect("pressed", self, "_on_ModeConfirmationDialog_cancelled")
 	_mode_confirmation_dialog = d
 	add_child(d)
 
@@ -80,8 +73,6 @@ func _notification(what: int):
 		return
 	
 	if what == NOTIFICATION_EXIT_TREE:
-		# Have to check for null in all of them,
-		# because otherwise it breaks in the scene editor...
 		if _load_texture_dialog != null:
 			_load_texture_dialog.queue_free()
 		if _load_texture_array_dialog != null:
@@ -89,7 +80,6 @@ func _notification(what: int):
 	
 	if what == NOTIFICATION_VISIBILITY_CHANGED:
 		if not visible:
-			# Cleanup referenced resources
 			set_texture_set(null)
 
 
@@ -312,8 +302,6 @@ func _on_RemoveSlot_pressed():
 	ur.add_undo_method(_texture_set.insert_slot.bind(slot_index))
 	for type in len(textures):
 		var texture = textures[type]
-		# TODO This branch only exists because of a flaw in UndoRedo
-		# See https://github.com/godotengine/godot/issues/36895
 		if texture == null:
 			ur.add_undo_method(_texture_set.set_texture_null.bind(slot_index, type))
 		else:
@@ -349,16 +337,12 @@ func _set_texture_action(slot_index: int, texture: Texture, type: int):
 	
 	ur.create_action("HTerrainTextureSet: load texture")
 	
-	# TODO This branch only exists because of a flaw in UndoRedo
-	# See https://github.com/godotengine/godot/issues/36895
 	if texture == null:
 		ur.add_do_method(_texture_set.set_texture_null.bind(slot_index, type))
 	else:
 		ur.add_do_method(_texture_set.set_texture.bind(slot_index, type, texture))
 	ur.add_do_method(self._select_slot.bind(slot_index))
 	
-	# TODO This branch only exists because of a flaw in UndoRedo
-	# See https://github.com/godotengine/godot/issues/36895
 	if prev_texture == null:
 		ur.add_undo_method(_texture_set.set_texture_null.bind(slot_index, type))
 	else:
@@ -375,20 +359,14 @@ func _set_texture_array_action(slot_index: int, texture_array: TextureLayered, t
 	
 	ur.create_action("HTerrainTextureSet: load texture array")
 	
-	# TODO This branch only exists because of a flaw in UndoRedo
-	# See https://github.com/godotengine/godot/issues/36895
 	if texture_array == null:
 		ur.add_do_method(_texture_set.set_texture_array_null.bind(type))
-		# Can't select a slot after this because there won't be any after the array is removed
 	else:
 		ur.add_do_method(_texture_set.set_texture_array.bind(type, texture_array))
 		ur.add_do_method(self._select_slot.bind(slot_index))
 	
-	# TODO This branch only exists because of a flaw in UndoRedo
-	# See https://github.com/godotengine/godot/issues/36895
 	if prev_texture_array == null:
 		ur.add_undo_method(_texture_set.set_texture_array_null.bind(type))
-		# Can't select a slot after this because there won't be any after the array is removed
 	else:
 		ur.add_undo_method(_texture_set.set_texture_array.bind(type, prev_texture_array))
 		ur.add_undo_method(self._select_slot.bind(slot_index))
@@ -408,10 +386,6 @@ func _on_LoadTextureArrayDialog_file_selected(fpath: String):
 	assert(_texture_set.get_mode() == HTerrainTextureSet.MODE_TEXTURE_ARRAYS)
 	var texture_array = load(fpath)
 	assert(texture_array != null)
-	# It's possible no slot exists at the moment,
-	# because there could be no texture array already set.
-	# The number of slots in the new array might also be different.
-	# So in this case we'll default to selecting the first slot.
 	var slot_index := 0
 	_set_texture_array_action(slot_index, texture_array, _load_texture_type)
 
@@ -437,8 +411,6 @@ func _on_ModeSelector_item_selected(index: int):
 	if id == _texture_set.get_mode():
 		return
 	
-	# Early-cancel the change in OptionButton, so we won't need to rely on
-	# the (inexistent) cancel signal from ConfirmationDialog
 	_set_selected_id(_mode_selector, _texture_set.get_mode())
 	
 	if not _texture_set.has_any_textures():
@@ -486,7 +458,6 @@ static func backup_for_undo(texture_set: HTerrainTextureSet, ur: UndoRedo):
 	ur.add_undo_method(texture_set.set_mode.bind(mode))
 	
 	if mode == HTerrainTextureSet.MODE_TEXTURES:
-		# Backup slots
 		var slot_count := texture_set.get_slots_count()
 		var type_textures := []
 		for type in HTerrainTextureSet.TYPE_COUNT:
@@ -500,30 +471,22 @@ static func backup_for_undo(texture_set: HTerrainTextureSet, ur: UndoRedo):
 			for slot_index in len(textures):
 				ur.add_undo_method(texture_set.insert_slot.bind(slot_index))
 				var texture = textures[slot_index]
-				# TODO This branch only exists because of a flaw in UndoRedo
-				# See https://github.com/godotengine/godot/issues/36895
 				if texture == null:
 					ur.add_undo_method(texture_set.set_texture_null.bind(slot_index, type))
 				else:
 					ur.add_undo_method(texture_set.set_texture.bind(slot_index, type, texture))
 	
 	else:
-		# Backup slots
 		var type_textures := []
 		for type in HTerrainTextureSet.TYPE_COUNT:
 			type_textures.append(texture_set.get_texture_array(type))
 
 		for type in len(type_textures):
 			var texture_array = type_textures[type]
-			# TODO This branch only exists because of a flaw in UndoRedo
-			# See https://github.com/godotengine/godot/issues/36895
 			if texture_array == null:
 				ur.add_undo_method(texture_set.set_texture_array_null.bind(type))
 			else:
 				ur.add_undo_method(texture_set.set_texture_array.bind(type, texture_array))
 
 
-#func _on_ModeConfirmationDialog_cancelled():
-#	print("Cancelled")
-#	_set_selected_id(_mode_selector, _texture_set.get_mode())
 

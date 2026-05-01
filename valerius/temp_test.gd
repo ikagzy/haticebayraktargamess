@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-# ==================== HAREKET AYARLARI ====================
 var WALK_SPEED = 4.0
 var SPRINT_SPEED = 5.8
 var SPEED = WALK_SPEED
@@ -8,27 +7,23 @@ var dev_mode_aktif = false
 var dev_tween : Tween
 var dev_light : OmniLight3D = null
 
-# SES DÜĞÜMLERİ
 @onready var fener_sesi = $FenerSesi
 @onready var ayak_sesi = $AyakSesi
 var adim_sayaci: float = 0.0 
 
-# ==================== EĞİLME AYARLARI ====================
 @export var CROUCH_SPEED = 2.5
 @export var CROUCH_DEPTH = 0.8 
 var is_crouching = false
 var current_base_height = 0.0 
 
-# ==================== FENER SMOOTH VE TİTREME AYARLARI ====================
 @export var flashlight_rotation_smoothness : float = 15.0 
 @export var flashlight_position_smoothness : float = 15.0 
 @export var shake_intensity : float = 0.012 
 @export var shake_speed : float = 3.0      
 
-# ==================== STAMINA AYARLARI ====================
 @export var max_stamina: float = 100.0
-@export var stamina_deplete_rate: float = 15.0 # (Eskiden 40.0 idi) Saniyede 15 yorulacak, 6.5 - 7 saniye koşabilecek
-@export var stamina_regen_rate: float = 18.0 # (Eskiden 25.0 idi) Dinlenince saniyede 18 enerji dolacak
+@export var stamina_deplete_rate: float = 15.0
+@export var stamina_regen_rate: float = 18.0
 @export var stamina_regen_delay: float = 1.5
 @export var show_on_full_duration: float = 2.0  
 var full_stamina_timer: float = 0.0
@@ -41,7 +36,6 @@ var stamina_delay_timer: float = 0.0
 var target_bar_opacity: float = 0.0  
 @onready var stamina_bar : TextureProgressBar = $head/TextureProgressBar  
 
-# ==================== KAMERA AYARLARI ====================
 @export var BOB_HEIGHT: float = 1.8 
 var MARKUS_FREQ: float = 2.0
 var MARKUS_AMP: float = 0.08
@@ -55,7 +49,6 @@ const FOV_CHANGE = 1.5
 
 @export var SENSITIVITY: float = 0.002
 
-# ==================== FENER VE ETKİLEŞİM SİSTEMİ ====================
 @onready var isik = $head/Camera3D/SpotLight3D
 @onready var raycast = $head/Camera3D/RayCast3D 
 @onready var etkilesim_yazisi = $CanvasLayer/Label 
@@ -64,7 +57,6 @@ var isik_acik_mi = false
 var fenere_sahip_mi = false 
 
 func _ready() -> void:
-	# --- MERDİVEN YAPİŞTİRİCİSİ VE STAMINA ---
 	floor_snap_length = 0.4 
 	current_stamina = max_stamina
 	current_base_height = BOB_HEIGHT 
@@ -81,7 +73,6 @@ func _ready() -> void:
 	if isik:
 		isik.set_as_top_level(true)
 
-	# --- HAFIZA VE FENER KONTROLÜ ---
 	fenere_sahip_mi = OyunVerisi.fenere_sahip_mi
 	isik_acik_mi = OyunVerisi.isik_acik_mi
 	
@@ -94,7 +85,6 @@ func _ready() -> void:
 			OyunVerisi.isik_acik_mi = false
 
 	if etkilesim_yazisi:
-		# OTOMATİK BOYUT VE HİZALAMA SİSTEMİ (TÜM YAZILAR İÇİN)
 		etkilesim_yazisi.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
 		etkilesim_yazisi.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		etkilesim_yazisi.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -108,30 +98,21 @@ func _ready() -> void:
 		etkilesim_yazisi.label_settings = etk_lset
 		etkilesim_yazisi.hide()
 
-	# ==========================================================
-	# === KÜTÜPHANE TUZAĞINDAN GELDİYSEK (1. BUTON SİSTEMİ) ===
-	# ==========================================================
 	if OyunVerisi.get("kutuphaneden_geldi") == true:
 		
-		# Hafızayı sıfırla ki adam her öldüğünde/başladığında burada doğmasın
 		OyunVerisi.kutuphaneden_geldi = false 
 		
-		# 1. KARAKTERİ KÜTÜPHANEYE IŞINLA (-13, 0, -15)
 		global_position = Vector3(-13, 0, -15)
 		rotation_degrees = Vector3(0, 0, 0)
 		
-		# 2. BİRİNCİ BUTONUN GÖREVLERİNİ VE ALTYAZISINI VER
 		if is_instance_valid(get_node_or_null("/root/GorevArayuzu")):
 			get_node("/root/GorevArayuzu").visible = true
 			get_node("/root/GorevArayuzu")._on_gorev_guncellendi("Görev: Kütüphaneyi araştır")
 			
 			if get_node("/root/GorevArayuzu").has_method("altyazi_goster"):
-				# Yazıyı 4 saniye ekranda tutuyoruz ki adam olayı anlasın
 				get_node("/root/GorevArayuzu").altyazi_goster("Kütüphaneye gireceğim. En fazla ne olabilir ki?", 4.0)
 
-			# === YENİ EKLENEN: EĞİLME BİLGİ KUTUSU YOL HARİTASI ===
 			if get_node("/root/GorevArayuzu").has_method("ekrana_bilgi_bas"):
-				# Altyazıdan 3.5 saniye sonra sessizce sağdan bilgi kutusu kaysın
 				get_tree().create_timer(3.5).timeout.connect(func():
 					get_node("/root/GorevArayuzu").ekrana_bilgi_bas("Sessiz Ol...\nEğilmek için [CTRL]")
 				)
@@ -145,7 +126,6 @@ func _process(delta: float) -> void:
 	if raycast and raycast.is_colliding():
 		var bakilan_obje = raycast.get_collider()
 		
-		# Akıllı Fener Bulucu: Baktığı objeden en üst klasöre kadar 'fener' kelimesini arar.
 		var fener_bulundu = false
 		var arama_objesi = bakilan_obje
 		while arama_objesi != null and arama_objesi != get_tree().root:
@@ -181,7 +161,6 @@ func _process(delta: float) -> void:
 				etkilesim_yazisi.text = "Kitabı İncele [E]"
 				etkilesim_yazisi.visible = true
 			if Input.is_action_just_pressed("interact"):
-				# Eğer obje özel olarak kitabı kriz şeklinde açacak fonksiyona sahipse karakterin kendisini gönderelim
 				if bakilan_obje.has_method("kitap_etkilesimi"):
 					bakilan_obje.kitap_etkilesimi(self)
 				elif bakilan_obje.get_parent().has_method("kitap_etkilesimi"):
@@ -198,7 +177,6 @@ func _process(delta: float) -> void:
 			if Input.is_action_just_pressed("interact"):
 				anahtari_al(bakilan_obje)
 
-# ==================== FENER SMOOTH TAKİP VE TİTREME ====================
 func update_flashlight(delta: float) -> void:
 	if isik and camera:
 		isik.global_position = camera.global_position
@@ -218,7 +196,6 @@ func update_flashlight(delta: float) -> void:
 			delta * flashlight_rotation_smoothness
 		)
 
-# ==================== DİĞER FONKSİYONLAR ====================
 func feneri_yerden_al(obje):
 	var fenerin_kendisi = obje
 	if obje.get_parent() and obje.get_parent().name != "Oda" and obje.get_parent().name != "world":
@@ -238,13 +215,11 @@ func kapiyla_etkilesime_gir(obje):
 		obje.get_parent().etkilesime_gir()
 
 func anahtari_al(obje):
-	# Kitap okunmadan anahtar alınamaz!
 	if not OyunVerisi.get("kapi_acildi"):
 		if is_instance_valid(get_node_or_null("/root/GorevArayuzu")):
 			GorevArayuzu.altyazi_goster("Önce kütüphaneyi araştırmalıyım...", 2.5)
 		return
 
-	# Hem objenin kendisi hem de parentı Anahtar grubunda olabilir
 	var hedef = obje
 	if obje.get_parent() and (obje.get_parent().is_in_group("Anahtar") or "anahtar" in obje.get_parent().name.to_lower()):
 		hedef = obje.get_parent()
@@ -321,14 +296,12 @@ func handle_crouch() -> void:
 		current_base_height = BOB_HEIGHT
 
 func _physics_process(delta: float) -> void:
-	# ==================== DEVELOPER MODE TOGGLE ====================
 	if Input.is_action_just_pressed("developer_mode"):
 		dev_mode_aktif = !dev_mode_aktif
 		if dev_mode_aktif:
 			WALK_SPEED = 15.0
 			SPRINT_SPEED = 25.0
 			
-			# Stamina Barını Kaldır / Sınırsız Yap
 			stamina_deplete_rate = 0.0
 			current_stamina = max_stamina
 			if stamina_bar:
@@ -336,7 +309,6 @@ func _physics_process(delta: float) -> void:
 				stamina_bar.modulate.a = 0.0
 			target_bar_opacity = 0.0
 				
-			# Etrafı Aydınlat (OmniLight)
 			if not dev_light:
 				dev_light = OmniLight3D.new()
 				dev_light.omni_range = 60.0
@@ -352,10 +324,8 @@ func _physics_process(delta: float) -> void:
 			WALK_SPEED = 4.0
 			SPRINT_SPEED = 5.8
 			
-			# Staminayı eski haline getir
 			stamina_deplete_rate = 15.0
 			
-			# Işığı Kapat
 			if dev_light:
 				dev_light.visible = false
 				
@@ -364,7 +334,6 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 		
-	# Geliştirici modunda SPACE (Boşluk) tuşuna basınca zıplama
 	if dev_mode_aktif and Input.is_physical_key_pressed(KEY_SPACE) and is_on_floor():
 		velocity.y = 8.0
 		
@@ -407,17 +376,14 @@ var nefes_tukenme_oynatici: AudioStreamPlayer
 var yorgunluk_ekrani: ColorRect
 
 func handle_sprint_and_stamina(delta: float) -> void:
-	# Eğer enerji barın tamamı bittiyse "Kalp Krizi / Tükenme" kilidini aç!
 	if current_stamina <= 0.0 and not is_exhausted:
 		is_exhausted = true
 		_tukenme_baslat()
 		
-	# Oyuncu Shift tuşunu bırakmışsa ve dinlenmişse (%15 enerjiyi kurtarmışsa) kriz kilidi açılsın
 	if is_exhausted and not Input.is_action_pressed("sprint") and current_stamina > (max_stamina * 0.15):
 		is_exhausted = false
 		_tukenme_bitir()
 		
-	# Koşabilmek için Shift, enerjinin olması VE tükenmemiş olması lazım
 	var can_sprint = not is_exhausted and current_stamina > 0 and Input.is_action_pressed("sprint") and not is_crouching
 	
 	if can_sprint and velocity.length() > 0.1:
@@ -427,7 +393,6 @@ func handle_sprint_and_stamina(delta: float) -> void:
 		target_bar_opacity = 1.0
 		current_stamina -= stamina_deplete_rate * delta
 		
-		# Koşarken sürekli nefes sayacını tazeler. Yani bar anında dolmaya BAŞLAMAZ.
 		stamina_delay_timer = stamina_regen_delay
 	else:
 		is_sprinting = false
@@ -435,11 +400,9 @@ func handle_sprint_and_stamina(delta: float) -> void:
 			SPEED = WALK_SPEED
 		target_bar_opacity = 0.0 if current_stamina >= max_stamina else 1.0
 		
-		# Oyuncu koşmayı kestiyse bariyer (nefeslenme) sayacı başlar
 		if stamina_delay_timer > 0.0:
 			stamina_delay_timer -= delta
 		else:
-			# Ancak nefesi düzene girince dayanıklılığı artar!
 			if current_stamina < max_stamina:
 				current_stamina += stamina_regen_rate * delta
 
@@ -517,31 +480,27 @@ func update_bar_color() -> void:
 		var sp = current_stamina / max_stamina
 		stamina_bar.self_modulate = Color(1.0 - sp, sp, 0.2) if sp < 0.7 else Color(0, 1, 0.3)
 
-# ==================== KALICI TRAVMA EFEKTİ ====================
 func kalici_travma_baslat():
-	# Zaten varsa bir daha ekleme
 	if has_node("KaliciTravmaCanvas"):
 		return
 		
-	# Y�r�y�� h�z�n� d���r ve kafa sallanmas�n� (ba� d�nmesi) artt�r
-	WALK_SPEED = 1.8         # Sendeleyerek y�r�me
-	SPRINT_SPEED = 2.5       # Ko�maya �al��sa da a��r
-	MARKUS_AMP = 0.18        # Kamera/G�r�� �ok dalgalanacak (normali 0.08)
-	MARKUS_FREQ = 2.5        # Nefes nefese titreme (normali 2.0)
+	WALK_SPEED = 1.8
+	SPRINT_SPEED = 2.5
+	MARKUS_AMP = 0.18
+	MARKUS_FREQ = 2.5
 	SPEED = WALK_SPEED
 		
 	var canvas = CanvasLayer.new()
 	canvas.name = "KaliciTravmaCanvas"
-	canvas.layer = 95 # Arayüzün altında ama oyunun üstünde
+	canvas.layer = 95
 	add_child(canvas)
 	
 	var cr = ColorRect.new()
 	cr.set_anchors_preset(Control.PRESET_FULL_RECT)
-	cr.color = Color(0.3, 0.0, 0.0, 0.0) # Hafif kırmızı
-	cr.mouse_filter = Control.MOUSE_FILTER_IGNORE # Fareyi engellemesini iptal et
+	cr.color = Color(0.3, 0.0, 0.0, 0.0)
+	cr.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	canvas.add_child(cr)
 	
-	# Sonsuz kalp atışı döngüsü
 	var tween = create_tween().set_loops()
 	tween.tween_property(cr, "color:a", 0.2, 0.8).set_trans(Tween.TRANS_SINE)
 	tween.tween_property(cr, "color:a", 0.05, 0.8).set_trans(Tween.TRANS_SINE)

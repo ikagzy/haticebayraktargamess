@@ -4,7 +4,6 @@ extends GradientNode
 
 const GradientNode = preload("res://addons/terrainy/nodes/gradients/gradient_node.gd")
 
-## Smooth hemisphere/dome shape
 
 @export var flatness: float = 0.0:
 	set(value):
@@ -21,10 +20,8 @@ func get_height_at(world_pos: Vector3) -> float:
 	
 	var normalized_distance = distance_2d / radius
 	
-	# Spherical dome calculation
 	var height_factor = sqrt(1.0 - normalized_distance * normalized_distance)
 	
-	# Apply flatness (makes top more plateau-like)
 	if flatness > 0.0 and normalized_distance < flatness:
 		height_factor = sqrt(1.0 - flatness * flatness)
 	

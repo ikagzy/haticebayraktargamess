@@ -2,7 +2,7 @@
 class_name OpenWebUIAPI
 extends LLMInterface
 
-var _headers: PackedStringArray # set in initialize function
+var _headers: PackedStringArray
 
 const DEPRECATED_API_KEY_SETTING := "plugins/ai_assistant_hub/openwebui_api_key"
 
@@ -80,7 +80,6 @@ func read_response(body) -> String:
 		return LLMInterface.INVALID_RESPONSE
 
 
-# ----- Deprecated section - used to read the key to migrate to user settings file -----
 
 func get_deprecated_api_key() -> String:
 	return ProjectSettings.get_setting(DEPRECATED_API_KEY_SETTING, "")

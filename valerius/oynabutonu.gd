@@ -31,12 +31,9 @@ func _on_pressed():
 	scale = Vector2(0.9, 0.9)
 	await get_tree().create_timer(0.1).timeout
 	
-	# === SADECE BU OYUNUN VERİLERİNİ DEĞİL, TÜM BİLGİLERİ SIFIRLA ===
 	if has_node("/root/OyunVerisi"):
 		OyunVerisi.hafizayi_sifirla()
 		
-	# DİKKAT: GlobalSonlar.son2_acildi = false SATIRINI TAMAMEN SİLDİK! 
-	# OYUN ARTIK SENİN GEÇMİŞTE NE YAPTIĞINI UNUTMAYACAK (Başarımlar kalacak)
 	
 	if is_instance_valid(get_node_or_null("/root/GorevArayuzu")):
 		get_node("/root/GorevArayuzu").visible = true

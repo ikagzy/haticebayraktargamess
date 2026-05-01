@@ -1,8 +1,5 @@
 extends Area3D
 
-# yatak_tetigi.gd — SADECE ANA SON yolu.
-# NPC'ler oda.gd _ready()'de zaten gizlendi.
-# Burası sadece: kilitle → karar → kale.tscn
 
 @export var uyuma_suresi: float = 3.0
 @export var hedef_sahne: String = "res://uyku_arasahne.tscn"
@@ -18,7 +15,6 @@ func _on_body_entered(body: Node3D):
 		return
 	if not (body is CharacterBody3D or body.is_in_group("Player")):
 		return
-	# Kütüphaneye gidilmemişse pasif
 	if not OyunVerisi.get("kapi_acildi"):
 		return
 	if OyunVerisi.get("ruyada_mi"):
@@ -29,16 +25,13 @@ func _on_body_entered(body: Node3D):
 	uyuma_sekansini_baslat(body)
 
 func uyuma_sekansini_baslat(oyuncu: Node3D):
-	# 1. OYUNCUYU KİLİTLE
 	if is_instance_valid(oyuncu):
 		oyuncu.set_physics_process(false)
 		oyuncu.set_process_unhandled_input(false)
 
-	# 2. ALTYAZI
 	if is_instance_valid(GorevArayuzu) and GorevArayuzu.has_method("altyazi_goster"):
 		GorevArayuzu.altyazi_goster("Gözlerim kapanıyor... Uyuyorum.", uyuma_suresi)
 
-	# 3. KARARMA
 	var canvas = CanvasLayer.new()
 	canvas.layer = 99
 	get_tree().current_scene.add_child(canvas)
@@ -52,7 +45,6 @@ func uyuma_sekansini_baslat(oyuncu: Node3D):
 	tween.tween_property(kararti, "color:a", 1.0, 1.2)
 	await tween.finished
 
-	# 4. ANA SON — Kale sahnesine geç
 	if is_instance_valid(get_node_or_null("/root/SahneGecisi")):
 		SahneGecisi.gecis_yap(hedef_sahne)
 	else:

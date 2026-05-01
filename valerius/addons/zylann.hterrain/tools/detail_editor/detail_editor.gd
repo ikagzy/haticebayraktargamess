@@ -8,13 +8,11 @@ const HT_ImageFileCache = preload("../../util/image_file_cache.gd")
 const HT_EditorUtil = preload("../util/editor_util.gd")
 const HT_Logger = preload("../../util/logger.gd")
 
-# TODO Can't preload because it causes the plugin to fail loading if assets aren't imported
 const PLACEHOLDER_ICON_TEXTURE = "res://addons/zylann.hterrain/tools/icons/icon_grass.svg"
 const DETAIL_LAYER_ICON_TEXTURE = \
 	"res://addons/zylann.hterrain/tools/icons/icon_detail_layer_node.svg"
 
 signal detail_selected(index)
-# Emitted when the tool added or removed a detail map
 signal detail_list_changed
 
 @onready var _item_list : ItemList = $ItemList
@@ -62,27 +60,20 @@ func _update_list():
 
 	var data = _terrain.get_data()
 	if data != null:
-		# Display layers from what terrain data actually contains,
-		# because layer nodes are just what makes them rendered and aren't much restricted.
 		var layer_count = data.get_map_count(HTerrainData.CHANNEL_DETAIL)
 		var placeholder_icon = HT_EditorUtil.load_texture(PLACEHOLDER_ICON_TEXTURE, _logger)
 		
 		for i in layer_count:
-			# TODO Show a preview icon
 			_item_list.add_item(str("Map ", i), placeholder_icon)
 			
 			if layer_nodes_by_index.has(i):
-				# TODO How to keep names updated with node names?
 				var names := ", ".join(PackedStringArray(layer_nodes_by_index[i]))
 				if len(names) == 1:
 					_item_list.set_item_tooltip(i, "Used by " + names)
 				else:
 					_item_list.set_item_tooltip(i, "Used by " + names)
-				# Remove custom color
-				# TODO Use fg version when available in Godot 3.1, I want to only highlight text
 				_item_list.set_item_custom_bg_color(i, Color(0, 0, 0, 0))
 			else:
-				# TODO Use fg version when available in Godot 3.1, I want to only highlight text
 				_item_list.set_item_custom_bg_color(i, Color(1.0, 0.2, 0.2, 0.3))
 				_item_list.set_item_tooltip(i, "This map isn't used by any layer. " \
 					+ "Add a HTerrainDetailLayer node as child of the terrain.")
@@ -111,9 +102,7 @@ func _add_layer():
 	assert(_undo_redo_manager != null)
 	var terrain_data : HTerrainData = _terrain.get_data()
 
-	# First, create node and map image	
 	var node := HTerrainDetailLayer.new()
-	# TODO Workarounds for https://github.com/godotengine/godot/issues/21410
 	var detail_layer_icon := HT_EditorUtil.load_texture(DETAIL_LAYER_ICON_TEXTURE, _logger)
 	node.set_meta("_editor_icon", detail_layer_icon)
 	node.name = "HTerrainDetailLayer"
@@ -125,7 +114,6 @@ func _add_layer():
 	var undo_redo := _undo_redo_manager.get_history_undo_redo(
 		_undo_redo_manager.get_object_history_id(_terrain))
 	
-	# Then, create an action
 	undo_redo.create_action("Add Detail Layer {0}".format([map_index]))
 	
 	undo_redo.add_do_method(terrain_data._edit_insert_map_from_image_cache.bind( 
@@ -140,30 +128,24 @@ func _add_layer():
 		terrain_data._edit_remove_map.bind(HTerrainData.CHANNEL_DETAIL, map_index))
 	undo_redo.add_undo_method(self._update_list)
 	
-	# Yet another instance of this hack, to prevent UndoRedo from running some of the functions,
-	# which we had to run already
 	terrain_data._edit_set_disable_apply_undo(true)
 	undo_redo.commit_action()
 	terrain_data._edit_set_disable_apply_undo(false)
 	
-	#_update_list()
 	detail_list_changed.emit()
 	
 	var index := node.layer_index
 	_item_list.select(index)
-	# select() doesn't trigger the signal
 	detail_selected.emit(index)
 
 
 func _remove_layer(map_index: int):
 	var terrain_data : HTerrainData = _terrain.get_data()
 	
-	# First, cache image data
 	var image := terrain_data.get_image(HTerrainData.CHANNEL_DETAIL, map_index)
 	var image_id := _image_cache.save_image(image)
 	var nodes = _terrain.get_detail_layers()
 	var using_nodes := []
-	# Nodes using this map will be removed from the tree
 	for node in nodes:
 		if node.layer_index == map_index:
 			using_nodes.append(node)
@@ -189,7 +171,6 @@ func _remove_layer(map_index: int):
 	
 	undo_redo.commit_action()
 	
-	#_update_list()
 	detail_list_changed.emit()
 
 

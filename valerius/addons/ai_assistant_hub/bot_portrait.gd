@@ -7,7 +7,7 @@ signal think(value:bool)
 const PORTRAITS_BASE := preload("res://addons/ai_assistant_hub/graphics/portraits/portraits_base.png")
 const PORTRAIT_AMOUNT_X := 3
 const PORTRAIT_AMOUNT_Y := 3
-const SCALE := 3 # given the images are 16px but we are displaying them 48px, this is used to move the face when thinking
+const SCALE := 3
 
 @onready var portrait_base: TextureRect = %PortraitBase
 @onready var portrait_mouth: TextureRect = %PortraitMouth

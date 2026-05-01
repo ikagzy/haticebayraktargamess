@@ -1,4 +1,4 @@
-@tool # https://www.youtube.com/watch?v=Y7JG63IuaWs
+@tool
 
 extends EditorPlugin
 
@@ -49,23 +49,15 @@ const MENU_DOCUMENTATION = 8
 const MENU_ABOUT = 9
 
 
-# TODO Rename _terrain
 var _node : HTerrain = null
 
-# GUI
 var _panel : HT_EditPanel = null
 var _toolbar : Container = null
 var _toolbar_brush_buttons := {}
 var _generator_dialog : HT_GeneratorDialog = null
-# TODO Rename _import_terrain_dialog
 var _import_dialog = null
 var _export_image_dialog = null
 
-# This window is only used for operations not triggered by an existing dialog.
-# In Godot it has been solved by automatically reparenting the dialog:
-# https://github.com/godotengine/godot/pull/71209
-# But `get_exclusive_child()` is not exposed. So dialogs triggering a progress
-# dialog may need their own child instance...
 var _progress_window : HT_ProgressWindow = null
 
 var _generate_mesh_dialog = null
@@ -83,7 +75,6 @@ var _image_cache : HT_ImageFileCache
 var _terrain_painter : HT_TerrainPainter = null
 var _brush_decal : HT_BrushDecal = null
 var _mouse_pressed := false
-#var _pending_paint_action = null
 var _pending_paint_commit := false
 
 var _logger := HT_Logger.get_for(self)
@@ -104,7 +95,6 @@ func _enter_tree():
 	add_custom_type("HTerrainDetailLayer", "Node3D", HTerrainDetailLayer, 
 		get_icon("detail_layer_node"))
 	add_custom_type("HTerrainData", "Resource", HTerrainData, get_icon("heightmap_data"))
-	# TODO Proper texture
 	add_custom_type("HTerrainTextureSet", "Resource", HTerrainTextureSet, null)
 	
 	_preview_generator = HT_PreviewGenerator.new()
@@ -127,7 +117,6 @@ func _enter_tree():
 	HT_Util.apply_dpi_scale(_panel, dpi_scale)
 	_panel.hide()
 	add_control_to_container(EditorPlugin.CONTAINER_SPATIAL_EDITOR_BOTTOM, _panel)
-	# Apparently _ready() still isn't called at this point...
 	_panel.call_deferred("set_terrain_painter", _terrain_painter)
 	_panel.call_deferred("setup_dialogs", base_control)
 	_panel.set_undo_redo(get_undo_redo())
@@ -194,7 +183,6 @@ func _enter_tree():
 	
 	_toolbar.add_child(VSeparator.new())
 	
-	# I want modes to be in that order in the GUI
 	var ordered_brush_modes := [
 		HT_TerrainPainter.MODE_RAISE,
 		HT_TerrainPainter.MODE_LOWER,
@@ -258,8 +246,6 @@ func _enter_tree():
 	_export_image_dialog = HT_ExportImageDialogScene.instantiate()
 	HT_Util.apply_dpi_scale(_export_image_dialog, dpi_scale)
 	base_control.add_child(_export_image_dialog)
-	# Need to call deferred because in the specific case where you start the editor
-	# with the plugin enabled, _ready won't be called at this point
 	_export_image_dialog.call_deferred("setup_dialogs", base_control)
 	
 	_about_dialog = HT_AboutDialogScene.instantiate()
@@ -286,7 +272,6 @@ func _enter_tree():
 func _exit_tree():
 	_logger.debug("HTerrain plugin Exit tree")
 	
-	# Make sure we release all references to edited stuff
 	_edit(null)
 
 	_panel.queue_free()
@@ -325,11 +310,8 @@ func _exit_tree():
 	get_editor_interface().get_resource_previewer().remove_preview_generator(_preview_generator)
 	_preview_generator = null
 	
-	# TODO Manual clear cuz it can't do it automatically due to a Godot bug
 	_image_cache.clear()
 	
-	# TODO https://github.com/godotengine/godot/issues/6254#issuecomment-246139694
-	# This was supposed to be automatic, but was never implemented it seems...
 	remove_custom_type("HTerrain")
 	remove_custom_type("HTerrainDetailLayer")
 	remove_custom_type("HTerrainData")
@@ -365,7 +347,6 @@ func _edit(object):
 	_export_image_dialog.set_terrain(_node)
 	
 	if object is HTerrainDetailLayer:
-		# Auto-select layer for painting
 		if object.is_layer_index_valid():
 			_panel.set_detail_layer_index(object.get_layer_index())
 		_on_detail_selected(object.get_layer_index())
@@ -407,8 +388,6 @@ func _update_toolbar_menu_availability():
 		data_available = true
 	var popup : PopupMenu = _menu_button.get_popup()
 	for i in popup.get_item_count():
-		#var id = popup.get_item_id(i)
-		# Turn off items if there is no data for them to work on
 		if data_available:
 			popup.set_item_disabled(i, false)
 			popup.set_item_tooltip(i, "")
@@ -422,19 +401,11 @@ func _make_visible(visible: bool):
 	_toolbar.set_visible(visible)
 	_brush_decal.update_visibility()
 
-	# TODO Workaround https://github.com/godotengine/godot/issues/6459
-	# When the user selects another node,
-	# I want the plugin to release its references to the terrain.
-	# This is important because if we don't do that, some modified resources will still be
-	# loaded in memory, so if the user closes the scene and reopens it later, the changes will
-	# still be partially present, and this is not expected.
 	if not visible:
 		_edit(null)
 
 
-# TODO Can't hint return as `Vector2?` because it's nullable
-func _get_pointed_cell_position(mouse_position: Vector2, p_camera: Camera3D):# -> Vector2:
-	# Need to do an extra conversion in case the editor viewport is in half-resolution mode
+func _get_pointed_cell_position(mouse_position: Vector2, p_camera: Camera3D):
 	var viewport := p_camera.get_viewport()
 	var viewport_container : Control = viewport.get_parent()
 	var screen_pos = mouse_position * Vector2(viewport.size) / viewport_container.size
@@ -462,20 +433,13 @@ func _forward_3d_gui_input(p_camera: Camera3D, p_event: InputEvent) -> int:
 			if mb.pressed == false:
 				_mouse_pressed = false
 
-			# Need to check modifiers before capturing the event,
-			# because they are used in navigation schemes
 			if (not mb.ctrl_pressed) and (not mb.alt_pressed) and mb.button_index == MOUSE_BUTTON_LEFT:
 				if mb.pressed:
-					# TODO Allow to paint on click
-					# TODO `pressure` is not available in button press events
-					# So I have to assume zero to avoid discontinuities with move events
-					#_terrain_painter.paint_input(hit_pos_in_cells, 0.0)
 					_mouse_pressed = true
 				
 				captured_event = true
 				
 				if not _mouse_pressed:
-					# Just finished painting
 					_pending_paint_commit = true
 					_terrain_painter.get_brush().on_paint_end()
 		
@@ -483,7 +447,6 @@ func _forward_3d_gui_input(p_camera: Camera3D, p_event: InputEvent) -> int:
 			and _terrain_painter.has_meta("pick_height") \
 			and _terrain_painter.get_meta("pick_height"):
 				_terrain_painter.set_meta("pick_height", false)
-				# Pick height
 				var hit_pos_in_cells = _get_pointed_cell_position(mb.position, p_camera)
 				if hit_pos_in_cells != null:
 					var h = _node.get_data().get_height_at(
@@ -502,8 +465,6 @@ func _forward_3d_gui_input(p_camera: Camera3D, p_event: InputEvent) -> int:
 					_terrain_painter.paint_input(hit_pos_in_cells, mm.pressure)
 					captured_event = true
 
-		# This is in case the data or textures change as the user edits the terrain,
-		# to keep the decal working without having to noodle around with nested signals
 		_brush_decal.update_visibility()
 
 	if captured_event:
@@ -528,7 +489,6 @@ func _process(delta: float):
 		else:
 			_pending_paint_commit = false
 	
-	# Poll presence of data resource
 	if has_data != _terrain_had_data_previous_frame:
 		_terrain_had_data_previous_frame = has_data
 		_update_toolbar_menu_availability()
@@ -541,7 +501,6 @@ func _paint_completed(changes: Dictionary):
 	assert(heightmap_data != null)
 	
 	var chunk_positions : Array = changes.chunk_positions
-	# Should not create an UndoRedo action if nothing changed
 	assert(len(chunk_positions) > 0)
 	var changed_maps : Array = changes.maps
 	
@@ -558,7 +517,6 @@ func _paint_completed(changes: Dictionary):
 	var chunk_size := _terrain_painter.get_undo_chunk_size()
 	
 	for map in changed_maps:
-		# Cache images to disk so RAM does not continuously go up (or at least much slower)
 		for chunks in [map.chunk_initial_datas, map.chunk_final_datas]:
 			for i in len(chunks):
 				var im : Image = chunks[i]
@@ -586,20 +544,6 @@ func _paint_completed(changes: Dictionary):
 		"maps": redo_maps
 	}
 	
-#	{
-#		chunk_positions: [Vector2, Vector2, ...]
-#		chunk_size: int
-#		maps: [
-#			{
-#				map_type: int
-#				map_index: int
-#				chunks: [
-#					int, int, ...
-#				]
-#			},
-#			...
-#		]
-#	}
 
 	var ur := get_undo_redo()
 
@@ -607,11 +551,6 @@ func _paint_completed(changes: Dictionary):
 	ur.add_do_method(heightmap_data, "_edit_apply_undo", redo_data, _image_cache)
 	ur.add_undo_method(heightmap_data, "_edit_apply_undo", undo_data, _image_cache)
 
-	# Small hack here:
-	# commit_actions executes the do method, however terrain modifications are heavy ones,
-	# so we don't really want to re-run an update in every chunk that was modified during painting.
-	# The data is already in its final state,
-	# so we just prevent the resource from applying changes here.
 	heightmap_data._edit_set_disable_apply_undo(true)
 	ur.commit_action()
 	heightmap_data._edit_set_disable_apply_undo(false)
@@ -644,22 +583,6 @@ func _menu_item_selected(id: int):
 			_resize_dialog.popup_centered()
 			
 		MENU_UPDATE_EDITOR_COLLIDER:
-			# This is for editor tools to be able to use terrain collision.
-			# It's not automatic because keeping this collider up to date is
-			# expensive, but not too bad IMO because that feature is not often
-			# used in editor for now.
-			# If users complain too much about this, there are ways to improve it:
-			#
-			# 1) When the terrain gets deselected, update the terrain collider
-			#    in a thread automatically. This is still expensive but should
-			#    be easy to do.
-			#
-			# 2) Bullet actually support modifying the heights dynamically,
-			#    as long as we stay within min and max bounds,
-			#    so PR a change to the Godot heightmap collider to support passing
-			#    a Float Image directly, and make it so the data is in sync
-			#    (no CoW plz!!). It's trickier than 1) but almost free.
-			#
 			_node.update_collider()
 		
 		MENU_GENERATE_MESH:
@@ -671,7 +594,6 @@ func _menu_item_selected(id: int):
 				_export_image_dialog.popup_centered()
 		
 		MENU_LOOKDEV:
-			# No actions here, it's a submenu
 			pass
 
 		MENU_DOCUMENTATION:
@@ -722,13 +644,11 @@ func _on_mode_selected(mode: int):
 
 
 func _on_texture_selected(index: int):
-	# Switch to texture paint mode when a texture is selected
 	_select_brush_mode(HT_TerrainPainter.MODE_SPLAT)
 	_terrain_painter.set_texture_index(index)
 
 
 func _on_detail_selected(index: int):
-	# Switch to detail paint mode when a detail item is selected
 	_select_brush_mode(HT_TerrainPainter.MODE_DETAIL)
 	_terrain_painter.set_detail_index(index)
 
@@ -759,7 +679,6 @@ func _on_GenerateMeshDialog_generate_selected(lod: int):
 	mi.set_owner(get_editor_interface().get_edited_scene_root())
 
 
-# TODO Workaround for https://github.com/Zylann/godot_heightmap_plugin/issues/101
 func _on_permanent_change_performed(message: String):
 	var data := _node.get_data()
 	if data == null:
@@ -768,7 +687,6 @@ func _on_permanent_change_performed(message: String):
 	var ur := get_undo_redo()
 	ur.create_action(message)
 	ur.add_do_method(data, "_dummy_function")
-	#ur.add_undo_method(data, "_dummy_function")
 	ur.commit_action()
 
 
@@ -797,13 +715,7 @@ func _open_texture_set_import_editor():
 	_texture_set_import_editor.popup_centered()
 
 
-################
-# DEBUG LAND
 
-# TEST
-#func _physics_process(delta):
-#	if Input.is_key_pressed(KEY_KP_0):
-#		_debug_spawn_collider_indicators()
 
 
 func _debug_spawn_collider_indicators():
@@ -854,8 +766,6 @@ func _debug_spawn_collider_indicators():
 
 func _spawn_vertical_bound_boxes():
 	var data := _node.get_data()
-#	var sy = data._chunked_vertical_bounds_size_y
-#	var sx = data._chunked_vertical_bounds_size_x
 	var mat := StandardMaterial3D.new()
 	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	mat.albedo_color = Color(1,1,1,0.2)
@@ -878,7 +788,3 @@ func _spawn_vertical_bound_boxes():
 			_node.add_child(mi)
 			mi.owner = get_editor_interface().get_edited_scene_root()
 	
-#	if p_event is InputEventKey:
-#		if p_event.pressed == false:
-#			if p_event.scancode == KEY_SPACE and p_event.control:
-#				_spawn_vertical_bound_boxes()

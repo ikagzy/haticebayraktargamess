@@ -59,9 +59,7 @@ var _logger = HT_Logger.get_for(self)
 func _init():
 	for i in 4:
 		var p := HT_Painter.new()
-		# The name is just for debugging
 		p.set_name(str("Painter", i))
-		#p.set_brush_size(_brush_size)
 		p.texture_region_changed.connect(_on_painter_texture_region_changed.bind(i))
 		add_child(p)
 		_painters.append(p)
@@ -77,14 +75,10 @@ func get_brush_size() -> int:
 
 func set_brush_size(s: int):
 	_brush.set_size(s)
-#	for p in _painters:
-#		p.set_brush_size(_brush_size)
 
 
 func set_brush_texture(texture: Texture2D):
 	_brush.set_shapes([texture])
-#	for p in _painters:
-#		p.set_brush_texture(texture)
 
 
 func get_opacity() -> float:
@@ -184,11 +178,9 @@ func commit() -> Dictionary:
 	assert(len(_modified_maps) > 0)
 	
 	for mm in _modified_maps:
-		#print("Flushing painter ", mm.painter_index)
 		var painter : HT_Painter = _painters[mm.painter_index]
 		var info := painter.commit()
 		
-		# Note, positions are always the same for each map
 		chunk_positions = info.chunk_positions
 	
 		changes.append({
@@ -201,16 +193,9 @@ func commit() -> Dictionary:
 		var cs := get_undo_chunk_size()
 		for pos in info.chunk_positions:
 			var rect = Rect2(pos * cs, Vector2(cs, cs))
-			# This will update vertical bounds and notify normal map baker,
-			# since the latter updates out of order for preview
 			terrain_data.notify_region_change(rect, mm.map_type, mm.map_index, false, true)
 	
-#	for i in len(_painters):
-#		var p = _painters[i]
-#		if p.has_modified_chunks():
-#			print("Painter ", i, " has modified chunks")
 	
-	# `commit()` is supposed to consume these chunks, there should be none left
 	assert(not has_modified_chunks())
 	
 	return {
@@ -232,23 +217,17 @@ func set_terrain(terrain: HTerrain):
 	if terrain == _terrain:
 		return
 	_terrain = terrain
-	# It's important  to release resources here,
-	# otherwise Godot keeps modified terrain maps in memory and "reloads" them like that
-	# next time we reopen the scene, even if we didn't save it
 	for p in _painters:
 		p.set_image(null, null)
 		p.clear_brush_shader_params()
 
 
-# This may be called from an `_input` callback.
-# Returns `true` if any change was performed.
 func paint_input(position: Vector2, pressure: float) -> bool:
 	assert(_terrain.get_data() != null)
 	var data := _terrain.get_data()
 	assert(not data.is_locked())
 	
 	if not _brush.configure_paint_input(_painters, position, pressure):
-		# Sometimes painting may not happen due to frequency options
 		return false
 
 	_modified_maps.clear()
@@ -273,12 +252,6 @@ func paint_input(position: Vector2, pressure: float) -> bool:
 			_paint_erode(data, position)
 
 		MODE_SPLAT:
-			# TODO Properly support what happens when painting outside of supported index
-			# var supported_slots_count := terrain.get_cached_ground_texture_slot_count()
-			# if _texture_index >= supported_slots_count:
-			# 	_logger.debug("Painting out of range of supported texture slots: {0}/{1}" \
-			# 		.format([_texture_index, supported_slots_count]))
-			# 	return
 			if _terrain.is_using_indexed_splatmap():
 				_paint_splat_indexed(data, position)
 			else:
@@ -311,7 +284,6 @@ func _on_painter_texture_region_changed(rect: Rect2, painter_index: int):
 		return
 	for mm in _modified_maps:
 		if mm.painter_index == painter_index:
-			# This will tell auto-baked maps to update (like normals).
 			data.notify_region_change(rect, mm.map_type, mm.map_index, false, false)
 			break
 
@@ -326,7 +298,6 @@ func _paint_height(data: HTerrainData, position: Vector2, factor: float):
 	mm.painter_index = 0
 	_modified_maps = [mm]
 
-	# When using sculpting tools, make it dependent on brush size
 	var raise_strength := 10.0 + float(_brush.get_size())
 	var delta := factor * (2.0 / 60.0) * raise_strength
 	
@@ -462,7 +433,6 @@ func _paint_splat_indexed(data: HTerrainData, position: Vector2):
 
 
 func _paint_splat16(data: HTerrainData, position: Vector2):
-	# Make sure required maps are present
 	while data.get_map_count(HTerrainData.CHANNEL_SPLAT) < 4:
 		data._edit_add_map(HTerrainData.CHANNEL_SPLAT)
 
@@ -516,8 +486,6 @@ func _paint_color(data: HTerrainData, position: Vector2):
 
 	var p : HT_Painter = _painters[0]
 	
-	# There was a problem with painting colors because of sRGB
-	# https://github.com/Zylann/godot_heightmap_plugin/issues/17#issuecomment-734001879
 
 	p.set_brush_shader(HT_ColorShader)
 	p.set_brush_shader_param("u_color", _color)
@@ -559,7 +527,6 @@ func _paint_detail(data: HTerrainData, position: Vector2):
 	var p : HT_Painter = _painters[0]
 	var c := Color(_detail_density, _detail_density, _detail_density, 1.0)
 	
-	# TODO Don't use this shader (why?)
 	p.set_brush_shader(HT_ColorShader)
 	p.set_brush_shader_param("u_color", c)
 	_set_slope_limit_shader_params(p, heightmap_texture)

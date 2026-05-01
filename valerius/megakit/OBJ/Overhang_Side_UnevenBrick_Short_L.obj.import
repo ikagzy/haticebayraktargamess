@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://blvs22jv7j0e4"
+path="res://.godot/imported/Overhang_Side_UnevenBrick_Short_L.obj-f9f091afcf5731d7a08e362a41634457.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Overhang_Side_UnevenBrick_Short_L.obj-f9f091afcf5731d7a08e362a41634457.mesh"]
+
+source_file="res://megakit/OBJ/Overhang_Side_UnevenBrick_Short_L.obj"
+dest_files=["res://.godot/imported/Overhang_Side_UnevenBrick_Short_L.obj-f9f091afcf5731d7a08e362a41634457.mesh", "res://.godot/imported/Overhang_Side_UnevenBrick_Short_L.obj-f9f091afcf5731d7a08e362a41634457.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

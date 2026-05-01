@@ -1,5 +1,4 @@
 
-# Slider with two handles representing an interval.
 
 @tool
 extends Control

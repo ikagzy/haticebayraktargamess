@@ -1,9 +1,7 @@
 class_name TerrainMeshGenerator
 extends RefCounted
 
-## Heightmap-based terrain mesh generator for optimal performance
 
-## Generate terrain mesh from heightmap
 static func generate_from_heightmap(
 	heightmap: Image,
 	terrain_size: Vector2
@@ -20,30 +18,25 @@ static func generate_from_heightmap(
 	var half_size = terrain_size / 2.0
 	var total_vertices = (resolution.x + 1) * (resolution.y + 1)
 	
-	# Pre-allocate arrays
 	vertices.resize(total_vertices)
 	uvs.resize(total_vertices)
 	
-	# Generate vertices from heightmap
 	var vertex_index = 0
 	for z in range(resolution.y + 1):
 		for x in range(resolution.x + 1):
 			var local_x = (x * step.x) - half_size.x
 			var local_z = (z * step.y) - half_size.y
 			
-			# Sample heightmap
 			var height = heightmap.get_pixel(x, z).r
 			
 			vertices[vertex_index] = Vector3(local_x, height, local_z)
 			uvs[vertex_index] = Vector2(x / float(resolution.x), z / float(resolution.y))
 			vertex_index += 1
 	
-	# Generate indices
 	for z in range(resolution.y):
 		for x in range(resolution.x):
 			var i = z * (resolution.x + 1) + x
 			
-			# Two triangles per quad
 			indices.append(i)
 			indices.append(i + 1)
 			indices.append(i + resolution.x + 1)
@@ -52,12 +45,10 @@ static func generate_from_heightmap(
 			indices.append(i + resolution.x + 2)
 			indices.append(i + resolution.x + 1)
 	
-	# Calculate normals
 	normals.resize(vertices.size())
 	for i in range(normals.size()):
 		normals[i] = Vector3.ZERO
 	
-	# Accumulate face normals
 	for i in range(0, indices.size(), 3):
 		var i0 = indices[i]
 		var i1 = indices[i + 1]
@@ -71,11 +62,9 @@ static func generate_from_heightmap(
 		normals[i1] += normal
 		normals[i2] += normal
 	
-	# Normalize
 	for i in range(normals.size()):
 		normals[i] = normals[i].normalized()
 	
-	# Create mesh
 	var arrays = []
 	arrays.resize(Mesh.ARRAY_MAX)
 	arrays[Mesh.ARRAY_VERTEX] = vertices
@@ -93,7 +82,6 @@ static func generate_from_heightmap(
 	
 	return array_mesh
 
-## Legacy: Generate terrain mesh - DEPRECATED, use heightmap approach
 static func generate(
 	resolution: int,
 	terrain_size: Vector2,
@@ -110,11 +98,9 @@ static func generate(
 	var half_size = terrain_size / 2.0
 	var total_vertices = (resolution + 1) * (resolution + 1)
 	
-	# Pre-allocate arrays
 	vertices.resize(total_vertices)
 	uvs.resize(total_vertices)
 	
-	# Generate vertices
 	var vertex_index = 0
 	for z in range(resolution + 1):
 		for x in range(resolution + 1):
@@ -128,12 +114,10 @@ static func generate(
 			uvs[vertex_index] = Vector2(x / float(resolution), z / float(resolution))
 			vertex_index += 1
 	
-	# Generate indices
 	for z in range(resolution):
 		for x in range(resolution):
 			var i = z * (resolution + 1) + x
 			
-			# Two triangles per quad
 			indices.append(i)
 			indices.append(i + 1)
 			indices.append(i + resolution + 1)
@@ -142,12 +126,10 @@ static func generate(
 			indices.append(i + resolution + 2)
 			indices.append(i + resolution + 1)
 	
-	# Calculate normals
 	normals.resize(vertices.size())
 	for i in range(normals.size()):
 		normals[i] = Vector3.ZERO
 	
-	# Accumulate face normals
 	for i in range(0, indices.size(), 3):
 		var i0 = indices[i]
 		var i1 = indices[i + 1]
@@ -161,11 +143,9 @@ static func generate(
 		normals[i1] += normal
 		normals[i2] += normal
 	
-	# Normalize
 	for i in range(normals.size()):
 		normals[i] = normals[i].normalized()
 	
-	# Create mesh
 	var arrays = []
 	arrays.resize(Mesh.ARRAY_MAX)
 	arrays[Mesh.ARRAY_VERTEX] = vertices

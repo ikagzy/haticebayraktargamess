@@ -31,18 +31,12 @@ func _ready():
 	_nav_region.enter_cost = enter_cost
 	_nav_region.travel_cost = travel_cost
 	
-	# Enabling edge connections comes with a performance penalty that causes hitches whenever
-	# the nav mesh is updated. The navigation server has to compare each edge, and it does this on
-	# the main thread.
 	_nav_region.use_edge_connections = false
 	
 	add_child(_nav_region)
 	
 	_update_map_cell_size()
 	
-	# If you're using ProtonScatter, you will want to delay this next call until after all
-	# your scatter nodes have finished setting up. Here, we just defer one frame so that nodes
-	# after this one in the tree get set up first
 	parse_scene.call_deferred()
 
 
@@ -102,7 +96,6 @@ func _process(p_delta: float) -> void:
 	
 	var track_pos := player.global_position
 	if player is CharacterBody3D:
-		# Center on where the player is likely _going to be_:
 		track_pos += player.velocity * bake_cooldown
 	
 	if track_pos.distance_squared_to(_current_center) >= min_rebake_distance * min_rebake_distance:

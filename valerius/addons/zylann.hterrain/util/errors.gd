@@ -1,6 +1,5 @@
 @tool
 
-# Taken from https://docs.godotengine.org/en/3.0/classes/class_@globalscope.html#enum-globalscope-error
 const _names = {
 	OK: "ok",
 	FAILED: "Generic error.",

@@ -4,7 +4,6 @@ extends GradientNode
 
 const GradientNode = preload("res://addons/terrainy/nodes/gradients/gradient_node.gd")
 
-## Radial gradient from center outward
 
 @export_enum("Linear", "Smooth", "Spherical", "Inverse") var falloff_type: int = 1:
 	set(value):
@@ -24,13 +23,13 @@ func get_height_at(world_pos: Vector3) -> float:
 	var t = 0.0
 	
 	match falloff_type:
-		0: # Linear
+		0:
 			t = normalized_distance
-		1: # Smooth
+		1:
 			t = smoothstep(0.0, 1.0, normalized_distance)
-		2: # Spherical
+		2:
 			t = sqrt(normalized_distance)
-		3: # Inverse (stronger center)
+		3:
 			t = normalized_distance * normalized_distance
 	
 	return lerp(start_height, end_height, t)

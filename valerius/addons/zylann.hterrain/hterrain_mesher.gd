@@ -1,6 +1,5 @@
 @tool
 
-#const HT_Logger = preload("./util/logger.gd")
 const HTerrainData = preload("./hterrain_data.gd")
 
 const SEAM_LEFT = 1
@@ -10,7 +9,6 @@ const SEAM_TOP = 8
 const SEAM_CONFIG_COUNT = 16
 
 
-# [seams_mask][lod]
 var _mesh_cache := []
 var _chunk_size_x := 16
 var _chunk_size_y := 16
@@ -32,7 +30,6 @@ func configure(chunk_size_x: int, chunk_size_y: int, lod_count: int):
 	_chunk_size_x = chunk_size_x
 	_chunk_size_y = chunk_size_y
 
-	# TODO Will reduce the size of this cache, but need index buffer swap feature
 	for seams in SEAM_CONFIG_COUNT:
 		var slot := []
 		slot.resize(lod_count)
@@ -69,13 +66,10 @@ static func make_flat_chunk(quad_count_x: int, quad_count_y: int, stride: int, s
 	return mesh
 
 
-# size: chunk size in quads (there are N+1 vertices)
-# seams: Bitfield for which seams are present
 static func make_indices(chunk_size_x: int, chunk_size_y: int, seams: int) -> PackedInt32Array:
 	var output_indices := PackedInt32Array()
 
 	if seams != 0:
-		# LOD seams can't be made properly on uneven chunk sizes
 		assert(chunk_size_x % 2 == 0 and chunk_size_y % 2 == 0)
 
 	var reg_origin_x := 0
@@ -100,7 +94,6 @@ static func make_indices(chunk_size_x: int, chunk_size_y: int, seams: int) -> Pa
 	if seams & SEAM_TOP:
 		reg_size_y -= 1
 
-	# Regular triangles
 	var ii := reg_origin_x + reg_origin_y * (chunk_size_x + 1)
 
 	for y in reg_size_y:
@@ -110,14 +103,7 @@ static func make_indices(chunk_size_x: int, chunk_size_y: int, seams: int) -> Pa
 			var i01 := ii + chunk_size_x + 1
 			var i11 := i01 + 1
 
-			# 01---11
-			#  |  /|
-			#  | / |
-			#  |/  |
-			# 00---10
 
-			# This flips the pattern to make the geometry orientation-free.
-			# Not sure if it helps in any way though
 			var flip = ((x + reg_origin_x) + (y + reg_origin_y) % 2) % 2 != 0
 
 			if flip:
@@ -141,18 +127,8 @@ static func make_indices(chunk_size_x: int, chunk_size_y: int, seams: int) -> Pa
 			ii += 1
 		ii += reg_hstride
 
-	# Left seam
 	if seams & SEAM_LEFT:
 
-		#     4 . 5
-		#     |\  .
-		#     | \ .
-		#     |  \.
-		#  (2)|   3
-		#     |  /.
-		#     | / .
-		#     |/  .
-		#     0 . 1
 
 		var i := 0
 		var n := chunk_size_y / 2
@@ -182,15 +158,6 @@ static func make_indices(chunk_size_x: int, chunk_size_y: int, seams: int) -> Pa
 
 	if seams & SEAM_RIGHT:
 
-		#     4 . 5
-		#     .  /|
-		#     . / |
-		#     ./  |
-		#     2   |(3)
-		#     .\  |
-		#     . \ |
-		#     .  \|
-		#     0 . 1
 
 		var i := chunk_size_x - 1
 		var n := chunk_size_y / 2
@@ -221,12 +188,6 @@ static func make_indices(chunk_size_x: int, chunk_size_y: int, seams: int) -> Pa
 
 	if seams & SEAM_BOTTOM:
 
-		#  3 . 4 . 5
-		#  .  / \  .
-		#  . /   \ .
-		#  ./     \.
-		#  0-------2
-		#     (1)
 
 		var i := 0;
 		var n := chunk_size_x / 2;
@@ -257,12 +218,6 @@ static func make_indices(chunk_size_x: int, chunk_size_y: int, seams: int) -> Pa
 
 	if seams & SEAM_TOP:
 
-		#     (4)
-		#  3-------5
-		#  .\     /.
-		#  . \   / .
-		#  .  \ /  .
-		#  0 . 1 . 2
 
 		var i := (chunk_size_y - 1) * (chunk_size_x + 1)
 		var n := chunk_size_x / 2
@@ -301,9 +256,6 @@ static func get_mesh_size(width: int, height: int) -> Dictionary:
 	}
 
 
-# Makes a full mesh from a heightmap, without any LOD considerations.
-# Using this mesh for rendering is very expensive on large terrains.
-# Initially used as a workaround for Godot to use for navmesh generation.
 static func make_heightmap_mesh(heightmap: Image, stride: int, scale: Vector3, 
 	logger = null) -> Mesh:
 	

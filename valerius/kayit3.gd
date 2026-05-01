@@ -1,10 +1,9 @@
 extends Button
 
-@export var slot_name: String = "slot1" # Butonun Inspector panelinden slot1, slot2... yap
+@export var slot_name: String = "slot1"
 
 func _ready():
 	pressed.connect(_on_pressed)
-	# Eğer dosya varsa ismini tarih olarak güncelle
 	_update_button_text()
 
 func _on_pressed():
@@ -25,7 +24,7 @@ func _on_pressed():
 		file.store_var(data)
 		file.close()
 		
-		text = current_time # Buton ismini değiştir
+		text = current_time
 		print("Oyun Masaüstüne Kaydedildi: ", save_path)
 
 func _update_button_text():

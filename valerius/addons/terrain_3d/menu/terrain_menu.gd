@@ -1,5 +1,3 @@
-# Copyright © 2025 Cory Petkovsek, Roope Palmroos, and Contributors.
-# Menu for Terrain3D
 extends HBoxContainer
 
 
@@ -13,7 +11,6 @@ var directory_setup: DirectoryWizard = DirectoryWizard.new()
 var packer: Packer = Packer.new()
 var baker: Baker = Baker.new()
 
-# These are IDs and order must be consistent with add_item and set_disabled IDs
 enum {
 	MENU_DIRECTORY_SETUP,
 	MENU_PACK_TEXTURES,

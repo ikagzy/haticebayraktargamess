@@ -4,7 +4,6 @@ extends Control
 const HT_TerrainPainter = preload("./terrain_painter.gd")
 const HT_Brush = preload("./brush.gd")
 const HT_Errors = preload("../../util/errors.gd")
-#const NativeFactory = preload("../../native/factory.gd")
 const HT_Logger = preload("../../util/logger.gd")
 const HT_IntervalSlider = preload("../util/interval_slider.gd")
 
@@ -14,7 +13,6 @@ const HT_BrushSettingsDialog = preload("./settings_dialog/brush_settings_dialog.
 
 @onready var _size_slider : Slider = $GridContainer/BrushSizeControl/Slider
 @onready var _size_value_label : Label = $GridContainer/BrushSizeControl/Label
-#onready var _size_label = _params_container.get_node("BrushSizeLabel")
 
 @onready var _opacity_slider : Slider = $GridContainer/BrushOpacityControl/Slider
 @onready var _opacity_value_label : Label = $GridContainer/BrushOpacityControl/Label
@@ -44,7 +42,6 @@ var _terrain_painter : HT_TerrainPainter
 var _brush_settings_dialog : HT_BrushSettingsDialog = null
 var _logger = HT_Logger.get_for(self)
 
-# TODO This is an ugly workaround for https://github.com/godotengine/godot/issues/19479
 @onready var _temp_node = get_node("Temp")
 @onready var _grid_container = get_node("GridContainer")
 func _set_visibility_of(node: Control, v: bool):
@@ -66,10 +63,6 @@ func _ready():
 	_slope_limit_control.changed.connect(_on_slope_limit_changed)
 	
 	_size_slider.max_value = HT_Brush.MAX_SIZE_FOR_SLIDERS
-	#if NativeFactory.is_native_available():
-	#	_size_slider.max_value = 200
-	#else:
-	#	_size_slider.max_value = 50
 
 
 func setup_dialogs(base_control: Node):
@@ -77,7 +70,6 @@ func setup_dialogs(base_control: Node):
 	_brush_settings_dialog = HT_BrushSettingsDialogScene.instantiate()
 	base_control.add_child(_brush_settings_dialog)
 	
-	# That dialog has sub-dialogs
 	_brush_settings_dialog.setup_dialogs(base_control)
 	_brush_settings_dialog.set_brush(_terrain_painter.get_brush())
 
@@ -87,15 +79,6 @@ func _exit_tree():
 		_brush_settings_dialog.queue_free()
 		_brush_settings_dialog = null
 
-# Testing display modes
-#var mode = 0
-#func _input(event):
-#	if event is InputEventKey:
-#		if event.pressed:
-#			set_display_mode(mode)
-#			mode += 1
-#			if mode >= Brush.MODE_COUNT:
-#				mode = 0
 
 func set_terrain_painter(terrain_painter: HT_TerrainPainter):
 	if _terrain_painter != null:
@@ -106,15 +89,11 @@ func set_terrain_painter(terrain_painter: HT_TerrainPainter):
 	_terrain_painter = terrain_painter
 
 	if _terrain_painter != null:
-		# TODO Had an issue in Godot 3.2.3 where mismatching type would silently cast to null...
-		# It happens if the argument went through a Variant (for example if call_deferred is used)
 		assert(_terrain_painter != null)
 	
 	if _terrain_painter != null:
-		# Initial brush params
 		_size_slider.value = _terrain_painter.get_brush().get_size()
 		_opacity_slider.ratio = _terrain_painter.get_brush().get_opacity()
-		# Initial specific params
 		_flatten_height_box.value = _terrain_painter.get_flatten_height()
 		_color_picker.get_picker().color = _terrain_painter.get_color()
 		_density_slider.value = _terrain_painter.get_detail_density()
@@ -126,7 +105,6 @@ func set_terrain_painter(terrain_painter: HT_TerrainPainter):
 
 		set_display_mode(_terrain_painter.get_mode())
 		
-		# Load default brush
 		var brush := _terrain_painter.get_brush()
 		var default_shape_fpath := HT_Brush.DEFAULT_BRUSH_TEXTURE_PATH
 		var default_shape := HT_Brush.load_shape_from_image_file(default_shape_fpath, _logger)
@@ -216,7 +194,6 @@ func _on_density_slider_changed(v: float):
 
 func _on_holes_checkbox_toggled(v: bool):
 	if _terrain_painter != null:
-		# When checked, we draw holes. When unchecked, we clear holes
 		_terrain_painter.set_mask_flag(not v)
 
 

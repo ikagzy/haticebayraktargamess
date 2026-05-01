@@ -1,6 +1,3 @@
-# Copyright © 2025 Cory Petkovsek, Roope Palmroos, and Contributors.
-# DoubleSlider for Terrain3D
-# Should work for other UIs
 @tool
 class_name DoubleSlider
 extends Control
@@ -8,7 +5,7 @@ extends Control
 signal value_changed(Vector2)
 var label: Label
 var suffix: String
-var grabbed_handle: int = 0 # -1 left, 0 none, 1 right
+var grabbed_handle: int = 0
 var min_value: float = 0.0
 var max_value: float = 100.0
 var step: float = 1.0
@@ -19,8 +16,6 @@ var minimum_x: float = 60.
 
 
 func _ready() -> void:
-	# Setup Display Scale
-	# 0 auto, 1 75%, 2 100%, 3 125%, 4 150%, 5 175%, 6 200%, 7 custom
 	var es: EditorSettings = EditorInterface.get_editor_settings()
 	var ds: int = es.get_setting("interface/editor/display_scale")
 	if ds == 0:
@@ -141,20 +136,17 @@ func set_slider(p_xpos: float, p_relative: bool = false) -> void:
 
 func _notification(p_what: int) -> void:
 	if p_what == NOTIFICATION_DRAW:
-		# Draw background bar
 		var bg: StyleBox = get_theme_stylebox("slider", "HSlider")
 		var bg_height: float = bg.get_minimum_size().y
 		var mid_y: float = (size.y - bg_height) / 2.0
 		draw_style_box(bg, Rect2(Vector2(0, mid_y), Vector2(size.x, bg_height)))
 		
-		# Draw foreground bar
 		var handle: Texture2D = get_theme_icon("grabber", "HSlider")
 		var area: StyleBox = get_theme_stylebox("grabber_area", "HSlider")
 		var startx: float = (range.x / max_value) * size.x
 		var endx: float = (range.y / max_value) * size.x
 		draw_style_box(area, Rect2(Vector2(startx, mid_y), Vector2(endx - startx, bg_height)))
 		
-		# Draw handles, slightly in so they don't get on the outside edges
 		var handle_pos: Vector2
 		handle_pos.x = clamp(startx - handle.get_size().x/2, -10, size.x)
 		handle_pos.y = clamp(endx - handle.get_size().x/2, 0, size.x - 10)

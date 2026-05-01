@@ -25,11 +25,7 @@ const HT_Scratchpad = preload("./preview_scratchpad.gd")
 @onready var _shape_cycling_checkbox : CheckBox = $VB/HB/VB2/Settings/ShapeCycling
 
 var _brush : HT_Brush
-# This is a `EditorFileDialog`,
-# but cannot type it because I want to be able to test it by running the scene.
-# And when I run it, Godot does not allow to use `EditorFileDialog`.
 var _load_image_dialog
-# -1 means add, otherwise replace
 var _load_image_index := -1
 var _logger = HT_Logger.get_for(self)
 
@@ -41,7 +37,6 @@ func _ready():
 	_size_slider.set_max_value(HT_Brush.MAX_SIZE_FOR_SLIDERS)
 	_size_slider.set_greater_max_value(HT_Brush.MAX_SIZE)
 	
-	# TESTING
 	if not Engine.is_editor_hint():
 		setup_dialogs(self)
 		call_deferred("popup")
@@ -53,8 +48,6 @@ func set_brush(brush : HT_Brush):
 	_update_controls_from_brush()
 
 
-# `base_control` can no longer be hinted as a `Control` because in Godot 4 it could be a
-# window or dialog, which are no longer controls...
 func setup_dialogs(base_control: Node):
 	assert(_load_image_dialog == null)
 	_load_image_dialog = HT_EditorUtil.create_open_file_dialog()
@@ -65,10 +58,6 @@ func setup_dialogs(base_control: Node):
 	_load_image_dialog.current_dir = HT_Brush.SHAPES_DIR
 	_load_image_dialog.file_selected.connect(_on_LoadImageDialog_file_selected)
 	_load_image_dialog.files_selected.connect(_on_LoadImageDialog_files_selected)
-	#base_control.add_child(_load_image_dialog)
-	# When a dialog opens another dialog, we get this error:
-	# "Transient parent has another exclusive child."
-	# Which is worked around by making the other dialog a child of the first one (I don't know why)
 	add_child(_load_image_dialog)
 
 
@@ -140,7 +129,6 @@ func _on_LoadImageDialog_files_selected(fpaths: PackedStringArray):
 	for fpath in fpaths:
 		var tex := HT_Brush.load_shape_from_image_file(fpath, _logger)
 		if tex == null:
-			# Failed
 			continue
 		shapes.append(tex)
 	
@@ -153,15 +141,12 @@ func _on_LoadImageDialog_files_selected(fpaths: PackedStringArray):
 func _on_LoadImageDialog_file_selected(fpath: String):
 	var tex := HT_Brush.load_shape_from_image_file(fpath, _logger)
 	if tex == null:
-		# Failed
 		return
 	
 	var shapes := _get_shapes_from_gui()
 	if _load_image_index == -1 or _load_image_index >= len(shapes):
-		# Add
 		shapes.append(tex)
 	else:
-		# Replace
 		assert(_load_image_index >= 0)
 		shapes[_load_image_index] = tex
 
@@ -173,8 +158,6 @@ func _on_LoadImageDialog_file_selected(fpath: String):
 
 func _notification(what: int):
 	if what == NOTIFICATION_VISIBILITY_CHANGED:
-		# Testing the scratchpad because visibility can not only change before entering the tree
-		# since Godot 4 port, it can also change between entering the tree and being _ready...
 		if visible and _scratchpad != null:
 			_update_controls_from_brush()
 
@@ -183,7 +166,6 @@ func _update_controls_from_brush():
 	var brush := _brush
 	
 	if brush == null:
-		# To allow testing
 		brush = _scratchpad.get_painter().get_brush()
 
 	_update_shapes_gui(brush.get_shapes())
@@ -255,10 +237,7 @@ func _on_shape_cycling_toggled(button_pressed: bool):
 
 func _get_brushes() -> Array[HT_Brush]:
 	if _brush != null:
-		# We edit both the preview brush and the terrain brush
-		# TODO Could we simply share the brush?
 		return [_brush, _scratchpad.get_painter().get_brush()]
-	# When testing the dialog in isolation, the edited brush might be null
 	return [_scratchpad.get_painter().get_brush()]
 
 
@@ -270,7 +249,6 @@ func _on_ShapeList_item_selected(index):
 
 func _update_shape_list_buttons():
 	var selected_count := len(_shape_list.get_selected_items())
-	# There must be at least one shape
 	_remove_shape_button.disabled = _shape_list.get_item_count() == 1 or selected_count == 0
 	_change_shape_button.disabled = selected_count == 0
 

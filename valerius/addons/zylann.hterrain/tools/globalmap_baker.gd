@@ -1,6 +1,4 @@
 
-# Bakes a global albedo map using the same shader the terrain uses,
-# but renders top-down in orthographic mode.
 
 @tool
 extends Node
@@ -9,7 +7,6 @@ const HTerrain = preload("../hterrain.gd")
 const HTerrainData = preload("../hterrain_data.gd")
 const HTerrainMesher = preload("../hterrain_mesher.gd")
 
-# Must be power of two
 const DEFAULT_VIEWPORT_SIZE = 512
 
 signal progress_notified(info)
@@ -66,7 +63,6 @@ func _setup_scene(terrain_size: int):
 	_viewport.size = Vector2(_viewport_size + 1, _viewport_size + 1)
 	_viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 	_viewport.render_target_clear_mode = SubViewport.CLEAR_MODE_ALWAYS
-	# _viewport.render_target_v_flip = true
 	_viewport.world_3d = World3D.new()
 	_viewport.own_world_3d = true
 	_viewport.debug_draw = Viewport.DEBUG_DRAW_UNSHADED
@@ -74,7 +70,6 @@ func _setup_scene(terrain_size: int):
 	var mat := ShaderMaterial.new()
 	
 	_plane = MeshInstance3D.new()
-	# Make a very small mesh, vertex precision isn't required
 	var plane_res := 4
 	_plane.mesh = \
 		HTerrainMesher.make_flat_chunk(plane_res, plane_res, _viewport_size / plane_res, 0)
@@ -126,12 +121,9 @@ func _report_progress():
 
 
 func _setup_pass(sector: Vector2):
-	# Note: we implicitely take off-by-one pixels into account
 	var origin := sector * _viewport_size
 	var center := origin + 0.5 * Vector2(_viewport.size)
 
-	# The heightmap is left empty, so will default to white, which is a height of 1.
-	# The camera must be placed above the terrain to see it.
 	_camera.position = Vector3(center.x, 2.0, center.y)
 	_plane.position = Vector3(origin.x, 0.0, origin.y)
 

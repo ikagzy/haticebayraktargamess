@@ -12,7 +12,6 @@ var kutuphaneden_geldi = false
 var kutuphane_menusu_tetiklendi = false
 var ormana_gecis_tamamlandi = false
 
-# --- HİKAYE VE ENVANTER SİSTEMİ ---
 var vazgecti = false
 var kapi_acildi = false
 var anahtar_alindi = false
@@ -21,24 +20,21 @@ var yuzuk_sahip = false
 var cubuk_sahip = false
 var bicak_sahip = false
 var harita_bulundu = false
-var kapi_deneme_sayisi = 0 # 1C (Zorla giriş) için
+var kapi_deneme_sayisi = 0
 var aktif_hikaye_adimi = "baslangic"
 var merdiven_bulundu = false
 var kitap_yerlestirildi = false
 var kabus_gordu = false
 
-# --- YENİ KİLİT ---
 var arayuz_yasakli = false 
 
 func gorev_yazisini_kapat():
-	arayuz_yasakli = true # Artık kimse açamaz
+	arayuz_yasakli = true
 	if is_instance_valid(GorevArayuzu):
 		GorevArayuzu.visible = false
 		if GorevArayuzu.has_method("_on_gorev_guncellendi"):
 			GorevArayuzu._on_gorev_guncellendi("")
-# --- YENİ OYUN İÇİN HAFIZA SIFIRLAMA ---
 func hafizayi_sifirla():
-	# Temel sistem verileri
 	active_gorev_arayuzu = null
 	baslangic_repligi_calindi = false
 	oyun_basladi_mi = true
@@ -52,7 +48,6 @@ func hafizayi_sifirla():
 	ormana_gecis_tamamlandi = false
 	arayuz_yasakli = false
 
-	# Hikaye ve envanter verileri
 	vazgecti = false
 	kapi_acildi = false
 	anahtar_alindi = false
@@ -67,6 +62,5 @@ func hafizayi_sifirla():
 	kitap_yerlestirildi = false
 	kabus_gordu = false
 	
-	# Eğer görev arayüzü gizli kaldıysa onu da açalım
 	if is_instance_valid(get_node_or_null("/root/GorevArayuzu")):
 		GorevArayuzu.visible = true

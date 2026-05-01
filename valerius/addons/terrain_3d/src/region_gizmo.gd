@@ -1,5 +1,3 @@
-# Copyright © 2025 Cory Petkovsek, Roope Palmroos, and Contributors.
-# Editor Region Gizmos for Terrain3D
 extends EditorNode3DGizmo
 	
 var material: StandardMaterial3D
@@ -41,7 +39,6 @@ func _redraw() -> void:
 	for pos in grid:
 		var grid_tile_position = Vector2(pos) * region_size
 		if show_rect and grid_tile_position == rect_position:
-			# Skip this one, otherwise focused region borders are not always visible due to draw order
 			continue
 			
 		draw_rect(Vector2(region_size,region_size)*.5 + grid_tile_position, region_size, material, grid_color)

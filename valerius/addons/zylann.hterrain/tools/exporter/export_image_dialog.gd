@@ -30,8 +30,6 @@ var _logger = HT_Logger.get_for(self)
 
 
 func _init():
-	# Godot 4 decided to not have a plain WindowDialog class...
-	# there is Window but it's way too unfriendly...
 	get_ok_button().hide()
 
 
@@ -99,7 +97,6 @@ func _export() -> bool:
 	var src_heightmap: Image = _terrain.get_data().get_image(HTerrainData.CHANNEL_HEIGHT)
 	var fpath := _output_path_line_edit.text.strip_edges()
 	
-	# TODO Is `selected` an ID or an index? I need an ID, it works by chance for now.
 	var format := _format_selector.selected
 	
 	var height_min := _height_range_min_spinbox.value
@@ -136,7 +133,7 @@ func _export() -> bool:
 	elif format == FORMAT_EXRF:
 		save_error = float_heightmap.save_exr(fpath, true)
 	
-	else: # RAW
+	else:
 		var f := FileAccess.open(fpath, FileAccess.WRITE)
 		if f == null:
 			var err := FileAccess.get_open_error()
@@ -174,10 +171,8 @@ func _export() -> bool:
 func _update_file_extension():
 	if _format_selector.selected == -1:
 		_format_selector.selected = 0
-		# This recursively calls the current function
 		return
 	
-	# TODO Is `selected` an ID or an index? I need an ID, it works by chance for now.
 	var format = _format_selector.selected
 
 	var ext : String = _format_extensions[format]

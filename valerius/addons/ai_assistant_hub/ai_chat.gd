@@ -68,7 +68,7 @@ func initialize(plugin:AIHubPlugin, assistant_settings: AIAssistantResource, bot
 	if new_conversation:
 		_create_conversation(llm_provider)
 	
-	if _assistant_settings: # We need to check this, otherwise this is called when editing the plugin
+	if _assistant_settings:
 		_load_api(llm_provider)
 		temperature_slider.value = assistant_settings.custom_temperature
 		temperature_override_checkbox.button_pressed = assistant_settings.use_custom_temperature
@@ -268,7 +268,6 @@ func _abandon_request() -> void:
 
 
 func _on_http_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
-	#print("HTTP response: Result: %d, Response Code: %d, Headers: %s, Body: %s" % [result, response_code, headers, body])
 	bot_portrait.is_thinking = false
 	if result == 0:
 		var text_answer = _llm.read_response(body)
@@ -293,15 +292,11 @@ func escape_bbcode(bbcode_text):
 func _add_to_chat(text:String, caller:Caller) -> void:
 	var auto_scroll_to_bottom: bool = ProjectSettings.get_setting(AIHubPlugin.PREF_SCROLL_BOTTOM, false)
 	
-	# Set auto-scroll based on message sender
 	if caller == Caller.You or caller == Caller.System:
-		# User and system messages always auto-scroll
 		output_window.scroll_following = true
-	else:  # Caller.Bot
-		# AI replies depend on the auto-scroll switch
+	else:
 		output_window.scroll_following = auto_scroll_to_bottom
 	
-	# Save current text length to calculate how much new content was added
 	var prev_text_length := output_window.text.length()
 	
 	match caller:
@@ -314,7 +309,6 @@ func _add_to_chat(text:String, caller:Caller) -> void:
 			output_window.append_text("\n[color=FF770066][b]%s[/b][/color]:\n" % _bot_name)
 			output_window.push_indent(1)
 			if text.count("```") > 1:
-				# Format markup response with code
 				var parts:= text.split("```")
 				var writing_code := false
 				
@@ -338,7 +332,6 @@ func _add_to_chat(text:String, caller:Caller) -> void:
 					writing_code = !writing_code
 				output_window.append_text("\n")
 			else:
-				# Format bbcode response
 				text = text.replace("[code]","[color=33AAFFFF][code]")
 				text = text.replace("[/code]","[/code][/color]")
 				output_window.append_text("%s\n" % text)
@@ -348,11 +341,9 @@ func _add_to_chat(text:String, caller:Caller) -> void:
 	
 	output_window.pop_all()
 	
-	# If this is an AI reply and auto-scroll is disabled, scroll one page
 	if caller == Caller.Bot and not auto_scroll_to_bottom:
-		# Make sure the interface updates first so the scrollbar is properly calculated
 		await get_tree().process_frame
-		await get_tree().process_frame  # Wait two frames to ensure text and scrollbar are updated
+		await get_tree().process_frame
 		_scroll_output_by_page()
 
 
@@ -404,19 +395,14 @@ func _on_temperature_slider_value_changed(value: float) -> void:
 	_llm.temperature = snappedf(temperature_slider.value, 0.001)
 
 
-# Scroll the output window by one page
 func _scroll_output_by_page() -> void:
 	if output_window == null:
 		return
-	# Get the vertical scrollbar of the output window
 	var v_scroll_bar := output_window.get_v_scroll_bar()
 	if v_scroll_bar == null:
 		return
-	# Get the visible height of the output window (one page height)
 	var visible_height = output_window.size.y
-	# Calculate new position by adding one page height, but don't exceed maximum value
 	var new_value = min(v_scroll_bar.value + visible_height, v_scroll_bar.max_value)
-	# Set the new scroll position
 	v_scroll_bar.value = new_value
 
 

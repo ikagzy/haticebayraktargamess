@@ -22,10 +22,7 @@
 
 [sub_resource type="Environment" id="Environment_fu7sn"]
 background_mode = 2
-ssr_enabled = false
 ssao_enabled = true
-ssil_enabled = false
-sdfgi_enabled = false
 glow_enabled = true
 adjustment_enabled = true
 
@@ -62,67 +59,6 @@ shader = ExtResource("17_8u0te")
 shader_parameter/titreme_miktari = 0.0010000000475
 shader_parameter/renk_kaymasi = 0.0010000000475
 shader_parameter/kumlanma_miktari = 0.0590000028025
-
-[sub_resource type="GDScript" id="GDScript_0o4t1"]
-script/source = "extends Button
-
-func _ready():
-	# Pivot noktasını merkeze alıyoruz ki merkezden küçülsün
-	pivot_offset = size / 2
-	
-	# Sinyalleri bağlıyoruz
-	mouse_entered.connect(_on_mouse_entered)
-	mouse_exited.connect(_on_mouse_exited) # Fare çıkınca düzelmesi için bu şart
-	pressed.connect(_on_pressed)
-
-func _on_mouse_entered():
-	# Ses çal
-	if has_node(\"SesHover\"):
-		$SesHover.play()
-	
-	# --- HOVER ANİMASYONU (Giriş) ---
-	var tween = create_tween().set_parallel(true)
-	# Boyutu %95'e düşür (0.1 saniyede)
-	tween.tween_property(self, \"scale\", Vector2(0.95, 0.95), 0.1).set_trans(Tween.TRANS_SINE)
-	# Rengi hafif karart (Gri tonuna çekiyoruz)
-	tween.tween_property(self, \"modulate\", Color(0.8, 0.8, 0.8), 0.1)
-	
-	# YAZININ İÇİNİ DOLDUR (Şeffaflığı 0'dan 1'e, yani tam beyaza çekiyoruz, 0.2 saniyede)
-	tween.tween_method(renk_doldur, 0.0, 1.0, 0.2)
-
-func _on_mouse_exited():
-	# --- HOVER ANİMASYONU (Çıkış) ---
-	var tween = create_tween().set_parallel(true)
-	# Boyutu eski haline getir
-	tween.tween_property(self, \"scale\", Vector2(1.0, 1.0), 0.1).set_trans(Tween.TRANS_SINE)
-	# Rengi normale döndür (Beyaz = Orijinal renk)
-	tween.tween_property(self, \"modulate\", Color(1, 1, 1), 0.1)
-	
-	# YAZININ İÇİNİ BOŞALT (Şeffaflığı 1'den 0'a, yani şeffafa geri çekiyoruz)
-	tween.tween_method(renk_doldur, 1.0, 0.0, 0.2)
-
-func _on_pressed():
-	if has_node(\"SesTikla\"):
-		$SesTikla.play()
-	
-	# Tıklandığında küçük bir \"basılma\" efekti verelim
-	scale = Vector2(0.9, 0.9)
-	
-	await get_tree().create_timer(0.1).timeout
-	get_tree().change_scene_to_file(\"res://sonlar.tscn\")
-
-# --- YENİ EKLENEN FONKSİYON: Yazının içinin dolması için ---
-# Tween motoru fare üstündeyken buraya saniyede 60 kere yeni sayı (0.1, 0.2 ... 1.0) gönderir
-func renk_doldur(alpha_degeri: float):
-	# Color(1, 1, 1, alpha) -> Beyaz renk ama görünürlüğü değişiyor
-	var guncel_renk = Color(1, 1, 1, alpha_degeri) 
-	
-	# Butonun her durumu için yazının iç rengini kodla basıyoruz
-	add_theme_color_override(\"font_color\", guncel_renk)
-	add_theme_color_override(\"font_hover_color\", guncel_renk)
-	add_theme_color_override(\"font_focus_color\", guncel_renk)
-	add_theme_color_override(\"font_pressed_color\", guncel_renk)
-"
 
 [sub_resource type="LabelSettings" id="LabelSettings_cm266"]
 font_size = 31
@@ -242,9 +178,9 @@ grow_vertical = 2
 
 [node name="Oyna" type="Button" parent="menu" unique_id=1935976486]
 offset_left = 1319.0
-offset_top = 368.0
+offset_top = 396.0
 offset_right = 1656.0
-offset_bottom = 518.0
+offset_bottom = 546.0
 theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
@@ -262,9 +198,9 @@ stream = ExtResource("4_g8g3n")
 
 [node name="Çıkış" type="Button" parent="menu" unique_id=1055315150]
 offset_left = 1321.0
-offset_top = 602.0
+offset_top = 528.0
 offset_right = 1637.0
-offset_bottom = 752.0
+offset_bottom = 678.0
 theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
@@ -278,26 +214,6 @@ script = ExtResource("3_fu7sn")
 stream = ExtResource("3_cm266")
 
 [node name="SesHover" type="AudioStreamPlayer" parent="menu/Çıkış" unique_id=1488334250]
-stream = ExtResource("4_g8g3n")
-
-[node name="Sonlar" type="Button" parent="menu" unique_id=1587419263]
-offset_left = 1248.0
-offset_top = 508.0
-offset_right = 1735.0
-offset_bottom = 605.0
-theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 3
-theme_override_fonts/font = ExtResource("1_8u0te")
-theme_override_font_sizes/font_size = 75
-text = "SONLAR"
-flat = true
-script = SubResource("GDScript_0o4t1")
-
-[node name="SesTikla" type="AudioStreamPlayer" parent="menu/Sonlar" unique_id=334162447]
-stream = ExtResource("3_cm266")
-
-[node name="SesHover" type="AudioStreamPlayer" parent="menu/Sonlar" unique_id=1391012770]
 stream = ExtResource("4_g8g3n")
 
 [node name="Label3" type="Label" parent="menu" unique_id=208629717]

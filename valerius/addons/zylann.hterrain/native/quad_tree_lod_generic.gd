@@ -1,11 +1,8 @@
 @tool
-# Independent quad tree designed to handle LOD
 
 class HT_QTLQuad:
-	# Optional array of 4 HT_QTLQuad
 	var children = null
 	
-	# TODO Use Vector2i
 	var origin_x : int = 0
 	var origin_y : int = 0
 	
@@ -62,18 +59,13 @@ func create_from_sizes(base_size: int, full_size: int):
 
 
 func get_lod_count() -> int:
-	# TODO _max_depth is a maximum, not a count. Would be better for it to be a count (+1)
 	return _max_depth + 1
 
 
-# The higher, the longer LODs will spread and higher the quality.
-# The lower, the shorter LODs will spread and lower the quality.
 func set_split_scale(p_split_scale: float):
 	var MIN := 2.0
 	var MAX := 5.0
 
-	# Split scale must be greater than a threshold,
-	# otherwise lods will decimate too fast and it will look messy
 	_split_scale = clampf(p_split_scale, MIN, MAX)
 
 
@@ -84,8 +76,6 @@ func get_split_scale() -> float:
 func update(view_pos: Vector3):
 	_update(_tree, _max_depth, view_pos)
 	
-	# This makes sure we keep seeing the lowest LOD,
-	# if the tree is cleared while we are far away
 	if not _tree.has_children() and _tree.data == null:
 		_tree.data = _make_chunk(_max_depth, 0, 0)
 
@@ -95,7 +85,6 @@ func get_lod_factor(lod: int) -> int:
 
 
 func _update(quad: HT_QTLQuad, lod: int, view_pos: Vector3):
-	# This function should be called regularly over frames.
 	
 	var lod_factor : int = get_lod_factor(lod)
 	var chunk_size : int = _base_size * lod_factor
@@ -110,7 +99,6 @@ func _update(quad: HT_QTLQuad, lod: int, view_pos: Vector3):
 	
 	if not quad.has_children():
 		if lod > 0 and world_center.distance_to(view_pos) < split_distance:
-			# Split
 			quad.children = [null, null, null, null]
 
 			for i in 4:
@@ -119,7 +107,6 @@ func _update(quad: HT_QTLQuad, lod: int, view_pos: Vector3):
 				child.origin_y = quad.origin_y * 2 + ((i & 2) >> 1)
 				quad.children[i] = child
 				child.data = _make_chunk(lod - 1, child.origin_x, child.origin_y)
-				# If the quad needs to split more, we'll ask more recycling...
 
 			if quad.data != null:
 				_recycle_chunk(quad.data, quad.origin_x, quad.origin_y, lod)
@@ -134,7 +121,6 @@ func _update(quad: HT_QTLQuad, lod: int, view_pos: Vector3):
 				no_split_child = false
 		
 		if no_split_child and world_center.distance_to(view_pos) > split_distance:
-			# Join
 			for i in 4:
 				var child : HT_QTLQuad = quad.children[i]
 				_recycle_chunk(child.data, child.origin_x, child.origin_y, lod - 1)

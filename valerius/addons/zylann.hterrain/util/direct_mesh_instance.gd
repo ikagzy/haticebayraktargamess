@@ -1,9 +1,7 @@
 @tool
 
-# Implementation of MeshInstance which doesn't use the scene tree
 
 var _mesh_instance := RID()
-# Need to keep a reference so that the mesh RID doesn't get freed
 var _mesh : Mesh
 
 

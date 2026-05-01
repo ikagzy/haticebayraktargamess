@@ -2,12 +2,12 @@
 class_name OllamaTurboAPI
 extends LLMInterface
 
-var _headers: PackedStringArray # set in initialize function
+var _headers: PackedStringArray
 
 
 func _rebuild_headers() -> void:
 	_headers = ["Content-Type: application/json",
-				"Authorization: Bearer %s" % _api_key,  # Include the key in the headers
+				"Authorization: Bearer %s" % _api_key,
 	]
 
 

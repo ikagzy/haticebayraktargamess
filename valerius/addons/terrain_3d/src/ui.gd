@@ -1,9 +1,6 @@
-# Copyright © 2025 Cory Petkovsek, Roope Palmroos, and Contributors.
-# UI for Terrain3D
 extends Node
 
 
-# Includes
 const TerrainMenu: Script = preload("res://addons/terrain_3d/menu/terrain_menu.gd")
 const Toolbar: Script = preload("res://addons/terrain_3d/src/toolbar.gd")
 const ToolSettings: Script = preload("res://addons/terrain_3d/src/tool_settings.gd")
@@ -39,7 +36,7 @@ var ring_texture : ImageTexture
 		image.fill(Color.WHITE)
 		value.create_from_image(image)
 		region_texture = value
-var plugin: EditorPlugin # Actually Terrain3DEditorPlugin, but Godot still has CRC errors
+var plugin: EditorPlugin
 var toolbar: Toolbar
 var tool_settings: ToolSettings
 var terrain_menu: TerrainMenu
@@ -51,9 +48,8 @@ var brush_data: Dictionary
 var operation_builder: OperationBuilder
 var last_tool: Terrain3DEditor.Tool
 var last_operation: Terrain3DEditor.Operation
-var last_rmb_time: int = 0 # Set in editor.gd
+var last_rmb_time: int = 0
 
-# Editor decals, indices; 0 = main brush, 1 = slope point A, 2 = slope point B
 var mat_rid: RID
 var editor_decal_position: Array[Vector2] = [Vector2(), Vector2(), Vector2()]
 var editor_decal_rotation: Array[float] = [float(), float(), float()]
@@ -134,7 +130,7 @@ func set_visible(p_visible: bool, p_menu_only: bool = false) -> void:
 
 	if(plugin.editor):
 		if(p_visible):
-			await get_tree().create_timer(.01).timeout # Won't work, otherwise
+			await get_tree().create_timer(.01).timeout
 			_on_tool_changed(last_tool, last_operation)
 		else:
 			plugin.editor.set_tool(Terrain3DEditor.TOOL_MAX)
@@ -154,7 +150,6 @@ func _on_tool_changed(p_tool: Terrain3DEditor.Tool, p_operation: Terrain3DEditor
 	set_menu_visibility(tool_settings.height_list, false)
 	set_menu_visibility(tool_settings.color_list, false)
 
-	# Select which settings to show. Options in tool_settings.gd:_ready
 	var to_show: PackedStringArray = []
 	
 	match p_tool:
@@ -247,7 +242,6 @@ func _on_tool_changed(p_tool: Terrain3DEditor.Tool, p_operation: Terrain3DEditor
 		_:
 			pass
 
-	# Advanced menu settings
 	to_show.push_back("auto_regions")
 	to_show.push_back("align_to_view")
 	to_show.push_back("show_cursor_while_painting")
@@ -322,11 +316,8 @@ func update_decal() -> void:
 	mat_rid = plugin.terrain.material.get_material_rid()
 	editor_decal_timer.start()
 	
-	# If not a state that should show the decal, hide everything and return
 	if not visible or \
 		plugin._input_mode < 0 or \
-		# Wait for cursor to recenter after moving camera before revealing
-		# See https://github.com/godotengine/godot/issues/70098
 		Time.get_ticks_msec() - last_rmb_time <= 30 or \
 		(plugin._input_mode > 0 and not brush_data["show_cursor_while_painting"]):
 			hide_decal()
@@ -335,7 +326,6 @@ func update_decal() -> void:
 	reset_decal_arrays()
 	editor_decal_position[0] = Vector2(plugin.mouse_global_position.x, plugin.mouse_global_position.z)
 	editor_decal_visible[0] = true
-	# Set region size, and modify region map for none background mode.
 	var r_map: PackedInt32Array = plugin.terrain.data.get_region_map()
 	if plugin.editor.get_tool() == Terrain3DEditor.REGION:
 		var r_size: float = float(plugin.terrain.get_region_size()) * plugin.terrain.get_vertex_spacing()
@@ -374,7 +364,6 @@ func update_decal() -> void:
 						hide_decal()
 		else:
 			hide_decal()
-	# Set texture and color
 	elif picking != Terrain3DEditor.TOOL_MAX:
 		editor_brush_texture_rid = ring_texture.get_rid()
 		editor_decal_size[0] = 10. * plugin.terrain.get_vertex_spacing()
@@ -474,7 +463,6 @@ func update_decal() -> void:
 			editor_decal_color[i].a = maxf(0.1, editor_decal_color[i].a - .25)
 	
 	editor_decal_fade = editor_decal_color[0].a
-	# Update Shader params
 	if is_shader_valid():
 		RenderingServer.material_set_param(mat_rid, "_editor_brush_texture", editor_brush_texture_rid)
 		RenderingServer.material_set_param(mat_rid, "_editor_ring_texture", editor_ring_texture_rid)
@@ -488,8 +476,6 @@ func update_decal() -> void:
 
 
 func is_shader_valid() -> bool:
-	# As long as the compiled shader contains at least 1 uniform, we can use it to check
-	# if the shader compilation has failed, as this will then return an empty dictionary.
 	if not plugin.terrain:
 		return false
 	var params = RenderingServer.get_shader_parameter_list(plugin.terrain.material.get_shader_rid())
@@ -507,7 +493,6 @@ func hide_decal() -> void:
 		RenderingServer.material_set_param(mat_rid, "_region_map", r_map)
 
 
-# These array sizes are reset to 0 when closing scenes for some unknown reason, so check and reset
 func reset_decal_arrays() -> void:
 	if editor_decal_color.size() < 3:
 		editor_decal_position = [Vector2(), Vector2(), Vector2()]

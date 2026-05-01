@@ -4,7 +4,6 @@ extends PrimitiveNode
 
 const PrimitiveNode = preload("res://addons/terrainy/nodes/primitives/primitive_node.gd")
 
-## A simple hill terrain feature with various shape options
 
 @export_enum("Smooth", "Cone", "Dome") var shape: int = 0:
 	set(value):
@@ -15,7 +14,6 @@ func get_height_at(world_pos: Vector3) -> float:
 	var local_pos = to_local(world_pos)
 	return get_height_at_safe(world_pos, local_pos)
 
-## Thread-safe version using pre-computed local position
 func get_height_at_safe(world_pos: Vector3, local_pos: Vector3) -> float:
 	var distance_2d = Vector2(local_pos.x, local_pos.z).length()
 	var radius = influence_size.x
@@ -27,12 +25,12 @@ func get_height_at_safe(world_pos: Vector3, local_pos: Vector3) -> float:
 	var height_multiplier = 0.0
 	
 	match shape:
-		0: # Smooth (cosine curve)
+		0:
 			height_multiplier = cos(normalized_distance * PI * 0.5)
 			height_multiplier = height_multiplier * height_multiplier
-		1: # Cone (linear)
+		1:
 			height_multiplier = 1.0 - normalized_distance
-		2: # Dome (circular arc)
+		2:
 			height_multiplier = sqrt(1.0 - normalized_distance * normalized_distance)
 	
 	return height * height_multiplier

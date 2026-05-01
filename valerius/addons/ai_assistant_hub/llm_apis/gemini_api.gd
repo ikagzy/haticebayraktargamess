@@ -22,9 +22,7 @@ func _rebuild_urls() -> void:
 	_chat_url = "%s/%s:generateContent?key=%s" % [_base_url, model, _api_key]
 
 
-# Get model list (Gemini has a fixed set, but we can fetch or hardcode)
 func send_get_models_request(http_request: HTTPRequest) -> bool:
-	#API key is in LLMInterface base class
 	if _api_key.is_empty():
 		push_error("Gemini API key not set. Configure the API key in the main tab and try again.")
 		return false
@@ -51,7 +49,6 @@ func read_models_response(body: PackedByteArray) -> Array[String]:
 		return [INVALID_RESPONSE]
 
 
-# Helper function: recursively extract 'content' from stringified JSON messages
 func _extract_content_from_json_string(s) -> String:
 	var attempts := 0
 	var txt = s
@@ -69,10 +66,7 @@ func _extract_content_from_json_string(s) -> String:
 	return str(txt)
 
 
-# NOTE: content is expected as Array of user/system/assistant message texts, not raw JSON.
-# This method will transform the array into the required Gemini format.
 func send_chat_request(http_request: HTTPRequest, message_list: Array) -> bool:
-	# message_list is Array of Dictionaries: [{role="user", text="Hello"}, ...]
 	if _api_key.is_empty():
 		push_error("Gemini API key not set. Configure the API key in the main tab and spawn a new assistant.")
 		return false
@@ -81,11 +75,9 @@ func send_chat_request(http_request: HTTPRequest, message_list: Array) -> bool:
 		push_error("ERROR: You need to set an AI model for this assistant type.")
 		return false
 	
-	# Ensure model does not have "models/" prefix
 	if model.begins_with("models/"):
 		model = model.substr("models/".length())
 
-	# Gemini expects each message with role and a parts array of {text: ...}
 	var formatted_contents := []
 	for i in range(message_list.size()):
 		var msg = message_list[i]
@@ -98,7 +90,6 @@ func send_chat_request(http_request: HTTPRequest, message_list: Array) -> bool:
 			"parts": [ { "text": str(text) } ]
 		})
 	
-	#print("ACTUAL message_list: ", message_list)
 
 	var body_dict := {
 		"contents": formatted_contents
@@ -108,8 +99,6 @@ func send_chat_request(http_request: HTTPRequest, message_list: Array) -> bool:
 	var body := JSON.stringify(body_dict)
 
 	var error = http_request.request(_chat_url, _headers, HTTPClient.METHOD_POST, body)
-	#print("Gemini API Request URL: ", _chat_url)
-	#print("Gemini API Request body: ", body)
 	if error != OK:
 		push_error("Gemini API chat request failed.\nURL: %s\nRequest body: %s" % [_chat_url, body])
 		return false
@@ -118,10 +107,8 @@ func send_chat_request(http_request: HTTPRequest, message_list: Array) -> bool:
 
 func read_response(body: PackedByteArray) -> String:
 	var raw_body = body.get_string_from_utf8()
-	#print("Gemini API raw response: ", raw_body)
 	var json := JSON.new()
 	var parse_result := json.parse(body.get_string_from_utf8())
-	#print("HTTP Response body: ", body.get_string_from_utf8())
 	if parse_result != OK:
 		push_error("Failed to parse Gemini response JSON: %s" % json.get_error_message())
 		return INVALID_RESPONSE
@@ -129,7 +116,6 @@ func read_response(body: PackedByteArray) -> String:
 	if response == null:
 		push_error("Gemini response is null after parsing.")
 		return INVALID_RESPONSE
-	# Print and handle Gemini errors
 	if response.has("error"):
 		print("Gemini API Error: ", JSON.stringify(response.error))
 		push_error("Gemini API Error: " + str(response.error))
@@ -146,7 +132,6 @@ func read_response(body: PackedByteArray) -> String:
 	return INVALID_RESPONSE
 
 
-# ----- Deprecated section - used to read the key to migrate to user settings file -----
 
 func get_deprecated_api_key() -> String:
 	var old_api_key := _deprecated_load_api_key_from_file()

@@ -1,7 +1,5 @@
 @tool
 
-# These functions are the same as the ones found in the GDNative library.
-# They are used if the user's platform is not supported.
 
 const HT_Util = preload("../util/util.gd")
 
@@ -185,7 +183,6 @@ func blur_red_brush(im: Image, brush: Image, pos: Vector2, factor: float):
 	var im_clamp_w = im.get_width() - 1
 	var im_clamp_h = im.get_height() - 1
 	
-	# Copy pixels to temporary buffer
 	for y in range(min_y, max_y):
 		for x in range(min_x, max_x):
 			var ix := clampi(x, 0, im_clamp_w)
@@ -205,7 +202,6 @@ func blur_red_brush(im: Image, brush: Image, pos: Vector2, factor: float):
 	max_x = clampi(max_x, 0, im.get_width())
 	max_y = clampi(max_y, 0, im.get_height())
 	
-	# Apply blur
 	for y in range(min_y, max_y):
 		var by := y - min_noclamp_y
 
@@ -260,30 +256,12 @@ func paint_indexed_splat(index_map: Image, weight_map: Image, brush: Image, pos:
 			var i := index_map.get_pixel(x, y)
 			var w := weight_map.get_pixel(x, y)
 			
-			# Decompress third weight to make computations easier
 			w[2] = 1.0 - w[0] - w[1]
 			
-			# The index map tells which textures to blend.
-			# The weight map tells their blending amounts.
-			# This brings the limitation that up to 3 textures can blend at a time in a given pixel.
-			# Painting this in real time can be a challenge.
 			
-			# The approach here is a compromise for simplicity.
-			# Each texture is associated a fixed component of the index map (R, G or B),
-			# so two neighbor pixels having the same component won't be guaranteed to blend.
-			# In other words, texture T will not be able to blend with T + N * k,
-			# where k is an integer, and N is the number of components in the index map (up to 4).
-			# It might still be able to blend due to a special case when an area is uniform,
-			# but not otherwise.
 			
-			# Dynamic component assignment sounds like the alternative, however I wasn't able
-			# to find a painting algorithm that wasn't confusing, at least the current one is
-			# predictable.
 			
-			# Need to use approximation because Color is float but GDScript uses doubles...
 			if abs(i[ci] - texture_index_f) > 0.001:
-				# Pixel does not have our texture index,
-				# transfer its weight to other components first
 				if w[ci] > shape_value:
 					w -= cm * shape_value
 					
@@ -292,24 +270,18 @@ func paint_indexed_splat(index_map: Image, weight_map: Image, brush: Image, pos:
 					i[ci] = texture_index_f
 					
 			else:
-				# Pixel has our texture index, increase its weight
 				if w[ci] + shape_value < 1.0:
 					w += cm * shape_value
 					
 				else:
-					# Pixel weight is full, we can set all components to the same index.
-					# Need to nullify other weights because they would otherwise never reach
-					# zero due to normalization
 					w = Color(0, 0, 0)
 					w[ci] = 1.0
 					i = all_texture_index_f
 			
-			# No `saturate` function in Color??
 			w[0] = clampf(w[0], 0.0, 1.0)
 			w[1] = clampf(w[1], 0.0, 1.0)
 			w[2] = clampf(w[2], 0.0, 1.0)
 			
-			# Renormalize
 			w /= w[0] + w[1] + w[2]
 			
 			index_map.set_pixel(x, y, i)

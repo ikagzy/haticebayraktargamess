@@ -1,6 +1,3 @@
-# Copyright © 2025 Cory Petkovsek, Roope Palmroos, and Contributors.
-# Objects parent for Terrain3D
-# Children nodes get transform updates on sculpting
 @tool
 extends Node3D
 class_name Terrain3DObjects
@@ -12,7 +9,7 @@ const CHILD_HELPER_PATH: NodePath = ^"TransformChangedSignaller"
 
 var _undo_redo = null
 var _terrain_id: int
-var _offsets: Dictionary # Object ID -> Vector3(X, Y offset relative to terrain height, Z)
+var _offsets: Dictionary
 var _ignore_transform_change: bool = false
 
 
@@ -79,8 +76,6 @@ func _on_child_entered_tree(p_node: Node) -> void:
 		p_node.add_child(helper, true, INTERNAL_MODE_BACK)
 	assert(p_node.has_node(CHILD_HELPER_PATH))
 	
-	# When reparenting a Node3D, Godot changes its transform _after_ reparenting it. So here,
-	# we must use call_deferred, to avoid receiving transform_changed as a result of reparenting.
 	_setup_child_signal.call_deferred(p_node, helper)
 
 
@@ -119,8 +114,6 @@ func _on_child_transform_changed(p_node: Node3D) -> void:
 	
 	var lmb_down := Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	if lmb_down and (_is_node_selected(p_node) or _is_node_selected(self)):
-		# The user may be moving the node using gizmos.
-		# We should wait until they're done before updating otherwise gizmos + this node conflict.
 		return
 	
 	if not _offsets.has(p_node.get_instance_id()):
@@ -141,7 +134,6 @@ func _on_child_transform_changed(p_node: Node3D) -> void:
 		new_offset.y = old_offset.y
 		new_position = new_offset + Vector3(0, new_h, 0)
 	
-	# Make sure that when the user undo's the translation, the offset change gets undone too!
 	_undo_redo.create_action("Translate", UndoRedo.MERGE_ALL)
 	_undo_redo.add_do_method(self, &"_set_offset_and_position", p_node.get_instance_id(), new_offset, new_position)
 	_undo_redo.add_undo_method(self, &"_set_offset_and_position", p_node.get_instance_id(), old_offset, old_position)
@@ -159,7 +151,6 @@ func _set_offset_and_position(p_id: int, p_offset: Vector3, p_position: Vector3)
 	_ignore_transform_change = false
 
 
-# Overwrite current offset stored for node with its current Y position relative to the terrain
 func _update_child_offset(p_node: Node3D) -> void:
 	var position: Vector3 = global_transform * p_node.position
 	var h: float = _get_terrain_height(position)
@@ -167,7 +158,6 @@ func _update_child_offset(p_node: Node3D) -> void:
 	_offsets[p_node.get_instance_id()] = offset
 
 
-# Overwrite node's current position with terrain height + stored offset for this node
 func _update_child_position(p_node: Node3D) -> void:
 	if not _offsets.has(p_node.get_instance_id()):
 		return

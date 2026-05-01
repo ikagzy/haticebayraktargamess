@@ -5,13 +5,13 @@ extends LLMInterface
 const DEPRECATED_API_KEY_SETTING := "plugins/ai_assistant_hub/openrouter_api_key"
 const DEPRECATED_API_KEY_FILE := "res://addons/ai_assistant_hub/llm_apis/openrouter_api_key.gd"
 
-var _headers: PackedStringArray # set in _initialize function
+var _headers: PackedStringArray
 
 
 func _rebuild_headers() -> void:
 	_headers = ["Content-Type: application/json",
-				"Authorization: Bearer %s" % _api_key,  # Include the key in the headers
-				"HTTP-Referer: godot://ai_assistant_hub", # OpenRouter requires source reference
+				"Authorization: Bearer %s" % _api_key,
+				"HTTP-Referer: godot://ai_assistant_hub",
 	]
 
 
@@ -20,7 +20,6 @@ func _initialize() -> void:
 	llm_config_changed.connect(_rebuild_headers)
 
 
-# Get model list
 func send_get_models_request(http_request: HTTPRequest) -> bool:
 	if _api_key.is_empty():
 		push_error("OpenRouter API key not set. Please configure the API key in the main tab and spawn a new assistant.")
@@ -33,7 +32,6 @@ func send_get_models_request(http_request: HTTPRequest) -> bool:
 	return true
 
 
-# Parse model list response
 func read_models_response(body: PackedByteArray) -> Array[String]:
 	var json := JSON.new()
 	json.parse(body.get_string_from_utf8())
@@ -51,7 +49,6 @@ func read_models_response(body: PackedByteArray) -> Array[String]:
 		return [INVALID_RESPONSE]
 
 
-# Send chat request
 func send_chat_request(http_request: HTTPRequest, content: Array) -> bool:
 	if _api_key.is_empty():
 		push_error("OpenRouter API key not set. Please configure the API key in the main tab and spawn a new assistant.")
@@ -61,13 +58,11 @@ func send_chat_request(http_request: HTTPRequest, content: Array) -> bool:
 		push_error("ERROR: You need to set an AI model for this assistant type.")
 		return false
 	
-	# Build request body
 	var body_dict := {
 		"model": model,
 		"messages": content
 	}
 	
-	# Add temperature setting (if needed)
 	if override_temperature:
 		body_dict["temperature"] = temperature
 	
@@ -79,7 +74,6 @@ func send_chat_request(http_request: HTTPRequest, content: Array) -> bool:
 	return true
 
 
-# Parse chat response
 func read_response(body: PackedByteArray) -> String:
 	var json := JSON.new()
 	json.parse(body.get_string_from_utf8())
@@ -93,7 +87,6 @@ func read_response(body: PackedByteArray) -> String:
 	return INVALID_RESPONSE
 
 
-# ----- Deprecated section - used to read the key to migrate to user settings file -----
 
 func get_deprecated_api_key() -> String:
 	var old_api_key := _deprecated_load_api_key_from_file()

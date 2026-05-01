@@ -1,7 +1,4 @@
 
-# GDScript implementation of an inspector.
-# It generates controls for a provided list of properties,
-# which is easier to maintain than placing them by hand and connecting things in the editor.
 
 @tool
 extends Control
@@ -11,7 +8,6 @@ const USAGE_ENUM = "enum"
 
 signal property_changed(key, value)
 
-# Used for most simple types
 class HT_InspectorEditor:
 	var control = null
 	var getter := Callable()
@@ -19,7 +15,6 @@ class HT_InspectorEditor:
 	var key_label : Label
 
 
-# Used when the control cannot hold the actual value
 class HT_InspectorResourceEditor extends HT_InspectorEditor:
 	var value = null
 	var label = null
@@ -52,13 +47,10 @@ class HT_InspectorVectorEditor extends HT_InspectorEditor:
 		value_changed.emit(value)		
 
 
-# TODO Rename _schema
 var _prototype = null
 var _edit_signal := true
-# name => editor
 var _editors := {}
 
-# Had to separate the container because otherwise I can't open dialogs properly...
 @onready var _grid_container = get_node("GridContainer")
 @onready var _file_dialog = get_node("OpenFileDialog")
 
@@ -66,32 +58,8 @@ var _editors := {}
 func _ready():
 	_file_dialog.visibility_changed.connect(
 		call_deferred.bind("_on_file_dialog_visibility_changed"))
-# Test
-#	set_prototype({
-#		"seed": {
-#			"type": TYPE_INT,
-#			"randomizable": true
-#		},
-#		"base_height": {
-#			"type": TYPE_REAL,
-#			"range": {"min": -1000.0, "max": 1000.0, "step": 0.1}
-#		},
-#		"height_range": {
-#			"type": TYPE_REAL,
-#			"range": {"min": -1000.0, "max": 1000.0, "step": 0.1 },
-#			"default_value": 500.0
-#		},
-#		"streamed": {
-#			"type": TYPE_BOOL
-#		},
-#		"texture": {
-#			"type": TYPE_OBJECT,
-#			"object_type": Resource
-#		}
-#	})
 
 
-# TODO Rename clear_schema
 func clear_prototype():
 	_editors.clear()
 	var i = _grid_container.get_child_count() - 1
@@ -129,7 +97,6 @@ func set_values(values: Dictionary):
 			editor.setter.call(v)
 
 
-# TODO Rename set_schema
 func set_prototype(proto: Dictionary):
 	clear_prototype()
 	
@@ -174,7 +141,6 @@ func set_property_enabled(prop_name: String, enabled: bool):
 	elif ed.control is LineEdit:
 		ed.control.editable = enabled
 	
-	# TODO Support more editors
 
 	var col = ed.key_label.modulate
 	if enabled:
@@ -204,7 +170,6 @@ func _make_editor(key: String, prop: Dictionary) -> HT_InspectorEditor:
 				editor.add_child(pre)
 			
 			if prop.type == TYPE_INT and prop.has("usage") and prop.usage == USAGE_ENUM:
-				# Enumerated value
 				assert(prop.has("enum_items"))
 				var option_button := OptionButton.new()
 				
@@ -212,7 +177,6 @@ func _make_editor(key: String, prop: Dictionary) -> HT_InspectorEditor:
 					var item = prop.enum_items[i]
 					option_button.add_item(item)
 				
-				# TODO We assume index, actually
 				getter = option_button.get_selected_id
 				setter = option_button.select
 				option_button.item_selected.connect(_property_edited.bind(key))
@@ -220,14 +184,11 @@ func _make_editor(key: String, prop: Dictionary) -> HT_InspectorEditor:
 				editor = option_button
 				
 			else:
-				# Numeric value
 				var spinbox := SpinBox.new()
-				# Spinboxes have shit UX when not expanded...
 				spinbox.custom_minimum_size = Vector2(120, 16) 
 				_setup_range_control(spinbox, prop)
 				spinbox.value_changed.connect(_property_edited.bind(key))
 				
-				# TODO In case the type is INT, the getter should return an integer!
 				getter = spinbox.get_value
 				setter = spinbox.set_value
 				
@@ -239,7 +200,6 @@ func _make_editor(key: String, prop: Dictionary) -> HT_InspectorEditor:
 					if editor == null:
 						editor = HBoxContainer.new()
 					var slider := HSlider.new()
-					# Need to give some size because otherwise the slider is hard to click...
 					slider.custom_minimum_size = Vector2(32, 16)
 					_setup_range_control(slider, prop)
 					slider.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -293,7 +253,6 @@ func _make_editor(key: String, prop: Dictionary) -> HT_InspectorEditor:
 			setter = editor.set_pressed
 		
 		TYPE_OBJECT:
-			# TODO How do I even check inheritance if I work on the class themselves, not instances?
 			if prop.object_type == Resource:
 				editor = HBoxContainer.new()
 				
@@ -332,7 +291,6 @@ func _make_editor(key: String, prop: Dictionary) -> HT_InspectorEditor:
 			xed.step = 0.01
 			xed.min_value = -10000
 			xed.max_value = 10000
-			# TODO This will fire twice (for each coordinate), hmmm...
 			xed.value_changed.connect(ed._component_changed.bind(0))
 			editor.add_child(xed)
 			
@@ -363,7 +321,6 @@ func _make_editor(key: String, prop: Dictionary) -> HT_InspectorEditor:
 		editor.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	
 	if ed == null:
-		# Default
 		ed = HT_InspectorEditor.new()
 	ed.control = editor
 	ed.getter = getter
@@ -384,7 +341,6 @@ static func _setup_range_control(range_control: Range, prop):
 		if prop.range.has("step"):
 			range_control.step = prop.range.step
 	else:
-		# Where is INT_MAX??
 		range_control.min_value = -0x7fffffff
 		range_control.max_value = 0x7fffffff
 
@@ -398,7 +354,6 @@ func _randomize_property_pressed(key):
 	var prop = _prototype[key]
 	var v = 0
 	
-	# TODO Support range step
 	match prop.type:
 		TYPE_INT:
 			if prop.has("range"):
@@ -419,7 +374,6 @@ func _dummy_getter():
 
 
 func _dummy_setter(v):
-	# TODO Could use extra data to store the value anyways?
 	pass
 
 
@@ -434,9 +388,6 @@ func _open_file_dialog(filters: Array, callback: Callable, access: int):
 	for filter in filters:
 		_file_dialog.add_filter(filter)
 
-	# Can't just use one-shot signals because the dialog could be closed without choosing a file...
-#	if not _file_dialog.file_selected.is_connected(callback):
-#		_file_dialog.file_selected.connect(callback, Object.CONNECT_ONE_SHOT)
 	_file_dialog.file_selected.connect(callback)
 	
 	_file_dialog.popup_centered_ratio(0.7)
@@ -444,8 +395,6 @@ func _open_file_dialog(filters: Array, callback: Callable, access: int):
 
 func _on_file_dialog_visibility_changed():
 	if _file_dialog.visible == false:
-		# Disconnect listeners automatically,
-		# so we can re-use the same dialog with different listeners
 		var cons = _file_dialog.get_signal_connection_list("file_selected")
 		for con in cons:
 			_file_dialog.file_selected.disconnect(con.callable)

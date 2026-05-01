@@ -1,4 +1,3 @@
-# Simple container keeping its children under the same aspect ratio
 
 @tool
 extends Container
@@ -12,8 +11,6 @@ func _notification(what: int):
 		_sort_children2()
 
 
-# TODO Function with ugly name to workaround a Godot 3.1 issue
-# See https://github.com/godotengine/godot/pull/38396
 func _sort_children2():
 	for i in get_child_count():
 		var child = get_child(i)

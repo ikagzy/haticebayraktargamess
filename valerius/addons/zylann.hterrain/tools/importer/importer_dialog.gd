@@ -62,9 +62,6 @@ func _ready():
 		}
 	})
 	
-	# Testing
-#	_errors_label.text = "- Hello World!"
-#	_warnings_label.text = "- Yolo Jesus!"
 
 
 func set_terrain(terrain: HTerrain):
@@ -73,8 +70,6 @@ func set_terrain(terrain: HTerrain):
 
 func _notification(what: int):
 	if what == NOTIFICATION_VISIBILITY_CHANGED:
-		# Checking a node set in _ready,
-		# because visibility can also change between _enter_tree and _ready...
 		if visible and _inspector != null:
 			_clear_feedback()
 
@@ -120,7 +115,6 @@ func _on_CheckButton_pressed():
 func _on_ImportButton_pressed():
 	assert(_terrain != null and _terrain.get_data() != null)
 
-	# Verify input to inform the user of potential issues
 	var res := _validate_form()
 	_show_feedback(res)
 
@@ -181,8 +175,6 @@ func _validate_form() -> HT_ErrorCheckReport:
 		res.errors.append("No maps specified.")
 		return res
 
-	# If a heightmap is specified, it will override the size of the existing terrain.
-	# If not specified, maps will have to match the resolution of the existing terrain.
 	var heightmap_size := _terrain.get_data().get_resolution()
 
 	if heightmap_path != "":
@@ -191,8 +183,6 @@ func _validate_form() -> HT_ErrorCheckReport:
 
 		if min_height >= max_height:
 			res.errors.append("Minimum height must be lower than maximum height")
-			# Returning early because min and max can be slided,
-			# so we avoid loading other maps every time to do further checks.
 			return res
 
 		var image_size_result = _load_image_size(heightmap_path, _logger)
@@ -256,7 +246,6 @@ static func _load_image_size(path: String, logger) -> HT_ImageSizeResult:
 	var result := HT_ImageSizeResult.new()
 
 	if ext == "png" or ext == "exr":
-		# Godot can load these formats natively
 		var im := Image.new()
 		var err := im.load(path)
 		if err != OK:
@@ -276,8 +265,6 @@ static func _load_image_size(path: String, logger) -> HT_ImageSizeResult:
 			result.error_code = err
 			return result
 
-		# Assume the raw data is square in 16-bit format,
-		# so its size is function of file length
 		var flen := f.get_length()
 		f = null
 		var size_px = HT_Util.integer_square_root(flen / 2)

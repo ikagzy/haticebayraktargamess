@@ -14,10 +14,8 @@ func _init(plugin:EditorPlugin, code_selector:AssistantToolSelection) -> void:
 
 
 func handle(text_answer:String, quick_prompt:AIQuickPromptResource) -> void:
-	#Simple chat
 	if quick_prompt == null:
 		bot_message_produced.emit(text_answer)
-	#Response is for a quick prompt
 	else:
 		if quick_prompt.format_response_as_comment:
 			text_answer = _convert_to_comment(text_answer)
@@ -53,10 +51,8 @@ func _extract_gdscript(text:String) -> String:
 func _convert_to_comment(text:String) -> String:
 	text = text.strip_edges(true, true)
 	if text.begins_with("#"):
-		#trusting the model returned a comment somewhat formatted
 		return text
 	else:
-		#formatting the comment
 		var result := "# "
 		var line_length := COMMENT_LENGTH
 		var curr_line_length := 0

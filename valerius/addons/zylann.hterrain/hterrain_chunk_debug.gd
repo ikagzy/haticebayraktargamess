@@ -1,8 +1,6 @@
 @tool
 extends "hterrain_chunk.gd"
 
-# I wrote this because Godot has no debug option to show AABBs.
-# https://github.com/godotengine/godot/issues/20722
 
 
 const HT_DirectMeshInstance = preload("./util/direct_mesh_instance.gd")
@@ -23,7 +21,6 @@ func _init(p_parent: Node3D, p_cell_x: int, p_cell_y: int, p_material: Material)
 		var mat := StandardMaterial3D.new()
 		mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 		wirecube.surface_set_material(0, mat)
-		# Cache the debug cube in the parent node to avoid re-creating each time
 		p_parent.set_meta("debug_wirecube_mesh", wirecube)
 	else:
 		wirecube = p_parent.get_meta("debug_wirecube_mesh")
@@ -56,7 +53,6 @@ func set_visible(visible: bool):
 
 func set_aabb(aabb: AABB):
 	super(aabb)
-	#aabb.position.y += 0.2*randf()
 	_aabb = aabb
 	_debug_cube.set_transform(_compute_aabb())
 

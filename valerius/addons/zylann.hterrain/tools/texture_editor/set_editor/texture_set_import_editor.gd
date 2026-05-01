@@ -23,7 +23,6 @@ const COMPRESS_COUNT = 3
 
 const _compress_names = ["Raw", "Lossless", "Lossy", "VRAM"]
 
-# Indexed by HTerrainTextureSet.SRC_TYPE_* constants
 const _smart_pick_file_keywords = [
 	["albedo", "color", "col", "diffuse"],
 	["bump", "height", "depth", "displacement", "disp"],
@@ -42,20 +41,6 @@ signal import_finished
 
 @onready var _slots_list : ItemList = $Import/HS/VB/SlotsList
 
-# TODO Some shortcuts to import options were disabled in the GUI because of Godot issues.
-# If users want to customize that, they need to do it on the files directly.
-#
-# There is no script API in Godot to choose the import settings of a generated file.
-# They always start with the defaults, and the only implemented case is for the import dock.
-# It appeared possible to reverse-engineer and write a .import file as done in HTerrainData,
-# however when I tried this with custom importers, Godot stopped importing after scan(),
-# and the resources could not load. However, selecting them each and clicking "Reimport"
-# did import them fine. Unfortunately, this short-circuits the workflow.
-# Since I have no idea what's going on with this reverse-engineering, I had to drop those options.
-# Godot needs an API to import specific files and choose settings before the first import.
-#
-# Godot 4: now we'll really need it, let's enable and we'll see if it works
-# when we can test the workflow...
 const _WRITE_IMPORT_FILES = true
 
 @onready var _import_mode_selector : OptionButton = $Import/GC/ImportModeSelector
@@ -71,8 +56,6 @@ var _texture_set : HTerrainTextureSet
 var _undo_redo_manager : EditorUndoRedoManager
 var _logger = HT_Logger.get_for(self)
 
-# This is normally an `EditorFileDialog`. I can't type-hint this one properly,
-# because when I test this UI in isolation, I can't use `EditorFileDialog`.
 var _load_texture_dialog : ConfirmationDialog
 var _load_texture_type : int = -1
 var _error_popup : AcceptDialog
@@ -85,8 +68,6 @@ var _normalmap_material : ShaderMaterial
 var _import_mode := HTerrainTextureSet.MODE_TEXTURES
 
 class HT_TextureSetImportEditorSlot:
-	# Array of strings.
-	# Can be either path to images, hexadecimal colors starting with #, or empty string for "null".
 	var texture_paths := []
 	var flip_normalmap_y := false
 	
@@ -94,7 +75,6 @@ class HT_TextureSetImportEditorSlot:
 		for i in HTerrainTextureSet.SRC_TYPE_COUNT:
 			texture_paths.append("")
 
-# Array of HT_TextureSetImportEditorSlot
 var _slots_data := []
 
 var _import_settings := {
@@ -107,7 +87,6 @@ var _import_settings := {
 func _init():
 	get_ok_button().hide()
 	
-	# Default data
 	_slots_data.clear()
 	for i in 4:
 		_slots_data.append(HT_TextureSetImportEditorSlot.new())
@@ -169,8 +148,6 @@ func setup_dialogs(parent: Node):
 
 func _notification(what: int):
 	if what == NOTIFICATION_EXIT_TREE:
-		# Have to check for null in all of them,
-		# because otherwise it breaks in the scene editor...
 		if _load_texture_dialog != null:
 			_load_texture_dialog.queue_free()
 		if _error_popup != null:
@@ -183,7 +160,6 @@ func _notification(what: int):
 			_info_popup.queue_free()
 
 
-# TODO Is it still necessary for an import tab?
 func set_undo_redo(ur: EditorUndoRedoManager):
 	_undo_redo_manager = ur
 
@@ -194,7 +170,6 @@ func set_editor_file_system(efs: EditorFileSystem):
 
 func set_texture_set(texture_set: HTerrainTextureSet):
 	if _texture_set == texture_set:
-		# TODO What if the set was actually modified since?
 		return
 	_texture_set = texture_set
 
@@ -263,7 +238,6 @@ func set_texture_set(texture_set: HTerrainTextureSet):
 				if src_data.has("a"):
 					slot.texture_paths[src_types[1]] = src_data["a"]
 
-	# TODO If the set doesn't have a file, use terrain path by default?
 	if texture_set.resource_path != "":
 		var dir = texture_set.resource_path.get_base_dir()
 		_import_directory_line_edit.text = dir
@@ -357,20 +331,15 @@ func _set_ui_slot_texture_from_path(im_path: String, type: int):
 	var im : Image
 	
 	if im_path.begins_with("#") and im_path.find(".") == -1:
-		# The path is actually a preset for a uniform color.
-		# This is a feature of packed texture descriptor files.
-		# Make a small placeholder image.
 		var color := Color(im_path)
 		im = Image.create(4, 4, false, Image.FORMAT_RGBA8)
 		im.fill(color)
 		
 	else:
-		# Regular path
 		im = Image.new()
 		var err := im.load(im_path)
 		if err != OK:
 			_logger.error(str("Unable to load image from ", im_path))
-			# TODO Different icon for images that can't load?
 			ed.set_texture(null)
 			ed.set_texture_tooltip("<empty>")
 			return
@@ -384,7 +353,6 @@ func _set_source_image(fpath: String, type: int):
 	_set_ui_slot_texture_from_path(fpath, type)
 
 	var slot_index : int = _slots_list.get_selected_items()[0]
-	#var prev_path = _texture_set.get_source_image_path(slot_index, type)
 	
 	var slot : HT_TextureSetImportEditorSlot = _slots_data[slot_index]
 	slot.texture_paths[type] = fpath
@@ -392,7 +360,6 @@ func _set_source_image(fpath: String, type: int):
 
 func _set_import_property(key: String, value):
 	var prev_value = _import_settings[key]
-	# This is needed, notably because CheckBox emits a signal too when we set it from code...
 	if prev_value == value:
 		return
 		
@@ -411,7 +378,6 @@ func _on_LoadTextureDialog_file_selected(fpath: String):
 		_smart_pick_files(fpath)
 
 
-# Attempts to load source images of other types by looking at how the albedo file was named
 func _smart_pick_files(albedo_fpath: String):
 	var albedo_words = _smart_pick_file_keywords[HTerrainTextureSet.SRC_TYPE_ALBEDO]
 	
@@ -443,7 +409,6 @@ func _smart_pick_files(albedo_fpath: String):
 	for type in types:
 		var slot = _slots_data[slot_index]
 		if slot.texture_paths[type] != "":
-			# Already set, don't overwrite unwantedly
 			continue
 		
 		var keywords = _smart_pick_file_keywords[type]
@@ -456,7 +421,6 @@ func _smart_pick_files(albedo_fpath: String):
 			for i in len(fnames):
 				var fname : String = fnames[i]
 				
-				# TODO We should probably ignore extensions?
 				if fname.to_lower() == expected_fname.to_lower():
 					var fpath = dirpath.path_join(fname)
 					_set_source_image(fpath, type)
@@ -505,7 +469,6 @@ func _on_SlotsList_item_selected(index: int):
 func _on_ImportModeSelector_item_selected(index: int):
 	var mode : int = _import_mode_selector.get_item_id(index)
 	if mode != _import_mode:
-		#_set_import_property("mode", mode)
 		_import_mode = mode
 		_update_ui_from_data()
 
@@ -577,16 +540,8 @@ func _on_NormalMapFlipY_toggled(button_pressed: bool):
 	_normalmap_material.set_shader_parameter("u_flip_y", slot.flip_normalmap_y)
 
 
-# class ButtonDisabler:
-# 	var _button : Button
 
-# 	func _init(b: Button):
-# 		_button = b
-# 		_button.disabled = true
 
-# 	func _notification(what: int):
-# 		if what == NOTIFICATION_PREDELETE:
-# 			_button.disabled = false
 
 
 func _get_undo_redo_for_texture_set() -> UndoRedo:
@@ -638,45 +593,21 @@ func _on_ImportButton_pressed():
 		_show_error("EditorFileSystem is not setup, can't trigger import system.")
 		return
 
-	#                   ______
-	#                .-"      "-.
-	#               /            \
-	#   _          |              |          _
-	#  ( \         |,  .-.  .-.  ,|         / )
-	#   > "=._     | )(__/  \__)( |     _.=" <
-	#  (_/"=._"=._ |/     /\     \| _.="_.="\_)
-	#         "=._ (_     ^^     _)"_.="
-	#             "=\__|IIIIII|__/="
-	#            _.="| \IIIIII/ |"=._
-	#  _     _.="_.="\          /"=._"=._     _
-	# ( \_.="_.="     `--------`     "=._"=._/ )
-	#  > _.="                            "=._ <
-	# (_/                                    \_)
-	#
-	# TODO What I need here is a way to trigger the import of specific files!
-	# It exists, but is not exposed, so I have to rely on a VERY fragile and hacky use of scan()...
-	# I'm not even sure it works tbh. It's terrible.
-	# See https://github.com/godotengine/godot-proposals/issues/1615
 	_editor_file_system.scan()
 	while _editor_file_system.is_scanning():
 		_logger.debug("Waiting for scan to complete...")
 		await get_tree().process_frame
 		if not is_inside_tree():
-			# oops?
 			return
 	_logger.debug("Scanning complete")
-	# Looks like import takes place AFTER scanning, so let's yield some more...
 	for fd in len(files_data) * 2:
 		_logger.debug("Yielding some more")
 		await get_tree().process_frame
 
 	var failed_resource_paths := []
 
-	# Using UndoRedo is mandatory for Godot to consider the resource as modified...
-	# ...yet if files get deleted, that won't be undoable anyways, but whatever :shrug:
 	var ur := _get_undo_redo_for_texture_set()
 
-	# Check imported textures
 	if _import_mode == HTerrainTextureSet.MODE_TEXTURES:
 		for fd in files_data:
 			var texture : Texture2D = load(fd.path)
@@ -698,7 +629,6 @@ func _on_ImportButton_pressed():
 		_show_error("Some resources failed to load:\n" + failed_list)
 		return
 
-	# All is OK, commit action to modify the texture set with imported textures
 
 	if _import_mode == HTerrainTextureSet.MODE_TEXTURES:
 		ur.create_action("HTerrainTextureSet: import textures")
@@ -735,17 +665,16 @@ func _on_ImportButton_pressed():
 
 
 class HT_PackedImageInfo:
-	var path := "" # Where the packed image is saved
-	var slot_index : int # Slot in texture set, when using individual textures
-	var type : int # 0:Albedo+Bump, 1:Normal+Roughness
-	var import_file_data := {} # Data to write into the .import file (when enabled...)
+	var path := ""
+	var slot_index : int
+	var type : int
+	var import_file_data := {}
 	var image : Image
 	var is_default := false
 	var texture : Texture2D
 	var texture_array : TextureLayered
 
 
-# Shared code between the two import modes
 func _generate_packed_images2() -> HT_Result:
 	var resolution : int = _import_settings.resolution
 	var images_infos := []
@@ -756,9 +685,7 @@ func _generate_packed_images2() -> HT_Result:
 		for slot_index in len(_slots_data):
 			var slot : HT_TextureSetImportEditorSlot = _slots_data[slot_index]
 			
-			# Albedo or Normal
 			var src0 : String = slot.texture_paths[src_types[0]]
-			# Bump or Roughness
 			var src1 : String = slot.texture_paths[src_types[1]]
 			
 			if src0 == "":
@@ -840,7 +767,6 @@ func _generate_packed_images(import_dir: String, prefix: String) -> HT_Result:
 
 
 static func _assemble_texarray_images(images: Array[Image], resolution: Vector2i) -> Image:
-	# Godot expects some kind of grid. Let's be lazy and do a grid with only one row.
 	var atlas := Image.create(resolution.x * len(images), resolution.y, false, Image.FORMAT_RGBA8)
 	for index in len(images):
 		var image : Image = images[index]
@@ -877,7 +803,6 @@ func _generate_packed_texarray_images(import_dir: String, prefix: String) -> HT_
 				fully_defaulted_slots += 1
 		
 		if fully_defaulted_slots == len(texarray_images):
-			# No need to generate this file at all
 			continue
 			
 		var texarray_image := _assemble_texarray_images(texarray_images, 

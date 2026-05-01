@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://csk68ttbjlxhu"]
+
+[ext_resource type="Script" uid="uid://dijf48tqpv5n2" path="res://oyununsonu.gd" id="1_script"]
+
+[node name="OyununSonu" type="Node" unique_id=844393624]
+script = ExtResource("1_script")

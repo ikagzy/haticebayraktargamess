@@ -6,14 +6,12 @@ extends StaticBody3D
 var oyuncu_kapida = false
 
 func _ready():
-	# 1. Label Kontrolü
 	if uyari_label:
 		print("✅ Label başarıyla bağlandı!")
 		uyari_label.visible = false
 	else:
 		print("❌ HATA: Label kutusu BOŞ! Inspector'dan bağlamamışsın.")
 
-	# 2. Area3D Kontrolü
 	var area = $Area3D
 	if area:
 		if not area.body_entered.is_connected(_on_body_entered):
@@ -24,7 +22,6 @@ func _ready():
 		print("❌ HATA: Bu kapının altında 'Area3D' isimli bir düğüm yok!")
 
 func _on_body_entered(body):
-	# 3. Oyuncu Algılama Kontrolü
 	if body.is_in_group("player"):
 		oyuncu_kapida = true
 		print("✅ Oyuncu kapı alanına GİRDİ.")
@@ -39,7 +36,6 @@ func _on_body_exited(body):
 			uyari_label.visible = false
 
 func _unhandled_input(event):
-	# 4. Tuş Kontrolü
 	if event.is_action_pressed("interact"):
 		print("⌨️ E tuşuna basıldı. Oyuncu kapıda mı?: ", oyuncu_kapida)
 		
@@ -52,6 +48,5 @@ func mesaj_goster():
 		uyari_label.text = mesaj
 		uyari_label.visible = true
 		
-		# Mesaj 2 saniye sonra geri gitsin (Senin istediğin satır burası)
 		await get_tree().create_timer(2.0).timeout
 		uyari_label.visible = false

@@ -1,5 +1,3 @@
-# Copyright © 2025 Cory Petkovsek, Roope Palmroos, and Contributors.
-# Operation Builder for Terrain3D
 extends RefCounted
 
 

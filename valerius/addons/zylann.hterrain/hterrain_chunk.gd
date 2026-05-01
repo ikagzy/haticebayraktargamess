@@ -4,19 +4,14 @@ var cell_origin_x := 0
 var cell_origin_y := 0
 
 var _visible : bool
-# This is true when the chunk is meant to be displayed.
-# A chunk can be active and hidden (due to the terrain being hidden).
 var _active : bool
 
 var _pending_update : bool
 
 var _mesh_instance : RID
-# Need to keep a reference so that the mesh RID doesn't get freed
-# TODO Use RID directly, no need to keep all those meshes in memory
 var _mesh : Mesh = null
 
 
-# TODO p_parent is HTerrain, can't add type hint due to cyclic reference
 func _init(p_parent: Node3D, p_cell_x: int, p_cell_y: int, p_material: Material):
 	assert(p_parent is Node3D)
 	assert(typeof(p_cell_x) == TYPE_INT)
@@ -38,7 +33,6 @@ func _init(p_parent: Node3D, p_cell_x: int, p_cell_y: int, p_material: Material)
 		rs.instance_set_scenario(_mesh_instance, world.get_scenario())
 
 	_visible = true
-	# TODO Is this needed?
 	rs.instance_set_visible(_mesh_instance, _visible)
 
 	_active = true

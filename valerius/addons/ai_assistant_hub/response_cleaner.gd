@@ -7,7 +7,6 @@ static func clean(original_text:String) -> String:
 	return remove_think_tags(original_text)
 
 
-## Removes text between <think> </think>, which some models like deepseek-r1 include.
 static func remove_think_tags(original_text:String) -> String:
 	var think_target:AIHubPlugin.ThinkingTargets = ProjectSettings.get_setting(AIHubPlugin.PREF_REMOVE_THINK, AIHubPlugin.ThinkingTargets.Output)
 	if think_target == AIHubPlugin.ThinkingTargets.Chat:

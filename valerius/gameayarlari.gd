@@ -1,13 +1,11 @@
 ﻿extends Control
 
 @onready var master_bus = AudioServer.get_bus_index("Master")
-# Buradaki yolu Ctrl+Sürükle ile güncellediğinden emin ol
 @onready var ses_yazisi = $seslabeli 
 
 func _ready():
 	print("--- DEBUG: Ayarlar Sahnesi Hazır ---")
 	
-	# OTOMATİK BAĞLANTI: Manuel sinyaller bozuksa bunlar devreye girer
 	if has_node("ArtirButon"):
 		if not $ArtirButon.pressed.is_connected(_on_artir_buton_pressed):
 			$ArtirButon.pressed.connect(_on_artir_buton_pressed)
@@ -18,7 +16,6 @@ func _ready():
 			$AzaltButon.pressed.connect(_on_azalt_buton_pressed)
 			print("DEBUG: AzaltButon kodla bağlandı.")
 
-	# Başlangıç değerini uygula
 	guncelle_ses_sistemi()
 
 func _on_artir_buton_pressed():

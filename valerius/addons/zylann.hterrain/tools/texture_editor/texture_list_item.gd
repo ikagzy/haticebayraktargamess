@@ -1,14 +1,8 @@
 @tool
 extends PanelContainer
-# Had to use PanelContainer, because due to variable font sizes in the editor,
-# the contents of the VBoxContainer can vary in size, and so in height.
-# Which means the entire item can have variable size, not just because of DPI.
-# In such cases, the hierarchy must be made of containers that grow based on their children.
 
 const HT_ColorMaterial = preload("./display_color_material.tres")
 const HT_ColorSliceShader = preload("./display_color_slice.gdshader")
-# TODO Can't preload because it causes the plugin to fail loading if assets aren't imported
-#const HT_DummyTexture = preload("../icons/empty.png")
 const DUMMY_TEXTURE_PATH = "res://addons/zylann.hterrain/tools/icons/empty.png"
 
 @onready var _texture_rect : TextureRect = $VB/TextureRect
@@ -44,8 +38,6 @@ func _gui_input(event: InputEvent):
 				grab_focus()
 				set_selected(true, true)
 				if event.double_click:
-					# Don't do this at home.
-					# I do it here because this script is very related to its container anyways.
 					get_parent().get_parent()._on_item_activated(self)
 
 
@@ -68,5 +60,4 @@ func _draw():
 		color = get_theme_color("accent_color", "Editor")
 	else:
 		color = Color(0.0, 0.0, 0.0, 0.5)
-	# Draw background
 	draw_rect(Rect2(Vector2(), size), color)
